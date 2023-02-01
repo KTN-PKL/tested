@@ -8,9 +8,15 @@
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
-      <a class="nav-link " href="index.html">
+      <a class="nav-link " href="{{route('faskab.fasdes.index')}}">
         <i class="bi bi-grid"></i>
         <span>Daftar Fasilitator Desa</span>
+      </a>
+    </li><!-- End Fasdes Nav -->
+    <li class="nav-item">
+      <a class="nav-link " href="{{route('faskab.poktan.index')}}">
+        <i class="bi bi-grid"></i>
+        <span>Daftar Kelompok Petani</span>
       </a>
     </li><!-- End Fasdes Nav -->
 

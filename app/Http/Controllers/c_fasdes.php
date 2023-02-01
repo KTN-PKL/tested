@@ -30,7 +30,7 @@ class c_fasdes extends Controller
             'level'=> "fasdes",
         ];
         $this->fasdes->addData($data);
-        return redirect()->route('faskab.fasdes.index');
+        return redirect()->route('faskab.fasdes.index')->with('success','Fasilitator Desa Berhasil Dibuat');
     }
     public function edit($id)
     {
@@ -41,19 +41,20 @@ class c_fasdes extends Controller
     {
         $data = [
             'name' => $request->name,
+            'email' => $request->email,
             'alamat' => $request->alamat,
-            'notelp' => $request->notelp,
+            'no_telp' => $request->notelp,
             'jeniskelamin' => $request->jeniskelamin,
         ];
         if ($request->password <> null) {
             $data = ['password' => Hash::make($request->password),];
         }
-        $this->fasdes->editData($data, $id);
-        return redirect()->route('faskab.fasdes.index');
+        $this->fasdes->editData($id, $data);
+        return redirect()->route('faskab.fasdes.index')->with('success','Fasilitator Desa Berhasil Diupdate');
     }
     public function destroy($id)
     {
         $this->fasdes->deleteData($id);
-        return redirect()->route('faskab.fasdes.index');
+        return redirect()->route('faskab.fasdes.index')->with('deleted','Fasilitator Desa Berhasil Dihapus');
     }
 }

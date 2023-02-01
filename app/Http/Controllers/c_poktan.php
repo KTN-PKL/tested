@@ -23,6 +23,7 @@ class c_poktan extends Controller
     public function poktan($id)
     {
         $data = ['poktan' => $this->poktan->fasdesData($id),
+                 'fasdes'=>$this->fasdes->detailData($id),
                  'id'=>$id,
                 ];
         return view('poktan.poktan', $data);
@@ -54,6 +55,13 @@ class c_poktan extends Controller
         $data = ['poktan' => $this->poktan->detailData($id),];
         return view('poktan.edit', $data);
     }
+
+    public function detail($id)
+    {
+        $data = ['poktan' => $this->poktan->detailData($id),];
+        return view('poktan.detail', $data);
+    }
+
     public function update(Request $request, $id)
     {
         $data = [

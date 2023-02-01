@@ -24,7 +24,7 @@
   <div class="card">
     <div class="card-body">
       <div class="col mt-4">
-        <a href="{{route('poktan.create')}}" class="btn btn-primary">Create Kelompok Petani</a>
+        <a href="{{route('poktan.create', $id)}}" class="btn btn-primary">Create Kelompok Petani</a>
       </div>
       <br>
       <div>

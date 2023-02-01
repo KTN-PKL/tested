@@ -15,24 +15,29 @@ class c_poktan extends Controller
     }
     public function index()
     {
-        $data = ['fasdes' => $this->fasdes->allData(),];
+        $data = ['fasdes' => $this->fasdes->allData(),
+    ];
         return view('poktan.index', $data);
     }
 
     public function poktan($id)
     {
-        $data = ['poktan' => $this->poktan->fasdesData($id),];
+        $data = ['poktan' => $this->poktan->fasdesData($id),
+                 'id'=>$id,
+                ];
         return view('poktan.poktan', $data);
     }
-    public function create()
+    public function create($id)
     {
-        return view('poktan.create');
+        $data = ['id'=>$id,
+
+        ];
+        return view('poktan.create', $data);
     }
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $data = [
-            'id_user' => $request->id_user,
-            'namapoktan' => $request->namapoktan,
+            'id_user' => $id,
             'namapoktan' => $request->namapoktan,
             'luastanah' => $request->luastanah,
             'jumlahproduksi' => $request->jumlahproduksi,
@@ -42,7 +47,7 @@ class c_poktan extends Controller
             'jumlahpetani' => $request->jumlahpetani,
         ];
         $this->poktan->addData($data);
-        return redirect()->route('faskab.poktan.index');
+        return redirect()->route('poktan', $id);
     }
     public function edit($id)
     {
@@ -67,7 +72,8 @@ class c_poktan extends Controller
     }
     public function destroy($id)
     {
+        $data = $this->poktan->detailData($id);
         $this->poktan->deleteData($id);
-        return redirect()->route('faskab.poktan.index');
+        return redirect()->route('poktan', $data->id_user);
     }
 }

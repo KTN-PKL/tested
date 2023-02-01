@@ -58,8 +58,8 @@ Route::controller(c_desa::class)->middleware('auth')->group(function () {
 
 Route::controller(c_poktan::class)->middleware('auth')->group(function () {
     Route::get('poktan', 'index')->name('faskab.poktan.index');
-    Route::get('poktan/{id}', 'poktan')->name('poktan');
-    Route::get('poktan/create', 'create')->name('poktan.create');
+    Route::get('poktan/poktan/{id}', 'poktan')->name('poktan');
+    Route::get('poktan/create/{id}', 'create')->name('poktan.create');
     Route::post('poktan/store/{id}', 'store')->name('faskab.poktan.store');
     Route::get('poktan/edit/{id}', 'edit')->name('poktan.edit');
     Route::post('poktan/update/{id}', 'update')->name('faskab.poktan.update');

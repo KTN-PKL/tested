@@ -57,7 +57,6 @@ class c_poktan extends Controller
     public function update(Request $request, $id)
     {
         $data = [
-            'id_user' => $request->id_user,
             'namapoktan' => $request->namapoktan,
             'namapoktan' => $request->namapoktan,
             'luastanah' => $request->luastanah,
@@ -67,8 +66,9 @@ class c_poktan extends Controller
             'lokasipoktan' => $request->lokasipoktan,
             'jumlahpetani' => $request->jumlahpetani,
         ];
-        $this->poktan->editData($data, $id);
-        return redirect()->route('faskab.poktan.index');
+        $this->poktan->editData($id, $data);
+        $data = $this->poktan->detailData($id);
+        return redirect()->route('poktan', $data->id_user);
     }
     public function destroy($id)
     {

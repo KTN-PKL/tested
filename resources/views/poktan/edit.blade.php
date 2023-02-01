@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @section('content')
 <div class="pagetitle">
-    <h1>Daftar Fasilitator Desa</h1>
+    <h1>Edit Kelompok Petani</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Dashboard</a></li>
@@ -41,16 +41,16 @@
                     <div class="row">
                         <div class="col-6">
                             <label for="inputEmail4" class="form-label">Jumlah Produksi</label>
-                            <input type="number" class="form-control" name="jumlahproduksi" {{$poktan->jumlahproduksi}}>
+                            <input type="number" class="form-control" name="jumlahproduksi" value="{{$poktan->jumlahproduksi}}">
                         </div>
                         <div class="col-6">
                             <label for="inputEmail4" class="form-label">Pasar</label>
                            <select name="pasar" id="" class="form-select">
                             <option value="" disabled> -- Pilih Pasar -- </option>
-                            <option value="Lokal" @if ($poktan->pasar == "lokal")
+                            <option value="lokal" @if ($poktan->pasar == "lokal")
                               selected
                             @endif>Lokal</option>
-                            <option value="Wanita" @if ($poktan->pasar == "internasional")
+                            <option value="internasional" @if ($poktan->pasar == "internasional")
                               selected
                             @endif>Internasional</option>
                            </select>
@@ -60,12 +60,12 @@
                 </div>
                 <div class="col-12">
                     <label for="inputEmail4" class="form-label">Pemeliharaan</label>
-                    <input type="text" class="form-control" name="pemeliharaan" {{$poktan->pemeliharaan}}>
+                    <input type="text" class="form-control" name="pemeliharaan" value="{{$poktan->pemeliharaan}}">
                 </div>
               
                 <div class="col-12">
                     <label for="inputEmail4" class="form-label">Lokasi</label>
-                    <input type="text" class="form-control" name="lokasipoktan" {{$poktan->lokasipoktan}}>
+                    <input type="text" class="form-control" name="lokasipoktan" value="{{$poktan->lokasipoktan}}">
                 </div>
                 
                 

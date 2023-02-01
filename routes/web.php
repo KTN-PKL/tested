@@ -5,6 +5,7 @@ use App\Http\Controllers\c_login;
 use App\Http\Controllers\c_fasdes;
 use App\Http\Controllers\c_kecamatan;
 use App\Http\Controllers\c_desa;
+use App\Http\Controllers\c_poktan;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,4 +54,14 @@ Route::controller(c_desa::class)->middleware('auth')->group(function () {
     Route::get('desa/edit/{id}', 'edit')->name('desa.edit');
     Route::post('desa/update/{id}', 'update')->name('faskab.desa.update');
     Route::get('desa/destroy/{id}', 'destroy')->name('faskab.desa.destroy');
+});
+
+Route::controller(c_poktan::class)->middleware('auth')->group(function () {
+    Route::get('poktan', 'index')->name('faskab.poktan.index');
+    Route::get('poktan/{id}', 'poktan')->name('poktan');
+    Route::get('poktan/create', 'create')->name('poktan.create');
+    Route::post('poktan/store/{id}', 'store')->name('faskab.poktan.store');
+    Route::get('poktan/edit/{id}', 'edit')->name('poktan.edit');
+    Route::post('poktan/update/{id}', 'update')->name('faskab.poktan.update');
+    Route::get('poktan/destroy/{id}', 'destroy')->name('faskab.poktan.destroy');
 });

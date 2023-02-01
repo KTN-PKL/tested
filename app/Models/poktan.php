@@ -12,7 +12,7 @@ class poktan extends Model
 
     public function fasdesData($id)
     {
-        DB::table('poktans')->where('id_user', $id)->get();
+        return DB::table('poktans')->where('id_user', $id)->get();
     }
     public function addData($data)
     {

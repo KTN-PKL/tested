@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\c_login;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
+
+Route::get('/', [App\Http\Controllers\c_login::class, 'index'])->name('login');
+Route::get('/dashboard', [App\Http\Controllers\c_login::class, 'dashboard'] )->name('dashboard')->middleware('auth');
+Route::post('/check', [App\Http\Controllers\c_login::class, 'check'])->name('login.check');
+Route::post('/', [App\Http\Controllers\c_login::class, 'logout'])->name('user.logout');

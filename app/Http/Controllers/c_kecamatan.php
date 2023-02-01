@@ -13,7 +13,7 @@ class c_kecamatan extends Controller
     }
     public function index()
     {
-        $data = ['kecamatan' => $this->kecamatan->allData,];
+        $data = ['kecamatan' => $this->kecamatan->allData(),];
         return view('kecamatan.index', $data);
     }
     public function create()
@@ -38,7 +38,7 @@ class c_kecamatan extends Controller
         $data = [
             'kecamatan' => $request->kecamatan,
         ];
-        $this->kecamatan->editData($data, $id);
+        $this->kecamatan->editData($id, $data);
         return redirect()->route('faskab.kecamatan.index');
     }
     public function destroy($id)

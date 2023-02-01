@@ -15,39 +15,38 @@ class c_desa extends Controller
     }
     public function index()
     {
-        $data = ['desa' => $this->desa->allData,];
+        $data = ['desa' => $this->desa->allData(),];
         return view('desa.index', $data);
     }
     public function create()
     {
-        return view('desa.create');
+        $data = ['kecamatan' => $this->kecamatan->allData(),];
+        return view('desa.create', $data);
     }
     public function store(Request $request)
     {
         $data = [
-            'email' => $request->email,
-            'name' => $request->name,
+            'id_kecamatan' => $request->id_kecamatan,
+            'desa' => $request->desa,
         ];
         $this->desa->addData($data);
         return redirect()->route('faskab.desa.index');
     }
     public function edit($id)
     {
-        $data = ['desa' => $this->desa->detailData($id),];
+        $data = [
+            'kecamatan' => $this->kecamatan->allData(),
+            'desa' => $this->desa->detailData($id),
+        ];
         return view('desa.edit', $data);
     }
     public function update(Request $request, $id)
     {
         $data = [
-            'name' => $request->name,
-            'alamat' => $request->alamat,
-            'notelp' => $request->notelp,
-            'jeniskelamin' => $request->jeniskelamin,
+            'id_kecamatan' => $request->id_kecamatan,
+            'desa' => $request->desa,
         ];
-        if ($request->password <> null) {
-            $data = ['password' => Hash::make($request->password),];
-        }
-        $this->desa->editData($data, $id);
+        $this->desa->editData($id, $data);
         return redirect()->route('faskab.desa.index');
     }
     public function destroy($id)

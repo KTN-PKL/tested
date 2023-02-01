@@ -6,6 +6,7 @@ use App\Http\Controllers\c_fasdes;
 use App\Http\Controllers\c_kecamatan;
 use App\Http\Controllers\c_desa;
 use App\Http\Controllers\c_poktan;
+use App\Http\Controllers\c_lokasi;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,15 @@ Route::controller(c_desa::class)->middleware('auth')->group(function () {
     Route::get('desa/edit/{id}', 'edit')->name('desa.edit');
     Route::post('desa/update/{id}', 'update')->name('faskab.desa.update');
     Route::get('desa/destroy/{id}', 'destroy')->name('faskab.desa.destroy');
+});
+
+Route::controller(c_lokasi::class)->middleware('auth')->group(function () {
+    Route::get('lokasi', 'index')->name('faskab.lokasi.index');
+    Route::post('lokasi/store', 'store')->name('faskab.lokasi.store');
+    Route::get('lokasi/create', 'create')->name('lokasi.create');
+    Route::get('lokasi/edit/{id}', 'edit')->name('lokasi.edit');
+    Route::post('lokasi/update/{id}', 'update')->name('faskab.lokasi.update');
+    Route::get('lokasi/destroy/{id}', 'destroy')->name('faskab.lokasi.destroy');
 });
 
 Route::controller(c_poktan::class)->middleware('auth')->group(function () {

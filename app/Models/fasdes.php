@@ -10,10 +10,6 @@ class fasdes extends Model
 {
     use HasFactory;
 
-    public function id()
-    {
-        return DB::table('users')->count();
-    }
     public function allData()
     {
         return DB::table('users')->get();
@@ -22,16 +18,16 @@ class fasdes extends Model
     {
         DB::table('users')->insert($data);
     }
-    public function detailData($id_user)
+    public function detailData($id)
     {
-        return DB::table('users')->where('id_user', $id_user)->first();
+        return DB::table('users')->where('id', $id)->first();
     }
-    public function editData($id_user, $data)
+    public function editData($id, $data)
     {
-        return DB::table('users')->where('id_user', $id_user)->update($data);
+        return DB::table('users')->where('id', $id)->update($data);
     }
-    public function deleteData($id_user)
+    public function deleteData($id)
     {
-        return DB::table('users')->where('id_user', $id_user)->delete();
+        return DB::table('users')->where('id', $id)->delete();
     }
 }

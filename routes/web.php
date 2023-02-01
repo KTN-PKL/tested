@@ -16,7 +16,7 @@ use App\Http\Controllers\c_fasdes;
 */
 
 Route::get('/test', function () {
-    return view('fasdes.index');
+    return view('fasdes.create');
 });
 
 Route::get('/', [App\Http\Controllers\c_login::class, 'index'])->name('login');

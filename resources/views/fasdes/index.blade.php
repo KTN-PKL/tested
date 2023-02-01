@@ -9,7 +9,32 @@
       </ol>
     </nav>
   </div><!-- End Page Title -->
-
-  
-Ini Halaman Dashboard
+  <div class="card">
+    <div class="card-body">
+      <div class="col mt-4">
+        <a href="#" class="btn btn-primary">Create Fasilitator Desa</a>
+      </div>
+      <br>
+      <div>
+        <table class="datatable">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Email</th>
+              <th>Nama Fasilitator Desa</th>
+              <th>Alamat</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+   
+ 
 @endsection

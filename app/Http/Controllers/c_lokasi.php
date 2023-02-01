@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\lokasi;
+use App\Models\kecamatan;
+use App\Models\desa;
 
 class c_lokasi extends Controller
 {
     public function __construct()
     {
         $this->lokasi = new lokasi();
+        $this->desa = new desa();
+        $this->kecamatan = new kecamatan();
     }
     public function index()
     {

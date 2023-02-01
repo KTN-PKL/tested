@@ -14,7 +14,7 @@ class c_fasdes extends Controller
     }
     public function index()
     {
-        $data = ['fasdes' => $this->fasdes->allData,];
+        $data = ['fasdes' => $this->fasdes->allData(),];
         return view('fasdes.index', $data);
     }
     public function create()
@@ -27,6 +27,7 @@ class c_fasdes extends Controller
             'email' => $request->email,
             'name' => $request->name,
             'password' => Hash::make($request->password),
+            'level'=> "fasdes",
         ];
         $this->fasdes->addData($data);
         return redirect()->route('faskab.fasdes.index');

@@ -12,7 +12,7 @@ class fasdes extends Model
 
     public function allData()
     {
-        return DB::table('users')->get();
+        return DB::table('users')->where('level', "fasdes")->get();
     }
     public function addData($data)
     {

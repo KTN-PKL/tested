@@ -26,10 +26,10 @@ Route::post('/', [App\Http\Controllers\c_login::class, 'logout'])->name('user.lo
 
 
 Route::controller(c_fasdes::class)->middleware('auth')->group(function () {
-    Route::get('fasdes', 'index')->name('fasdes');
-    Route::post('fasdes/store', 'store')->name('fasdes.store');
+    Route::get('fasdes', 'index')->name('faskab.fasdes.index');
+    Route::post('fasdes/store', 'store')->name('faskab.fasdes.store');
     Route::get('fasdes/create', 'create')->name('fasdes.create');
     Route::get('fasdes/edit/{id}', 'edit')->name('fasdes.edit');
-    Route::post('fasdes/update/{id}', 'update')->name('fasdes.update');
-    Route::get('fasdes/destroy/{id}', 'destroy')->name('fasdes.destroy');
+    Route::post('fasdes/update/{id}', 'update')->name('faskab.fasdes.update');
+    Route::get('fasdes/destroy/{id}', 'destroy')->name('faskab.fasdes.destroy');
 });

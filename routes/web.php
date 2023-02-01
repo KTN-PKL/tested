@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\c_login;
 use App\Http\Controllers\c_fasdes;
+use App\Http\Controllers\c_kecamatan;
+use App\Http\Controllers\c_desa;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +34,23 @@ Route::controller(c_fasdes::class)->middleware('auth')->group(function () {
     Route::get('fasdes/edit/{id}', 'edit')->name('fasdes.edit');
     Route::post('fasdes/update/{id}', 'update')->name('faskab.fasdes.update');
     Route::get('fasdes/destroy/{id}', 'destroy')->name('faskab.fasdes.destroy');
+});
+
+
+Route::controller(c_kecamatan::class)->middleware('auth')->group(function () {
+    Route::get('kecamatan', 'index')->name('faskab.kecamatan.index');
+    Route::post('kecamatan/store', 'store')->name('faskab.kecamatan.store');
+    Route::get('kecamatan/create', 'create')->name('kecamatan.create');
+    Route::get('kecamatan/edit/{id}', 'edit')->name('kecamatan.edit');
+    Route::post('kecamatan/update/{id}', 'update')->name('faskab.kecamatan.update');
+    Route::get('kecamatan/destroy/{id}', 'destroy')->name('faskab.kecamatan.destroy');
+});
+
+Route::controller(c_desa::class)->middleware('auth')->group(function () {
+    Route::get('desa', 'index')->name('faskab.desa.index');
+    Route::post('desa/store', 'store')->name('faskab.desa.store');
+    Route::get('desa/create', 'create')->name('desa.create');
+    Route::get('desa/edit/{id}', 'edit')->name('desa.edit');
+    Route::post('desa/update/{id}', 'update')->name('faskab.desa.update');
+    Route::get('desa/destroy/{id}', 'destroy')->name('faskab.desa.destroy');
 });

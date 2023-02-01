@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('level', 20);
             $table->string('alamat', 50)->nullable();
             $table->string('no_telp', 20)->nullable();
+            $table->string('jeniskelamin', 20)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

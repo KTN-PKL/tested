@@ -715,7 +715,7 @@ h6 {
 
 .sidebar-nav .nav-link.collapsed {
   color: #012970;
-  background: #ffffff;
+  background: rgb(178, 178, 255);
 }
 
 .sidebar-nav .nav-link.collapsed i {

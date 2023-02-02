@@ -61,7 +61,7 @@ Route::controller(c_desa::class)->middleware('auth')->group(function () {
 Route::controller(c_lokasi::class)->middleware('auth')->group(function () {
     Route::get('lokasi', 'index')->name('faskab.lokasi.index');
     Route::post('lokasi/store', 'store')->name('faskab.lokasi.store');
-    Route::get('lokasi/create', 'create')->name('lokasi.create');
+    Route::get('lokasi/desa/{id}/{id_kecamatan}', 'desa')->name('lokasi.desa');
     Route::get('lokasi/edit/{id}', 'edit')->name('lokasi.edit');
     Route::post('lokasi/update/{id}', 'update')->name('faskab.lokasi.update');
     Route::get('lokasi/destroy/{id}', 'destroy')->name('faskab.lokasi.destroy');

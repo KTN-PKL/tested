@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @section('content')
 <div class="pagetitle">
-    <h1>Daftar Fasilitator Desa</h1>
+    <h1>Daftar Lokasi</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Dashboard</a></li>
@@ -17,6 +17,7 @@
         </center>
 
               <!-- Vertical Form -->
+              <input type="text" value="{{ $lokasi->id_lokasi }}" id="id" hidden>
               <form class="row g-3" action="{{route('faskab.lokasi.update', $lokasi->id_lokasi)}}" method="POST">
                 @csrf
                 <div class="col-12">
@@ -25,7 +26,7 @@
                 </div>
                 <div class="col-12">
                   <label for="inputEmail4" class="form-label">Kecamatan</label>
-                  <select class="form-select" id="id_kecamatan">
+                  <select class="form-select" id="id_kecamatan" onchange="desa()">
                     <option value="0" @if ($lokasi->id_kecamatan == null)
                       selected
                     @endif disabled>-- Pilih Kecamatan --</option>
@@ -74,3 +75,12 @@
 
 
 @endsection
+<script>
+  function desa() {
+    var id_kecamatan = $("#id_kecamatan").val();
+    var id = $("#id").val();
+            $.get("{{ url('lokasi/desa') }}/" + id +"/"+id_kecamatan, {}, function(data, status) {
+                $("#desa").html(data);
+            });
+        }
+</script>

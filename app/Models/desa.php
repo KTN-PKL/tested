@@ -14,6 +14,10 @@ class desa extends Model
     {
         return DB::table('desas')->get();
     }
+    public function kecamatanData($id)
+    {
+        return DB::table('desas')->where('id_kecamatan', $id)->get();
+    }
     public function addData($data)
     {
         DB::table('desas')->insert($data);

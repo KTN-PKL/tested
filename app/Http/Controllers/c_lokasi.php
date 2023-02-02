@@ -36,9 +36,13 @@ class c_lokasi extends Controller
         return view('lokasi.edit', $data);
     }
 
-    public function desa($id)
+    public function desa($id, $id_kecamatan)
     {
-
+        $data = [
+            'desa' => $this->desa->kecamatanData($id_kecamatan),
+            'lokasi' => $this->lokasi->detailData($id),
+        ];
+        return view('lokasi.desa', $data);
     }
 
     public function update(Request $request, $id)

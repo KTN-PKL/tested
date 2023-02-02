@@ -13,7 +13,7 @@ class lokasi extends Model
 
     public function allData()
     {
-        return DB::table('lokasis')->get();
+        return DB::table('lokasis')->join('users', 'lokasis.id_user', '=', 'users.id')->get();
     }
     public function addData($data)
     {
@@ -21,7 +21,7 @@ class lokasi extends Model
     }
     public function detailData($id)
     {
-        return DB::table('lokasis')->where('id_lokasi', $id)->first();
+        return DB::table('lokasis')->join('users', 'lokasis.id_user', '=', 'users.id')->leftjoin('desas', 'lokasis.id_desa', '=', 'desas.id_desa')->where('id_lokasi', $id)->first();
     }
     public function editData($id, $data)
     {

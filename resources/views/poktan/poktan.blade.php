@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @section('content')
 <div class="pagetitle">
-    <h1>Daftar Kelompok Petani </h1>
+    <h1>Daftar Kelompok Petani {{$fasdes->name}} </h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Dashboard</a></li>
@@ -52,7 +52,7 @@
               <td>{{$data->jumlahpetani}}</td>
               <td>{{$data->pasar}}</td>
               <td style="width:30%">
-                <a href="" class="btn btn-sm btn-primary"> <i class="bi bi-eye"></i> Lihat</a>
+                <a href="{{route('poktan.detail', $data->id_poktan)}}" class="btn btn-sm btn-primary"> <i class="bi bi-eye"></i> Lihat</a>
                 <a href="{{route('poktan.edit', $data->id_poktan)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
                 <a href="{{route('faskab.poktan.destroy', $data->id_poktan)}}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Hapus</a>
               </td>

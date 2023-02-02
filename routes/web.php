@@ -34,6 +34,7 @@ Route::controller(c_fasdes::class)->middleware('auth')->group(function () {
     Route::post('fasdes/store', 'store')->name('faskab.fasdes.store');
     Route::get('fasdes/create', 'create')->name('fasdes.create');
     Route::get('fasdes/edit/{id}', 'edit')->name('fasdes.edit');
+    Route::get('fasdes/detail/{id}', 'detail')->name('fasdes.detail');
     Route::post('fasdes/update/{id}', 'update')->name('faskab.fasdes.update');
     Route::get('fasdes/destroy/{id}', 'destroy')->name('faskab.fasdes.destroy');
 });
@@ -72,6 +73,7 @@ Route::controller(c_poktan::class)->middleware('auth')->group(function () {
     Route::get('poktan/create/{id}', 'create')->name('poktan.create');
     Route::post('poktan/store/{id}', 'store')->name('faskab.poktan.store');
     Route::get('poktan/edit/{id}', 'edit')->name('poktan.edit');
+    Route::get('poktan/detail/{id}', 'detail')->name('poktan.detail');
     Route::post('poktan/update/{id}', 'update')->name('faskab.poktan.update');
     Route::get('poktan/destroy/{id}', 'destroy')->name('faskab.poktan.destroy');
 });

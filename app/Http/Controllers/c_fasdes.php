@@ -37,6 +37,12 @@ class c_fasdes extends Controller
         $data = ['fasdes' => $this->fasdes->detailData($id),];
         return view('fasdes.edit', $data);
     }
+
+    public function detail($id)
+    {
+        $data = ['fasdes' => $this->fasdes->detailData($id),];
+        return view('fasdes.detail', $data);
+    }
     public function update(Request $request, $id)
     {
         $data = [

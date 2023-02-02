@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\fasdes;
+use App\Models\lokasi;
 use Illuminate\Support\Facades\Hash;
 
 class c_fasdes extends Controller
@@ -11,6 +12,7 @@ class c_fasdes extends Controller
     public function __construct()
     {
         $this->fasdes = new fasdes();
+        $this->lokasi = new lokasi();
     }
     public function index()
     {
@@ -23,13 +25,18 @@ class c_fasdes extends Controller
     }
     public function store(Request $request)
     {
+        $id = $this->fasdes->id();
+        $id = $id + 1;
         $data = [
+            'id' => $id,
             'email' => $request->email,
             'name' => $request->name,
             'password' => Hash::make($request->password),
             'level'=> "fasdes",
         ];
         $this->fasdes->addData($data);
+        $data = ['id_user' => $id,];
+        $this->lokasi->addData($data);
         return redirect()->route('faskab.fasdes.index')->with('success','Fasilitator Desa Berhasil Dibuat');
     }
     public function edit($id)

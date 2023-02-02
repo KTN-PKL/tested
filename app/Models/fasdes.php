@@ -10,6 +10,11 @@ class fasdes extends Model
 {
     use HasFactory;
 
+    public function id()
+    {
+        return DB::table('users')->count();
+    }
+
     public function allData()
     {
         return DB::table('users')->where('level', "fasdes")->get();

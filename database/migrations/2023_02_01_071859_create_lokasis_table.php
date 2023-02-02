@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('lokasis', function (Blueprint $table) {
             $table->id('id_lokasi');
             $table->string('id_user', 20);
-            $table->string('id_desa', 20);
-            $table->string('lokasi');
+            $table->string('id_desa', 20)->nullable();
+            $table->string('lokasi')->nullable();
             $table->timestamps();
         });
     }

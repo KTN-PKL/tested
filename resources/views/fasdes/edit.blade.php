@@ -45,10 +45,10 @@
                   <label for="inputPassword4" class="form-label">Alamat</label>
                   <select class="form-select" name="jeniskelamin">
                     <option value="">-- Pilih Jenis Kelamin --</option>
-                    <option value="Pria" @if ($fasdes->jeniskelamin == "Pria")
+                    <option value="pria" @if ($fasdes->jeniskelamin == "pria")
                       selected
                     @endif>Pria</option>
-                    <option value="Wanita" @if ($fasdes->jeniskelamin == "Wanita")
+                    <option value="wanita" @if ($fasdes->jeniskelamin == "wanita")
                       selected
                     @endif>Wanita</option>
                     

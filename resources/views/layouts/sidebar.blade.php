@@ -7,10 +7,10 @@
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
-      <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+      <a class="nav-link {{request()->routeIs(['faskab.desa*','faskab.kecamatan*','faskab.lokasi*']) ? 'collapsed' : ''}}" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-menu-button-wide"></i><span>Data Master</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <ul id="components-nav" class="nav-content " data-bs-parent="#sidebar-nav">
         <li>
           <a href="{{url('kecamatan')}}">
             <i class="bi bi-circle"></i><span>Kecamatan</span>
@@ -19,6 +19,11 @@
         <li>
           <a href="{{url('desa')}}">
             <i class="bi bi-circle"></i><span>Desa</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{url('lokasi')}}">
+            <i class="bi bi-circle"></i><span>Lokasi</span>
           </a>
         </li>
       </ul>
@@ -38,11 +43,6 @@
       </a>
     </li><!-- End Fasdes Nav -->
 
-    <li class="nav-item">
-      <a class="nav-link" href="pages-blank.html">
-        <i class="bi bi-file-earmark"></i>
-        <span>Blank</span>
-      </a>
-    </li><!-- End Blank Page Nav -->
+  
 
   </ul>

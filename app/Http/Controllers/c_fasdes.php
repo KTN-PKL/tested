@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\fasdes;
+use App\Models\poktan;
 use App\Models\lokasi;
 use Illuminate\Support\Facades\Hash;
 
@@ -12,6 +13,7 @@ class c_fasdes extends Controller
     public function __construct()
     {
         $this->fasdes = new fasdes();
+        $this->poktan = new poktan();
         $this->lokasi = new lokasi();
     }
     public function index()
@@ -47,7 +49,8 @@ class c_fasdes extends Controller
 
     public function detail($id)
     {
-        $data = ['fasdes' => $this->fasdes->detailData($id),];
+        $data = ['fasdes' => $this->fasdes->detailData($id),
+                 'poktan' => $this->poktan->fasdesData($id),];
         return view('fasdes.detail', $data);
     }
     public function update(Request $request, $id)

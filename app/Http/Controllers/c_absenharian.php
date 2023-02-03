@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\absenharian;
-use App\Models\kecamatan;
+use App\Models\lokasi;
+use Auth;
 
 class c_absenharian extends Controller
 {
     public function __construct()
     {
-        $this->kecamatan = new kecamatan();
+        $this->lokasi = new lokasi();
         $this->harian = new absenharian();
     }
     public function index()
@@ -26,11 +27,15 @@ class c_absenharian extends Controller
     public function store(Request $request)
     {
         $data = [
-            'id_kecamatan' => $request->id_kecamatan,
+            'id_user' => Auth::user()->id,
+            'lokasiharian' => $request->lokasi,
+            'fotofasdes' => $fotofasdes,
+            'deskripsi' => $request->deskripsi,
+            'fotokegiatanharian' => $fotokegiatanharian,
             'harian' => $request->harian,
         ];
         $this->harian->addData($data);
-        return redirect()->route('faskab.harian.index');
+        return redirect()->route('absen.harian');
     }
     public function edit($id)
     {

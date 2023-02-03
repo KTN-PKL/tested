@@ -60,30 +60,35 @@
             );
           @endphp
           <p class="card-text">Hari/Tanggal : {{ $dayList[$d].", ".$t }}</p>
+          <input type="text" value="{{ $dayList[$d].", ".$t }}" hidden>
           <p class="card-text">Kordinat lokasi :  <span id="lokasi"></span></p>
+          <input type="text" id="lokasiisi" name="lokasi" hidden>
           <div class="button text-center d-grid">
             <a href="#" class="btn btn-block btn-warning">
-              <i class="fa-solid fa-user"></i> Foto Selfie</a
-            >
+              <i class="fa-solid fa-user"></i> Foto Selfie</a>
           </div>
-
+          <div>
+            <video autoplay="true" id="video-webcam" class="form-floating mb-3 pt-3">
+                Browsermu tidak mendukung bro, upgrade donk!
+            </video>
+        </div>
           <!-- field deskripsi -->
           <div class="form-floating mb-3 pt-3">
             <textarea
               class="form-control"
               placeholder="Leave a comment here"
               id="floatingTextarea"
+              name="deskripsi"
             ></textarea>
             <label for="floatingTextarea">Deskripsi Absensi</label>
           </div>
           <div class="button text-center d-grid">
-            <a href="#" class="btn btn-block btn-primary"
-              ><i class="fa-solid fa-camera"></i> Foto kegiatan</a
-            >
+            <a href="#" class="btn btn-block btn-primary">
+              <i class="fa-solid fa-camera"></i> Foto kegiatan</a>
           </div>
           <!-- akhir field deskripsi -->
 
-          <!-- field kegiatan -->
+          {{-- <!-- field kegiatan -->
           <div class="kegiatan pt-3 mb-3">
             <select class="form-select" aria-label="Default select example">
               <option selected disabled>Jenis Kegiatan</option>
@@ -98,16 +103,15 @@
 
           <div class="Pelatihan pt-3 mb-3">
             <!-- isi code -->
-          </div>
+          </div> --}}
           <div class="button text-center d-grid pt-3">
-            <a href="#" class="btn btn-block btn-success"
-              ><i class="fa-solid fa-floppy-disk"></i> Simpan</a
-            >
+            <button href="#" class="btn btn-block btn-success">
+              <i class="fa-solid fa-floppy-disk"></i> Simpan</button>
           </div>
         </div>
       </div>
       <!-- akhir componen card -->
-
+      
       <!-- nav bottom -->
       <div class="botnav fixed-bottom bg-dark text-light text-center">
         <div class="row">
@@ -136,7 +140,33 @@
         var longitude 	= posisi.coords.longitude;
         
               $('#lokasi').html(latitude+","+longitude);
+              $('#lokasiisi').val(latitude+","+longitude);
       }
+      
     </script>
+    <script type="text/javascript">
+      // seleksi elemen video
+      var video = document.querySelector("#video-webcam");
+  
+      // minta izin user
+      navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+  
+      // jika user memberikan izin
+      if (navigator.getUserMedia) {
+          // jalankan fungsi handleVideo, dan videoError jika izin ditolak
+          navigator.getUserMedia({ video: true }, handleVideo, videoError);
+      }
+  
+      // fungsi ini akan dieksekusi jika  izin telah diberikan
+      function handleVideo(stream) {
+          video.srcObject = stream;
+      }
+  
+      // fungsi ini akan dieksekusi kalau user menolak izin
+      function videoError(e) {
+          // do something
+          alert("Izinkan menggunakan webcam untuk demo!")
+      }
+  </script>
   </body>
 </html>

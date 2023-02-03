@@ -45,7 +45,21 @@
       <div class="card mt-3">
         <div class="card-body">
           <h5 class="card-title mb-3">Absensi Kegiatan</h5>
-          <p class="card-text">Hari/Tanggal :</p>
+          @php
+          date_default_timezone_set("Asia/Jakarta");
+          $t = date("Y-m-d");
+          $d = date("D");
+          $dayList = array(
+            'Sun' => 'Minggu',
+            'Mon' => 'Senin',
+            'Tue' => 'Selasa',
+            'Wed' => 'Rabu',
+            'Thu' => 'Kamis',
+            'Fri' => 'Jumat',
+            'Sat' => 'Sabtu'
+            );
+          @endphp
+          <p class="card-text">Hari/Tanggal : {{ $dayList[$d].", ".$t }}</p>
           <p class="card-text">Kordinat lokasi :  <span id="lokasi"></span></p>
           <div class="button text-center d-grid">
             <a href="#" class="btn btn-block btn-warning">

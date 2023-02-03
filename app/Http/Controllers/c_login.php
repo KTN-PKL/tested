@@ -56,8 +56,9 @@ class c_login extends Controller
     
             return view('dashboard');
         } else {
-            session()->flash('error', 'Masukkan Akun Admin');
-            return redirect()->back();
+            // session()->flash('error', 'Masukkan Akun Admin');
+            // return redirect()->back();
+            return view('user.dashboard');
         }
        
     }

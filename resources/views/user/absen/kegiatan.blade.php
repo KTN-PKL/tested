@@ -84,7 +84,42 @@
 
           <div class="Pelatihan pt-3 mb-3">
             <!-- isi code -->
+            <select onchange="pelatihan()" class="form-select" aria-label="Default select example" id="pelatihan">
+              <option value="" selected disabled>-- Pilih Pelatihan --</option>
+              <option value="pelatihan">Pelatihan</option>
+              <option value="nonpelatihan">Non Pelatihan</option>
+            </select>
           </div>
+
+          <div id="form" style="display: none">
+            <div class="form-floating mb-3 pt-3">
+              <textarea
+              class="form-control"
+              placeholder="Leave a comment here"
+              id="floatingTextarea"
+            ></textarea>
+            <label for="floatingTextarea">Judul</label>
+          </div>
+          <div class="form-floating mb-3 pt-3">
+            <textarea
+            class="form-control"
+            placeholder="Leave a comment here"
+            id="floatingTextarea"
+          ></textarea>
+          <label for="floatingTextarea">Durasi Waktu</label>
+          </div>
+          <div class="form-floating mb-3 pt-3">
+            <textarea
+            class="form-control"
+            placeholder="Leave a comment here"
+            id="floatingTextarea"
+          ></textarea>
+          <label for="floatingTextarea">Tempat</label>
+          </div>
+
+          </div>
+        
+
           <div class="button text-center d-grid pt-3">
             <a href="#" class="btn btn-block btn-success"
               ><i class="fa-solid fa-floppy-disk"></i> Simpan</a
@@ -106,5 +141,18 @@
     </div>
     <!-- akhir container -->
     <script src="{{asset('templateUser')}}/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function pelatihan(){
+        var pelatihan = $("#pelatihan").val();
+        if(pelatihan == "pelatihan"){
+          document.getElementById("form").style.display = "block";
+        }
+       else{
+        document.getElementById("form").style.display = "none";
+       }
+       
+      }
+    </script>
+     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
   </body>
 </html>

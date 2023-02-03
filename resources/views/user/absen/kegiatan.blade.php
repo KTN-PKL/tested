@@ -1,17 +1,4 @@
 @extends('layouts.templateuser')
-<style>
-  #container {
-    margin: 0px auto;
-    width: 500px;
-    height: 375px;
-    border: 10px #333 solid;
-  }
-  #videoElement {
-    width: 500px;
-    height: 375px;
-    background-color: #666;
-  }
-  </style>
 @section('content')
     <!-- componen card -->
     <div class="card">
@@ -55,9 +42,6 @@
             <a href="#" class="btn btn-block btn-warning">
               <i class="fa-solid fa-user"></i> Foto Selfie</a
             >
-            <video autoplay="true" id="videoElement">
-
-            </video>
         </div>
 
         <!-- field deskripsi -->
@@ -165,19 +149,7 @@
      
     }
   </script>
-  <script>
-    var video = document.querySelector("#videoElement");
 
-    if (navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: true })
-        .then(function (stream) {
-          video.srcObject = stream;
-        })
-        .catch(function (err0r) {
-          console.log("Something went wrong!");
-        });
-    }
-  </script>
   {{-- end form pelatihan --}}
 
 

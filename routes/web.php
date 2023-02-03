@@ -22,6 +22,9 @@ use App\Http\Controllers\c_lokasi;
 Route::get('/test', function () {
     return view('user.absen.harian');
 });
+Route::get('/test2', function () {
+    return view('user.absen.kegiatan');
+});
 
 Route::get('/', [App\Http\Controllers\c_login::class, 'index'])->name('login');
 Route::get('/dashboard', [App\Http\Controllers\c_login::class, 'dashboard'] )->name('dashboard')->middleware('auth');

@@ -20,7 +20,7 @@ use App\Http\Controllers\c_lokasi;
 */
 
 Route::get('/test', function () {
-    return view('user.harian.absen');
+    return view('user.absen.harian');
 });
 
 Route::get('/', [App\Http\Controllers\c_login::class, 'index'])->name('login');

@@ -10,7 +10,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.c ss"
     />
     <link rel="stylesheet" href="{{asset('templateUser')}}/style.css" />
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Absen Kegiatan</title>
   </head>
   <body onload="startTime()">
@@ -46,7 +46,7 @@
         <div class="card-body">
           <h5 class="card-title mb-3">Absensi Kegiatan</h5>
           <p class="card-text">Hari/Tanggal :</p>
-          <p class="card-text">Kordinat lokasi : -6.12029029,0.181781781</p>
+          <p class="card-text">Kordinat lokasi :  <span id="lokasi"></span></p>
           <div class="button text-center d-grid">
             <a href="#" class="btn btn-block btn-warning">
               <i class="fa-solid fa-user"></i> Foto Selfie</a
@@ -106,5 +106,23 @@
     </div>
     <!-- akhir container -->
     <script src="{{asset('templateUser')}}/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        navigator.geolocation.getCurrentPosition(function (position) {
+              tampilLokasi(position);
+        }, function (e) {
+            alert('Geolocation Tidak Mendukung Pada Browser Anda');
+        }, {
+            enableHighAccuracy: true
+        });
+      });
+      function tampilLokasi(posisi) {
+        //console.log(posisi);
+        var latitude 	= posisi.coords.latitude;
+        var longitude 	= posisi.coords.longitude;
+        
+              $('#lokasi').html(latitude+","+longitude);
+      }
+    </script>
   </body>
 </html>

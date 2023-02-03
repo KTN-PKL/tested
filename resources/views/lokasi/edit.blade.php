@@ -38,6 +38,18 @@
                   </select>
                 </div>
                 <div id="desa"></div>
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Lokasi</label>
+                  <div class="form-group">
+                    <center>
+                    <input style="width:50%" class="form-control" type="text" id="lat" name="lokasi" value="{{$lokasi->lokasi}}" readonly>
+                    </center>
+                </div>
+                  <div id="googleMap" style="width:100%;height:380px;"></div>
+               
+                </div>
+               
+              </div>
                 {{-- <div class="col-12">
                   <label for="inputPassword4" class="form-label">Password</label> <i style="font-size:12px" class="text-muted">Masukkan Password Baru</i>
                   <input type="password" class="form-control" name="password">
@@ -83,4 +95,50 @@
                 $("#desa").html(data);
             });
         }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script>
+// variabel global marker
+var marker;
+  
+function taruhMarker(peta, posisiTitik){
+    
+    if( marker ){
+      // pindahkan marker
+      marker.setPosition(posisiTitik);
+    } else {
+      // buat marker baru
+      marker = new google.maps.Marker({
+        position: posisiTitik,
+        map: peta
+      });
+    }
+  
+     // isi nilai koordinat ke form
+    var lang = posisiTitik.lat()+","+ posisiTitik.lng()
+    document.getElementById("lat").value = lang;
+    
+}
+  
+function initialize() {
+  var propertiPeta = {
+    center:new google.maps.LatLng(-6.5590559087145754,107.77278900146484),
+    zoom:13,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  
+  var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
+  
+  // even listner ketika peta diklik
+  google.maps.event.addListener(peta, 'click', function(event) {
+    taruhMarker(this, event.latLng);
+  });
+
+}
+
+
+// event jendela di-load  
+google.maps.event.addDomListener(window, 'load', initialize);
+  
+
 </script>

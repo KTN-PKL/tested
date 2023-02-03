@@ -1,4 +1,17 @@
 @extends('layouts.templateuser')
+<style>
+  #container {
+    margin: 0px auto;
+    width: 500px;
+    height: 375px;
+    border: 10px #333 solid;
+  }
+  #videoElement {
+    width: 500px;
+    height: 375px;
+    background-color: #666;
+  }
+  </style>
 @section('content')
     <!-- componen card -->
     <div class="card">
@@ -42,9 +55,9 @@
             <a href="#" class="btn btn-block btn-warning">
               <i class="fa-solid fa-user"></i> Foto Selfie</a
             >
-              <div>
-         
-        </div>
+            <video autoplay="true" id="videoElement">
+
+            </video>
         </div>
 
         <!-- field deskripsi -->
@@ -152,32 +165,22 @@
      
     }
   </script>
+  <script>
+    var video = document.querySelector("#videoElement");
+
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function (stream) {
+          video.srcObject = stream;
+        })
+        .catch(function (err0r) {
+          console.log("Something went wrong!");
+        });
+    }
+  </script>
   {{-- end form pelatihan --}}
 
-  <script type="text/javascript">
-    // seleksi elemen video
-    var video = document.querySelector("#video-webcam");
 
-    // minta izin user
-    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
-
-    // jika user memberikan izin
-    if (navigator.getUserMedia) {
-        // jalankan fungsi handleVideo, dan videoError jika izin ditolak
-        navigator.getUserMedia({ video: true }, handleVideo, videoError);
-    }
-
-    // fungsi ini akan dieksekusi jika  izin telah diberikan
-    function handleVideo(stream) {
-        video.srcObject = stream;
-    }
-
-    // fungsi ini akan dieksekusi kalau user menolak izin
-    function videoError(e) {
-        // do something
-        alert("Izinkan menggunakan webcam untuk demo!")
-    }
-</script>
  
 </body>
 @endsection

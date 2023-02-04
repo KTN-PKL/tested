@@ -60,6 +60,7 @@
             );
           @endphp
           <form action="">
+            @csrf
           <p class="card-text">Hari/Tanggal : {{ $dayList[$d].", ".$t }}</p>
           <input type="text" name="harian" value="{{ $dayList[$d].", ".$t }}" hidden>
           <p class="card-text">Kordinat lokasi :  <span id="lokasi"></span></p>

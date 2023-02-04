@@ -17,12 +17,12 @@ return new class extends Migration
             $table->id('id_absenkegiatan');
             $table->string('id_user', 20);
             $table->string('waktuabsen');
-            $table->string('kordinatabsen');
+            $table->string('lokasiabsen');
             $table->string('jeniskegiatan');
             $table->string('deskripsikegiatan');
-            $table->string('selfiekegiatan');
-            $table->string('fotokegiatan');
             $table->string('pelatihan');
+            $table->string('selfiekegiatan')->nullable();
+            $table->string('fotokegiatan')->nullable();
             $table->string('fotopelatihan')->nullable();
             $table->string('judulpelatihan')->nullable();
             $table->string('durasipelatihan')->nullable();

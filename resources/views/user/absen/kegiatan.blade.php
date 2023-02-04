@@ -1,4 +1,10 @@
 @extends('layouts.templateuser')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+<style type="text/css">
+  #results { padding:20px; border:1px solid; background:#ccc; }
+</style>
 @section('content')
     <!-- componen card -->
     <div class="card">
@@ -38,17 +44,23 @@
             );
           @endphp
 
-          <form enctype="multipart/form-data" action="{{route('absenkegiatan.store')}}" method="POST">
+          <form action="{{route('absenkegiatan.store')}}" method="POST">
           @csrf
           <p class="card-text">Hari/Tanggal : {{ $dayList[$d].", ".$t }}</p>
           <input type="text" name="waktuabsen" value="{{$s}}" hidden>
           <p class="card-text">Kordinat lokasi :  <span id="inputabsenkegiatan"></span></p>
+          <input type="text" id="inputabsenkegiatan1" name="lokasiabsen" hidden >
     
           <div class="button text-center d-grid">
             <a href="#" class="btn btn-block btn-warning">
               <i class="fa-solid fa-user"></i> Foto Selfie</a
             >
-        </div>
+            <div id="my_camera"></div>
+                <br/>
+                <input type=button value="Take Snapshot" onClick="take_snapshot()">
+                <input type="hidden" name="image" class="image-tag">
+                <div id="results">Your captured image will appear here...</div>
+            </div>
 
         <!-- field deskripsi -->
         <div class="form-floating mb-3 pt-3">
@@ -156,6 +168,23 @@
      
     }
   </script>
+  <script language="JavaScript">
+    Webcam.set({
+        width: 490,
+        height: 350,
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
+    
+    Webcam.attach( '#my_camera' );
+    
+    function take_snapshot() {
+        Webcam.snap( function(data_uri) {
+            $(".image-tag").val(data_uri);
+            document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
+        } );
+    }
+</script>
   
 
   {{-- end form pelatihan --}}

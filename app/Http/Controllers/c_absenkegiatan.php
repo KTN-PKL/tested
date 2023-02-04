@@ -23,16 +23,35 @@ class c_absenkegiatan extends Controller
 
     public function store(Request $request)
     {
-        $img = $request->image;
-        $folderPath = "kegiatan/";
-        $image_parts = explode(";base64,", $img);
-        $image_type_aux = explode("image/", $image_parts[0]);
-        $image_type = $image_type_aux[1];
-        $image_base64 = base64_decode($image_parts[1]);
-        $fileName = uniqid() . '.png';
-        $file = $folderPath . $fileName;
-        Storage::put($file, $image_base64);
-        
+        //selfie
+        $img = str_replace('data:image/png;base64,', '', $request->selfie);
+	    $img = str_replace(' ', '+', $img);
+	    $data = base64_decode($img);
+        $filename = uniqid() . '.png';
+        $file = public_path('foto/absenkegiatan')."/".$filename;
+        file_put_contents($file, $data);
+        // endselfie
+
+        // fotokegiatan
+        $img2 = str_replace('data:image/png;base64,', '', $request->fotokegiatan);
+	    $img2 = str_replace(' ', '+', $img2);
+	    $data = base64_decode($img2);
+        $filename2 = uniqid() . '.png';
+        $file2 = public_path('foto/absenkegiatan')."/".$filename;
+        file_put_contents($file2, $data);
+        // end fotokegiatan
+
+        // fotopelatihan
+        $img3 = str_replace('data:image/png;base64,', '', $request->fotopelatihan);
+        $img3 = str_replace(' ', '+', $img3);
+        $data = base64_decode($img3);
+        $filename3 = "pelatihan".uniqid() . '.png';
+        $file3 = public_path('foto/absenkegiatan')."/".$filename;
+        file_put_contents($file3, $data);
+        // end fotokegiatan
+
+
+
         $data = [
             'id_user' => Auth::user()->id,
             'waktuabsen'=>$request->waktuabsen,
@@ -43,10 +62,9 @@ class c_absenkegiatan extends Controller
             'judulpelatihan' => $request->judulpelatihan,
             'durasipelatihan' => $request->durasipelatihan,
             'tempatpelatihan' => $request->tempatpelatihan,
-            'selfiekegiatan'=>$fileName,
-            // 'selfiekegiatan'=> $request->selfiekegiatan,
-            // 'fotokegiatan' => $fotokegiatan,
-            // 'fotopelatihan' => $fotopelatihan,
+            'selfiekegiatan'=>$filename,
+            'fotokegiatan' => $filename2,
+            'fotopelatihan' => $filename3,
         ];
         $this->kegiatan->addData($data);
         return redirect()->route('dashboard');

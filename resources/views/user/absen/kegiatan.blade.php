@@ -52,15 +52,11 @@
           <input type="text" id="inputabsenkegiatan1" name="lokasiabsen" hidden >
     
           <div class="button text-center d-grid">
-            <a href="#" class="btn btn-block btn-warning">
-              <i class="fa-solid fa-user"></i> Foto Selfie</a
-            >
-            <div id="my_camera"></div>
-                <br/>
-                <input type=button value="Take Snapshot" onClick="take_snapshot()">
-                <input type="hidden" name="image" class="image-tag">
-                <div id="results">Your captured image will appear here...</div>
-            </div>
+            <a href="#" class="btn btn-block btn-warning" onclick="selfie()">
+              <i class="fa-solid fa-user"></i> Foto Selfie</a>
+          </div>
+          <div id="hasilselfie"></div>
+          <input type="text" id="gambarselfie" name="selfie" hidden>
 
         <!-- field deskripsi -->
         <div class="form-floating mb-3 pt-3">
@@ -75,10 +71,13 @@
 
         <!-- field kegiatan -->
         <div class="button text-center d-grid">
-          <a href="#" class="btn btn-block btn-primary"
+          <a href="#" class="btn btn-block btn-primary" onclick="fotokegiatan()"
             ><i class="fa-solid fa-camera"></i> Foto Kegiatan</a
           >
         </div>
+        <div id="hasilkegiatan"></div>
+        <input type="text" id="fotokegiatan" name="fotokegiatan" hidden>
+
 
         <div class="kegiatan pt-3 mb-3">
           <select class="form-select" aria-label="Default select example" name="jeniskegiatan">
@@ -127,9 +126,11 @@
         <label for="floatingTextarea">Tempat</label>
         </div>
         <div class="button text-center d-grid">
-          <a href="#" class="btn btn-block btn-primary"
+          <a href="#" class="btn btn-block btn-primary" onclick="fotopelatihan()"
             ><i class="fa-solid fa-camera"></i> Foto Pelatihan</a
           >
+          <div id="hasilpelatihan"></div>
+          <input type="text" id="fotopelatihan" name="fotopelatihan" hidden>
         </div>
         </div>
         {{-- end form pelatihan --}}
@@ -145,6 +146,28 @@
     </div>
     <!-- akhir componen card -->
 
+     <!-- Modal -->
+     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="vidOff()"></button>
+              </div>
+              <div class="modal-body">
+                <center>
+                    <div id="container" class="ratio ratio-16x9">
+                    <video autoplay="true" id="videoElement">
+                    </video>
+                    </div>
+                    <div id="ambilgambar" class="pt-3"></div>
+                </div>
+                </center>
+          </div>
+      </div>
+      </div>
+      {{-- end modal --}}
+
     <!-- nav bottom -->
     <div class="botnav fixed-bottom bg-dark text-light text-center">
       <div class="row">
@@ -156,7 +179,7 @@
     <!-- end nav bottom -->
   <script src="{{asset('templateUser')}}/js/bootstrap.bundle.min.js"></script>
   <script>
-    // tambahan form pelatihan
+    // script tambahan form pelatihan
     function test(){
       var pelatihan = $("#pelatihan").val();
       if(pelatihan == "pelatihan"){
@@ -168,26 +191,112 @@
      
     }
   </script>
-  <script language="JavaScript">
-    Webcam.set({
-        width: 490,
-        height: 350,
-        image_format: 'jpeg',
-        jpeg_quality: 90
-    });
-    
-    Webcam.attach( '#my_camera' );
-    
-    function take_snapshot() {
-        Webcam.snap( function(data_uri) {
-            $(".image-tag").val(data_uri);
-            document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
-        } );
-    }
-</script>
+  {{-- end script tambahan form pelatihan --}}
   
+  {{-- start webcam  --}}
+  <script>
+     var video = document.querySelector("#videoElement");
+     function selfie()
+      {
+        if (navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices.getUserMedia({ video: true })
+          .then(function (stream) {
+          video.srcObject = stream;
+           })
+          .catch(function (err0r) {
+          console.log("Something went wrong!");
+          });
+      }
+      var data = `<a href="#" onclick="snapselfie()" class="btn btn-primary">Ambil Gambar</a>`;
+        $("#exampleModal").modal('show');
+        $("#ambilgambar").html(data);
+        
+      }
+      function snapselfie() {
+        var data = `<center>
+          <canvas id="canvas" width="425" height="300"></canvas>
+          </center>`;
+         $("#hasilselfie").html(data);
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        context.drawImage(video, 0, 0, 425, 300);
+        var dataURL = canvas.toDataURL(dataURL);
+        $("#gambarselfie").val(dataURL);
+        //'<img src="'+dataURL+'"/>'
+        $(".btn-close").click();
+      }
 
-  {{-- end form pelatihan --}}
+      function fotokegiatan()
+      {
+        if (navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices.getUserMedia({ video: true })
+          .then(function (stream) {
+          video.srcObject = stream;
+           })
+          .catch(function (err0r) {
+          console.log("Something went wrong!");
+          });
+      }
+         var data = `<a href="#" onclick="snapkegiatan()" class="btn btn-primary">Ambil Gambar Kegiatan</a>`;
+        $("#exampleModal").modal('show');
+         $("#ambilgambar").html(data);
+      }
+
+      function snapkegiatan() {
+        var data = `<center>
+          <canvas id="canvas1" width="425" height="300"></canvas>
+          </center>`;
+         $("#hasilkegiatan").html(data);
+        var canvas1 = document.getElementById('canvas1');
+        var context1 = canvas1.getContext('2d');
+        context1.drawImage(video, 0, 0, 425, 300);
+        var dataURL = canvas1.toDataURL(dataURL);
+        $("#fotokegiatan").val(dataURL);
+        //'<img src="'+dataURL+'"/>'
+        $(".btn-close").click();
+      }
+
+      function fotopelatihan()
+      {
+        if (navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices.getUserMedia({ video: true })
+          .then(function (stream) {
+          video.srcObject = stream;
+           })
+          .catch(function (err0r) {
+          console.log("Something went wrong!");
+          });
+      }
+         var data = `<a href="#" onclick="snappelatihan()" class="btn btn-primary">Ambil Gambar Kegiatan</a>`;
+        $("#exampleModal").modal('show');
+         $("#ambilgambar").html(data);
+      }
+
+      function snappelatihan() {
+        var data = `<center>
+          <canvas id="canvas1" width="425" height="300"></canvas>
+          </center>`;
+         $("#hasilpelatihan").html(data);
+        var canvas1 = document.getElementById('canvas1');
+        var context1 = canvas1.getContext('2d');
+        context1.drawImage(video, 0, 0, 425, 300);
+        var dataURL = canvas1.toDataURL(dataURL);
+        $("#fotopelatihan").val(dataURL);
+        //'<img src="'+dataURL+'"/>'
+        $(".btn-close").click();
+      }
+
+      function vidOff() {
+      var mediaStream = video.srcObject;
+      var tracks = mediaStream.getTracks();
+      tracks[0].stop();
+      }
+
+      
+  </script>
+
+  
+  {{-- endwebcam --}}
 
 
  

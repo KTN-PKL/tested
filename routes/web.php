@@ -8,6 +8,7 @@ use App\Http\Controllers\c_desa;
 use App\Http\Controllers\c_poktan;
 use App\Http\Controllers\c_lokasi;
 use App\Http\Controllers\c_absenkegiatan;
+use App\Http\Controllers\c_absenharian;
 
 
 /*

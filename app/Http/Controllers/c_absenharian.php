@@ -22,16 +22,22 @@ class c_absenharian extends Controller
     public function create()
     {
         $data = ['kecamatan' => $this->kecamatan->allData(),];
-        return view('harian.create', $data);
+        return view('user.absen.harian', $data);
     }
     public function store(Request $request)
     {
+        $img = str_replace('data:image/png;base64,', '', $request->selfie);
+	    $img = str_replace(' ', '+', $img);
+	    $data = base64_decode($img);
+        $filename = uniqid() . '.png';
+        $file = public_path('foto')."/".$filename;
+        file_put_contents($file, $data);
         $data = [
             'id_user' => Auth::user()->id,
             'lokasiharian' => $request->lokasi,
-            'fotofasdes' => $request->selfie,
+            'fotofasdes' => $filename,
             'deskripsi' => $request->deskripsi,
-            'fotokegiatanharian' => $request->kegiatan,
+            'fotokegiatanharian' => $filename,
             'harian' => $request->harian,
         ];
         $this->harian->addData($data);

@@ -59,7 +59,7 @@
             'Sat' => 'Sabtu'
             );
           @endphp
-          <form action="">
+           <form class="row g-3" action="{{route('absen.harian.store')}}" method="POST">
             @csrf
           <p class="card-text">Hari/Tanggal : {{ $dayList[$d].", ".$t }}</p>
           <input type="text" name="harian" value="{{ $dayList[$d].", ".$t }}" hidden>
@@ -196,7 +196,7 @@
         var context = canvas.getContext('2d');
         context.drawImage(video, 0, 0, 425, 300);
         var dataURL = canvas.toDataURL(dataURL);
-        $("#gambarselfie").val();
+        $("#gambarselfie").val(dataURL);
         //'<img src="'+dataURL+'"/>'
         $(".btn-close").click();
       }
@@ -209,7 +209,7 @@
         var context1 = canvas1.getContext('2d');
         context1.drawImage(video, 0, 0, 425, 300);
         var dataURL = canvas1.toDataURL(dataURL);
-        $("#gambarkegiatan").val();
+        $("#gambarkegiatan").val(dataURL);
         //'<img src="'+dataURL+'"/>'
         $(".btn-close").click();
       }

@@ -27,7 +27,7 @@ class c_absenkegiatan extends Controller
 	    $img = str_replace(' ', '+', $img);
 	    $data = base64_decode($img);
         $filename = $name . '.png';
-        $file = public_path('foto/absenkegiatan')."/".$filename;
+        $file = public_path('foto')."/".$filename;
         file_put_contents($file, $data);
         return $filename;
     }

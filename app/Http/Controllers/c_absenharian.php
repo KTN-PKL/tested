@@ -29,9 +29,9 @@ class c_absenharian extends Controller
         $data = [
             'id_user' => Auth::user()->id,
             'lokasiharian' => $request->lokasi,
-            'fotofasdes' => $fotofasdes,
+            'fotofasdes' => $request->selfie,
             'deskripsi' => $request->deskripsi,
-            'fotokegiatanharian' => $fotokegiatanharian,
+            'fotokegiatanharian' => $request->kegiatan,
             'harian' => $request->harian,
         ];
         $this->harian->addData($data);

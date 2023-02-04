@@ -59,19 +59,18 @@
             'Sat' => 'Sabtu'
             );
           @endphp
+          <form action="">
+            @csrf
           <p class="card-text">Hari/Tanggal : {{ $dayList[$d].", ".$t }}</p>
-          <input type="text" value="{{ $dayList[$d].", ".$t }}" hidden>
+          <input type="text" name="harian" value="{{ $dayList[$d].", ".$t }}" hidden>
           <p class="card-text">Kordinat lokasi :  <span id="lokasi"></span></p>
           <input type="text" id="lokasiisi" name="lokasi" hidden>
           <div class="button text-center d-grid">
-            <a href="#" class="btn btn-block btn-warning">
+            <a href="#" class="btn btn-block btn-warning" onclick="selfie()">
               <i class="fa-solid fa-user"></i> Foto Selfie</a>
           </div>
-          <div>
-            <video autoplay="true" id="video-webcam" class="form-floating mb-3 pt-3">
-                Browsermu tidak mendukung bro, upgrade donk!
-            </video>
-        </div>
+          <div id="hasilselfie"></div>
+          <input type="text" id="gambarselfie" name="selfie" hidden>
           <!-- field deskripsi -->
           <div class="form-floating mb-3 pt-3">
             <textarea
@@ -83,31 +82,17 @@
             <label for="floatingTextarea">Deskripsi Absensi</label>
           </div>
           <div class="button text-center d-grid">
-            <a href="#" class="btn btn-block btn-primary">
+            <a href="#" class="btn btn-block btn-primary" onclick="fotokegiatan()">
               <i class="fa-solid fa-camera"></i> Foto kegiatan</a>
           </div>
-          <!-- akhir field deskripsi -->
+           <div id="hasilkegiatan"></div>
+          <input type="text" id="gambarkegiatan" name="kegiatan" hidden>
 
-          {{-- <!-- field kegiatan -->
-          <div class="kegiatan pt-3 mb-3">
-            <select class="form-select" aria-label="Default select example">
-              <option selected disabled>Jenis Kegiatan</option>
-              <option value="1">Lapangan</option>
-              <option value="2">Kantor</option>
-              <option value="3">Dinas Luar Kota</option>
-              <option value="3">Dinas Luar Daerah</option>
-              <option value="3">Dinas Luar Negeri</option>
-            </select>
-          </div>
-          <!-- akhir field kegiatan -->
-
-          <div class="Pelatihan pt-3 mb-3">
-            <!-- isi code -->
-          </div> --}}
           <div class="button text-center d-grid pt-3">
             <button href="#" class="btn btn-block btn-success">
               <i class="fa-solid fa-floppy-disk"></i> Simpan</button>
           </div>
+        </form>
         </div>
       </div>
       <!-- akhir componen card -->
@@ -122,9 +107,32 @@
       </div>
       <!-- end nav bottom -->
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="vidOff()"></button>
+              </div>
+              <div class="modal-body">
+                <center>
+                    <div id="container" class="ratio ratio-16x9">
+                    <video autoplay="true" id="videoElement">
+                    </video>
+                    </div>
+                    <div id="ambilgambar" class="pt-3"></div>
+                </div>
+                </center>
+          </div>
+      </div>
+      </div>
     <!-- akhir container -->
     <script src="{{asset('templateUser')}}/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
+    var video = document.querySelector("#videoElement");
+    
+    //locasi
       $(document).ready(function() {
         navigator.geolocation.getCurrentPosition(function (position) {
               tampilLokasi(position);
@@ -142,31 +150,70 @@
               $('#lokasi').html(latitude+","+longitude);
               $('#lokasiisi').val(latitude+","+longitude);
       }
-      
-    </script>
-    <script type="text/javascript">
-      // seleksi elemen video
-      var video = document.querySelector("#video-webcam");
-  
-      // minta izin user
-      navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
-  
-      // jika user memberikan izin
-      if (navigator.getUserMedia) {
-          // jalankan fungsi handleVideo, dan videoError jika izin ditolak
-          navigator.getUserMedia({ video: true }, handleVideo, videoError);
-      }
-  
-      // fungsi ini akan dieksekusi jika  izin telah diberikan
-      function handleVideo(stream) {
+      //webcam selfie
+      function selfie()
+      {
+        if (navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices.getUserMedia({ video: true })
+          .then(function (stream) {
           video.srcObject = stream;
+           })
+          .catch(function (err0r) {
+          console.log("Something went wrong!");
+          });
       }
-  
-      // fungsi ini akan dieksekusi kalau user menolak izin
-      function videoError(e) {
-          // do something
-          alert("Izinkan menggunakan webcam untuk demo!")
+      var data = `<a href="#" onclick="snapselfie()" class="btn btn-primary">Ambil Gambar</a>`;
+        $("#exampleModal").modal('show');
+        $("#ambilgambar").html(data);
+        
       }
-  </script>
+      function fotokegiatan()
+      {
+        if (navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices.getUserMedia({ video: true })
+          .then(function (stream) {
+          video.srcObject = stream;
+           })
+          .catch(function (err0r) {
+          console.log("Something went wrong!");
+          });
+      }
+         var data = `<a href="#" onclick="snapkegiatan()" class="btn btn-primary">Ambil Gambar Kegiatan</a>`;
+        $("#exampleModal").modal('show');
+         $("#ambilgambar").html(data);
+      }
+      function vidOff() {
+      var mediaStream = video.srcObject;
+      var tracks = mediaStream.getTracks();
+      tracks[0].stop();
+      }
+      function snapselfie() {
+        var data = `<center>
+          <canvas id="canvas" width="425" height="300"></canvas>
+          </center>`;
+         $("#hasilselfie").html(data);
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        context.drawImage(video, 0, 0, 425, 300);
+        var dataURL = canvas.toDataURL(dataURL);
+        $("#gambarselfie").val();
+        //'<img src="'+dataURL+'"/>'
+        $(".btn-close").click();
+      }
+       function snapkegiatan() {
+        var data = `<center>
+          <canvas id="canvas1" width="425" height="300"></canvas>
+          </center>`;
+         $("#hasilkegiatan").html(data);
+        var canvas1 = document.getElementById('canvas1');
+        var context1 = canvas1.getContext('2d');
+        context1.drawImage(video, 0, 0, 425, 300);
+        var dataURL = canvas1.toDataURL(dataURL);
+        $("#gambarkegiatan").val();
+        //'<img src="'+dataURL+'"/>'
+        $(".btn-close").click();
+      }
+   
+    </script>
   </body>
 </html>

@@ -83,7 +83,16 @@ Route::controller(c_poktan::class)->middleware('auth')->group(function () {
     Route::get('poktan/destroy/{id}', 'destroy')->name('faskab.poktan.destroy');
 });
 
-
+Route::controller(c_absenharian::class)->middleware('auth')->group(function () {
+    // Route::get('harian', 'index')->name('faskab.harian.index');
+    // Route::get('harian/harian/{id}', 'harian')->name('harian');
+    Route::get('harian/create', 'create')->name('absen.harian');
+    Route::post('harian/store', 'store')->name('absen.harian.store');
+    // Route::get('harian/edit/{id}', 'edit')->name('harian.edit');
+    // Route::get('harian/detail/{id}', 'detail')->name('harian.detail');
+    // Route::post('harian/update/{id}', 'update')->name('faskab.harian.update');
+    // Route::get('harian/destroy/{id}', 'destroy')->name('faskab.harian.destroy');
+});
 Route::controller(c_absenkegiatan::class)->middleware('auth')->group(function () {
     Route::get('absenkegiatan', 'index')->name('absenkegiatan.index');
     Route::post('absenkegiatan/store', 'store')->name('absenkegiatan.store');

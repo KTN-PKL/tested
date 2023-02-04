@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id('id_absenharian');
             $table->string('id_user', 20);
             $table->string('lokasiharian');
-            $table->string('fotofasdes');
+            $table->string('fotofasdes', 50);
+            $table->string('tgl', 50);
+            $table->string('jam', 20);
+            $table->string('jenis', 20);
             $table->text('deskripsi');
             $table->string('fotokegiatanharian');
             $table->timestamps();

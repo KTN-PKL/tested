@@ -21,24 +21,35 @@ class c_absenharian extends Controller
     }
     public function create()
     {
-        $data = ['kecamatan' => $this->kecamatan->allData(),];
-        return view('user.absen.harian', $data);
+        return view('user.absen.harian');
+    }
+    public function simpangambar($data, $name)
+    {
+        $img = str_replace('data:image/png;base64,', '', $data);
+	    $img = str_replace(' ', '+', $img);
+	    $data = base64_decode($img);
+        $filename = $name . '.png';
+        $file = public_path('foto')."/".$filename;
+        file_put_contents($file, $data);
+        return $filename;
     }
     public function store(Request $request)
     {
-        $img = str_replace('data:image/png;base64,', '', $request->selfie);
-	    $img = str_replace(' ', '+', $img);
-	    $data = base64_decode($img);
-        $filename = uniqid() . '.png';
-        $file = public_path('foto')."/".$filename;
-        file_put_contents($file, $data);
+        date_default_timezone_set("Asia/Jakarta");
+        $t = date("h:i");
+        $name = "fasdes_masuk_".$request->harian.".png";
+        $name1 = "kegiatan_masuk_".$request->harian.".png";
+        $filename = $this->simpangambar($request->selfie, $name);
+        $filename1 = $this->simpangambar($request->kegiatan, $name1);
         $data = [
             'id_user' => Auth::user()->id,
             'lokasiharian' => $request->lokasi,
             'fotofasdes' => $filename,
             'deskripsi' => $request->deskripsi,
-            'fotokegiatanharian' => $filename,
-            'harian' => $request->harian,
+            'fotokegiatanharian' => $filename1,
+            'tgl' => $request->harian,
+            'jam' => $t,
+            'jenis' => "masuk",
         ];
         $this->harian->addData($data);
         return redirect()->route('absen.harian');

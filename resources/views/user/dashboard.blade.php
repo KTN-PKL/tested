@@ -51,7 +51,7 @@
                   </a>
                 </div>
                 <div class="col mt-3">
-                  <a href="#" class="text-decoration-none">
+                  <a href="{{route('absenkegiatan.index')}}" class="text-decoration-none">
                     <div
                       class="item d-grid bg-primary rounded mx-auto text-center p-2 text-light shadow"
                     >

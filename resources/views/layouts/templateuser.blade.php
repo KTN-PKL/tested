@@ -65,6 +65,8 @@
       var longitude 	= posisi.coords.longitude;
       
             $('#inputabsenkegiatan').html(latitude+","+longitude);
+            $('#inputabsenkegiatan1').val(latitude+","+longitude);
+
     }
   </script>
 

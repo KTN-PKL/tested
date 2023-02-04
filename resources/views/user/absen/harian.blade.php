@@ -117,11 +117,11 @@
               </div>
               <div class="modal-body">
                 <center>
-                    <div id="container">
+                    <div id="container" class="ratio ratio-16x9">
                     <video autoplay="true" id="videoElement">
                     </video>
                     </div>
-                    <div id="ambilgambar"></div>
+                    <div id="ambilgambar" class="pt-3"></div>
                 </div>
                 </center>
           </div>

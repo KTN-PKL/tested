@@ -7,6 +7,8 @@ use App\Http\Controllers\c_kecamatan;
 use App\Http\Controllers\c_desa;
 use App\Http\Controllers\c_poktan;
 use App\Http\Controllers\c_lokasi;
+use App\Http\Controllers\c_absenkegiatan;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -79,4 +81,10 @@ Route::controller(c_poktan::class)->middleware('auth')->group(function () {
     Route::get('poktan/detail/{id}', 'detail')->name('poktan.detail');
     Route::post('poktan/update/{id}', 'update')->name('faskab.poktan.update');
     Route::get('poktan/destroy/{id}', 'destroy')->name('faskab.poktan.destroy');
+});
+
+
+Route::controller(c_absenkegiatan::class)->middleware('auth')->group(function () {
+    Route::get('absenkegiatan', 'index')->name('absenkegiatan.index');
+    Route::post('absenkegiatan/store', 'store')->name('absenkegiatan.store');
 });

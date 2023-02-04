@@ -24,6 +24,7 @@
         <h5 class="card-title mb-3">Absensi Kegiatan</h5>
         @php
           date_default_timezone_set("Asia/Jakarta");
+          $s = date("Y-m-d H:i:s");
           $t = date("Y-m-d");
           $d = date("D");
           $dayList = array(
@@ -36,8 +37,13 @@
             'Sat' => 'Sabtu'
             );
           @endphp
+
+          <form enctype="multipart/form-data" action="{{route('absenkegiatan.store')}}" method="POST">
+          @csrf
           <p class="card-text">Hari/Tanggal : {{ $dayList[$d].", ".$t }}</p>
-          <p class="card-text">Kordinat lokasi :  <span id="lokasi"></span></p>
+          <input type="text" name="waktuabsen" value="{{$s}}" hidden>
+          <p class="card-text">Kordinat lokasi :  <span id="inputabsenkegiatan"></span></p>
+    
           <div class="button text-center d-grid">
             <a href="#" class="btn btn-block btn-warning">
               <i class="fa-solid fa-user"></i> Foto Selfie</a
@@ -49,45 +55,46 @@
           <textarea
             class="form-control"
             placeholder="Leave a comment here"
-            id="floatingTextarea"
+            id="floatingTextarea" name="deskripsikegiatan"
           ></textarea>
           <label for="floatingTextarea">Deskripsi Absensi</label>
         </div>
+        <!-- akhir field deskripsi -->
+
+        <!-- field kegiatan -->
         <div class="button text-center d-grid">
           <a href="#" class="btn btn-block btn-primary"
             ><i class="fa-solid fa-camera"></i> Foto Kegiatan</a
           >
         </div>
-        <!-- akhir field deskripsi -->
 
-        <!-- field kegiatan -->
         <div class="kegiatan pt-3 mb-3">
-          <select class="form-select" aria-label="Default select example">
+          <select class="form-select" aria-label="Default select example" name="jeniskegiatan">
             <option selected disabled>Jenis Kegiatan</option>
-            <option value="1">Lapangan</option>
-            <option value="2">Kantor</option>
-            <option value="3">Dinas Luar Kota</option>
-            <option value="3">Dinas Luar Daerah</option>
-            <option value="3">Dinas Luar Negeri</option>
+            <option value="lapangan">Lapangan</option>
+            <option value="kantor">Kantor</option>
+            <option value="dinas luar kota">Dinas Luar Kota</option>
+            <option value="dinas luar daerah">Dinas Luar Daerah</option>
+            <option value="dinas luar negeri">Dinas Luar Negeri</option>
           </select>
         </div>
         <!-- akhir field kegiatan -->
 
         <div class="Pelatihan pt-3 mb-3">
-          <!-- isi code -->
-          <select onchange="pelatihan()" class="form-select" aria-label="Default select example" id="pelatihan">
+          <select onchange="test()" class="form-select" aria-label="Default select example" id="pelatihan" name="pelatihan">
             <option value="" selected disabled>-- Pilih Pelatihan --</option>
             <option value="pelatihan">Pelatihan</option>
             <option value="nonpelatihan">Non Pelatihan</option>
           </select>
         </div>
 
+        {{-- form jika pelatihan --}}
         <div id="form" style="display: none">
           <div class="form-floating mb-3 pt-3">
             <textarea
             class="form-control"
             placeholder="Leave a comment here"
-            id="floatingTextarea"
+            id="floatingTextarea" name="judulpelatihan"
           ></textarea>
           <label for="floatingTextarea">Judul</label>
         </div>
@@ -95,7 +102,7 @@
           <textarea
           class="form-control"
           placeholder="Leave a comment here"
-          id="floatingTextarea"
+          id="floatingTextarea" name="durasipelatihan"
         ></textarea>
         <label for="floatingTextarea">Durasi Waktu</label>
         </div>
@@ -103,7 +110,7 @@
           <textarea
           class="form-control"
           placeholder="Leave a comment here"
-          id="floatingTextarea"
+          id="floatingTextarea" name="tempatpelatihan"
         ></textarea>
         <label for="floatingTextarea">Tempat</label>
         </div>
@@ -112,16 +119,17 @@
             ><i class="fa-solid fa-camera"></i> Foto Pelatihan</a
           >
         </div>
-
         </div>
+        {{-- end form pelatihan --}}
       
 
         <div class="button text-center d-grid pt-3">
-          <a href="#" class="btn btn-block btn-success"
-            ><i class="fa-solid fa-floppy-disk"></i> Simpan</a
+          <button type="submit" class="btn btn-block btn-success"
+            ><i class="fa-solid fa-floppy-disk"></i> Simpan</button
           >
         </div>
       </div>
+    </form>
     </div>
     <!-- akhir componen card -->
 
@@ -135,10 +143,9 @@
     </div>
     <!-- end nav bottom -->
   <script src="{{asset('templateUser')}}/js/bootstrap.bundle.min.js"></script>
-  <script src="{{asset('templateUser')}}/js/test.js"></script>
   <script>
     // tambahan form pelatihan
-    function pelatihan(){
+    function test(){
       var pelatihan = $("#pelatihan").val();
       if(pelatihan == "pelatihan"){
         document.getElementById("form").style.display = "block";
@@ -149,6 +156,7 @@
      
     }
   </script>
+  
 
   {{-- end form pelatihan --}}
 

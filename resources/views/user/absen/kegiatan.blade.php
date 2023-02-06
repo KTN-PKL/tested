@@ -44,10 +44,10 @@
             );
           @endphp
 
-          <form action="{{route('absenkegiatan.store')}}" method="POST">
+          <form action="{{route('absenkegiatan.store')}}" method="POST" data-parsley-validate>
           @csrf
           <p class="card-text">Hari/Tanggal : {{ $dayList[$d].", ".$t }}</p>
-          <input type="text" name="waktuabsen" value="{{$s}}" hidden>
+          <input type="text" name="waktuabsen" value="{{$t}}" hidden>
           <p class="card-text">Kordinat lokasi :  <span id="inputabsenkegiatan"></span></p>
           <input type="text" id="inputabsenkegiatan1" name="lokasiabsen" hidden >
     
@@ -56,14 +56,14 @@
               <i class="fa-solid fa-user"></i> Foto Selfie</a>
           </div>
           <div id="hasilselfie"></div>
-          <input type="text" id="gambarselfie" name="selfie" hidden>
+          <input type="text" id="gambarselfie" name="selfie" hidden  data-parsley-required="true">
 
         <!-- field deskripsi -->
         <div class="form-floating mb-3 pt-3">
           <textarea
             class="form-control"
             placeholder="Leave a comment here"
-            id="floatingTextarea" name="deskripsikegiatan"
+            id="floatingTextarea" name="deskripsikegiatan"  data-parsley-required="true"
           ></textarea>
           <label for="floatingTextarea">Deskripsi Absensi</label>
         </div>
@@ -80,7 +80,7 @@
 
 
         <div class="kegiatan pt-3 mb-3">
-          <select class="form-select" aria-label="Default select example" name="jeniskegiatan">
+          <select class="form-select" aria-label="Default select example" name="jeniskegiatan"  data-parsley-required="true">
             <option selected disabled>Jenis Kegiatan</option>
             <option value="lapangan">Lapangan</option>
             <option value="kantor">Kantor</option>
@@ -92,7 +92,7 @@
         <!-- akhir field kegiatan -->
 
         <div class="Pelatihan pt-3 mb-3">
-          <select onchange="test()" class="form-select" aria-label="Default select example" id="pelatihan" name="pelatihan">
+          <select onchange="test()" class="form-select" aria-label="Default select example" id="pelatihan" name="pelatihan"  data-parsley-required="true">
             <option value="" selected disabled>-- Pilih Pelatihan --</option>
             <option value="pelatihan">Pelatihan</option>
             <option value="nonpelatihan">Non Pelatihan</option>

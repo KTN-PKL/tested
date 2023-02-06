@@ -69,6 +69,10 @@
 
     }
   </script>
+  <script src="{{asset('templateUser')}}/jquery/jquery.min.js"></script>
+  <script src="{{asset('templateUser')}}/parsleyjs/parsley.min.js"></script>
+  <script src="{{asset('templateUser')}}/js/parsley.js"></script>
+  
 
    
   </body>

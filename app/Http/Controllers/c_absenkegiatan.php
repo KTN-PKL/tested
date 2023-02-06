@@ -26,7 +26,7 @@ class c_absenkegiatan extends Controller
         $img = str_replace('data:image/png;base64,', '', $data);
 	    $img = str_replace(' ', '+', $img);
 	    $data = base64_decode($img);
-        $filename = uniqid() . '.png';
+        $filename = $name;
         $file = public_path('foto/absenkegiatan')."/".$filename;
         file_put_contents($file, $data);
         return $filename;
@@ -34,32 +34,7 @@ class c_absenkegiatan extends Controller
 
     public function store(Request $request)
     {
-        // //selfie
-        // $img = str_replace('data:image/png;base64,', '', $request->selfie);
-	    // $img = str_replace(' ', '+', $img);
-	    // $data = base64_decode($img);
-        // $filename = uniqid() . '.png';
-        // $file = public_path('foto/absenkegiatan')."/".$filename;
-        // file_put_contents($file, $data);
-        // // endselfie
-
-        // // fotokegiatan
-        // $img2 = str_replace('data:image/png;base64,', '', $request->fotokegiatan);
-	    // $img2 = str_replace(' ', '+', $img2);
-	    // $data = base64_decode($img2);
-        // $filename2 = uniqid() . '.png';
-        // $file2 = public_path('foto/absenkegiatan')."/".$filename;
-        // file_put_contents($file2, $data);
-        // // end fotokegiatan
-
-        // // fotopelatihan
-        // $img3 = str_replace('data:image/png;base64,', '', $request->fotopelatihan);
-        // $img3 = str_replace(' ', '+', $img3);
-        // $data = base64_decode($img3);
-        // $filename3 = "pelatihan".uniqid() . '.png';
-        // $file3 = public_path('foto/absenkegiatan')."/".$filename;
-        // file_put_contents($file3, $data);
-        // // end fotokegiatan
+       
 
         $name = "fasdes_".$request->waktuabsen.".png";
         $name1 = "kegiatan_".$request->waktuabsen.".png";
@@ -81,6 +56,7 @@ class c_absenkegiatan extends Controller
             'fotokegiatan' => $filename2,
             'fotopelatihan' => $filename3,
         ];
+    
         $this->kegiatan->addData($data);
         return redirect()->route('dashboard');
     }

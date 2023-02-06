@@ -89,7 +89,7 @@ Route::controller(c_absenharian::class)->middleware('auth')->group(function () {
     // Route::get('harian/harian/{id}', 'harian')->name('harian');
     Route::get('harian/create', 'create')->name('absen.harian');
     Route::post('harian/store', 'store')->name('absen.harian.store');
-    // Route::get('harian/edit/{id}', 'edit')->name('harian.edit');
+    Route::get('harian/jarak/{data}', 'jarak')->name('absen.harian.jarak');
     // Route::get('harian/detail/{id}', 'detail')->name('harian.detail');
     // Route::post('harian/update/{id}', 'update')->name('faskab.harian.update');
     // Route::get('harian/destroy/{id}', 'destroy')->name('faskab.harian.destroy');

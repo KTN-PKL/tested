@@ -89,9 +89,10 @@
           <input type="text" id="gambarkegiatan" name="kegiatan" hidden>
 
           <div class="button text-center d-grid pt-3">
-            <button href="#" class="btn btn-block btn-success">
-              <i class="fa-solid fa-floppy-disk"></i> Simpan</button>
+            <a href="#" class="btn btn-block btn-success" onclick="submit()">
+              <i class="fa-solid fa-floppy-disk"></i> Simpan</a>
           </div>
+          <button id="submit"></button>
         </form>
         </div>
       </div>
@@ -149,6 +150,19 @@
         
               $('#lokasi').html(latitude+","+longitude);
               $('#lokasiisi').val(latitude+","+longitude);
+      }
+      function submit()
+      {
+        // var data =  $('#lokasiisi').val()
+        // $.get("{{ url('harian/jarak') }}/"+data, {}, function(data, status) {
+        // Swal.fire({
+        //             title: 'Berhasil',
+        //             text: "Anda Telah Berhasil Menambah Kategori",
+        //             type: 'success'
+        //             })
+
+        $("#submit").click();
+      //  });
       }
       //webcam selfie
       function selfie()

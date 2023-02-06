@@ -28,10 +28,15 @@ class c_absenharian extends Controller
         $img = str_replace('data:image/png;base64,', '', $data);
 	    $img = str_replace(' ', '+', $img);
 	    $data = base64_decode($img);
-        $filename = $name . '.png';
+        $filename = $name;
         $file = public_path('foto')."/".$filename;
         file_put_contents($file, $data);
         return $filename;
+    }
+    public function jarak($data)
+    {
+        $loksi = $this->lokasi->detailData(Auth::user()->id);
+        
     }
     public function store(Request $request)
     {

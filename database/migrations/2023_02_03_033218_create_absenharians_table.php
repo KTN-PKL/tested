@@ -22,11 +22,11 @@ return new class extends Migration
             $table->string('jam', 20);
             $table->text('deskripsi');
             $table->string('fotokegiatanharian');
-            $table->string('lokasipulang')->nullabel();
-            $table->string('fotofasdespulang', 50)->nullabel();
-            $table->string('jampulang', 20)->nullabel();
-            $table->text('deskripsipulang')->nullabel();
-            $table->string('fotokegiatanharianpulang')->nullabel();
+            $table->string('lokasipulang')->nullable();
+            $table->string('fotofasdespulang', 50)->nullable();
+            $table->string('jampulang', 20)->nullable();
+            $table->text('deskripsipulang')->nullable();
+            $table->string('fotokegiatanharianpulang')->nullable();
             $table->timestamps();
         });
     }

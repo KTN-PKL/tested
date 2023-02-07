@@ -27,9 +27,9 @@ class absenharian extends Model
     {
         return DB::table('absenharians')->where('id_absenharian', $id)->first();
     }
-    public function editData($id, $data)
+    public function editData($id, $hari, $data)
     {
-        return DB::table('absenharians')->where('id_absenharian', $id)->update($data);
+        return DB::table('absenharians')->where('id_user', $id)->where('tgl', $hari)->update($data);
     }
     public function deleteData($id)
     {

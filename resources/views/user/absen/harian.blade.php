@@ -21,7 +21,7 @@
   <body onload="startTime()">
     <div class="title bg-primary text-light text-center p-3">
       <h1 class="display-5">
-      @if ($cek->jam == null)
+      @if ($cek == null)
         <i class="fa-solid fa-id-card-clip text-light"></i> Absen Harian (Masuk)
       @elseif ($cek->jampulang == null)
         <i class="fa-solid fa-id-card-clip text-light"></i> Absen Harian (Pulang)
@@ -70,7 +70,7 @@
             'Sat' => 'Sabtu'
             );
           @endphp
-          @if ($cek->jam == null)
+          @if ($cek == null)
           <form class="row g-3" action="{{route('absen.harian.store')}}" method="POST">
           
           @elseif ($cek->jampulang == null)
@@ -105,12 +105,12 @@
           <input type="text" id="gambarkegiatan" name="kegiatan" hidden>
           <input type="submit"  value="submit" id="klik" hidden>
         </form>
-        @if ($cek < 2)
+
         <div class="button text-center d-grid pt-3">
           <div class="btn btn-block btn-success" onclick="jarak()">
             <i class="fa-solid fa-floppy-disk"></i> Simpan</div>
         </div>
-        @endif
+
         </div>
       </div>
       <!-- akhir componen card -->

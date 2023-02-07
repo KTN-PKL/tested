@@ -103,7 +103,7 @@ class c_absenharian extends Controller
             'fotokegiatanharianpulang' => $filename1,
             'jampulang' => $t,
         ];
-        $this->harian->editData(Auth::user()->id, $data);
+        $this->harian->editData(Auth::user()->id,$request->harian, $data);
         return redirect()->route('absen.harian');
     }
     public function masuk($id)

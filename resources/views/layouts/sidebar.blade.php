@@ -35,12 +35,12 @@
       </a>
       <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="icons-bootstrap.html">
+          <a href="{{route('faskab.harian.index')}}">
             <i class="bi bi-circle"></i><span>Absensi Harian</span>
           </a>
         </li>
         <li>
-          <a href="icons-remix.html">
+          <a href="{{route('kegiatan.index')}}">
             <i class="bi bi-circle"></i><span>Absensi Kegiatan</span>
           </a>
         </li>

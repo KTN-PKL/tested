@@ -12,7 +12,7 @@ class c_login extends Controller
 
     public function index()
     {
-        return view('user.login');
+        return view('login');
     }
 
     public function check(Request $request)
@@ -51,10 +51,10 @@ class c_login extends Controller
 
     // Login multiuser
     public function dashboard(){
-        if (Auth::user()->level == "fasdes") {
-            return view('user.dashboard');
-        }else{
-            return redirect()->back()->with('error', 'Masukkan Akun Fasdes');
+
+        if (Auth::user()->level == "admin") {
+    
+            return view('dashboard');
         }
        
     }

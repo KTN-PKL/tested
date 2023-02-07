@@ -12,7 +12,7 @@
   <body>
     <div class="container p-5">
       <div class="icon text-center p-5"><i class="fa-solid fa-id-card-clip fa-5x text-light"></i></div>
-      <h1>Selamat Datang</h1>
+      <h1>Selamat Datang Admin</h1>
       <form action="{{route('login.check')}}">
         @if(session()->has('error'))
         <div id="login-alert" class="alert alert-danger custom-alert col-md-12"><b>Warning!</b> {{session('error')}}</div>

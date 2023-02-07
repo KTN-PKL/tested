@@ -19,6 +19,13 @@
         <i class="fa-solid fa-id-card-clip text-light"></i> Selamat datang
       </h1>
       <p>{{Auth::user()->name}}</p>
+      <form method="POST" action="{{route('user.logout')}}">
+        @csrf
+      <button type="submit" class="btn btn-warning">
+        <i class="bi bi-box-arrow-right"></i>
+        <span>Sign Out</span>
+      </button>
+    </form>
     </div>
     <div class="container p-1">
       <!-- main menu -->

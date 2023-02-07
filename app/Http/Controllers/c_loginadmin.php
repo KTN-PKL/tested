@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 
-class c_login extends Controller
+class c_loginadmin extends Controller
 {
 
 
@@ -29,7 +29,7 @@ class c_login extends Controller
 
         if(auth()->attempt(array('email'=>$user,'password'=>$pass)))
         {
-            return redirect('/dashboard');
+            return redirect('/faskab/dashboard');
         }
         else
         {
@@ -46,7 +46,7 @@ class c_login extends Controller
      
         $request->session()->regenerateToken();
      
-        return redirect()->route('user.logout');
+        return redirect()->route('faskab.logout');
     }
 
     // Login multiuser
@@ -55,6 +55,8 @@ class c_login extends Controller
         if (Auth::user()->level == "admin") {
     
             return view('dashboard');
+        }else{
+            return redirect()->back()->with('error', 'Masukkan Akun Admin');
         }
        
     }

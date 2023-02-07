@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\c_login;
+use App\Http\Controllers\c_loginadmin;
 use App\Http\Controllers\c_fasdes;
 use App\Http\Controllers\c_kecamatan;
 use App\Http\Controllers\c_desa;
@@ -33,6 +34,13 @@ Route::get('/', [App\Http\Controllers\c_login::class, 'index'])->name('login');
 Route::get('/dashboard', [App\Http\Controllers\c_login::class, 'dashboard'] )->name('dashboard')->middleware('auth');
 Route::get('/check', [App\Http\Controllers\c_login::class, 'check'])->name('login.check');
 Route::post('/', [App\Http\Controllers\c_login::class, 'logout'])->name('user.logout');
+
+Route::get('/faskab', [App\Http\Controllers\c_loginadmin::class, 'index'])->name('loginadmin');
+Route::get('/faskab/dashboard', [App\Http\Controllers\c_loginadmin::class, 'dashboard'] )->name('faskab.dashboard')->middleware('auth');
+Route::get('/faskab/check', [App\Http\Controllers\c_loginadmin::class, 'check'])->name('loginadmin.check');
+Route::post('/faskab/logout', [App\Http\Controllers\c_loginadmin::class, 'logout'])->name('faskab.logout');
+
+
 
 
 Route::controller(c_fasdes::class)->middleware('auth')->group(function () {

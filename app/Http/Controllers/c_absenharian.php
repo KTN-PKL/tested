@@ -84,7 +84,6 @@ class c_absenharian extends Controller
             'fotokegiatanharian' => $filename1,
             'tgl' => $request->harian,
             'jam' => $t,
-            'jenis' => "masuk",
         ];
         $this->harian->addData($data);
         return redirect()->route('absen.harian');
@@ -92,22 +91,19 @@ class c_absenharian extends Controller
     public function storepulang(Request $request)
     {
         date_default_timezone_set("Asia/Jakarta");
-        $t = date("h:i");
+        $t = date("H:i");
         $name = "fasdes_pulang_".$request->harian.".png";
         $name1 = "kegiatan_pulang_".$request->harian.".png";
         $filename = $this->simpangambar($request->selfie, $name);
         $filename1 = $this->simpangambar($request->kegiatan, $name1);
         $data = [
-            'id_user' => Auth::user()->id,
-            'lokasiharian' => $request->lokasi,
-            'fotofasdes' => $filename,
-            'deskripsi' => $request->deskripsi,
-            'fotokegiatanharian' => $filename1,
-            'tgl' => $request->harian,
-            'jam' => $t,
-            'jenis' => "pulang",
+            'lokasipulang' => $request->lokasi,
+            'fotofasdespulang' => $filename,
+            'deskripsipulang' => $request->deskripsi,
+            'fotokegiatanharianpulang' => $filename1,
+            'jampulang' => $t,
         ];
-        $this->harian->addData($data);
+        $this->harian->editData(Auth::user()->id, $data);
         return redirect()->route('absen.harian');
     }
     public function masuk($id)

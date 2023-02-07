@@ -85,7 +85,7 @@ Route::controller(c_poktan::class)->middleware('auth')->group(function () {
 });
 
 Route::controller(c_absenharian::class)->middleware('auth')->group(function () {
-    // Route::get('harian', 'index')->name('faskab.harian.index');
+    Route::get('faskab/harian', 'index')->name('faskab.harian.index');
     // Route::get('harian/harian/{id}', 'harian')->name('harian');
     Route::get('harian/absen', 'create')->name('absen.harian');
     Route::post('harian/store', 'store')->name('absen.harian.store');

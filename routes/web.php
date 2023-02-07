@@ -98,4 +98,9 @@ Route::controller(c_absenharian::class)->middleware('auth')->group(function () {
 Route::controller(c_absenkegiatan::class)->middleware('auth')->group(function () {
     Route::get('absenkegiatan', 'index')->name('absenkegiatan.index');
     Route::post('absenkegiatan/store', 'store')->name('absenkegiatan.store');
+
+    // Admin
+    Route::get('kegiatan', 'index2')->name('kegiatan.index');
+    Route::get('kegiatan/kegiatan/{id}', 'kegiatan')->name('kegiatan.kegiatan');
+
 });

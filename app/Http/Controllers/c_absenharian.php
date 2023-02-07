@@ -112,7 +112,8 @@ class c_absenharian extends Controller
     }
     public function masuk($id)
     {
-        $data = ['harian' => $this->harian->allData($id, "masuk"),];
+        $data = ['harian' => $this->harian->allData($id, "masuk"),
+                 'pulang' => $this->harian->allData($id, "pulang"),];
         return view('absenharian.absenharian', $data);
     }
     public function edit($id)

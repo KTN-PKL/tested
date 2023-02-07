@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\absenharian;
+use App\Models\fasdes;
 use App\Models\lokasi;
 use Auth;
 
@@ -13,10 +14,11 @@ class c_absenharian extends Controller
     {
         $this->lokasi = new lokasi();
         $this->harian = new absenharian();
+        $this->fasdes = new fasdes();
     }
     public function index()
     {
-        $data = ['harian' => $this->harian->allData(),];
+        $data = ['fasdes' => $this->fasdes->allData()];
         return view('harian.index', $data);
     }
     public function create()
@@ -108,6 +110,10 @@ class c_absenharian extends Controller
         $this->harian->addData($data);
         return redirect()->route('absen.harian');
     }
+    public function daftarabsen($id)
+    {
+        $data = ['harian'=> $this->harian->allData($id, "masuk"),];
+    }
     public function edit($id)
     {
         $data = [
@@ -119,8 +125,9 @@ class c_absenharian extends Controller
     public function update(Request $request, $id)
     {
         $data = [
-            'id_kecamatan' => $request->id_kecamatan,
-            'harian' => $request->harian,
+            'fotofasdes' => $filename,
+            'deskripsi' => $request->deskripsi,
+            'fotokegiatanharian' => $filename1,
         ];
         $this->harian->editData($id, $data);
         return redirect()->route('faskab.harian.index');

@@ -28,6 +28,19 @@
       </div>
       <br>
       <div>
+        <table>
+          <tr>
+            <td style="width:60%"><h6>Nama Fasilitator Desa</h6></td>
+            <td><h6>:</h6></td>
+            <td><h6>{{$fasdes->name}}</h6></td>
+          </tr>
+          <tr>
+            <td style="width:60%"><h6>Alamat</h6></td>
+            <td><h6>:</h6></td>
+            <td><h6>{{$fasdes->name}}</h6></td>
+          </tr>
+        </table>
+       
         <table class="datatable">
           <thead>
             <tr>

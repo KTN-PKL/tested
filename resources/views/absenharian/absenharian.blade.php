@@ -33,9 +33,12 @@
             <tr>
               <th>No</th>
               <th>Tanggal</th>
-              <th>Jam</th>
-              <th>Foto Fasdes</th>
-              <th>Foto Kegiatan</th>
+              <th>Jam Masuk</th>
+              <th>Foto Fasdes Masuk</th>
+              <th>Foto Kegiatan Masuk</th>
+              <th>Jam Pulang</th>
+              <th>Foto Fasdes Pulang</th>
+              <th>Foto Kegiatan Pulang</th>
               <th>status</th>
               <th>Action</th>
             </tr>
@@ -47,18 +50,23 @@
             @foreach($harian as $data)
             @php
             $i=$i+1;
+            $dat = explode(":" , $data->jam);
+                   $H = $dat[0] * 60;
+                   $hasil = $H + $dat[1];
             @endphp
             <tr>
               <td style="width:7%">{{$i}}</td>
-              <td style="width:18%">{{$data->tgl}}</td>
-              <td style="width:9%">{{ $data->jam }}</td>
+              <td>{{$data->tgl}}</td>
+              <td>{{ $data->jam }}</td>
               <td><img src="{{asset('/foto/'. $data->fotofasdes)}}"  alt="Gambar" width="100px" height="100px"></td>
               <td><img src="{{asset('/foto/'. $data->fotokegiatanharian)}}"  alt="Gambar" width="100px" height="100px"></td>
-              @php
-                   $data = explode(":" , $data->jam);
-                   $H = $data[0] * 60;
-                   $hasil = $H + $data[1];
-              @endphp
+              @foreach ($pulang as $item)
+              @if ($data->tgl == $item->tgl)
+              <td>{{ $item->jam }}</td>
+              <td><img src="{{asset('/foto/'. $item->fotofasdes)}}"  alt="Gambar" width="100px" height="100px"></td>
+              <td><img src="{{asset('/foto/'. $item->fotokegiatanharian)}}"  alt="Gambar" width="100px" height="100px"></td>
+              @endif
+              @endforeach
               <td>@if ($hasil > 420)
                   Terlambat
                   @else

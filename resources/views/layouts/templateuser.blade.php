@@ -72,7 +72,7 @@
   <script src="{{asset('templateUser')}}/jquery/jquery.min.js"></script>
   <script src="{{asset('templateUser')}}/parsleyjs/parsley.min.js"></script>
   <script src="{{asset('templateUser')}}/js/parsley.js"></script>
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
 
    
   </body>

@@ -35,8 +35,22 @@ class c_absenharian extends Controller
     }
     public function jarak($data)
     {
-        $loksi = $this->lokasi->detailData(Auth::user()->id);
-        
+        $lokasi = $this->lokasi->detailData2(Auth::user()->id);
+        dd($lokasi);
+        $L = explode("," , $lokasi->lokasi);
+        $L2 = explode("," , $data);
+        $latitude1 = $L[0];
+        $latitude2 = $L2[0];
+        $longitude1 = $L[1];
+        $longitude2 = $L2[1];
+        $theta = $longitude1 - $longitude2; 
+	    $distance = (sin(deg2rad($latitude1)) * sin(deg2rad($latitude2)))  + (cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * cos(deg2rad($theta))); 
+	    $distance = acos($distance); 
+	    $distance = rad2deg($distance); 
+	    $distance = $distance * 60 * 1.1515;  
+	    $distance = $distance * 1.609344; 
+	    $jarak = (round($distance,3)); 
+        return $jarak;
     }
     public function store(Request $request)
     {

@@ -6,6 +6,9 @@
   #results { padding:20px; border:1px solid; background:#ccc; }
 </style>
 @section('content')
+@if(session()->has('msg'))
+<div id="login-alert" class="alert alert-danger custom-alert col-md-12"><b>Warning!</b> {{session('msg')}}</div>
+@endif
     <!-- componen card -->
     <div class="card">
       <div class="card-body">
@@ -47,7 +50,7 @@
           <form action="{{route('absenkegiatan.store')}}" method="POST" data-parsley-validate>
           @csrf
           <p class="card-text">Hari/Tanggal : {{ $dayList[$d].", ".$t }}</p>
-          <input type="text" name="waktuabsen" value="{{$t}}" hidden>
+          <input type="text" name="tanggalabsen" value="{{$t}}" hidden>
           <p class="card-text">Kordinat lokasi :  <span id="inputabsenkegiatan"></span></p>
           <input type="text" id="inputabsenkegiatan1" name="lokasiabsen" hidden >
     
@@ -129,9 +132,10 @@
           <a href="#" class="btn btn-block btn-primary" onclick="fotopelatihan()"
             ><i class="fa-solid fa-camera"></i> Foto Pelatihan</a
           >
-          <div id="hasilpelatihan"></div>
-          <input type="text" id="fotopelatihan" name="fotopelatihan" hidden>
+       
         </div>
+        <div id="hasillpelatihan"></div>
+        <input type="text" id="fotopelatihan" name="fotopelatihan" hidden>
         </div>
         {{-- end form pelatihan --}}
       
@@ -226,6 +230,36 @@
         $(".btn-close").click();
       }
 
+      function fotopelatihan()
+      {
+        if (navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices.getUserMedia({ video: true })
+          .then(function (stream) {
+          video.srcObject = stream;
+           })
+          .catch(function (err0r) {
+          console.log("Something went wrong!");
+          });
+      }
+         var data = `<a href="#" onclick="snappelatihan()" class="btn btn-primary">Ambil Gambar Kegiatan</a>`;
+        $("#exampleModal").modal('show');
+         $("#ambilgambar").html(data);
+      }
+
+      function snappelatihan() {
+        var data = `<center>
+          <canvas id="canvas1" width="425" height="300"></canvas>
+          </center>`;
+         $("#hasillpelatihan").html(data);
+        var canvas1 = document.getElementById('canvas1');
+        var context1 = canvas1.getContext('2d');
+        context1.drawImage(video, 0, 0, 425, 300);
+        var dataURL = canvas1.toDataURL(dataURL);
+        $("#fotopelatihan").val(dataURL);
+        //'<img src="'+dataURL+'"/>'
+        $(".btn-close").click();
+      }
+
       function fotokegiatan()
       {
         if (navigator.mediaDevices.getUserMedia) {
@@ -256,35 +290,7 @@
         $(".btn-close").click();
       }
 
-      function fotopelatihan()
-      {
-        if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: true })
-          .then(function (stream) {
-          video.srcObject = stream;
-           })
-          .catch(function (err0r) {
-          console.log("Something went wrong!");
-          });
-      }
-         var data = `<a href="#" onclick="snappelatihan()" class="btn btn-primary">Ambil Gambar Kegiatan</a>`;
-        $("#exampleModal").modal('show');
-         $("#ambilgambar").html(data);
-      }
-
-      function snappelatihan() {
-        var data = `<center>
-          <canvas id="canvas1" width="425" height="300"></canvas>
-          </center>`;
-         $("#hasilpelatihan").html(data);
-        var canvas1 = document.getElementById('canvas1');
-        var context1 = canvas1.getContext('2d');
-        context1.drawImage(video, 0, 0, 425, 300);
-        var dataURL = canvas1.toDataURL(dataURL);
-        $("#fotopelatihan").val(dataURL);
-        //'<img src="'+dataURL+'"/>'
-        $(".btn-close").click();
-      }
+   
 
       function vidOff() {
       var mediaStream = video.srcObject;

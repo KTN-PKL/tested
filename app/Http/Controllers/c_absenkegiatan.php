@@ -10,6 +10,7 @@ use Auth;
 
 class c_absenkegiatan extends Controller
 {
+    // Halaman User
     public function __construct()
     {
         $this->lokasi = new lokasi();
@@ -36,9 +37,9 @@ class c_absenkegiatan extends Controller
     public function store(Request $request)
     {
         $id = Auth::user()->id;
-        $name = "fasdes_".$request->waktuabsen.".png";
-        $name1 = "kegiatan_".$request->waktuabsen.".png";
-        $name2 = "pelatihan_".$request->waktuabsen.".png";
+        $name = "fasdes_".$request->tanggalabsen.".png";
+        $name1 = "kegiatan_".$request->tanggalabsen.".png";
+        $name2 = "pelatihan_".$request->tanggalabsen.".png";
         $filename = $this->simpangambar($request->selfie, $name);
         $filename2 = $this->simpangambar($request->fotokegiatan, $name1);
         $filename3 = $this->simpangambar($request->fotopelatihan, $name2);
@@ -47,47 +48,59 @@ class c_absenkegiatan extends Controller
 
         if($request->jeniskegiatan == "kantor"){
            
+
+         
             // radius lokasi
 
-             $lokasi = $this->lokasi->detailData(Auth::user()->id);
-             dd($lokasi);
-                $longi = $request->lokasiabsen;
+             $lokasi = $this->lokasi->detailData2(Auth::user()->id);
+             $longi1 = $lokasi->lokasi;
+             $longi = $request->lokasiabsen;
+
                 $L = explode("," , $longi);
                 $L2 = explode("," , $longi1);
                 $latitude1 = $L[0];
                 $longitude1= $L[1];
-                $latitude1 = $L1[0];
-                $longitude1= $L1[1];
-
-                dd($latitude1);
+                $latitude2 = $L2[0];
+                $longitude2= $L2[1];
+                $theta = $longitude1 - $longitude2; 
+                $distance = (sin(deg2rad($latitude1)) * sin(deg2rad($latitude2)))  + (cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * cos(deg2rad($theta))); 
+                $distance = acos($distance); 
+                $distance = rad2deg($distance); 
+                $distance = $distance * 60 * 1.1515;  
+                $distance = $distance * 1.609344; 
+                $jarak = (round($distance,3)); 
                 
-            // $L2 = explode(",", )
-
-                // $L = explode("," , $longi);
-                // $L2 = explode("," , $latitude);
-                // $latitude1 = $L[0];
-                // $latitude2 = $L2[0];
-                // $longitude1 = $L[1];
-                // $longitude2 = $L2[1];
-                //$jarak = 6371 * acos(cos(deg2rad($latitude2))*cos(deg2rad($latitude1))*cos(deg2rad($longitude1)-deg2rad($longitude2))+sin(deg2rad($latitude2))*sin(deg2rad($latitude1)));
-
-
-
-
-
-                // $theta = $longitude1 - $longitude2; 
-                //     $distance = (sin(deg2rad($latitude1)) * sin(deg2rad($latitude2)))  + (cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * cos(deg2rad($theta))); 
-                //     $distance = acos($distance); 
-                //     $distance = rad2deg($distance); 
-                //     $distance = $distance * 60 * 1.1515;  
-                //     $distance = $distance * 1.609344; 
-                //     $jarak = (round($distance,3)); 
-
-
+                if($jarak > 0.200 ){
+                    return redirect()->back()->with('msg', 'Jarak terlalu jauh');
+                }
+                else{
+                    date_default_timezone_set("Asia/Jakarta");
+                    $t = date("H:i");
+                    $data = [
+                        'id_user' => Auth::user()->id,
+                        'tanggalabsen'=>$request->tanggalabsen,
+                        'waktuabsen'=>$t,
+                        'lokasiabsen'=>$request->lokasiabsen,
+                        'jeniskegiatan'=> $request->jeniskegiatan,
+                        'deskripsikegiatan' => $request->deskripsikegiatan,
+                        'pelatihan' => $request->pelatihan,
+                        'judulpelatihan' => $request->judulpelatihan,
+                        'durasipelatihan' => $request->durasipelatihan,
+                        'tempatpelatihan' => $request->tempatpelatihan,
+                        'selfiekegiatan'=>$filename,
+                        'fotokegiatan' => $filename2,
+                        'fotopelatihan' => $filename3,
+                    ];
+                    $this->kegiatan->addData($data);
+                    return redirect('dashboard')->with('msg', 'absen berhasil');
+                } 
         }else{
+            date_default_timezone_set("Asia/Jakarta");
+            $t = date("H:i");
             $data = [
                 'id_user' => Auth::user()->id,
-                'waktuabsen'=>$request->waktuabsen,
+                'waktuabsen'=>$t,
+                'tanggalabsen'=>$request->tanggalabsen,
                 'lokasiabsen'=>$request->lokasiabsen,
                 'jeniskegiatan'=> $request->jeniskegiatan,
                 'deskripsikegiatan' => $request->deskripsikegiatan,
@@ -106,4 +119,12 @@ class c_absenkegiatan extends Controller
        
        
     }
+    // End Halaman User
+
+    // Start Halaman Admin
+    public function index2(){
+        $data = ['fasdes' => $this->fasdes->allData(),];
+        return view('absensi.kegiatan.index', $data);
+    }
+    // End halaman Admin
 }

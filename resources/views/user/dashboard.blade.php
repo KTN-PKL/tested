@@ -41,7 +41,7 @@
             <div class="container">
               <div class="row row-cols-2 row-cols-md-2 row-cols-lg-4">
                 <div class="col mt-3">
-                  <a href="{{url('test')}}" class="text-decoration-none">
+                  <a href="{{url('harian/absen')}}" class="text-decoration-none">
                     <div
                       class="item d-grid bg-primary rounded mx-auto text-center p-2 text-light shadow"
                     >

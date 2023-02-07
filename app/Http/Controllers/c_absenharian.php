@@ -21,8 +21,23 @@ class c_absenharian extends Controller
     }
     public function create()
     {
-        return view('user.absen.harian');
+        date_default_timezone_set("Asia/Jakarta");
+          $t = date("Y-m-d");
+          $d = date("D");
+          $dayList = array(
+            'Sun' => 'Minggu',
+            'Mon' => 'Senin',
+            'Tue' => 'Selasa',
+            'Wed' => 'Rabu',
+            'Thu' => 'Kamis',
+            'Fri' => 'Jumat',
+            'Sat' => 'Sabtu'
+            );
+        $cek = $dayList[$d].", ".$t;
+        $data = ['cek'=> $this->harian->cek(Auth::user()->id, $cek),];
+        return view('user.absen.harian', $data);
     }
+
     public function simpangambar($data, $name)
     {
         $img = str_replace('data:image/png;base64,', '', $data);
@@ -36,7 +51,6 @@ class c_absenharian extends Controller
     public function jarak($data)
     {
         $lokasi = $this->lokasi->detailData2(Auth::user()->id);
-        dd($lokasi);
         $L = explode("," , $lokasi->lokasi);
         $L2 = explode("," , $data);
         $latitude1 = $L[0];
@@ -69,6 +83,27 @@ class c_absenharian extends Controller
             'tgl' => $request->harian,
             'jam' => $t,
             'jenis' => "masuk",
+        ];
+        $this->harian->addData($data);
+        return redirect()->route('absen.harian');
+    }
+    public function storepulang(Request $request)
+    {
+        date_default_timezone_set("Asia/Jakarta");
+        $t = date("h:i");
+        $name = "fasdes_pulang_".$request->harian.".png";
+        $name1 = "kegiatan_pulang_".$request->harian.".png";
+        $filename = $this->simpangambar($request->selfie, $name);
+        $filename1 = $this->simpangambar($request->kegiatan, $name1);
+        $data = [
+            'id_user' => Auth::user()->id,
+            'lokasiharian' => $request->lokasi,
+            'fotofasdes' => $filename,
+            'deskripsi' => $request->deskripsi,
+            'fotokegiatanharian' => $filename1,
+            'tgl' => $request->harian,
+            'jam' => $t,
+            'jenis' => "pulang",
         ];
         $this->harian->addData($data);
         return redirect()->route('absen.harian');

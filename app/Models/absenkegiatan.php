@@ -30,4 +30,8 @@ class absenkegiatan extends Model
     {
         return DB::table('absenkegiatans')->where('id_absenkegiatan', $id)->delete();
     }
+    public function lokasi($id)
+    {
+        return DB::table('absenkegiatans')->join('lokasis', 'absenkegiatans.id','=','lokasis.id_user')->where('id', $id);
+    }
 }

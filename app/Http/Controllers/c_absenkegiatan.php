@@ -32,8 +32,10 @@ class c_absenkegiatan extends Controller
         return $filename;
     }
 
+
     public function store(Request $request)
     {
+        $id = Auth::user()->id;
         $name = "fasdes_".$request->waktuabsen.".png";
         $name1 = "kegiatan_".$request->waktuabsen.".png";
         $name2 = "pelatihan_".$request->waktuabsen.".png";
@@ -41,8 +43,47 @@ class c_absenkegiatan extends Controller
         $filename2 = $this->simpangambar($request->fotokegiatan, $name1);
         $filename3 = $this->simpangambar($request->fotopelatihan, $name2);
 
+       
+
         if($request->jeniskegiatan == "kantor"){
-            
+           
+            // radius lokasi
+
+             $lokasi = $this->lokasi->detailData(Auth::user()->id);
+             dd($lokasi);
+                $longi = $request->lokasiabsen;
+                $L = explode("," , $longi);
+                $L2 = explode("," , $longi1);
+                $latitude1 = $L[0];
+                $longitude1= $L[1];
+                $latitude1 = $L1[0];
+                $longitude1= $L1[1];
+
+                dd($latitude1);
+                
+            // $L2 = explode(",", )
+
+                // $L = explode("," , $longi);
+                // $L2 = explode("," , $latitude);
+                // $latitude1 = $L[0];
+                // $latitude2 = $L2[0];
+                // $longitude1 = $L[1];
+                // $longitude2 = $L2[1];
+                //$jarak = 6371 * acos(cos(deg2rad($latitude2))*cos(deg2rad($latitude1))*cos(deg2rad($longitude1)-deg2rad($longitude2))+sin(deg2rad($latitude2))*sin(deg2rad($latitude1)));
+
+
+
+
+
+                // $theta = $longitude1 - $longitude2; 
+                //     $distance = (sin(deg2rad($latitude1)) * sin(deg2rad($latitude2)))  + (cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * cos(deg2rad($theta))); 
+                //     $distance = acos($distance); 
+                //     $distance = rad2deg($distance); 
+                //     $distance = $distance * 60 * 1.1515;  
+                //     $distance = $distance * 1.609344; 
+                //     $jarak = (round($distance,3)); 
+
+
         }else{
             $data = [
                 'id_user' => Auth::user()->id,

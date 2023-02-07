@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\absenkegiatan;
 use App\Models\lokasi;
+use App\Models\fasdes;
 use Storage;
 use Auth;
 
@@ -15,6 +16,7 @@ class c_absenkegiatan extends Controller
     {
         $this->lokasi = new lokasi();
         $this->kegiatan = new absenkegiatan();
+        $this->fasdes = new fasdes();
     }
 
     public function index()
@@ -125,6 +127,15 @@ class c_absenkegiatan extends Controller
     public function index2(){
         $data = ['fasdes' => $this->fasdes->allData(),];
         return view('absensi.kegiatan.index', $data);
+    }
+
+    public function kegiatan($id)
+    {
+        $data = ['kegiatan' => $this->kegiatan->absenKegiatan($id),
+                 'fasdes'=>$this->fasdes->detailData($id),
+                 'id'=>$id,
+                ];
+        return view('absensi.kegiatan.kegiatan', $data);
     }
     // End halaman Admin
 }

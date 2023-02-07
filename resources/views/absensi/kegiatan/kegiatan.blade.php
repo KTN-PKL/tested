@@ -25,38 +25,27 @@
   <div class="card">
     <div class="card-body">
       <div class="col mt-4">
-        <a href="{{route('poktan.create', $id)}}" class="btn btn-primary">Create Kelompok Petani</a>
       </div>
       <br>
       <div>
         <table class="datatable">
           <thead>
             <tr>
-              <th>No</th>
-              <th>Nama Kelompok Petani</th>
-              <th>Jumlah Petani</th>
-              <th>Pasar</th>
-              <th>Action</th>
+              <th>Tanggal</th>
+              <th>Waktu Absen</th>
             </tr>
           </thead>
           <tbody>
             @php
             $i=0;
             @endphp
-            @foreach($poktan as $data)
+            @foreach($kegiatan as $data)
             @php
             $i=$i+1;
             @endphp
             <tr>
               <td style="width:8%">{{$i}}</td>
-              <td>{{$data->namapoktan}}</td>
-              <td>{{$data->jumlahpetani}}</td>
-              <td>{{$data->pasar}}</td>
-              <td style="width:30%">
-                <a href="{{route('poktan.detail', $data->id_poktan)}}" class="btn btn-sm btn-primary"> <i class="bi bi-eye"></i> Lihat</a>
-                <a href="{{route('poktan.edit', $data->id_poktan)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
-                <a href="{{route('faskab.poktan.destroy', $data->id_poktan)}}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Hapus</a>
-              </td>
+              <td>{{$data->waktuabsen}}</td>
             </tr>
             @endforeach
           </tbody>

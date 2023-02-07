@@ -45,7 +45,7 @@
               <td style="width:8%">{{$i}}</td>
               <td>{{$data->name}}</td>
               <td style="width:30%">
-                <a href="{{route('poktan', $data->id)}}" class="btn btn-sm btn-primary"> <i class="bi bi-eye"></i> Lihat Daftar Kelompok Petani</a>
+                <a href="{{route('kegiatan.kegiatan', $data->id)}}" class="btn btn-sm btn-primary"> <i class="bi bi-eye"></i> Lihat Data Absen Kegiatan</a>
 
               </td>
             </tr>

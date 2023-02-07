@@ -21,7 +21,7 @@ class absenharian extends Model
     }
     public function cek($id, $data)
     {
-        return DB::table('absenharians')->where('id_user', $id)->where('tgl', $data)->count();
+        return DB::table('absenharians')->where('id_user', $id)->where('tgl', $data)->first();
     }
     public function detailData($id)
     {

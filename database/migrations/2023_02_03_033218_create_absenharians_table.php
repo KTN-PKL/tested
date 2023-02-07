@@ -20,9 +20,13 @@ return new class extends Migration
             $table->string('fotofasdes', 50);
             $table->string('tgl', 50);
             $table->string('jam', 20);
-            $table->string('jenis', 20);
             $table->text('deskripsi');
             $table->string('fotokegiatanharian');
+            $table->string('lokasipulang')->nullabel();
+            $table->string('fotofasdespulang', 50)->nullabel();
+            $table->string('jampulang', 20)->nullabel();
+            $table->text('deskripsipulang')->nullabel();
+            $table->string('fotokegiatanharianpulang')->nullabel();
             $table->timestamps();
         });
     }

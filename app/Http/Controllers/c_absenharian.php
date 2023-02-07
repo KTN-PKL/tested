@@ -19,7 +19,7 @@ class c_absenharian extends Controller
     public function index()
     {
         $data = ['fasdes' => $this->fasdes->allData()];
-        return view('harian.index', $data);
+        return view('absenharian.index', $data);
     }
     public function create()
     {

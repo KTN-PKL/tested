@@ -30,22 +30,33 @@
       <div>
         <table>
           <tr>
-            <td style="width:60%"><h6>Nama Fasilitator Desa</h6></td>
+            <td style="width:50%"><h6>Nama Fasilitator Desa</h6></td>
             <td><h6>:</h6></td>
             <td><h6>{{$fasdes->name}}</h6></td>
           </tr>
           <tr>
-            <td style="width:60%"><h6>Alamat</h6></td>
+            <td style="width:50%"><h6>Alamat</h6></td>
             <td><h6>:</h6></td>
-            <td><h6>{{$fasdes->name}}</h6></td>
+            <td><h6>
+              @if($fasdes->alamat <> null)
+              {{$fasdes->alamat}}
+              @else
+              Alamat Belum ditentukan.
+              @endif
+            </h6></td>
           </tr>
         </table>
        
         <table class="datatable">
           <thead>
             <tr>
+              <th>No</th>
               <th>Tanggal</th>
-              <th>Waktu Absen</th>
+              <th>Waktu</th>
+              <th>Jenis Kegiatan</th>
+              <th>Selfie Kegiatan</th>
+              <th>Foto Kegiatan</th>
+              <th>Foto Pelatihan</th>
             </tr>
           </thead>
           <tbody>
@@ -58,7 +69,18 @@
             @endphp
             <tr>
               <td style="width:8%">{{$i}}</td>
-              <td>{{$data->waktuabsen}}</td>
+              <td style="width:15%">{{$data->tanggalabsen}}</td>
+              <td style="width:10%">{{$data->waktuabsen}} WIB</td>
+              <td style="width:15%">{{$data->jeniskegiatan}}</td>
+              <td><img class="img-thumbnail" src="{{asset('/foto/absenkegiatan/'. $data->selfiekegiatan)}}" width="30%" alt=""></td>
+              <td><img class="img-thumbnail" src="{{ asset('foto/absenkegiatan/'. $data->fotokegiatan) }}" width="30%" alt=""></td>
+              <td>
+                @if($data->fotopelatihan <> null)
+                <img class="img-thumbnail" src="{{ asset('foto/absenkegiatan/'. $data->fotopelatihan) }}" width="30%" alt="">
+                @else
+                <h6>Tidak ada Foto Pelatihan</h6>
+                @endif
+              </td>
             </tr>
             @endforeach
           </tbody>

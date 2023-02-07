@@ -71,7 +71,7 @@ class c_absenharian extends Controller
     public function store(Request $request)
     {
         date_default_timezone_set("Asia/Jakarta");
-        $t = date("h:i");
+        $t = date("H:i");
         $name = "fasdes_masuk_".$request->harian.".png";
         $name1 = "kegiatan_masuk_".$request->harian.".png";
         $filename = $this->simpangambar($request->selfie, $name);
@@ -110,9 +110,10 @@ class c_absenharian extends Controller
         $this->harian->addData($data);
         return redirect()->route('absen.harian');
     }
-    public function daftarabsen($id)
+    public function masuk($id)
     {
-        $data = ['harian'=> $this->harian->allData($id, "masuk"),];
+        $data = ['harian' => $this->harian->allData($id, "masuk"),];
+        return view('absenharian.absenharian', $data);
     }
     public function edit($id)
     {

@@ -135,6 +135,7 @@ class c_absenkegiatan extends Controller
                  'fasdes'=>$this->fasdes->detailData($id),
                  'id'=>$id,
                 ];
+                dd($data);
         return view('absensi.kegiatan.kegiatan', $data);
     }
     // End halaman Admin

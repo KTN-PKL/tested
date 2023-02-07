@@ -16,14 +16,20 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <title>Absen Kegiatan</title>
+    <title>Absen Harian</title>
   </head>
   <body onload="startTime()">
     <div class="title bg-primary text-light text-center p-3">
       <h1 class="display-5">
-        <i class="fa-solid fa-id-card-clip text-light"></i> Sistem Absensi
-      </h1>
-      <p>user</p>
+      @if ($cek == 0)
+        <i class="fa-solid fa-id-card-clip text-light"></i> Absen Harian (Masuk)
+      @elseif ($cek == 1)
+        <i class="fa-solid fa-id-card-clip text-light"></i> Absen Harian (Pulang)
+      @else
+      <i class="fa-solid fa-id-card-clip text-light"></i> Anda Telah Absen Hari Ini!
+      @endif
+    </h1>
+      <p>{{ Auth::user()->name }}</p>
     </div>
 
     <!-- container -->
@@ -64,8 +70,13 @@
             'Sat' => 'Sabtu'
             );
           @endphp
-           <form class="row g-3" action="{{route('absen.harian.store')}}" method="POST">
-            @csrf
+          @if ($cek == 0)
+          <form class="row g-3" action="{{route('absen.harian.store')}}" method="POST">
+          
+          @elseif ($cek == 1)
+          <form class="row g-3" action="{{route('absen.harian.storepulang')}}" method="POST">  
+          @endif
+          @csrf
           <p class="card-text">Hari/Tanggal : {{ $dayList[$d].", ".$t }}</p>
           <input type="text" name="harian" value="{{ $dayList[$d].", ".$t }}" hidden>
           <p class="card-text">Kordinat lokasi :  <span id="lokasi"></span></p>
@@ -92,12 +103,14 @@
           </div>
            <div id="hasilkegiatan"></div>
           <input type="text" id="gambarkegiatan" name="kegiatan" hidden>
-          <button id="submit"></button>
+          <input type="submit"  value="submit" id="klik" hidden>
         </form>
+        @if ($cek < 2)
         <div class="button text-center d-grid pt-3">
           <div class="btn btn-block btn-success" onclick="jarak()">
             <i class="fa-solid fa-floppy-disk"></i> Simpan</div>
         </div>
+        @endif
         </div>
       </div>
       <!-- akhir componen card -->
@@ -132,6 +145,18 @@
           </div>
       </div>
       </div>
+      <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Posisi Anda Terlalu Jauh</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <div id="jarak"></div>
+            </div>
+        </div>
+        </div>
     <!-- akhir container -->
     <script src="{{asset('templateUser')}}/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
@@ -159,9 +184,13 @@
       {
         var data =  $('#lokasiisi').val()
         $.get("{{ url('harian/jarak') }}/"+data, {}, function(data, status) {
-       
-        $('#lokasi').html($data);
-        // $("#submit").click();
+       if (data > 0.2) {
+        $("#exampleModal2").modal('show');
+        var jarak = data * 1000;
+        $("#jarak").html("Jarak Anda dari titik absen : "+ jarak +" meter");
+       } else {
+        $("#klik").click();
+       }
        });
       }
       //webcam selfie

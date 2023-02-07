@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class absenharian extends Model
 {
@@ -17,6 +18,10 @@ class absenharian extends Model
     public function addData($data)
     {
         DB::table('absenharians')->insert($data);
+    }
+    public function cek($id, $data)
+    {
+        return DB::table('absenharians')->where('id_user', $id)->where('tgl', $data)->count();
     }
     public function detailData($id)
     {

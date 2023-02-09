@@ -11,9 +11,9 @@ class absenharian extends Model
 {
     use HasFactory;
 
-    public function allData($id, $data)
+    public function allData($id)
     {
-        return DB::table('absenharians')->where('id_user', $id)->where('jenis', $data)->get();
+        return DB::table('absenharians')->where('id_user', $id)->get();
     }
     public function addData($data)
     {

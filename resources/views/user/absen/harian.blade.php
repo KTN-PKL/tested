@@ -90,8 +90,21 @@
             <a href="#" class="btn btn-block btn-warning" onclick="selfie()">
               <i class="fa-solid fa-user"></i> Foto Selfie</a>
           </div>
+          
+          {{-- This is the code that will display the image that has been taken by the user.   --}}
           <div id="hasilselfie"></div>
           <input type="text" id="gambarselfie" name="selfie" hidden>
+
+          <!-- select posisi-->
+          <div>
+            <p>Pilih posisi</p>
+            <select class="form-select" aria-label="Default select">
+              <option value="1" selected>Dalam Kantor</option>
+              <option value="2">Luar Kantor</option>
+            </select>
+          </div>
+          <!-- end select posisi-->
+
           <!-- field deskripsi -->
           <div class="form-floating mb-3 pt-3">
             <textarea
@@ -146,6 +159,7 @@
       <!-- end nav bottom -->
       @endif
     </div>
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl">

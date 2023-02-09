@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="stylesheet" href="{{asset('templateUser')}}/style.css" />
     <link rel="stylesheet" href="{{asset('templateUser')}}/login.css" />
-    <title>Document</title>
+    <title>Login FasKab</title>
   </head>
   <body class="css-selector">
     <!-- Login Form -->

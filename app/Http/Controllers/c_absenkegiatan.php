@@ -136,21 +136,51 @@ class c_absenkegiatan extends Controller
         $data = ['kegiatan' => $this->kegiatan->absenKegiatan($id, $t),
                  'fasdes'=>$this->fasdes->detailData($id),
                  'id'=>$id,
+                 'filter'=>"Semua Kegiatan",
                 ];
             
         return view('absensi.kegiatan.kegiatan', $data);
     }
 
  
-    public function filter($id)
+    public function filterKegiatan(Request $request, $id)
     {
+        date_default_timezone_set("Asia/Jakarta");
+        $t = date("Y-m");
         $filter = $request->filter;
-        $data = ['kegiatan' => $this->kegiatan->filterKegiatan($id, $filter),
+        if($filter <> "all"){
+            $data = ['kegiatan' => $this->kegiatan->filterKegiatan($id, $filter),
+            'fasdes'=>$this->fasdes->detailData($id),
+            'id'=>$id,
+            'filter'=>$filter,
+           ];
+       
+        }else{
+            $data = ['kegiatan' => $this->kegiatan->absenKegiatan($id, $t),
                  'fasdes'=>$this->fasdes->detailData($id),
                  'id'=>$id,
+                  'filter'=>"Semua Kegiatan",
                 ];
-            
+        }
+       
         return view('absensi.kegiatan.kegiatan', $data);
+    }
+
+    public function editAbsen($id)
+    {
+        $data = ['kegiatan' => $this->kegiatan->detailData($id),];
+        return view('absensi.kegiatan.edit', $data);
+    }
+
+
+    public function updateAbsen(Request $request, $id)
+    {
+        $data = [
+            'tanggalabsen' => $request->tanggalabsen,
+            'waktuabsen' => $request->waktuabsen,
+        ];
+        $this->kegiatan->editData($id, $data);
+        return view('dashboard');
     }
     // End halaman Admin
 }

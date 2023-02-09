@@ -111,5 +111,8 @@ Route::controller(c_absenkegiatan::class)->middleware('auth')->group(function ()
     // Admin
     Route::get('kegiatan', 'index2')->name('kegiatan.index');
     Route::get('kegiatan/kegiatan/{id}', 'kegiatan')->name('kegiatan.kegiatan');
+    Route::get('kegiatan/edit/{id}', 'editAbsen')->name('kegiatan.edit');
+    Route::post('kegiatan/update/{id}', 'updateAbsen')->name('kegiatan.updateAbsen');
+    Route::post('kegiatan/kegiatan/filter/{id}', 'filterKegiatan')->name('kegiatan.kegiatan.filter');
 
 });

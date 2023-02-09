@@ -5,7 +5,7 @@
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{url('poktan')}}">Kelompok Petani Fasilitator Desa</a></li>
+        <li class="breadcrumb-item"><a href="{{url('kegiatan')}}">Kelompok Petani Fasilitator Desa</a></li>
         <li class="breadcrumb-item active">Daftar Kelompok Petani</li>
       </ol>
     </nav>
@@ -47,17 +47,29 @@
           </tr>
         </table>
         <div class="filter col-md-4">
-          <select style="background-color: rgb(212, 211, 211)" name="filter" class="form-select form-select-sm" aria-label=".form-select-sm example" id="kategori">
-            <form action="{{route('filter.kegiatan', $fasdes->id)}}" method="POST">
-            <option  selected value="0">Pilih Jenis Kegiatan</option>
-            <option value="lapangan">Lapangan</option>
-            <option value="kantor">Kantor</option>
-            <option value="dinas luar kota">Dinas Luar Kota</option>
-            <option value="dinas luar daerah">Dinas Luar Daerah</option>
-            <option value="dinas luar negeri">Dinas Luar Negeri</option>
-            <option value="overtime">Overtime</option>
-          </form>
-          </select>
+          <form action="{{route('kegiatan.kegiatan.filter', $fasdes->id)}}" method="POST">
+            @csrf
+            <div class="row">
+              <div class="col-md-8">
+                <select style="background-color: rgb(212, 211, 211)" name="filter" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                  <option  selected value="0">Pilih Jenis Kegiatan</option>
+                  <option value="all">Semua Kegiatan</option>
+                  <option value="lapangan">Lapangan</option>
+                  <option value="kantor">Kantor</option>
+                  <option value="dinas luar kota">Dinas Luar Kota</option>
+                  <option value="dinas luar daerah">Dinas Luar Daerah</option>
+                  <option value="dinas luar negeri">Dinas Luar Negeri</option>
+                  <option value="overtime">Overtime</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <button type="submit" class="btn btn-sm btn-primary">Cari</button>
+              </div>
+            </div>
+            
+         
+       
+        </form>
         </div>
        
        <br>
@@ -80,8 +92,8 @@
          '12' => 'Desember',
          );
        @endphp
-        <div><h5>Data Absensi Bulan {{$dayList[$m]}} {{$t}}</h5></div>
-        <table class="datatable">
+        <div><h5>Data Absensi Kegiatan Bulan {{$dayList[$m]}} {{$t}} - {{$filter}}</h5></div>
+        <table id="satu" class="datatable">
           <thead>
             <tr>
               <th>No</th>
@@ -117,7 +129,7 @@
                 @endif
               </td>
               <td>
-                <a href="#" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                <a href="{{route('kegiatan.edit', $data->id_absenkegiatan)}}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
               </td>
             </tr>
             @endforeach
@@ -126,6 +138,13 @@
       </div>
     </div>
     </div>
+
+    <script type="text/javascript" charset="utf-8">
+      $(document).ready(function() {
+          $('.datatable').DataTable();
+              document.getElementById("dataTable-dropdown").style.display = "none";
+      });
+  </script>
    
  
 @endsection

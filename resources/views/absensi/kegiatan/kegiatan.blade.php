@@ -30,12 +30,12 @@
       <div>
         <table>
           <tr>
-            <td style="width:50%"><h6>Nama Fasilitator Desa</h6></td>
+            <td style="width:30%"><h6>Nama Fasilitator Desa</h6></td>
             <td><h6>:</h6></td>
             <td><h6>{{$fasdes->name}}</h6></td>
           </tr>
           <tr>
-            <td style="width:50%"><h6>Alamat</h6></td>
+            <td><h6>Alamat</h6></td>
             <td><h6>:</h6></td>
             <td><h6>
               @if($fasdes->alamat <> null)
@@ -46,7 +46,41 @@
             </h6></td>
           </tr>
         </table>
+        <div class="filter col-md-4">
+          <select style="background-color: rgb(212, 211, 211)" name="filter" class="form-select form-select-sm" aria-label=".form-select-sm example" id="kategori">
+            <form action="{{route('filter.kegiatan', $fasdes->id)}}" method="POST">
+            <option  selected value="0">Pilih Jenis Kegiatan</option>
+            <option value="lapangan">Lapangan</option>
+            <option value="kantor">Kantor</option>
+            <option value="dinas luar kota">Dinas Luar Kota</option>
+            <option value="dinas luar daerah">Dinas Luar Daerah</option>
+            <option value="dinas luar negeri">Dinas Luar Negeri</option>
+            <option value="overtime">Overtime</option>
+          </form>
+          </select>
+        </div>
        
+       <br>
+       @php
+       date_default_timezone_set("Asia/Jakarta");
+       $m = date("m");
+       $t = date("Y");
+       $dayList = array(
+         '01' => 'Januari',
+         '02' => 'Februari',
+         '03' => 'Maret',
+         '04' => 'April',
+         '05'=>'Mei',
+         '06' => 'Juni',
+         '07' => 'Juli',
+         '08' => 'Agustus',
+         '09' => 'September',
+         '10' => 'Oktober',
+         '11' => 'November',
+         '12' => 'Desember',
+         );
+       @endphp
+        <div><h5>Data Absensi Bulan {{$dayList[$m]}} {{$t}}</h5></div>
         <table class="datatable">
           <thead>
             <tr>
@@ -57,6 +91,7 @@
               <th>Selfie Kegiatan</th>
               <th>Foto Kegiatan</th>
               <th>Foto Pelatihan</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -80,6 +115,9 @@
                 @else
                 <h6>Tidak ada Foto Pelatihan</h6>
                 @endif
+              </td>
+              <td>
+                <a href="#" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
               </td>
             </tr>
             @endforeach

@@ -34,8 +34,12 @@ class absenkegiatan extends Model
     {
         return DB::table('absenkegiatans')->join('lokasis', 'absenkegiatans.id','=','lokasis.id_user')->where('id', $id);
     }
-    public function absenKegiatan($id)
+    public function absenKegiatan($id, $t)
     {
-        return DB::table('absenkegiatans')->where('id_user', $id)->get();
+        return DB::table('absenkegiatans')->where('tanggalabsen','like','%'.$t.'%')->where('id_user', $id)->get();
+    }
+    public function filterKegiatan($id, $t)
+    {
+        return DB::table('absenkegiatans')->where('jeniskegiatan','like','%'.$filter.'%')->where('id_user', $id)->get();
     }
 }

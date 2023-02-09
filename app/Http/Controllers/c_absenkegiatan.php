@@ -131,10 +131,25 @@ class c_absenkegiatan extends Controller
 
     public function kegiatan($id)
     {
-        $data = ['kegiatan' => $this->kegiatan->absenKegiatan($id),
+        date_default_timezone_set("Asia/Jakarta");
+        $t = date("Y-m");
+        $data = ['kegiatan' => $this->kegiatan->absenKegiatan($id, $t),
                  'fasdes'=>$this->fasdes->detailData($id),
                  'id'=>$id,
                 ];
+            
+        return view('absensi.kegiatan.kegiatan', $data);
+    }
+
+ 
+    public function filter($id)
+    {
+        $filter = $request->filter;
+        $data = ['kegiatan' => $this->kegiatan->filterKegiatan($id, $filter),
+                 'fasdes'=>$this->fasdes->detailData($id),
+                 'id'=>$id,
+                ];
+            
         return view('absensi.kegiatan.kegiatan', $data);
     }
     // End halaman Admin

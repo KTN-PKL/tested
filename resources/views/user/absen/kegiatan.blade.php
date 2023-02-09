@@ -90,6 +90,8 @@
             <option value="dinas luar kota">Dinas Luar Kota</option>
             <option value="dinas luar daerah">Dinas Luar Daerah</option>
             <option value="dinas luar negeri">Dinas Luar Negeri</option>
+            <option value="overtime">Overtime</option>
+            
           </select>
         </div>
         <!-- akhir field kegiatan -->
@@ -278,7 +280,7 @@
 
       function snapkegiatan() {
         var data = `<center>
-          <canvas id="canvas1" width="425" height="300"></canvas>
+          <canvas   id="canvas1" width="425" height="300">hi</canvas>
           </center>`;
          $("#hasilkegiatan").html(data);
         var canvas1 = document.getElementById('canvas1');

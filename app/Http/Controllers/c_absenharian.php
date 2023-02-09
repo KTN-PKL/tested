@@ -106,9 +106,14 @@ class c_absenharian extends Controller
         $this->harian->editData(Auth::user()->id,$request->harian, $data);
         return redirect()->route('absen.harian');
     }
-    public function masuk($id)
+    public function read(Request $request)
     {
-        $data = ['harian' => $this->harian->allData($id),];
+        $data = ['harian' => $this->harian->allData($request->id, $request->bulan),];
+        return view('absenharian.table', $data);
+    }
+    public function absen($id)
+    {
+        $data = ['id' => $id,];
         return view('absenharian.absenharian', $data);
     }
     public function edit($id)

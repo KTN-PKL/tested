@@ -22,34 +22,60 @@
     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   @endif  
+  @php
+  date_default_timezone_set("Asia/Jakarta");
+  $d = date("Y-m");
+@endphp
   <div class="card">
     <div class="card-body">
-      <div class="col mt-4">
+      <div class="col mt-4 col-md-3">
+        <input type="month" id="bulan" class="form-control"  value="{{ $d }}" onchange="read()">
       </div>
       <br>
-      <div id="table"></div>
+      <table class="datatable">
+        <thead>
+          <tr>
+            <th>Tanggal</th>
+            <th>Jam Masuk</th>
+            <th>Foto Fasdes Masuk</th>
+            <th>Foto Kegiatan Masuk</th>
+            <th>Jam Pulang</th>
+            <th>Foto Fasdes Pulang</th>
+            <th>Foto Kegiatan Pulang</th>
+            <th>status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="table"></tbody>
+    </table>
     </div>
     </div>
-   
- 
+  {{-- Script tambahan --}}
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+  </script>
+  
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+      $(document).ready(function() {
+            read()
+            });
+            function read() {
+                var id = {{ $id }};
+                var bulan =  $("#bulan").val();
+                $.ajax({
+                    type: "get",
+                    url: "{{ url('harian/read') }}",
+                    data: {
+                    "id": id,
+                    "bulan": bulan,
+                    },
+                success: function(data, status) {
+                    $("#table").html(data);
+                    }
+                });
+            }
+    </script>
+  
 @endsection
 
-<script>
-  $(document).ready(function() {
-        read()
-        });
-    
-        function read() {
-            var tanggal = 1;
-            $.ajax({
-                type: "get",
-                url: "{{ url('cashflow/read') }}",
-                data: {
-                "tanggal": tanggal,
-                },
-            success: function(data, status) {
-                $("#table").html(data);
-                }
-            });
-        }
-</script>

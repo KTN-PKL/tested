@@ -33,7 +33,7 @@
               <td>{{$i}}</td>
               <td>{{ $data->name }}</td>
               <td style="width:35%">
-                <a href="{{ route('faskab.harian.masuk', $data->id) }}" class="btn btn-sm btn-primary" ><i class="bi bi-pencil-square"></i> liat absen masuk</a>
+                <a href="{{ route('faskab.harian.absen', $data->id) }}" class="btn btn-sm btn-primary" ><i class="bi bi-pencil-square"></i> liat absen masuk</a>
                 <a href="#" class="btn btn-sm btn-warning" ><i class="bi bi-pencil-square"></i> liat absen pulang</a>
               </td>
             </tr>

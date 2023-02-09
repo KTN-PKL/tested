@@ -13,7 +13,7 @@
 
     <title>Fasilitator Desa</title>
   </head>
-  <body onload="startTime()">
+  <body onload="startTime()" class="d-flex flex-column min-vh-100">
     <div class="title bg-primary text-light text-center p-3">
       <h1 class="display-5">
         <i class="fa-solid fa-id-card-clip text-light"></i> Selamat datang
@@ -111,7 +111,7 @@
       </div>
 
       <!-- end status -->
-      <div class="container mt-4">
+      <div class="container mt-4 ">
         <h5>Rekap Absen</h5>
         <div class="row text-center">
           <div class="col-6">
@@ -131,17 +131,31 @@
       </div>
 
       <!-- end main menu -->
+     
 
       <!-- nav bottom -->
-      <div class="botnav fixed-bottom bg-dark text-light text-center">
+      <div class="botnav fixed-bottom bg-dark text-light text-center mb-0">
         <div class="row">
-          <div class="col-4 p-3"><i class="fa-solid fa-house-user"></i></div>
-          <div class="col-4 p-3"><i class="fa-solid fa-camera"></i></div>
-          <div class="col-4 p-3"><i class="fa-solid fa-user"></i></div>
+          <div class="col-4 p-3"><a href="{{url('dashboard')}}" class="text-decoration-none text-light fa-solid fa-house-user text-light"></a></div>
+          <div class="col-4 p-3"><a href="{{url('harian/absen')}}" class="text-decoration-none text-light fa-solid fa-camera"></a></div>
+          <div class="col-4 p-3"><a href="{{url('#')}}" class="text-decoration-none text-light fa-solid fa-user"></a></div>
         </div>
       </div>
       <!-- end nav bottom -->
     </div>
+    
+    <!-- footer -->
+    <footer class="text-light text-center text-lg-start mt-auto pt-5" >
+      <!-- Copyright -->
+      <div class="text-center p-3 bg-primary" style="height:20vh;">
+        ©2023 Copyright:
+        <a class="text-dark" href="#"></a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- end footer -->
+
+    
     <script src="js/bootstrap.bundle.min.js"></script>
     <script>
       function startTime() {

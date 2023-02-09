@@ -32,22 +32,7 @@
         <input type="month" id="bulan" class="form-control"  value="{{ $d }}" onchange="read()">
       </div>
       <br>
-      <table class="datatable">
-        <thead>
-          <tr>
-            <th>Tanggal</th>
-            <th>Jam Masuk</th>
-            <th>Foto Fasdes Masuk</th>
-            <th>Foto Kegiatan Masuk</th>
-            <th>Jam Pulang</th>
-            <th>Foto Fasdes Pulang</th>
-            <th>Foto Kegiatan Pulang</th>
-            <th>status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="table"></tbody>
-    </table>
+      <div id="table"></div>
     </div>
     </div>
   {{-- Script tambahan --}}

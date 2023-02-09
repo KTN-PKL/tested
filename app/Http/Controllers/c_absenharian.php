@@ -108,7 +108,9 @@ class c_absenharian extends Controller
     }
     public function read(Request $request)
     {
-        $data = ['harian' => $this->harian->allData($request->id, $request->bulan),];
+        $data = ['harian' => $this->harian->allData($request->id, $request->bulan),
+                 'jumlah' => $this->harian->jumlahData($request->id, $request->bulan),
+                'bulans' => $request->bulan,];
         return view('absenharian.table', $data);
     }
     public function absen($id)

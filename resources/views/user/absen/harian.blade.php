@@ -21,6 +21,23 @@
   <body onload="startTime()">
     <div class="title bg-primary text-light text-center p-3">
       <h1 class="display-5">
+        @php
+        date_default_timezone_set("Asia/Jakarta");
+        $t = date("Y-m-d");
+        $d = date("D");
+        $dayList = array(
+          'Sun' => 'Minggu',
+          'Mon' => 'Senin',
+          'Tue' => 'Selasa',
+          'Wed' => 'Rabu',
+          'Thu' => 'Kamis',
+          'Fri' => 'Jumat',
+          'Sat' => 'Sabtu'
+          );
+        @endphp
+      @if ($dayList[$d] == "Sabtu" || $dayList[$d] == "Minggu")
+      <i class="fa-solid fa-id-card-clip text-light"></i> Libur !
+      @else
       @if ($cek == null)
         <i class="fa-solid fa-id-card-clip text-light"></i> Absen Harian (Masuk)
       @elseif ($cek->jampulang == null)
@@ -28,12 +45,16 @@
       @else
       <i class="fa-solid fa-id-card-clip text-light"></i> Anda Telah Absen Hari Ini!
       @endif
+      @endif
     </h1>
       <p>{{ Auth::user()->name }}</p>
     </div>
 
     <!-- container -->
     <div class="container mt-3">
+      @if ($dayList[$d] == "Sabtu" || $dayList[$d] == "Minggu")
+      <center>     <h1>LIBUR</h1></center>
+      @else
       <!-- componen card -->
       <div class="card">
         <div class="card-body">
@@ -55,21 +76,7 @@
       <!-- componen card -->
       <div class="card mt-3">
         <div class="card-body">
-          <h5 class="card-title mb-3">Absensi Kegiatan</h5>
-          @php
-          date_default_timezone_set("Asia/Jakarta");
-          $t = date("Y-m-d");
-          $d = date("D");
-          $dayList = array(
-            'Sun' => 'Minggu',
-            'Mon' => 'Senin',
-            'Tue' => 'Selasa',
-            'Wed' => 'Rabu',
-            'Thu' => 'Kamis',
-            'Fri' => 'Jumat',
-            'Sat' => 'Sabtu'
-            );
-          @endphp
+          <h5 class="card-title mb-3">Absensi Harian</h5>
           @if ($cek == null)
           <form class="row g-3" action="{{route('absen.harian.store')}}" method="POST">
           
@@ -124,6 +131,7 @@
         </div>
       </div>
       <!-- end nav bottom -->
+      @endif
     </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -13,7 +13,11 @@ class absenharian extends Model
 
     public function allData($id, $bulan)
     {
-        return DB::table('absenharians')->where('id_user', $id)->where('tgl', '%'.$bulan.'%')->get();
+        return DB::table('absenharians')->where('id_user', $id)->where('tgl', 'like', '%'.$bulan.'%')->get();
+    }
+    public function jumlahData($id, $bulan)
+    {
+        return DB::table('absenharians')->where('id_user', $id)->where('tgl', 'like', '%'.$bulan.'%')->count();
     }
     public function addData($data)
     {

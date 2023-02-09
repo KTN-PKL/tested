@@ -77,6 +77,7 @@ $dnow = date("j");
         $dat = explode(":" , $harian[$j]->jam);
          $H = $dat[$j] * 60;
          $hasil = $H + $dat[1];
+         $j = $j+1;
         @endphp
         @if ($hasil > 420)
         Terlambat

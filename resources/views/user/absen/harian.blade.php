@@ -7,18 +7,16 @@
     <link rel="stylesheet" href="{{asset('templateUser')}}/css/bootstrap.min.css" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.c ss"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
     <link rel="stylesheet" href="{{asset('templateUser')}}/style.css" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <title>Absen Harian</title>
   </head>
-  <body onload="startTime()">
+  <body class="d-flex flex-column min-vh-100">
     <div class="title bg-primary text-light text-center p-3">
       <h1 class="display-5">
         @php
@@ -108,7 +106,7 @@
             <a href="#" class="btn btn-block btn-primary" onclick="fotokegiatan()">
               <i class="fa-solid fa-camera"></i> Foto kegiatan</a>
           </div>
-           <div id="hasilkegiatan"></div>
+          <div id="hasilkegiatan"></div>
           <input type="text" id="gambarkegiatan" name="kegiatan" hidden>
           <input type="submit"  value="submit" id="klik" hidden>
         </form>
@@ -123,11 +121,26 @@
       <!-- akhir componen card -->
       
       <!-- nav bottom -->
-      <div class="botnav fixed-bottom bg-dark text-light text-center">
+      <div class="botnav fixed-bottom bg-dark text-light text-center mb-0">
         <div class="row">
-          <div class="col-4 p-3"><i class="fa-solid fa-house-user"></i></div>
-          <div class="col-4 p-3"><i class="fa-solid fa-camera"></i></div>
-          <div class="col-4 p-3"><i class="fa-solid fa-user"></i></div>
+          <div class="col-4 p-3">
+            <a
+              href="{{url('dashboard')}}"
+              class="text-decoration-none text-light fa-solid fa-house-user text-light"
+            ></a>
+          </div>
+          <div class="col-4 p-3">
+            <a
+              href="{{url('harian/absen')}}"
+              class="text-decoration-none text-light fa-solid fa-camera"
+            ></a>
+          </div>
+          <div class="col-4 p-3">
+            <a
+              href="{{url('#')}}"
+              class="text-decoration-none text-light fa-solid fa-user"
+            ></a>
+          </div>
         </div>
       </div>
       <!-- end nav bottom -->
@@ -153,6 +166,20 @@
           </div>
       </div>
       </div>
+
+      <!-- footer -->
+      <footer class="text-light text-center text-lg-start mt-auto pt-5">
+        <!-- Copyright -->
+        <div class="text-center p-3 bg-primary" style="height: 20vh">
+          ©2023 Copyright:
+          <a class="text-dark" href="#"></a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+    <!-- end footer -->
+
+
+      {{-- The above code is a modal that will be displayed when the user is too far from the location.  --}}
       <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -164,7 +191,8 @@
                 <div id="jarak"></div>
             </div>
         </div>
-        </div>
+      </div>
+
     <!-- akhir container -->
     <script src="{{asset('templateUser')}}/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
@@ -192,14 +220,14 @@
       {
         var data =  $('#lokasiisi').val()
         $.get("{{ url('harian/jarak') }}/"+data, {}, function(data, status) {
-       if (data > 0.2) {
-        $("#exampleModal2").modal('show');
-        var jarak = data * 1000;
+        if (data > 0.2) {
+          $("#exampleModal2").modal('show');
+          var jarak = data * 1000;
         $("#jarak").html("Jarak Anda dari titik absen : "+ jarak +" meter");
-       } else {
+        } else {
         $("#klik").click();
-       }
-       });
+        }
+        });
       }
       //webcam selfie
       function selfie()
@@ -208,7 +236,7 @@
           navigator.mediaDevices.getUserMedia({ video: true })
           .then(function (stream) {
           video.srcObject = stream;
-           })
+          })
           .catch(function (err0r) {
           console.log("Something went wrong!");
           });
@@ -224,14 +252,14 @@
           navigator.mediaDevices.getUserMedia({ video: true })
           .then(function (stream) {
           video.srcObject = stream;
-           })
+          })
           .catch(function (err0r) {
           console.log("Something went wrong!");
           });
       }
-         var data = `<a href="#" onclick="snapkegiatan()" class="btn btn-primary">Ambil Gambar Kegiatan</a>`;
+        var data = `<a href="#" onclick="snapkegiatan()" class="btn btn-primary">Ambil Gambar Kegiatan</a>`;
         $("#exampleModal").modal('show');
-         $("#ambilgambar").html(data);
+        $("#ambilgambar").html(data);
       }
       function vidOff() {
       var mediaStream = video.srcObject;
@@ -242,7 +270,7 @@
         var data = `<center>
           <canvas id="canvas" width="425" height="300"></canvas>
           </center>`;
-         $("#hasilselfie").html(data);
+        $("#hasilselfie").html(data);
         var canvas = document.getElementById('canvas');
         var context = canvas.getContext('2d');
         context.drawImage(video, 0, 0, 425, 300);
@@ -251,11 +279,11 @@
         //'<img src="'+dataURL+'"/>'
         $(".btn-close").click();
       }
-       function snapkegiatan() {
+      function snapkegiatan() {
         var data = `<center>
           <canvas id="canvas1" width="425" height="300"></canvas>
           </center>`;
-         $("#hasilkegiatan").html(data);
+        $("#hasilkegiatan").html(data);
         var canvas1 = document.getElementById('canvas1');
         var context1 = canvas1.getContext('2d');
         context1.drawImage(video, 0, 0, 425, 300);
@@ -264,12 +292,7 @@
         //'<img src="'+dataURL+'"/>'
         $(".btn-close").click();
       }
-   
     </script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-
-     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-
-       crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
 </html>

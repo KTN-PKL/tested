@@ -22,63 +22,60 @@
     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   @endif  
+  @php
+  date_default_timezone_set("Asia/Jakarta");
+  $d = date("Y-m");
+@endphp
   <div class="card">
     <div class="card-body">
-      <div class="col mt-4">
+      <div class="col mt-4 col-md-3">
+        <input type="month" id="bulan" class="form-control"  value="{{ $d }}" onchange="read()">
       </div>
       <br>
-      <div>
-        <table class="datatable">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Tanggal</th>
-              <th>Jam Masuk</th>
-              <th>Foto Fasdes Masuk</th>
-              <th>Foto Kegiatan Masuk</th>
-              <th>Jam Pulang</th>
-              <th>Foto Fasdes Pulang</th>
-              <th>Foto Kegiatan Pulang</th>
-              <th>status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            @php
-            $i=0;
-            @endphp
-            @foreach($harian as $data)
-            @php
-            $i=$i+1;
-            $dat = explode(":" , $data->jam);
-                   $H = $dat[0] * 60;
-                   $hasil = $H + $dat[1];
-            @endphp
-            <tr>
-              <td style="width:7%">{{$i}}</td>
-              <td>{{$data->tgl}}</td>
-              <td>{{ $data->jam }}</td>
-              <td><img src="{{asset('/foto/'. $data->fotofasdes)}}"  alt="Gambar" width="100px" height="100px"></td>
-              <td><img src="{{asset('/foto/'. $data->fotokegiatanharian)}}"  alt="Gambar" width="100px" height="100px"></td>
-              @foreach ($pulang as $item)
-              @if ($data->tgl == $item->tgl)
-              <td>{{ $item->jam }}</td>
-              <td><img src="{{asset('/foto/'. $item->fotofasdes)}}"  alt="Gambar" width="100px" height="100px"></td>
-              <td><img src="{{asset('/foto/'. $item->fotokegiatanharian)}}"  alt="Gambar" width="100px" height="100px"></td>
-              @endif
-              @endforeach
-              <td>@if ($hasil > 420)
-                  Terlambat
-                  @else
-                  Tepat Waktu
-              @endif</td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
-      </div>
+      <table class="datatable">
+        <thead>
+          <tr>
+            <th>Tanggal</th>
+            <th>Jam Masuk</th>
+            <th>Foto Fasdes Masuk</th>
+            <th>Foto Kegiatan Masuk</th>
+            <th>Jam Pulang</th>
+            <th>Foto Fasdes Pulang</th>
+            <th>Foto Kegiatan Pulang</th>
+            <th>status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="table"></tbody>
+    </table>
     </div>
     </div>
-   
- 
+  {{-- Script tambahan --}}
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+  </script>
+  
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+      $(document).ready(function() {
+            read()
+            });
+            function read() {
+                var id = {{ $id }};
+                var bulan =  $("#bulan").val();
+                $.ajax({
+                    type: "get",
+                    url: "{{ url('harian/read') }}",
+                    data: {
+                    "id": id,
+                    "bulan": bulan,
+                    },
+                success: function(data, status) {
+                    $("#table").html(data);
+                    }
+                });
+            }
+    </script>
+  
 @endsection
+

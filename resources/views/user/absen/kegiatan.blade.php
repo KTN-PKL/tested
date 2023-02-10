@@ -91,7 +91,6 @@
             <option value="dinas luar daerah">Dinas Luar Daerah</option>
             <option value="dinas luar negeri">Dinas Luar Negeri</option>
             <option value="overtime">Overtime</option>
-            
           </select>
         </div>
         <!-- akhir field kegiatan -->
@@ -172,17 +171,9 @@
           </div>
       </div>
       </div>
-      {{-- end modal --}}
-
-    <!-- nav bottom -->
-    <div class="botnav fixed-bottom bg-dark text-light text-center">
-      <div class="row">
-        <div class="col-4 p-3"><i class="fa-solid fa-house-user"></i></div>
-        <div class="col-4 p-3"><i class="fa-solid fa-camera"></i></div>
-        <div class="col-4 p-3"><i class="fa-solid fa-user"></i></div>
-      </div>
-    </div>
-    <!-- end nav bottom -->
+      
+      {{-- end modal --}}    
+    
   <script src="{{asset('templateUser')}}/js/bootstrap.bundle.min.js"></script>
   <script>
     // script tambahan form pelatihan
@@ -280,7 +271,7 @@
 
       function snapkegiatan() {
         var data = `<center>
-          <canvas   id="canvas1" width="425" height="300">hi</canvas>
+          <canvas id="canvas1" width="425" height="300"></canvas>
           </center>`;
          $("#hasilkegiatan").html(data);
         var canvas1 = document.getElementById('canvas1');

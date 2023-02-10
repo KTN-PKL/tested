@@ -166,9 +166,17 @@ class c_absenkegiatan extends Controller
         return view('absensi.kegiatan.kegiatan', $data);
     }
 
+    public function detailAbsen($id)
+    {
+        $data = [
+                 'absen'=>$this->kegiatan->joinData($id),];
+        return view('absensi.kegiatan.detail', $data);
+    }
+
     public function editAbsen($id)
     {
-        $data = ['kegiatan' => $this->kegiatan->detailData($id),];
+        $data = ['kegiatan' => $this->kegiatan->detailData($id),
+                  ];
         return view('absensi.kegiatan.edit', $data);
     }
 

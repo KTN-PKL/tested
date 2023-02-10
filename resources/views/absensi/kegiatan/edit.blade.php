@@ -3,12 +3,12 @@
 <div class="pagetitle">
     <h1>Edit Data Absen Kegiatan</h1>
     <nav>
-      {{-- <ol class="breadcrumb">
+      <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{route('faskab.poktan.index')}}">Kelompok Petani Fasilitator Desa</a></li>
-        <li class="breadcrumb-item"><a href="{{route('poktan', $id)}}">Daftar Kelompok Petani</a></li>
+        <li class="breadcrumb-item"><a href="{{route('kegiatan.index')}}">Kelompok Petani Fasilitator Desa</a></li>
+        <li class="breadcrumb-item"><a href="{{route('kegiatan.kegiatan', $kegiatan->id_user)}}">Daftar Kelompok Petani</a></li>
         <li class="breadcrumb-item active">Edit Data Absen Kegiatan</li>
-      </ol> --}}
+      </ol>
     </nav>
   </div><!-- End Page Title -->
   <div class="card">

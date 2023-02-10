@@ -82,7 +82,7 @@
          '02' => 'Februari',
          '03' => 'Maret',
          '04' => 'April',
-         '05'=>'Mei',
+         '05'=> 'Mei',
          '06' => 'Juni',
          '07' => 'Juli',
          '08' => 'Agustus',
@@ -99,8 +99,8 @@
               <th>No</th>
               <th>Tanggal</th>
               <th>Waktu</th>
-              <th>Jenis Kegiatan</th>
-              <th>Selfie Kegiatan</th>
+              <th>Kegiatan</th>
+              <th>Selfie</th>
               <th>Foto Kegiatan</th>
               <th>Foto Pelatihan</th>
               <th>Action</th>
@@ -116,19 +116,20 @@
             @endphp
             <tr>
               <td style="width:8%">{{$i}}</td>
-              <td style="width:15%">{{$data->tanggalabsen}}</td>
+              <td style="width:12%">{{$data->tanggalabsen}}</td>
               <td style="width:10%">{{$data->waktuabsen}} WIB</td>
-              <td style="width:15%">{{$data->jeniskegiatan}}</td>
-              <td><img class="img-thumbnail" src="{{asset('/foto/absenkegiatan/'. $data->selfiekegiatan)}}" width="30%" alt=""></td>
-              <td><img class="img-thumbnail" src="{{ asset('foto/absenkegiatan/'. $data->fotokegiatan) }}" width="30%" alt=""></td>
-              <td>
+              <td style="width:10%">{{$data->jeniskegiatan}}</td>
+              <td style="width:15%"><img class="img-thumbnail" src="{{asset('/foto/absenkegiatan/'. $data->selfiekegiatan)}}" width="30%" alt=""></td>
+              <td style="width:15%"><img class="img-thumbnail" src="{{ asset('foto/absenkegiatan/'. $data->fotokegiatan) }}" width="30%" alt=""></td>
+              <td style="width:15%">
                 @if($data->fotopelatihan <> null)
                 <img class="img-thumbnail" src="{{ asset('foto/absenkegiatan/'. $data->fotopelatihan) }}" width="30%" alt="">
                 @else
                 <h6>Tidak ada Foto Pelatihan</h6>
                 @endif
               </td>
-              <td>
+              <td style="width:10%">
+                <a href="{{route('kegiatan.detail', $data->id_absenkegiatan)}}" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
                 <a href="{{route('kegiatan.edit', $data->id_absenkegiatan)}}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
               </td>
             </tr>

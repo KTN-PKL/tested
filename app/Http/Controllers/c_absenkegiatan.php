@@ -94,7 +94,7 @@ class c_absenkegiatan extends Controller
                         'fotopelatihan' => $filename3,
                     ];
                     $this->kegiatan->addData($data);
-                    return redirect('dashboard')->with('msg', 'absen berhasil');
+                    return redirect('dashboard')->with('msg', 'Absen Berhasil');
                 } 
         }else{
             date_default_timezone_set("Asia/Jakarta");
@@ -175,12 +175,48 @@ class c_absenkegiatan extends Controller
 
     public function updateAbsen(Request $request, $id)
     {
+        date_default_timezone_set("Asia/Jakarta");
+        $t = date("Y-m");
         $data = [
-            'tanggalabsen' => $request->tanggalabsen,
-            'waktuabsen' => $request->waktuabsen,
+            'jeniskegiatan' => $request->jeniskegiatan,
+            'deskripsikegiatan' => $request->deskripsikegiatan,
+            'pelatihan' => $request->pelatihan,
+            'judulpelatihan' => $request->judulpelatihan,
+            'durasipelatihan' => $request->durasipelatihan,
+            'tempatpelatihan' => $request->tempatpelatihan,
         ];
+      
+
+        // Ganti Foto
+        $namafoto = $this->kegiatan->detailData($id);
+     
+         // foto selfie
+        if($request->selfiekegiatan <> null){
+            $file = $request->selfiekegiatan;
+            $filename="fasdes_".$namafoto->tanggalabsen.'.png';   
+            $file->move(public_path('foto/absenkegiatan'),$filename);
+            $data['selfiekegiatan'] = $filename;
+        }
+
+        // foto kegiatan
+        if($request->fotokegiatan <> null){
+            $file2 = $request->fotokegiatan;
+            $filename2="kegiatan_".$namafoto->tanggalabsen.'.png';   
+            $file2->move(public_path('foto/absenkegiatan'),$filename2);
+            $data['fotokegiatan'] = $filename2;
+        }
+
+         // foto pelatihan
+         if($request->fotopelatihan <> null){
+            $file3 = $request->fotopelatihan;
+            $filename3="pelatihan_".$namafoto->tanggalabsen.'.png';   
+            $file3->move(public_path('foto/absenkegiatan'),$filename3);
+            $data['fotopelatihan'] = $filename3;
+        }
+
         $this->kegiatan->editData($id, $data);
-        return view('dashboard');
+        $data = $this->kegiatan->detailData($id);
+        return redirect()->route('kegiatan.kegiatan', $data->id_user);
     }
     // End halaman Admin
 }

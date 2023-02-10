@@ -19,19 +19,20 @@
         
 
               <!-- Vertical Form -->
-              <form class="row g-3" action="{{route('kegiatan.updateAbsen', $kegiatan->id_absenkegiatan)}}" method="POST">
+              <form enctype="multipart/form-data" class="row g-3" action="{{route('kegiatan.updateAbsen', $kegiatan->id_absenkegiatan)}}" method="POST">
                 @csrf
-                <div class="row">
-                  <div class="col-8">
-                    <label for="inputNanme4" class="form-label">Tanggal Absen</label>
-                    <input type="date" class="form-control" name="tanggalabsen" value="{{$kegiatan->tanggalabsen}}" readonly>
-                  </div>
-                  <div class="col-md-4">
-                    <label for="inputNanme4" class="form-label">Waktu Absen</label>
-                    <input type="time" class="form-control" name="waktuabsen" value="{{$kegiatan->waktuabsen}}" readonly>
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-8">
+                      <label for="inputNanme4" class="form-label">Tanggal Absen</label>
+                      <input type="date" class="form-control" name="tanggalabsen" value="{{$kegiatan->tanggalabsen}}" readonly>
+                    </div>
+                    <div class="col-4">
+                      <label for="inputNanme4" class="form-label">Waktu Absen</label>
+                      <input type="time" class="form-control" name="waktuabsen" value="{{$kegiatan->waktuabsen}}" readonly>
+                    </div>
                   </div>
                 </div>
-                
                 <div class="col-12">
                   <label for="inputNanme4" class="form-label">Jenis Kegiatan</label>
                   <select class="form-select" name="jeniskegiatan" id="">
@@ -56,38 +57,76 @@
                     @endif>Overtime</option>
                   </select>
                 </div>
-                <div class="col-md-12">
+                <div class="col-12">
                   <label for="inputNanme4" class="form-label">Deskripsi Kegiatan</label>
                   <textarea type="time" class="form-control" name="deskripsikegiatan">{{$kegiatan->deskripsikegiatan}}</textarea>
                 </div>
-
-                <div class="col-md-12">
+                <div class="col-12">
                   <div class="row">
-                    <label for="inputNanme4" class="form-label">Klik Gambar Jika Ingin Merubah</label>
-                    <div class="col-4 col-md-4 ">
-                      <label for="inputNanme4" class="form-label">Foto Selfie Kegiatan</label>
-                      <img class="img-thumbnail btn" src="{{asset('/foto/absenkegiatan/'. $kegiatan->selfiekegiatan)}}" width="100%" alt="" onclick="gantiselfie()">
-                     {{-- <a href="" class="btn btn-warning btn-sm" style="position: absolute;margin-top:2em">Ganti</a> --}}
-                      <input type="file" id="fileselfie" name="fotoselfie" hidden>
+                    <div class="col-6">
+                      <div class="col-12 col-md-12">
+                        <label for="inputNanme4" class="form-label">Jenis Pelatihan</label>
+                        <select class="form-select" name="pelatihan" id="">
+                          <option value=" " disabled>-- Pilih Jenis Pelatihan --</option>
+                          <option value="pelatihan" @if ($kegiatan->pelatihan == "pelatihan")
+                            selected
+                          @endif>Pelatihan</option>
+                          <option value="nonpelatihan" @if ($kegiatan->pelatihan == "nonpelatihan")
+                            selected
+                          @endif>Non Pelatihan</option>
+                        </select>
+                      </div>
+                      <div class="col-12 mt-3">
+                        <label for="inputNanme4" class="form-label">Judul Pelatihan</label>
+                        <input type="text" class="form-control" name="judulpelatihan" value="{{$kegiatan->judulpelatihan}}">
+                      </div>
+                      <div class="col-12 mt-3">
+                        <label for="inputNanme4" class="form-label">Durasi Pelatihan</label>
+                        <input type="number" class="form-control" name="durasipelatihan" value="{{$kegiatan->durasipelatihan}}">
+                      </div>
+                      <div class="col-12 mt-3">
+                        <label for="inputNanme4" class="form-label">Tempat Pelatihan</label>
+                        <input type="text" class="form-control" name="tempatpelatihan" value="{{$kegiatan->tempatpelatihan}}">
+                      </div>
                     </div>
-                    <div class="col-4 col-md-4 ">
-                      <label for="inputNanme4" class="form-label">Foto Kegiatan</label>
-                      <img class="img-thumbnail btn" src="{{asset('/foto/absenkegiatan/'. $kegiatan->fotokegiatan)}}" width="100%" alt="" onclick="gantifotokegiatan()">
-                     {{-- <a href="" class="btn btn-warning btn-sm" style="position: absolute;margin-top:2em">Ganti</a> --}}
-                      <input type="file" id="filefotokegiatan" name="fotokegiatan" hidden>
+                    <div class="col-6">
+                      <div class="col-12">
+                        <label for="inputNanme4" class="form-label">Foto</label><small class="text-muted" style="font-size:8px">Klik gambar jika ingin mengubah</small>
+                        <div class="row">
+                          <div class="col-4 col-md-4 ">
+                            <span class="badge bg-primary">Foto Selfie</span>
+                            <img id="imageResult" class="img-thumbnail btn" src="{{asset('/foto/absenkegiatan/'. $kegiatan->selfiekegiatan)}}" width="100%" alt="" onclick="gantiselfiekegiatan()">
+                            <input onchange="readURL(this);" type="file" id="fileselfiekegiatan" name="selfiekegiatan" hidden>
+                         
+                          </div>
+                          <div class="col-4 col-md-4 ">
+                            <span class="badge bg-primary">Foto Kegiatan</span>
+                            <img id="imageResult2" class="img-thumbnail btn" src="{{asset('/foto/absenkegiatan/'. $kegiatan->fotokegiatan)}}" width="100%" alt="" onclick="gantifotokegiatan()">
+                            <input onchange="readURL2(this);" type="file" id="filefotokegiatan" name="fotokegiatan" hidden>
+                           
+                          </div>
+                          <div class="col-4 col-md-4 ">
+                            @if($kegiatan->pelatihan == "pelatihan")
+                            <span class="badge bg-primary">Foto Pelatihan</span>
+                            <img id="imageResult3" class="img-thumbnail btn" src="{{asset('/foto/absenkegiatan/'. $kegiatan->fotopelatihan)}}" width="100%" alt="" onclick="gantifotopelatihan()">
+                            <input onchange="readURL3(this);" type="file" id="filefotopelatihan" name="fotopelatihan" hidden>
+                            
+                            @endif
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class="col-4 col-md-4 ">
-                      @if($kegiatan->pelatihan == "pelatihan")
-                      <label for="inputNanme4" class="form-label">Foto Pelatihan</label>
-                      <img class="img-thumbnail btn" src="{{asset('/foto/absenkegiatan/'. $kegiatan->fotopelatihan)}}" width="100%" alt="" onclick="gantifotopelatihan()">
-                     {{-- <a href="" class="btn btn-warning btn-sm" style="position: absolute;margin-top:2em">Ganti</a> --}}
-                      <input type="file" id="filefotopelatihan" name="fotopelatihan" hidden>
-                      @else
-                      <img class="img-thumbnail btn" src="{{asset('/foto/absenkegiatan/nonpelatihan.png')}}" width="100%" alt="">
-                      @endif
-                    </div>
+
                   </div>
+
                 </div>
+              
+
+
+              
+
+                
+               
 
                
               
@@ -147,8 +186,47 @@
 
   </div>
 <script>
-  function gantiselfie(){
-    $("#fileselfie").click();
+  function gantiselfiekegiatan(){
+    $("#fileselfiekegiatan").click();
+  }
+  function gantifotokegiatan(){
+    $("#filefotokegiatan").click();
+  }
+  function gantifotopelatihan(){
+    $("#filefotopelatihan").click();
+  }
+  function readURL(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+  
+          reader.onload = function (e) {
+              $('#imageResult')
+                  .attr('src', e.target.result);
+          };
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+  function readURL2(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+  
+          reader.onload = function (e) {
+              $('#imageResult2')
+                  .attr('src', e.target.result);
+          };
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
+  function readURL3(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+  
+          reader.onload = function (e) {
+              $('#imageResult3')
+                  .attr('src', e.target.result);
+          };
+          reader.readAsDataURL(input.files[0]);
+      }
   }
 </script>
 

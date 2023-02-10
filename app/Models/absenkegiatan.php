@@ -42,4 +42,5 @@ class absenkegiatan extends Model
     {
         return DB::table('absenkegiatans')->where('jeniskegiatan','like','%'.$filter.'%')->where('id_user', $id)->get();
     }
+
 }

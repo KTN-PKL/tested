@@ -54,39 +54,17 @@ class c_poktan extends Controller
         ];
         $this->poktan->addData($data);
 
-        // $id_poktan = $this->poktan->countAllpoktan();
-        // for ($i=0; $i < $request->jumlah; $i++) { 
-        //     $data = [
-        //         'id_fasdes' => $id,
-        //         'id_poktan' => $id_poktan,
-        //         'namapetani' => $request->{"namapetani".$i },
-        //     ];
-        
-        //     $this->petani->addData($data);
-        // }
-        return redirect()->route('poktan', $id);
-    }
-    public function petaniPoktan($id)
-    {
-        $data = [
-            'poktan' => $this->poktan->detailData($id),
-        ];
-        return view ('poktan.petani', $data);
-        
-    }
-    
-    public function updatePetaniPoktan(Request $request, $id)
-    {
         $id_poktan = $this->poktan->countAllpoktan();
         for ($i=0; $i < $request->jumlah; $i++) { 
             $data = [
                 'id_fasdes' => $id,
-                'id_poktan' => $id_poktan,
+                'id_poktan' => $id_poktan+1,
                 'namapetani' => $request->{"namapetani".$i },
             ];
         
             $this->petani->addData($data);
         }
+        return redirect()->route('poktan', $id);
     }
 
     public function edit($id)

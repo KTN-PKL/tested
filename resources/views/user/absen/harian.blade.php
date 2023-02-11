@@ -51,7 +51,14 @@
     <!-- container -->
     <div class="container mt-3">
       @if ($dayList[$d] == "Sabtu" || $dayList[$d] == "Minggu")
-      <center>     <h1>LIBUR</h1></center>
+      <center> <div class="alert alert-warning fa-2xl" role="alert">
+          <i class="fa-solid fa-triangle-exclamation mb-3"></i>
+         <marquee>
+           <h5>
+               Wah kamu rajin kerja sampe absen hari libur!
+           </h5>
+         </marquee>
+      </div></center>
       @else
       <!-- componen card -->
       <div class="card">

@@ -13,21 +13,19 @@
   </div><!-- End Page Title -->
   <div class="card">
     <div class="card-body">
-        
-
               <!-- Vertical Form -->
-              <form enctype="multipart/form-data" class="row g-3" action="" method="POST">
+              <form enctype="multipart/form-data" class="row g-3" action="{{ route('faskab.harian.update', $harian->id_absenharian) }}" method="POST">
+                @csrf
                 <center>
                   <h5 class="card-title">Edit Data Absen harian</h5> 
                   <div class="col col-md-3">
                     <select class="form-select" id="jenis" onchange="jeniss()" name="jenis">
-                      <option value="masuk" onclick="jenis(1)" selected>masuk</option>
-                      <option value="pulang" onclick="jenis(2)">pulang</option>
+                      <option value="masuk" selected>masuk</option>
+                      <option value="pulang">pulang</option>
                       </select>
                   </div>
                  
               </center>
-                @csrf
                 <div class="col-12">
                   <div class="row">
                     <div class="col-8">

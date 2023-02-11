@@ -30,7 +30,7 @@
         <div class="row">
           <div class="col-4 p-3">
           <a
-            href="{{url('dashboard')}}"
+            href="{{url('fasdes/dashboard')}}"
             class="text-decoration-none text-light fa-solid fa-house-user text-light"
           ></a>
         </div>

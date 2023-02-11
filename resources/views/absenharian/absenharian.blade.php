@@ -31,6 +31,7 @@
       <div class="col mt-4 col-md-3">
         <input type="month" id="bulan" class="form-control"  value="{{ $d }}" onchange="read()">
       </div>
+     <div id="excel"></div>
       <br>
       <div id="table"></div>
     </div>
@@ -48,6 +49,7 @@
             function read() {
                 var id = {{ $id }};
                 var bulan =  $("#bulan").val();
+                $("#excel").html(` <a href="{{ url('harian/excel?id=`+id+`&bulan=`+bulan+`') }}">EXPORT KE EXCEL</a>`);
                 $.ajax({
                     type: "get",
                     url: "{{ url('harian/read') }}",

@@ -50,7 +50,9 @@
 
     <!-- container -->
     <div class="container mt-3">
-      @if ($dayList[$d] == "Sabtu" || $dayList[$d] == "Minggu")
+      @if ($dayList[$d] == "t" || $dayList[$d] == "t") 
+      <!--line diatas di bypass dulu-->
+      <!--($dayList[$d] == "Sabtu" || $dayList[$d] == "Minggu")-->
       <center> <div class="alert alert-warning fa-2xl" role="alert">
           <i class="fa-solid fa-triangle-exclamation mb-3"></i>
          <marquee>
@@ -99,7 +101,7 @@
           </div>
           
           {{-- This is the code that will display the image that has been taken by the user.   --}}
-          <div id="hasilselfie"></div>
+          <div id="hasilselfie" class="overflow-hidden d-flex justify-content-center"></div>
           <input type="text" id="gambarselfie" name="selfie" hidden>
 
           <!-- select posisi-->
@@ -126,7 +128,7 @@
             <a href="#" class="btn btn-block btn-primary" onclick="fotokegiatan()">
               <i class="fa-solid fa-camera"></i> Foto kegiatan</a>
           </div>
-          <div id="hasilkegiatan"></div>
+          <div id="hasilkegiatan" class="overflow-hidden d-flex justify-content-center"></div>
           <input type="text" id="gambarkegiatan" name="kegiatan" hidden>
           <input type="submit"  value="submit" id="klik" hidden>
         </form>
@@ -168,19 +170,19 @@
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-xl">
-          <div class="modal-content">
+      <div class="modal-dialog modal-xl ">
+          <div class="modal-content bg-dark text-light">
               <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="vidOff()"></button>
+                  <div id="ambilgambar" class="pt-3"></div>
+                  <button type="button" class="btn-close bg-danger rounded" data-bs-dismiss="modal" aria-label="Close" onclick="vidOff()"></button>
               </div>
               <div class="modal-body">
                 <center>
-                    <div id="container" class="ratio ratio-16x9">
+                    <div id="container" class="overflow-hidden d-flex justify-content-center">
                     <video autoplay="true" id="videoElement">
                     </video>
                     </div>
-                    <div id="ambilgambar" class="pt-3"></div>
+                    
                 </div>
                 </center>
           </div>

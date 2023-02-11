@@ -23,34 +23,28 @@ use App\Http\Controllers\c_absenharian;
 |
 */
 
-Route::get('/test', function () {
-    return view('user.absen.harian');
-});
-Route::get('/test2', function () {
-    return view('user.absen.kegiatan');
-});
 
-Route::get('/', [App\Http\Controllers\c_login::class, 'index'])->name('login');
-Route::get('/dashboard', [App\Http\Controllers\c_login::class, 'dashboard'] )->name('dashboard')->middleware('auth');
-Route::get('/check', [App\Http\Controllers\c_login::class, 'check'])->name('login.check');
-Route::post('/', [App\Http\Controllers\c_login::class, 'logout'])->name('user.logout');
+Route::get('/fasdes', [App\Http\Controllers\c_login::class, 'index'])->name('loginfasdes');
+Route::get('/fasdes/dashboard', [App\Http\Controllers\c_login::class, 'dashboard'] )->name('fasdes.dashboard')->middleware('auth');
+Route::get('/fasdes/check', [App\Http\Controllers\c_login::class, 'check'])->name('login.check');
+Route::post('/fasdes', [App\Http\Controllers\c_login::class, 'logout'])->name('user.logout');
 
-Route::get('/faskab', [App\Http\Controllers\c_loginadmin::class, 'index'])->name('loginadmin');
-Route::get('/faskab/dashboard', [App\Http\Controllers\c_loginadmin::class, 'dashboard'] )->name('faskab.dashboard')->middleware('auth');
-Route::get('/faskab/check', [App\Http\Controllers\c_loginadmin::class, 'check'])->name('loginadmin.check');
-Route::post('/faskab/logout', [App\Http\Controllers\c_loginadmin::class, 'logout'])->name('faskab.logout');
+Route::get('/', [App\Http\Controllers\c_loginadmin::class, 'index'])->name('loginadmin');
+Route::get('/dashboard', [App\Http\Controllers\c_loginadmin::class, 'dashboard'] )->name('faskab.dashboard')->middleware('auth');
+Route::get('/check', [App\Http\Controllers\c_loginadmin::class, 'check'])->name('loginadmin.check');
+Route::post('/', [App\Http\Controllers\c_loginadmin::class, 'logout'])->name('faskab.logout');
 
 
 
 
 Route::controller(c_fasdes::class)->middleware('auth')->group(function () {
-    Route::get('fasdes', 'index')->name('faskab.fasdes.index');
-    Route::post('fasdes/store', 'store')->name('faskab.fasdes.store');
-    Route::get('fasdes/create', 'create')->name('fasdes.create');
-    Route::get('fasdes/edit/{id}', 'edit')->name('fasdes.edit');
-    Route::get('fasdes/detail/{id}', 'detail')->name('fasdes.detail');
-    Route::post('fasdes/update/{id}', 'update')->name('faskab.fasdes.update');
-    Route::get('fasdes/destroy/{id}', 'destroy')->name('faskab.fasdes.destroy');
+    Route::get('fasdess', 'index')->name('faskab.fasdes.index');
+    Route::post('fasdess/store', 'store')->name('faskab.fasdes.store');
+    Route::get('fasdess/create', 'create')->name('fasdes.create');
+    Route::get('fasdess/edit/{id}', 'edit')->name('fasdes.edit');
+    Route::get('fasdess/detail/{id}', 'detail')->name('fasdes.detail');
+    Route::post('fasdess/update/{id}', 'update')->name('faskab.fasdes.update');
+    Route::get('fasdess/destroy/{id}', 'destroy')->name('faskab.fasdes.destroy');
 });
 
 

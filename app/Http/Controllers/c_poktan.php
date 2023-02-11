@@ -39,17 +39,9 @@ class c_poktan extends Controller
     }
     public function store(Request $request, $id)
     {
-        $count = $this->poktan->countAllpoktan();
-        $id_poktan = $count + 1;
-         for ($i=0; $i < $request->jumlah; $i++) { 
-            $data = [
-                'id_fasdes' => $id,
-                'id_poktan' => $id_poktan,
-                'namapetani' => $request->{"namapetani".$i },
-            ];
-        
-            $this->petani->addData($data);
-        }
+        // $count = $this->poktan->countAllpoktan();
+        // $id_poktan = $count + 1;
+         
       
         $data = [
             'id_user' => $id,
@@ -61,8 +53,20 @@ class c_poktan extends Controller
             'lokasipoktan' => $request->lokasipoktan,
         ];
         $this->poktan->addData($data);
+
+        $id_poktan = $this->poktan->countAllpoktan();
+        for ($i=0; $i < $request->jumlah; $i++) { 
+            $data = [
+                'id_fasdes' => $id,
+                'id_poktan' => $id_poktan+1,
+                'namapetani' => $request->{"namapetani".$i },
+            ];
+        
+            $this->petani->addData($data);
+        }
         return redirect()->route('poktan', $id);
     }
+
     public function edit($id)
     {
         $data = ['poktan' => $this->poktan->detailData($id),
@@ -81,9 +85,30 @@ class c_poktan extends Controller
 
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        $count1 = $this->petani->countPetani($id);
+        $id_poktan = $count1[0]->id_poktan;
+        $count=count($count1);
+        if($request->jf > $count){
+            for ($i=0; $i < $request->jf; $i++) { 
+                $data = [
+                    'id_fasdes' => $id,
+                    'id_poktan' => $id_poktan,
+                    'namapetani' => $request->{"namapetani".$i },
+                ];
+                $this->petani->addData($data);
+            }
+    
+        }else{
+            for ($i=0; $i < $request->jf; $i++){
+                $data = [
+                    'id_petani'=>$count1[$i]->id_petani,
+                    'namapetani'=>$request->{"namapetani".$i },
+                    ];
+                    
+                    $this->petani->editData($count1[$i]->id_petani, $data);
+            };    
+            }
         $data = [
-            'namapoktan' => $request->namapoktan,
             'namapoktan' => $request->namapoktan,
             'luastanah' => $request->luastanah,
             'jumlahproduksi' => $request->jumlahproduksi,
@@ -100,6 +125,7 @@ class c_poktan extends Controller
     {
         $data = $this->poktan->detailData($id);
         $this->poktan->deleteData($id);
+        $this->petani->deleteData($id);
         return redirect()->route('poktan', $data->id_user);
     }
 }

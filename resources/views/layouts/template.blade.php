@@ -254,7 +254,7 @@
             </li>
 
             <li>
-              <form method="POST" action="{{route('user.logout')}}">
+              <form method="POST" action="{{route('faskab.logout')}}">
                 @csrf
               <button type="submit" class="dropdown-item d-flex align-items-center">
                 <i class="bi bi-box-arrow-right"></i>

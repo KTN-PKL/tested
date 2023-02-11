@@ -64,6 +64,11 @@
                   @endif
                 </h6></td>
             </tr>
+            <tr>
+              <td valign="top"><h6>Total Petani</h6></td>
+              <td valign="top"><h6>:</h6></td>
+              <td valign="top"><h6 style="color: black">{{$petani}} Orang</h6></td>
+          </tr>
         </table>
         </div>
 
@@ -73,7 +78,6 @@
                 <tr>
                   <th>No</th>
                   <th>Nama Poktan</th>
-                  <th>Orang</th>
                   <th>Luas Tanah</th>
                   <th>Pasar</th>
                 </tr>
@@ -87,7 +91,6 @@
                 <tr>
                   <td>{{$i}}</td>
                   <td>{{$data->namapoktan}}</td>
-                  <td>{{$data->jumlahpetani}} Orang</td>
                   <td>{{$data->luastanah}} Ha</td>
                   <td>{{$data->pasar}}</td>
                 </tr>

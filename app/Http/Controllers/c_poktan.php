@@ -39,8 +39,17 @@ class c_poktan extends Controller
     }
     public function store(Request $request, $id)
     {
-        // $count = $this->poktan->countAllpoktan();
-        // $id_poktan = $count + 1;
+        $count = $this->poktan->countAllpoktan();
+        $id_poktan = $count + 1;
+        for ($i=0; $i < $request->jumlah; $i++) { 
+            $data = [
+                'id_fasdes' => $id,
+                'id_poktan' => $id_poktan,
+                'namapetani' => $request->{"namapetani".$i },
+            ];
+        
+            $this->petani->addData($data);
+        }
          
       
         $data = [
@@ -54,16 +63,8 @@ class c_poktan extends Controller
         ];
         $this->poktan->addData($data);
 
-        $id_poktan = $this->poktan->countAllpoktan();
-        for ($i=0; $i < $request->jumlah; $i++) { 
-            $data = [
-                'id_fasdes' => $id,
-                'id_poktan' => $id_poktan+1,
-                'namapetani' => $request->{"namapetani".$i },
-            ];
-        
-            $this->petani->addData($data);
-        }
+   
+     
         return redirect()->route('poktan', $id);
     }
 

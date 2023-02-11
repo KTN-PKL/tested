@@ -51,7 +51,14 @@
     <!-- container -->
     <div class="container mt-3">
       @if ($dayList[$d] == "Sabtu" || $dayList[$d] == "Minggu")
-      <center>     <h1>LIBUR</h1></center>
+      <center> <div class="alert alert-warning fa-2xl" role="alert">
+          <i class="fa-solid fa-triangle-exclamation mb-3"></i>
+         <marquee>
+           <h5>
+               Wah kamu rajin kerja sampe absen hari libur!
+           </h5>
+         </marquee>
+      </div></center>
       @else
       <!-- componen card -->
       <div class="card">
@@ -132,13 +139,13 @@
         </div>
       </div>
       <!-- akhir componen card -->
-      
-      <!-- nav bottom -->
+      @endif
+            <!-- nav bottom -->
       <div class="botnav fixed-bottom bg-dark text-light text-center mb-0">
         <div class="row">
           <div class="col-4 p-3">
             <a
-              href="{{url('dashboard')}}"
+              href="{{url('fasdes/dashboard')}}"
               class="text-decoration-none text-light fa-solid fa-house-user text-light"
             ></a>
           </div>
@@ -157,7 +164,6 @@
         </div>
       </div>
       <!-- end nav bottom -->
-      @endif
     </div>
 
     <!-- Modal -->

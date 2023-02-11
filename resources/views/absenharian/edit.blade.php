@@ -59,9 +59,9 @@
                 </div> --}}
                 <div class="col-12">
                   <label for="inputNanme4" class="form-label">Deskripsi Kegiatan</label>
-                  <textarea type="time" class="form-control" name="deskripsi">{{$harian->deskri}}</textarea>
+                  <textarea type="time" class="form-control" name="deskripsi">{{$harian->deskripsi}}</textarea>
                 </div>
-                <div class="col-12">
+                {{-- <div class="col-12">
                   <div class="row">
                     <div class="col-6">
                       <div class="col-12 col-md-12">
@@ -119,7 +119,7 @@
 
                   </div>
 
-                </div>
+                </div> --}}
               
 
 

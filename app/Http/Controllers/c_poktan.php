@@ -39,17 +39,9 @@ class c_poktan extends Controller
     }
     public function store(Request $request, $id)
     {
-        $count = $this->poktan->countAllpoktan();
-        $id_poktan = $count + 1;
-         for ($i=0; $i < $request->jumlah; $i++) { 
-            $data = [
-                'id_fasdes' => $id,
-                'id_poktan' => $id_poktan,
-                'namapetani' => $request->{"namapetani".$i },
-            ];
-        
-            $this->petani->addData($data);
-        }
+        // $count = $this->poktan->countAllpoktan();
+        // $id_poktan = $count + 1;
+         
       
         $data = [
             'id_user' => $id,
@@ -61,8 +53,42 @@ class c_poktan extends Controller
             'lokasipoktan' => $request->lokasipoktan,
         ];
         $this->poktan->addData($data);
+
+        // $id_poktan = $this->poktan->countAllpoktan();
+        // for ($i=0; $i < $request->jumlah; $i++) { 
+        //     $data = [
+        //         'id_fasdes' => $id,
+        //         'id_poktan' => $id_poktan,
+        //         'namapetani' => $request->{"namapetani".$i },
+        //     ];
+        
+        //     $this->petani->addData($data);
+        // }
         return redirect()->route('poktan', $id);
     }
+    public function petaniPoktan($id)
+    {
+        $data = [
+            'poktan' => $this->poktan->detailData($id),
+        ];
+        return view ('poktan.petani', $data);
+        
+    }
+    
+    public function updatePetaniPoktan(Request $request, $id)
+    {
+        $id_poktan = $this->poktan->countAllpoktan();
+        for ($i=0; $i < $request->jumlah; $i++) { 
+            $data = [
+                'id_fasdes' => $id,
+                'id_poktan' => $id_poktan,
+                'namapetani' => $request->{"namapetani".$i },
+            ];
+        
+            $this->petani->addData($data);
+        }
+    }
+
     public function edit($id)
     {
         $data = ['poktan' => $this->poktan->detailData($id),
@@ -121,6 +147,7 @@ class c_poktan extends Controller
     {
         $data = $this->poktan->detailData($id);
         $this->poktan->deleteData($id);
+        $this->petani->deleteData($id);
         return redirect()->route('poktan', $data->id_user);
     }
 }

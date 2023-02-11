@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,5 +24,16 @@ class DatabaseSeeder extends Seeder
             
             
         ]);
+        // DB::table('poktans')->insert([
+        //     'id_poktan' => '1',
+        //     'id_user' => '0',
+        //     'namapoktan' => '0',
+        //     'luastanah' => '0',
+        //     'jumlahproduksi' => '0',
+        //     'pemeliharaan' => '0',
+        //     'pasar' => '0',
+        //     'lokasipoktan' => '0',
+            
+        // ]);
     }
 }

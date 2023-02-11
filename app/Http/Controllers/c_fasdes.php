@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\fasdes;
 use App\Models\poktan;
 use App\Models\lokasi;
+use App\Models\petani;
 use Illuminate\Support\Facades\Hash;
 
 class c_fasdes extends Controller
@@ -15,6 +16,7 @@ class c_fasdes extends Controller
         $this->fasdes = new fasdes();
         $this->poktan = new poktan();
         $this->lokasi = new lokasi();
+        $this->petani = new petani();
     }
     public function index()
     {
@@ -49,8 +51,10 @@ class c_fasdes extends Controller
 
     public function detail($id)
     {
+        $z = $this->poktan->fasdesData($id);
         $data = ['fasdes' => $this->fasdes->detailData($id),
-                 'poktan' => $this->poktan->fasdesData($id),];
+                 'poktan' => $this->poktan->fasdesData($id),
+                'petani'=> $this->petani->jumlahPetaniFasdes($id), ];
         return view('fasdes.detail', $data);
     }
     public function update(Request $request, $id)

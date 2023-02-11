@@ -8,8 +8,6 @@ use DB;
 
 class c_loginadmin extends Controller
 {
-
-
     public function index()
     {
         return view('login');
@@ -29,7 +27,7 @@ class c_loginadmin extends Controller
 
         if(auth()->attempt(array('email'=>$user,'password'=>$pass)))
         {
-            return redirect('/faskab/dashboard');
+            return redirect('/dashboard');
         }
         else
         {

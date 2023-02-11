@@ -50,7 +50,7 @@
             <tr>
               <td style="width:8%">{{$i}}</td>
               <td>{{$data->namapoktan}}</td>
-              <td>{{$data->jumlahpetani}}</td>
+              <td>x</td>
               <td>{{$data->pasar}}</td>
               <td style="width:30%">
                 <a href="{{route('poktan.detail', $data->id_poktan)}}" class="btn btn-sm btn-primary"> <i class="bi bi-eye"></i> Lihat</a>

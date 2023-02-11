@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{{asset('templateUser')}}/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-    <link rel="stylesheet" href="{{asset('templateUser')}}/style.css" />
-    <title>Document</title>
+    <link rel="stylesheet" href="{{asset('templateUser')}}/login.css" />
+    <title>Login Fasdes</title>
   </head>
-  <body>
+  <body class="css-selector-fd text-light">
     <div class="container p-5">
       <div class="icon text-center p-5"><i class="fa-solid fa-id-card-clip fa-5x text-light"></i></div>
       <h1>Selamat Datang Fasdes</h1>
@@ -19,18 +19,16 @@
         @endif
         @csrf
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email</label>
-          <input type="email" class="form-control" id="inputusername" aria-describedby="emailelp" name="email" />
+          <label for="exampleInputEmail1" class="form-label" >Email</label>
+          <input type="email" class="form-control" id="inputusername" aria-describedby="emailelp" name="email" placeholder="user@mail.com" />
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="inputpassword" name="password"/>
+          <input type="password" class="form-control" id="inputpassword" name="password" placeholder="******"/>
         </div>
-        <div class="mb-3">
-          <a href="#">Lupa Password</a>
-        </div>
+      
         <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-warning"><b>Masuk</b></button>
+          <button type="submit" class="btn btn-dark shadow mt-3"><b>Masuk</b></button>
         </div>
       </form>
     </div>

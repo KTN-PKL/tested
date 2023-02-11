@@ -13,168 +13,62 @@
   </div><!-- End Page Title -->
   <div class="card">
     <div class="card-body">
-        <center>
-            <h5 class="card-title">Edit Data Absen harian</h5>
-        </center>
-        
-
               <!-- Vertical Form -->
-              <form enctype="multipart/form-data" class="row g-3" action="" method="POST">
+              <form enctype="multipart/form-data" class="row g-3" action="{{ route('faskab.harian.update', $harian->id_absenharian) }}" method="POST">
                 @csrf
+                <center>
+                  <h5 class="card-title">Edit Data Absen harian</h5> 
+                  <div class="col col-md-3">
+                    <select class="form-select" id="jenis" onchange="jeniss()" name="jenis">
+                      <option value="masuk" selected>masuk</option>
+                      <option value="pulang">pulang</option>
+                      </select>
+                  </div>
+                 
+              </center>
                 <div class="col-12">
                   <div class="row">
                     <div class="col-8">
                       <label for="inputNanme4" class="form-label">Tanggal Absen</label>
-                      <input type="date" class="form-control" name="tgl" value="{{$harian->tgl}}" readonly>
+                      <input type="text" class="form-control"  value="{{$harian->tgl}}" readonly>
                     </div>
                     <div class="col-4">
                       <label for="inputNanme4" class="form-label">Waktu Absen</label>
-                      <input type="time" class="form-control" name="jam" value="{{$harian->jam}}" readonly>
+                      <div id="jam"></div>
                     </div>
                   </div>
                 </div>
-                {{-- <div class="col-12">
-                  <label for="inputNanme4" class="form-label">Jenis harian</label>
-                  <select class="form-select" name="jenisharian" id="">
-                    <option value=" " disabled>-- Pilih Jenis harian --</option>
-                    <option value="kantor" @if ($harian->jenisharian == "kantor")
-                      selected
-                    @endif>Kantor</option>
-                    <option value="lapangan" @if ($harian->jenisharian == "lapangan")
-                      selected
-                    @endif>Internasional</option>
-                    <option value="dinas luar kota" @if ($harian->jenisharian == "dinas luar kota")
-                      selected
-                    @endif>Dinas Luar Kota</option>
-                    <option value="dinas luar daerah" @if ($harian->jenisharian == "dinas luar daerah")
-                      selected
-                    @endif>Dinas Luar Daerah</option>
-                    <option value="dinas luar negeri" @if ($harian->jenisharian == "dinas luar negeri")
-                      selected
-                    @endif>Dinas Luar Negeri</option>
-                    <option value="overtime" @if ($harian->jenisharian == "overtime")
-                      selected
-                    @endif>Overtime</option>
-                  </select>
-                </div> --}}
                 <div class="col-12">
                   <label for="inputNanme4" class="form-label">Deskripsi Kegiatan</label>
-                  <textarea type="time" class="form-control" name="deskripsi">{{$harian->deskripsi}}</textarea>
+                  <div id="deskripsi"></div>
                 </div>
-                {{-- <div class="col-12">
+                <div class="col-12">
                   <div class="row">
-                    <div class="col-6">
-                      <div class="col-12 col-md-12">
-                        <label for="inputNanme4" class="form-label">Jenis Pelatihan</label>
-                        <select class="form-select" name="pelatihan" id="">
-                          <option value=" " disabled>-- Pilih Jenis Pelatihan --</option>
-                          <option value="pelatihan" @if ($harian->pelatihan == "pelatihan")
-                            selected
-                          @endif>Pelatihan</option>
-                          <option value="nonpelatihan" @if ($harian->pelatihan == "nonpelatihan")
-                            selected
-                          @endif>Non Pelatihan</option>
-                        </select>
-                      </div>
-                      <div class="col-12 mt-3">
-                        <label for="inputNanme4" class="form-label">Judul Pelatihan</label>
-                        <input type="text" class="form-control" name="judulpelatihan" value="{{$harian->judulpelatihan}}">
-                      </div>
-                      <div class="col-12 mt-3">
-                        <label for="inputNanme4" class="form-label">Durasi Pelatihan</label>
-                        <input type="number" class="form-control" name="durasipelatihan" value="{{$kegiatan->durasipelatihan}}">
-                      </div>
-                      <div class="col-12 mt-3">
-                        <label for="inputNanme4" class="form-label">Tempat Pelatihan</label>
-                        <input type="text" class="form-control" name="tempatpelatihan" value="{{$kegiatan->tempatpelatihan}}">
-                      </div>
-                    </div>
-                    <div class="col-6">
                       <div class="col-12">
                         <label for="inputNanme4" class="form-label">Foto</label><small class="text-muted" style="font-size:8px">Klik gambar jika ingin mengubah</small>
                         <div class="row">
-                          <div class="col-4 col-md-4 ">
-                            <span class="badge bg-primary">Foto Selfie</span>
-                            <img id="imageResult" class="img-thumbnail btn" src="{{asset('/foto/absenkegiatan/'. $kegiatan->selfiekegiatan)}}" width="100%" alt="" onclick="gantiselfiekegiatan()">
-                            <input onchange="readURL(this);" type="file" id="fileselfiekegiatan" name="selfiekegiatan" hidden>
-                         
+                          <div class="col-5 col-md-5 ">
+                            <center>
+                              <span class="badge bg-primary">Foto Selfie</span>
+                              <div id="fotofasdes"></div>
+                              <input onchange="readURL(this);" type="file" id="fileselfiekegiatan" name="fasdes" hidden>
+                            </center>
                           </div>
-                          <div class="col-4 col-md-4 ">
-                            <span class="badge bg-primary">Foto Kegiatan</span>
-                            <img id="imageResult2" class="img-thumbnail btn" src="{{asset('/foto/absenkegiatan/'. $kegiatan->fotokegiatan)}}" width="100%" alt="" onclick="gantifotokegiatan()">
-                            <input onchange="readURL2(this);" type="file" id="filefotokegiatan" name="fotokegiatan" hidden>
-                           
-                          </div>
-                          <div class="col-4 col-md-4 ">
-                            @if($kegiatan->pelatihan == "pelatihan")
-                            <span class="badge bg-primary">Foto Pelatihan</span>
-                            <img id="imageResult3" class="img-thumbnail btn" src="{{asset('/foto/absenkegiatan/'. $kegiatan->fotopelatihan)}}" width="100%" alt="" onclick="gantifotopelatihan()">
-                            <input onchange="readURL3(this);" type="file" id="filefotopelatihan" name="fotopelatihan" hidden>
-                            
-                            @endif
+                          <div class="col-2 col-md-2"></div>
+                          <div class="col-5 col-md-5 ">
+                            <center>
+                              <span class="badge bg-primary">Foto Kegiatan</span>
+                              <div id="fotokegiatan"></div>
+                               <input onchange="readURL2(this);" type="file" id="filefotokegiatan" name="kegiatan" hidden>
+                            </center>
                           </div>
                         </div>
                       </div>
-                    </div>
 
                   </div>
 
-                </div> --}}
-              
-
-
-              
-
-                
-               
-
-               
-              
-                {{-- <div class="col-12">
-                    <div class="row">
-                        <div class="col-6">
-                          <label for="inputEmail4" class="form-label">Luas Tanah</label>
-                          <input type="number" class="form-control" name="luastanah" value="{{$poktan->luastanah}}">
-                        </div>
-                        <div class="col-6">
-                            <label for="inputEmail4" class="form-label">Jumlah Petani</label>
-                            <input type="text" class="form-control" name="jumlahpetani" value="{{$poktan->jumlahpetani}}">
-                        </div>
-                        </div>
-                </div> --}}
-                
-                {{-- <div class="col-12">
-                    <div class="row">
-                        <div class="col-6">
-                            <label for="inputEmail4" class="form-label">Jumlah Produksi</label>
-                            <input type="number" class="form-control" name="jumlahproduksi" value="{{$poktan->jumlahproduksi}}">
-                        </div>
-                        <div class="col-6">
-                            <label for="inputEmail4" class="form-label">Pasar</label>
-                           <select name="pasar" id="" class="form-select">
-                            <option value="" disabled> -- Pilih Pasar -- </option>
-                            <option value="lokal" @if ($poktan->pasar == "lokal")
-                              selected
-                            @endif>Lokal</option>
-                            <option value="internasional" @if ($poktan->pasar == "internasional")
-                              selected
-                            @endif>Internasional</option>
-                           </select>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="col-12">
-                    <label for="inputEmail4" class="form-label">Pemeliharaan</label>
-                    <input type="text" class="form-control" name="pemeliharaan" value="{{$poktan->pemeliharaan}}">
                 </div>
               
-                <div class="col-12">
-                    <label for="inputEmail4" class="form-label">Lokasi</label>
-                    <input type="text" class="form-control" name="lokasipoktan" value="{{$poktan->lokasipoktan}}">
-                </div> --}}
-                
-                
 
                 
                 <div class="text-center">
@@ -185,16 +79,37 @@
     </div>
 
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+  integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+</script>
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
+$(document).ready(function() {
+  jeniss()
+})
   function gantiselfiekegiatan(){
     $("#fileselfiekegiatan").click();
   }
   function gantifotokegiatan(){
     $("#filefotokegiatan").click();
   }
-  function gantifotopelatihan(){
-    $("#filefotopelatihan").click();
+function jeniss()
+{
+  var jenis = $("#jenis").val();
+  if (jenis == "masuk") {
+    $("#jam").html(`<input type="text" class="form-control" value="{{ $harian->jam }}" readonly>`);
+    $("#deskripsi").html(`<textarea type="text" class="form-control" name="deskripsi">{{$harian->deskripsi}}</textarea>`);
+    $("#fotofasdes").html(`<img id="imageResult" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotofasdes)}}" width="100%" alt="" onclick="gantiselfiekegiatan()">`);
+    $("#fotokegiatan").html(` <img id="imageResult2" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotokegiatanharian)}}" width="100%" alt="" onclick="gantifotokegiatan()">`)
+  } else {
+    $("#jam").html(`<input type="text" class="form-control" value="{{ $harian->jampulang }}" readonly>`);
+    $("#deskripsi").html(`<textarea type="text" class="form-control" name="deskripsi">{{$harian->deskripsipulang}}</textarea>`);
+    $("#fotofasdes").html(`<img id="imageResult" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotofasdespulang)}}" width="100%" alt="" onclick="gantiselfiekegiatan()">`);
+    $("#fotokegiatan").html(` <img id="imageResult2" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotokegiatanharianpulang)}}" width="100%" alt="" onclick="gantifotokegiatan()">`)
   }
+
+}
   function readURL(input) {
       if (input.files && input.files[0]) {
           var reader = new FileReader();

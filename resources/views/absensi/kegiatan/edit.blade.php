@@ -5,8 +5,8 @@
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{route('kegiatan.index')}}">Kelompok Petani Fasilitator Desa</a></li>
-        <li class="breadcrumb-item"><a href="{{route('kegiatan.kegiatan', $kegiatan->id_user)}}">Daftar Kelompok Petani</a></li>
+        <li class="breadcrumb-item"><a href="{{route('kegiatan.index')}}">Daftar Fasilitator Desa</a></li>
+        <li class="breadcrumb-item"><a href="{{route('kegiatan.kegiatan', $kegiatan->id_user)}}">Daftar Absen Fasilitator Desa</a></li>
         <li class="breadcrumb-item active">Edit Data Absen Kegiatan</li>
       </ol>
     </nav>

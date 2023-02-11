@@ -7,6 +7,7 @@ use App\Models\absenharian;
 use App\Models\fasdes;
 use App\Models\lokasi;
 use Auth;
+// use PDF;
 
 class c_absenharian extends Controller
 {
@@ -127,13 +128,63 @@ class c_absenharian extends Controller
     }
     public function update(Request $request, $id)
     {
-        $data = [
-            'fotofasdes' => $filename,
-            'deskripsi' => $request->deskripsi,
-            'fotokegiatanharian' => $filename1,
-        ];
-        $this->harian->editData($id, $data);
+        if ($request->fasdes <> null)
+        {
+        $file  = $request->fasdes;
+        $filename = "fasdes_".$request->jenis."_".$request->harian.".".$file->extension();
+        $file->move(public_path('foto'),$filename);
+        if ($request->jenis == "masuk")
+        {
+            $data = ['fotofasdes' => $filename,];
+            $this->harian->editData2($id, $data);
+        }
+        else
+        {
+            $data = ['fotofasdespulang' => $filename,];
+            $this->harian->editData2($id, $data);
+        }
+        }
+        if ($request->kegiatan <> null)
+        {
+        $file1  = $request->kegiatan;
+        $filename1 = "kegiatan_".$request->jenis."_".$request->harian.".".$file->extension();
+        $file->move(public_path('foto'),$filename1);
+        if ($request->jenis == "masuk")
+        {
+            $data = ['fotokegiatanharian' => $filename1,];
+            $this->harian->editData2($id, $data);
+        }
+        else
+        {
+            $data = ['fotokegiatanharianpulang' => $filename1,];
+            $this->harian->editData2($id, $data);
+        }
+        }
+        if ($request->jenis == "masuk")
+        {
+            $data = ['deskripsi' => $request->deskripsi,];
+            $this->harian->editData2($id, $data);
+        }
+        else
+        {
+            $data = ['deskripsipulang' => $request->deskripsi,];
+            $this->harian->editData2($id, $data);
+        }
+      
         return redirect()->route('faskab.harian.index');
+        
+    }
+    public function excel(Request $request)
+    {
+        $data = ['harian' => $this->harian->allData($request->id, $request->bulan),
+        'jumlah' => $this->harian->jumlahData($request->id, $request->bulan),
+       'bulans' => $request->bulan,];
+    //    $pdf = PDF::loadView('absenharian.exportexcel', $data);
+    
+
+    //     return $pdf->stream('document.pdf');
+     
+       return view('absenharian.exportexcel', $data);
     }
     public function destroy($id)
     {

@@ -8,12 +8,11 @@ use DB;
 
 class c_login extends Controller
 {
-
-
     public function index()
     {
         return view('user.login');
     }
+   
 
     public function check(Request $request)
     {
@@ -29,7 +28,7 @@ class c_login extends Controller
 
         if(auth()->attempt(array('email'=>$user,'password'=>$pass)))
         {
-            return redirect('/dashboard');
+            return redirect('/fasdes/dashboard');
         }
         else
         {

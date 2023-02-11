@@ -121,10 +121,9 @@ class c_absenharian extends Controller
     public function edit($id)
     {
         $data = [
-            'kecamatan' => $this->kecamatan->allData(),
             'harian' => $this->harian->detailData($id),
         ];
-        return view('harian.edit', $data);
+        return view('absenharian.edit', $data);
     }
     public function update(Request $request, $id)
     {

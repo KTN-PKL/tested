@@ -47,7 +47,7 @@ $dnow = date("j");
     {$i = "0".$i;}
 @endphp
 @if ($jumlah == 0)
-@if ($bulan > $bnow && $tahun >= $tnow)
+@if ($bulan >= $bnow && $tahun >= $tnow)
 <td>Belum Absen</td>
 <td>Belum Absen</td>
 <td>Belum Absen</td>
@@ -77,13 +77,17 @@ $dnow = date("j");
         $dat = explode(":" , $harian[$j]->jam);
          $H = $dat[$j] * 60;
          $hasil = $H + $dat[1];
-         $j = $j+1;
         @endphp
         @if ($hasil > 420)
         Terlambat
         @else
         Tepat Waktu
         @endif</td>
+      <td><a href="{{ route('faskab.harian.edit', $harian[$j]->id_absenharian) }}" class="btn btn-primary btn-sm">Edit</a></td>
+      @php
+           $j = $j+1;
+         $jumlah = $jumlah - 1;
+      @endphp
 @else
 @if ($i > $dnow)
 <td>Belum Absen</td>

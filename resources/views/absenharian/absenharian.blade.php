@@ -42,6 +42,7 @@
   </script>
   
   <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
       $(document).ready(function() {
             read()
@@ -49,7 +50,7 @@
             function read() {
                 var id = {{ $id }};
                 var bulan =  $("#bulan").val();
-                $("#excel").html(` <a href="{{ url('harian/excel?id=`+id+`&bulan=`+bulan+`') }}">EXPORT KE EXCEL</a>`);
+                $("#excel").html(` <a target="_blank" class="btn btn-primary" href="{{ url('harian/excel?id=`+id+`&bulan=`+bulan+`') }}">EXPORT</a>`);
                 $.ajax({
                     type: "get",
                     url: "{{ url('harian/read') }}",

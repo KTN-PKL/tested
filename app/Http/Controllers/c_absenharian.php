@@ -7,7 +7,7 @@ use App\Models\absenharian;
 use App\Models\fasdes;
 use App\Models\lokasi;
 use Auth;
-use PDF;
+// use PDF;
 
 class c_absenharian extends Controller
 {
@@ -179,9 +179,12 @@ class c_absenharian extends Controller
         $data = ['harian' => $this->harian->allData($request->id, $request->bulan),
         'jumlah' => $this->harian->jumlahData($request->id, $request->bulan),
        'bulans' => $request->bulan,];
-       $pdf = PDF::loadView('absenharian.exportexcel', $data);
+    //    $pdf = PDF::loadView('absenharian.exportexcel', $data);
+    
+
+    //     return $pdf->stream('document.pdf');
      
-       return $pdf->download('itsolutionstuff.pdf');
+       return view('absenharian.exportexcel', $data);
     }
     public function destroy($id)
     {

@@ -30,4 +30,8 @@ class poktan extends Model
     {
         return DB::table('poktans')->where('id_poktan', $id)->delete();
     }
+    public function countAllpoktan()
+    {
+        return DB::table('poktans')->count();    
+    }
 }

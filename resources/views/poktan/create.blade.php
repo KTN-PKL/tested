@@ -32,26 +32,27 @@
                           <input type="number" class="form-control" name="luastanah">
                         </div>
                         <div class="col-6">
+                          <label for="inputEmail4" class="form-label">Pasar</label>
+                         <select name="pasar" id="" class="form-select">
+                          <option value="" selected disabled> -- Pilih Pasar -- </option>
+                          <option value="lokal">Lokal</option>
+                          <option value="internasional">Internasional</option>
+                         </select>
+                      </div>
+                        {{-- <div class="col-6">
                             <label for="inputEmail4" class="form-label">Jumlah Petani</label>
                             <input type="text" class="form-control" name="jumlahpetani">
-                        </div>
+                        </div> --}}
                         </div>
                 </div>
                 
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12">
                             <label for="inputEmail4" class="form-label">Jumlah Produksi</label>
                             <input type="number" class="form-control" name="jumlahproduksi">
                         </div>
-                        <div class="col-6">
-                            <label for="inputEmail4" class="form-label">Pasar</label>
-                           <select name="pasar" id="" class="form-select">
-                            <option value="" selected disabled> -- Pilih Pasar -- </option>
-                            <option value="lokal">Lokal</option>
-                            <option value="internasional">Internasional</option>
-                           </select>
-                        </div>
+                     
                     </div>
                     
                 </div>
@@ -61,9 +62,26 @@
                 </div>
               
                 <div class="col-12">
-                    <label for="inputEmail4" class="form-label">Lokasi</label>
+                    <label for="inputEmail4" class="form-label">Alamat</label>
                     <input type="text" class="form-control" name="lokasipoktan">
                 </div>
+
+                <div class="col-6">
+                  <label class="form-label">List Daftar Petani</label>
+                  <input type="text" name="jumlah" value="1" id="jumlah" hidden>
+                  <div class="input-group col-md-6 mb-3">
+                  <input type="text" class="form-control  @error('skill') is-invalid @enderror" value="{{ old('skill') }}" name="namapetani0" placeholder="Nama Petani">
+                  <span class="input-group-text" id="T1" type = "button" onclick="plus(1)"><i class="bi bi-plus"></i></span>
+                  </div>
+                  <div id="M1"></div>
+                  <div id="plus1"></div>
+                   @error('skill')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                   @enderror
+                </div>
+             
                 
                 
 
@@ -77,5 +95,29 @@
 
   </div>
 
-
+<script>
+  function plus(id)
+  {
+    var x = id + 1;
+    document.getElementById("T" + id).style.display="none";
+    document.getElementById("M" + id).style.display="none";
+    $("#jumlah").val(x)
+    $("#plus" + id).html(`
+    <div class="input-group col-md-6 mb-3">
+    <input type="text" class="form-control" name="namapetani`+id+`" placeholder="Nama Petani">
+    <span class="input-group-text" id="T`+x+`" type = "button" onclick="plus(`+x+`)"><i class="bi bi-plus"></i></span>
+    <span class="input-group-text" id="M`+x+`" type = "button" onclick="mins(`+x+`)"><i class="bi bi-x"></i></span>
+    </div>
+    <div id="plus`+x+`"></div>
+    `);
+  }
+  function mins(id)
+  {
+    var x = id - 1;
+    document.getElementById("T" + x).style.display="block";
+    document.getElementById("M" + x).style.display="block";
+    $("#jumlah").val(x)
+    $("#plus"+ x).html(`  `);
+  }
+</script>
 @endsection

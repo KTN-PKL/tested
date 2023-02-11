@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('pemeliharaan');
             $table->string('pasar', 15);
             $table->string('lokasipoktan');
-            $table->string('jumlahpetani', 20);
             $table->timestamps();
         });
     }

@@ -187,9 +187,10 @@ class c_absenharian extends Controller
     }
     public function excel(Request $request)
     {
-        $data = ['harian' => $this->harian->allData($request->id, $request->bulan),
-        'jumlah' => $this->harian->jumlahData($request->id, $request->bulan),
-       'bulans' => $request->bulan,];
+        $data = ['harian' => $this->harian->search($request->id, $request->dari, $request->sampai),
+                 'jumlah' => $this->harian->jumlahData($request->id, $request->dari, $request->sampai),
+                'dari' => $request->dari,
+                'sampai' => $request->sampai];
        return view('absenharian.exportexcel', $data);
     }
     public function destroy($id)

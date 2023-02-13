@@ -63,7 +63,7 @@
                 var bulan =  $("#bulan").val();
                 var dari = $("#dari").val();
                 var sampai = $("#sampai").val();
-                $("#excel").html(` <a target="_blank" class="btn btn-primary" href="{{ url('harian/excel?id=`+id+`&bulan=`+bulan+`') }}">EXPORT</a>`);
+                $("#excel").html(` <a target="_blank" class="btn btn-primary" href="{{ url('harian/excel?id=`+id+`&dari=`+dari+`&sampai=`+sampai+`') }}">EXPORT</a>`);
                 $.ajax({
                     type: "get",
                     url: "{{ url('harian/read') }}",

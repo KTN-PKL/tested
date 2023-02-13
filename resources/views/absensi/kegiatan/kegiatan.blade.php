@@ -46,30 +46,18 @@
             </h6></td>
           </tr>
         </table>
-        <div class="filter col-md-4">
-          <form action="{{route('kegiatan.kegiatan.filter', $fasdes->id)}}" method="POST">
-            @csrf
-            <div class="row">
-              <div class="col-md-8">
-                <select style="background-color: rgb(212, 211, 211)" name="filter" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                  <option  selected value="0">Pilih Jenis Kegiatan</option>
-                  <option value="all">Semua Kegiatan</option>
-                  <option value="lapangan">Lapangan</option>
-                  <option value="kantor">Kantor</option>
-                  <option value="dinas luar kota">Dinas Luar Kota</option>
-                  <option value="dinas luar daerah">Dinas Luar Daerah</option>
-                  <option value="dinas luar negeri">Dinas Luar Negeri</option>
-                  <option value="overtime">Overtime</option>
-                </select>
-              </div>
-              <div class="col-md-4">
-                <button type="submit" class="btn btn-sm btn-primary">Cari</button>
-              </div>
-            </div>
-            
-         
-       
-        </form>
+        <div class="filter col-12">
+          <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
+            Cari Data
+          </a>
+
+          @if(Route::current()->getName() == 'kegiatan.kegiatan.filter')
+          <a href="{{route('kegiatan.kegiatan', $fasdes->id)}}" type="button" class="btn btn-warning">
+           Reset Pencarian
+          </a>
+          @endif
+     
+     
         </div>
        
        <br>
@@ -92,7 +80,15 @@
          '12' => 'Desember',
          );
        @endphp
-        <div><h5>Data Absensi Kegiatan Bulan {{$dayList[$m]}} {{$t}} - {{$filter}}</h5></div>
+        <div><h5>
+          @if(Route::current()->getName() == 'kegiatan.kegiatan')
+          Data Absensi Kegiatan Bulan {{$dayList[$m]}} {{$t}} - {{$filter}}
+          @elseif(Route::current()->getName() == 'kegiatan.kegiatan.filter')
+          Data Absensi Kegiatan {{$filter}} Periode {{$awal}} - {{$akhir}} 
+          @endif
+        
+
+        </h5></div>
         <table id="satu" class="datatable">
           <thead>
             <tr>
@@ -139,13 +135,65 @@
       </div>
     </div>
     </div>
+    
+    <div class="modal fade" id="basicModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Basic Modal</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form action="{{route('kegiatan.kegiatan.filter', $fasdes->id)}}" method="POST">
+            @csrf
+          <div class="modal-body">
+                <div class="col-12">
+                  <label for="">Jenis Kegiatan</label>
+                  <select style="background-color: rgb(255, 255, 255)" name="filter" class="form-select">
+                    <option  selected value=" ">Pilih Jenis Kegiatan</option>
+                    <option value=" ">Semua Kegiatan</option>
+                    <option value="lapangan">Lapangan</option>
+                    <option value="kantor">Kantor</option>
+                    <option value="dinas luar kota">Dinas Luar Kota</option>
+                    <option value="dinas luar daerah">Dinas Luar Daerah</option>
+                    <option value="dinas luar negeri">Dinas Luar Negeri</option>
+                    <option value="overtime">Overtime</option>
+                  </select>
+                </div>
+               <div class="col-12">
+                <label for="">Rentang Waktu</label>
+                <div class="input-group">
+                  <input type="date" class="form-control" placeholder="awal" aria-label="awal" name="awal">
+                  <span class="input-group-text"> - </span>
+                  <input type="date" class="form-control" placeholder="akhir" aria-label="akhir" name="akhir">
+                </div>
+               </div>
+                <div class="col-md-2">
+                 
+                </div>
+              
+           
+         
+         
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Cari</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div><!-- End Basic Modal-->
+      
 
     <script type="text/javascript" charset="utf-8">
       $(document).ready(function() {
           $('.datatable').DataTable();
               document.getElementById("dataTable-dropdown").style.display = "none";
       });
+      
   </script>
+
+  
    
  
 @endsection

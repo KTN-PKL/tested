@@ -47,6 +47,41 @@
             <td valign="top"><h6>:</h6></td>
             <td valign="top"><h6 style="color: black">{{$poktan->lokasipoktan}}</h6></td>
           </tr>
+          <tr>
+            <td valign="top"><h6>Nama Bantuan</h6></td>
+            <td valign="top"><h6>:</h6></td>
+            <td valign="top"><h6 style="color: black">
+              @if($poktan->namabantuan <> null)
+              {{$poktan->namabantuan}}
+              @else
+              Nama Bantuan Belum Diinputkan.
+              @endif
+            </h6></td>
+          </tr>
+          <tr>
+            <td valign="top"><h6>Kuantitas Bantuan</h6></td>
+            <td valign="top"><h6>:</h6></td>
+            <td valign="top"><h6 style="color: black">
+              @if($poktan->qtybantuan <> null)
+              {{$poktan->qtybantuan}}
+              @else
+              Kuantitas Bantuan Belum Diinputkan.
+              @endif
+            </h6></td>
+         
+          </tr>
+          <tr>
+            <td valign="top"><h6>Waktu Penyaluran</h6></td>
+            <td valign="top"><h6>:</h6></td>
+            <td valign="top"><h6 style="color: black"> 
+              @if($poktan->waktubantuan <> null)
+              {{$poktan->waktubantuan}}
+              @else
+              Waktu Penyaluran Bantuan Belum Diinputkan.
+              @endif
+            </h6></td>
+        
+          </tr>
       
       </table>
 

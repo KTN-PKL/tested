@@ -19,21 +19,21 @@
         
 
               <!-- Vertical Form -->
-              <form class="row g-3" action="{{route('faskab.poktan.store', $id)}}" method="POST">
+              <form class="row g-3" action="{{route('faskab.poktan.store', $id)}}" method="POST" >
                 @csrf
                 <div class="col-12">
                   <label for="inputNanme4" class="form-label">Nama Kelompok Petani</label>
-                  <input type="text" class="form-control" name="namapoktan">
+                  <input type="text" class="form-control"  id="validationCustom01" name="namapoktan" required>
                 </div>
                 <div class="col-12">
                     <div class="row">
                         <div class="col-6">
                           <label for="inputEmail4" class="form-label">Luas Tanah</label>
-                          <input type="number" class="form-control" name="luastanah">
+                          <input type="number" class="form-control" name="luastanah" required>
                         </div>
                         <div class="col-6">
                           <label for="inputEmail4" class="form-label">Pasar</label>
-                         <select name="pasar" id="" class="form-select">
+                         <select name="pasar" id="" class="form-select" required>
                           <option value="" selected disabled> -- Pilih Pasar -- </option>
                           <option value="lokal">Lokal</option>
                           <option value="internasional">Internasional</option>
@@ -48,29 +48,52 @@
                 
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-12">
-                            <label for="inputEmail4" class="form-label">Jumlah Produksi</label>
-                            <input type="number" class="form-control" name="jumlahproduksi">
+                      <div class="col-6">
+                        <div class="col-12 mt-2">
+                          <label for="inputEmail4" class="form-label">Jumlah Produksi</label>
+                          <input type="number" class="form-control" name="jumlahproduksi" required>
                         </div>
+                        <div class="col-12 mt-2">
+                          <label for="inputEmail4" class="form-label">Pemeliharaan</label>
+                          <input type="text" class="form-control" name="pemeliharaan" required>
+                        </div>
+                        <div class="col-12 mt-2">
+                          <label for="inputEmail4" class="form-label">Alamat</label>
+                          <input type="text" class="form-control" name="lokasipoktan" required>
+                        </div>
+                       
+                      </div>
+                        <div class="col-6">
+                          <div class="col-12 mt-2">
+                            <label for="inputEmail4" class="form-label">Nama Bantuan</label>
+                            <input type="text" class="form-control" name="namabantuan" required>
+                          </div>
+                          <div class="col-12 mt-2">
+                            <label for="inputEmail4" class="form-label">Kuantitas</label>
+                            <input type="number" class="form-control" name="qtybantuan" required>
+                          </div>
+                          <div class="col-12 mt-2">
+                            <label for="inputEmail4" class="form-label">Waktu Penyaluran</label>
+                            <input type="date" class="form-control" name="waktubantuan" required>
+                          </div>
+                         
+                        </div>
+
+                     
+                     
                      
                     </div>
                     
                 </div>
-                <div class="col-12">
-                    <label for="inputEmail4" class="form-label">Pemeliharaan</label>
-                    <input type="text" class="form-control" name="pemeliharaan">
-                </div>
-              
-                <div class="col-12">
-                    <label for="inputEmail4" class="form-label">Alamat</label>
-                    <input type="text" class="form-control" name="lokasipoktan">
-                </div>
+               
+
+             
 
                 <div class="col-6">
                   <label class="form-label">List Daftar Petani</label>
                   <input type="text" name="jumlah" value="1" id="jumlah" hidden>
                   <div class="input-group col-md-6 mb-3">
-                  <input type="text" class="form-control  @error('skill') is-invalid @enderror" value="{{ old('skill') }}" name="namapetani0" placeholder="Nama Petani">
+                  <input type="text" class="form-control  @error('skill') is-invalid @enderror" value="{{ old('skill') }}" name="namapetani0" placeholder="Nama Petani" required>
                   <span class="input-group-text" id="T1" type = "button" onclick="plus(1)"><i class="bi bi-plus"></i></span>
                   </div>
                   <div id="M1"></div>
@@ -94,7 +117,6 @@
     </div>
 
   </div>
-
 <script>
   function plus(id)
   {

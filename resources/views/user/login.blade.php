@@ -30,6 +30,12 @@
         <div class="d-grid gap-2">
           <button type="submit" class="btn btn-dark shadow mt-3"><b>Masuk</b></button>
         </div>
+        <div class="text-center p-3 mt-2 fw-bold">Atau</div>
+        <div class="d-grid gap-2">
+          <a href="#" class="btn btn-warning shadow mt-3"><b>Daftar</b></a>
+        </div>
+        
+
       </form>
     </div>
     <script src="{{asset('templateUser')}}/js/bootstrap.bundle.min.js"></script>

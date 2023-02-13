@@ -27,10 +27,13 @@
     <div class="container p-1">
         <!-- main menu -->
         <div class="history p-2">
-
+            <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                {{session()->get('success')}}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
             <!-- foto profile -->
             <div class="profile-pic mt-3 mb-3">
-                <img src="pf.jpg" class="circular--portrait mx-auto d-block " alt="foto profile">
+                <img src="{{asset('/foto/profilfasdes/'. $fasdes->profil)}}" class="circular--portrait mx-auto d-block " alt="foto profile">
             </div>
             <!-- foto profile end -->
 
@@ -38,6 +41,7 @@
             <div class="rounded label bg-primary">
                 <h4 class="text-light p-3"><i class="fa-solid fa-user"></i> Profile</h4>
             </div>
+           
             <!-- title end -->
 
             <!-- card profile-->
@@ -45,25 +49,25 @@
                 <div class="card-body">
                     <table border="0">
                         <tbody>
-                        <tr><td>Nama</td><td>: </td><td>Namafasdes</td></tr>
-                        <tr><td>Jenis Kelamin</td><td>: </td><td>jenkelfasdes</td></tr>
-                        <tr><td>Alamat</td><td>: </td><td>alamat</td></tr>
-                        <tr><td>Email</td><td>: </td><td>emailfasdes</td></tr>
-                        <tr><td>No.hp</td><td>: </td><td>kontakfasdes</td></tr>
+                        <tr><td>Nama</td><td>: </td><td>{{$fasdes->name}}</td></tr>
+                        <tr><td>Jenis Kelamin</td><td>: </td><td>{{$fasdes->jeniskelamin}}</td></tr>
+                        <tr><td>Alamat</td><td>: </td><td>{{$fasdes->alamat}}</td></tr>
+                        <tr><td>Email</td><td>: </td><td>{{$fasdes->email}}</td></tr>
+                        <tr><td>No.hp</td><td>: </td><td>{{$fasdes->no_telp}}</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             <!-- card profile end -->
 
-            <!-- title -->
+            {{-- <!-- title -->
             <div class="rounded label bg-primary mt-3">
                 <div class="row p-3">
                     <div class="col-8 p-2 d-flex justify-content-start">
                         <h4 class="text-light "><i class="fa-solid fa-users"></i> Profile Poktan</h4>
                     </div>
                     <div class="col-4 p-2 d-flex justify-content-center">
-                        <button class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Update</button>
+                        <a href="#" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Update</a>
                     </div>
                 </div>
             </div>
@@ -82,7 +86,58 @@
                     </table>
                 </div>
             </div>
-        <!-- card poktan end -->
+        <!-- card poktan end --> --}}
+
+        {{-- Kelola Poktan --}}
+        {{-- title --}}
+        <div class="rounded label bg-primary mt-3">
+            <div class="row p-3">
+                <div class="col-9 p-2 d-flex justify-content-start">
+                    <h4 class="text-light "><i class="fa-solid fa-users"></i> Kelola Poktan</h4>
+                </div>
+                <div class="col-3 p-2 d-flex justify-content-center">
+                    <a href="{{route('fasdes.createpoktan', Auth::user()->id)}}" class="btn btn-warning"><i class="fa-solid fa-plus"></i> Buat Poktan</a>
+                </div>
+            </div>
+        </div>
+        {{-- end title --}}
+        {{-- card kelola poktan --}}
+        @foreach($poktan as $data)
+        <div class="card shadow mt-2" style="width: 100%">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <table border="0">
+                            <tbody>
+                                <tr><td>Nama Poktan</td><td>: </td><td>{{$data->namapoktan}}</td></tr>
+                                <tr><td>Luas Tanah</td><td>: </td><td>{{$data->luastanah}}</td></tr>
+                                <tr><td>Jumlah Produksi</td><td>: </td><td>{{$data->jumlahproduksi}}</td></tr>
+                                <tr><td>Pemelihara</td><td>: </td><td>{{$data->pemeliharaan}}</td></tr>
+                                <tr><td>Pasar Lokal</td><td>: </td><td>{{$data->pasar}}</td></tr>
+                                <tr><td>Lokasi Poktan</td><td>: </td><td>{{$data->lokasipoktan}}</td></tr>
+                                <tr><td>Nama Bantuan</td><td>: </td><td>{{$data->namabantuan}}</td></tr>
+                                <tr><td>Kuantitas Bantuan</td><td>: </td><td>{{$data->qtybantuan}}</td></tr>
+                                <tr><td>Waktu Penyaluran</td><td>: </td><td>{{$data->waktubantuan}}</td></tr>
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                   
+                </div>
+                <center>
+                    <div class="col-12">
+                        <a href="{{route('fasdes.editpoktan', $data->id_poktan)}}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                        <a href="{{route('fasdes.detailpoktan', $data->id_poktan)}}" class="btn btn-primary"><i class="fa-solid fa-eye"></i> Lihat</a>
+                        <a href="{{route('fasdes.destroypoktan', $data->id_poktan)}}" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Hapus</a>
+                    </div>
+                </center>
+              
+               
+            </div>
+        </div>
+        @endforeach
+        {{-- end card kelola poktan --}}
+        {{-- End Kelola Poktan --}}
         </div>
     </div>
     <!-- end container -->
@@ -92,7 +147,7 @@
     <!-- nav bottom -->
     <div class="botnav fixed-bottom bg-dark text-light text-center">
         <div class="row">
-           <div class="col-4 p-3"><a href="{{url('dashboard')}}" class="text-decoration-none text-light fa-solid fa-house-user text-light"></a></div>
+           <div class="col-4 p-3"><a href="{{url('fasdes/dashboard')}}" class="text-decoration-none text-light fa-solid fa-house-user text-light"></a></div>
           <div class="col-4 p-3"><a href="{{url('harian/absen')}}" class="text-decoration-none text-light fa-solid fa-camera"></a></div>
           <div class="col-4 p-3"><a href="{{url('#')}}" class="text-decoration-none text-light fa-solid fa-user"></a></div>
         </div>

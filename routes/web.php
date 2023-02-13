@@ -10,6 +10,7 @@ use App\Http\Controllers\c_poktan;
 use App\Http\Controllers\c_lokasi;
 use App\Http\Controllers\c_absenkegiatan;
 use App\Http\Controllers\c_absenharian;
+use App\Http\Controllers\c_profil;
 
 
 /*
@@ -117,3 +118,17 @@ Route::controller(c_absenkegiatan::class)->middleware('auth')->group(function ()
     Route::post('kegiatan/kegiatan/filter/{id}', 'filterKegiatan')->name('kegiatan.kegiatan.filter');
 
 });
+
+Route::controller(c_profil::class)->middleware('auth')->group(function () {
+    Route::get('fasdes/profil/{id}', 'viewProfil')->name('fasdes.profil');
+    Route::get('fasdes/history/{id}', 'viewHistory')->name('fasdes.history');
+    Route::get('fasdes/detail/{id}', 'viewDetailpoktan')->name('fasdes.detailpoktan');
+    Route::get('fasdes/create/{id}', 'viewCreatepoktan')->name('fasdes.createpoktan');
+    Route::post('fasdes/store/{id}', 'storePoktan')->name('fasdes.storepoktan');
+    Route::get('fasdes/edit/{id}', 'viewEditpoktan')->name('fasdes.editpoktan');
+    Route::get('fasdes/destroy/{id}', 'destroyPoktan')->name('fasdes.destroypoktan');
+
+
+  
+});
+

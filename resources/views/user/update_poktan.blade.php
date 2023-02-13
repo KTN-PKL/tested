@@ -28,20 +28,40 @@
             <div class="card-body">
                 <form>
                     <div class="mb-3">
+                        <label for="luastanah" class="form-label">Nama Poktan</label>
+                        <input type="text" class="form-control" id="namapoktan" name="namapoktan" value="{{$poktan->namapoktan}}" >
+                      </div>
+                    <div class="mb-3">
                       <label for="luastanah" class="form-label">Luas Tanah</label>
-                      <input type="number" class="form-control" id="luastanah" >
+                      <input type="number" class="form-control" id="luastanah" name="luastanah" value="{{$poktan->luastanah}}" >
                     </div>
                     <div class="mb-3">
                       <label for="jumlahproduksi" class="form-label">Jumlah produksi</label>
-                      <input type="number" class="form-control" id="jumlahproduksi">
+                      <input type="number" class="form-control" id="jumlahproduksi" name="jumlahproduksi" value="{{$poktan->jumlahproduksi}}" >
                     </div>
                     <div class="mb-3">
-                        <label for="pasarlokal" class="form-label">Pasar Lokal</label>
-                        <input type="text" class="form-control" id="pasarlokal">
+                        <label for="jumlahproduksi" class="form-label">Pemeliharaan</label>
+                        <input type="text" class="form-control" id="jumlahproduksi" name="pemeliharaan" value="{{$poktan->pemeliharaan}}" >
+                      </div>
+                    <div class="mb-3">
+                        <label for="pasarlokal" class="form-label">Pasar</label>
+                        <input type="text" class="form-control" id="pasar" name="pasar" value="{{$poktan->pasar}}" >
                     </div>
                     <div class="mb-3">
-                        <label for="pasarintern" class="form-label">Pasar Internasional</label>
-                        <input type="text" class="form-control" id="pasarintern">
+                        <label for="pasarlokal" class="form-label">Lokasi Kelompok Petani</label>
+                        <input type="text" class="form-control" id="lokasipoktan" name="lokasipoktan" value="{{$poktan->lokasipoktan}}" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="pasarlokal" class="form-label">Nama Bantuan</label>
+                        <input type="text" class="form-control" id="namabantuan" name="namabantuan" value="{{$poktan->namabantuan}}" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="pasarlokal" class="form-label">Kuantitas Bantuan</label>
+                        <input type="text" class="form-control" id="qtybantuan" name="qtybantuan" value="{{$poktan->qtybantuan}}" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="pasarlokal" class="form-label">Waktu Penyaluran Bantuan</label>
+                        <input type="date" class="form-control" id="waktubantuan" name="waktubantuan" value="{{$poktan->waktubantuan}}" >
                     </div>
                     <div class="d-grid ">
                         <button type="submit" class="btn btn-block btn-primary"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
@@ -59,7 +79,7 @@
         <div class="row">
            <div class="col-4 p-3"><a href="{{url('dashboard')}}" class="text-decoration-none text-light fa-solid fa-house-user text-light"></a></div>
           <div class="col-4 p-3"><a href="{{url('harian/absen')}}" class="text-decoration-none text-light fa-solid fa-camera"></a></div>
-          <div class="col-4 p-3"><a href="{{url('#')}}" class="text-decoration-none text-light fa-solid fa-user"></a></div>
+          <div class="col-4 p-3"><a href="{{route('fasdes.profil', Auth::user()->id)}}" class="text-decoration-none text-light fa-solid fa-user"></a></div>
         </div>
     </div>
     

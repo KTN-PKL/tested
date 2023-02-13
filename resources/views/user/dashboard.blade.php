@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="col mt-3">
-                  <a href="#" class="text-decoration-none">
+                  <a href="{{route('fasdes.history', Auth::user()->id )}}" class="text-decoration-none">
                     <div
                       class="item d-grid bg-prim rounded mx-auto text-center p-2 text-light shadow"
                     >
@@ -90,7 +90,7 @@
                   </a>
                 </div>
                 <div class="col mt-3">
-                  <a href="#" class="text-decoration-none">
+                  <a href="{{route('fasdes.profil', Auth::user()->id)}}" class="text-decoration-none">
                     <div
                       class="item d-grid bg-prim rounded mx-auto text-center p-2 text-light shadow"
                     >
@@ -167,7 +167,7 @@
             </a>
           </div>
           <div class="col-4 p-3">
-            <a href="{{url('#')}}" class="text-decoration-none text-light fa-solid fa-user">
+            <a href="{{route('fasdes.profil', Auth::user()->id)}}" class="text-decoration-none text-light fa-solid fa-user">
             </a>
           </div>
         </div>

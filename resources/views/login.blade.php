@@ -15,13 +15,14 @@
     <div class="container">
       <div class="row justify-content-center mt-5">
         <div class="col-lg-4 col-md-6 col-sm-6">
-          <div class="card shadow bg text-light">
-            <div class="card-title text-center border-bottom">
-              <h2 class="p-3">Login</h2>
+          <div class="card ">
+            <div class="card-title text-center border-bottom pt-5">
+              <img src="{{asset('template')}}/assets/img/logoupland.png" class="w-50" alt="tes">
             </div>
             <div class="card-body">
 
-              <div class="icon text-center p-5"><i class="fa-solid fa-id-card-clip fa-5x text-light"></i></div>
+              <div class="text-center">
+              </i></div>
               <h1 class="text-center">Selamat Datang Admin</h1>
 
               <form action="{{route('loginadmin.check')}}">
@@ -42,7 +43,7 @@
                   <label for="remember" class="form-label">Remember Me</label>
                 </div>
                 <div class="d-grid">
-                  <button type="submit" class="btn text-light bg-primary">Masuk</button>
+                  <button type="submit" class="btn text-light bg-success">Masuk</button>
                 </div>
               </form>
             

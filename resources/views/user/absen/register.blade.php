@@ -11,7 +11,7 @@
 <body class="css-selector">
         <div class="container p-5">
             <div class="icon text-center p-5"><i  class="fa-solid fa-id-card-clip fa-5x text-light"></i></div>
-            <h1>Selamat Datang Fasdes</h1>
+            <h1>Pendaftaran Fasdes</h1>
             <form action="">
                 <div class="mb-3">
                     <label for="nama" class="form-label" >Nama</label>

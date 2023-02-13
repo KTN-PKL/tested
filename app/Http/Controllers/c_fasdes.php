@@ -37,6 +37,7 @@ class c_fasdes extends Controller
             'name' => $request->name,
             'password' => Hash::make($request->password),
             'level'=> "fasdes",
+            'statusakun'=>"verified",
         ];
         $this->fasdes->addData($data);
         $data = ['id_user' => $id,];
@@ -71,6 +72,14 @@ class c_fasdes extends Controller
         }
         $this->fasdes->editData($id, $data);
         return redirect()->route('faskab.fasdes.index')->with('success','Fasilitator Desa Berhasil Diupdate');
+    }
+
+    public function verifikasi($id)
+    {
+        $data = [
+            'statusakun'=> "verified",
+        ];
+        $this->fasdes->editData($id, $data);
     }
     public function destroy($id)
     {

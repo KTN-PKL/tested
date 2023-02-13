@@ -57,11 +57,13 @@
                 <span class="badge bg-success">Terverifikasi</span>
                 @endif
                 </td>
-              <td style="width:25%">
+              <td style="width:40%">
                 <a href="{{route('fasdes.detail', $data->id)}}" class="btn btn-sm btn-primary"> <i class="bi bi-eye"></i> Lihat</a>
                 <a href="{{route('fasdes.edit', $data->id)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
                 <a href="{{route('faskab.fasdes.destroy', $data->id)}}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Hapus</a>
-                <a href="{{route('faskab.fasdes.verifikasi', $data->id)}}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Verifikasi</a>
+                @if($data->statusakun == "noverified")
+                <a href="{{route('faskab.fasdes.verifikasi', $data->id)}}" class="btn btn-sm btn-success"><i class="bi bi-check"></i> Verifikasi</a>
+                @endif
 
               </td>
             </tr>

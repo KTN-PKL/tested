@@ -83,10 +83,10 @@ class c_login extends Controller
 
     // Login multiuser
     public function dashboard(){
-        if (Auth::user()->level == "fasdes") {
+        if (Auth::user()->level == "fasdes" && Auth::user()->statusakun == "verified") {
             return view('user.dashboard');
         }else{
-            return redirect()->back()->with('error', 'Masukkan Akun Fasdes');
+            return redirect()->back()->with('error', 'Akun Fasdes Tidak Ada atau Belum terverifikasi');
         }
        
     }

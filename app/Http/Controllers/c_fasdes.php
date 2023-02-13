@@ -29,7 +29,7 @@ class c_fasdes extends Controller
     }
     public function store(Request $request)
     {
-        $id = $this->fasdes->id();
+        $id = $this->fasdes->maxIdUser();
         $id = $id + 1;
         $data = [
             'id' => $id,
@@ -75,6 +75,8 @@ class c_fasdes extends Controller
     public function destroy($id)
     {
         $this->fasdes->deleteData($id);
+        $this->lokasi->deleteData($id);
+
         return redirect()->route('faskab.fasdes.index')->with('deleted','Fasilitator Desa Berhasil Dihapus');
     }
 }

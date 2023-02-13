@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\fasdes;
+use App\Models\lokasi;
 use Auth;
 use DB;
+use Illuminate\Support\Facades\Hash;
 
 class c_login extends Controller
 {
@@ -12,6 +15,36 @@ class c_login extends Controller
     {
         return view('user.login');
     }
+
+    public function register()
+    {
+        return view('user.absen.register');
+    }
+    public function postRegister(Request $request)
+    {
+        $this->fasdes = new fasdes();
+        $this->lokasi = new lokasi();
+        $id = $this->fasdes->maxIdUser();
+
+        $data =[
+            'id_user'=>$id+1,
+        ];
+        $this->lokasi->addData($data);
+
+        $data = [
+            'id' => $id+1,
+            'name' => $request->name,
+            'alamat' => $request->alamat,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'level'=> "fasdes",
+            'statusakun'=>"noverified",
+        ];
+        $this->fasdes->addData($data);
+        return view ('user.login');
+    
+    }
+
    
 
     public function check(Request $request)

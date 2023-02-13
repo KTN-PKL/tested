@@ -76,7 +76,7 @@
 
         <!-- field kegiatan -->
         <div class="button text-center d-grid">
-          <a href="#" class="btn btn-block btn-primary" onclick="fotokegiatan()"
+          <a href="#" class="btn btn-block btn-warning" onclick="fotokegiatan()"
             ><i class="fa-solid fa-camera"></i> Foto Kegiatan</a
           >
         </div>

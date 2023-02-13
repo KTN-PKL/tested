@@ -15,9 +15,9 @@
     <title>Absen Kegiatan</title>
   </head>
   <body class="d-flex flex-column min-vh-100">
-    <div class="title bg-primary text-light text-center p-3">
+    <div class="title bg-prim text-light text-center p-3">
       <h1 class="display-5">
-        <i class="fa-solid fa-id-card-clip text-light"></i> Sistem Absensi
+        <i class="fa-solid fa-id-card-clip text-light"></i> Sistem Absensi (Kegiatan)
       </h1>
       <p>user</p>
     </div>
@@ -55,7 +55,7 @@
     <!-- footer -->
     <footer class="text-light text-center text-lg-start mt-auto pt-5">
       <!-- Copyright -->
-      <div class="text-center p-3 bg-primary" style="height: 20vh">
+      <div class="text-center p-3 bg-prim" style="height: 20vh">
         ©2023 Copyright:
         <a class="text-dark" href="#"></a>
       </div>

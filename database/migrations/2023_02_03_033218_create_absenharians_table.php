@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('jampulang', 20)->nullable();
             $table->text('deskripsipulang')->nullable();
             $table->string('fotokegiatanharianpulang')->nullable();
+            $table->string('jenis', 20);
             $table->timestamps();
         });
     }

@@ -24,4 +24,12 @@ class petani extends Model
     {
         return DB::table('petanis')->where('id_petani', $id_petani)->update($data);
     }
+    public function deleteData($id)
+    {
+        return DB::table('petanis')->where('id_poktan', $id)->delete();
+    }
+    public function counttPetani($id)
+    {
+        return DB::table('petanis')->where('id_poktan', $id)->count();
+    }
 }

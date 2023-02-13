@@ -137,7 +137,7 @@
       <div class="botnav fixed-bottom bg-dark text-light text-center mb-0">
         <div class="row">
           <div class="col-4 p-3">
-            <a href="{{url('dashboard')}}" class="text-decoration-none text-light fa-solid fa-house-user text-light">
+            <a href="{{url('fasdes/dashboard')}}" class="text-decoration-none text-light fa-solid fa-house-user text-light">
             </a>
           </div>
           <div class="col-4 p-3">

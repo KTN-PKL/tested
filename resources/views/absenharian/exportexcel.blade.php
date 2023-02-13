@@ -1,16 +1,9 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css" />
-    <script src=" https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> 
-    <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>  
-    <script src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
+
 
 
 
@@ -65,6 +58,8 @@ $t = date("Y-m-d");
             'Wed' => 'Rabu',
             'Thu' => 'Kamis',
             'Fri' => 'Jumat',
+            'Sat' => 'Sabtu',
+            'Sun' => 'Minggu',
             );
 $j = 0;
 $dnow = date("j");
@@ -76,9 +71,12 @@ $dnow = date("j");
         <th>Jam Masuk</th>
         <th>Foto Fasdes Masuk</th>
         <th>Foto Kegiatan Masuk</th>
+        <th>Deskripsi Masuk</th>
         <th>Jam Pulang</th>
         <th>Foto Fasdes Pulang</th>
         <th>Foto Kegiatan Pulang</th>
+        <th>Desktipsi Pulang</th>
+        <th>Jenis</th>
         <th>status</th>
       </tr>
     </thead>
@@ -88,7 +86,7 @@ $dnow = date("j");
             $now = strtotime($i."-".$bulan."-".$tahun);
             $d = date("D", $now);
 @endphp
-@if ($d <> "Sat" && $d <> "Sun")
+
 <tr>
     <td style="width:10%">{{$dayList[$d].", ".$i."-".$bulan."-".$tahun}}</td>
 @php
@@ -104,6 +102,9 @@ $dnow = date("j");
 <td>Belum Absen</td>
 <td>Belum Absen</td>
 <td>Belum Absen</td> 
+<td>Belum Absen</td>
+<td>Belum Absen</td> 
+<td>Belum Absen</td> 
 @else
 <td>Tidak Absen</td>
 <td>Tidak Absen</td>
@@ -112,15 +113,35 @@ $dnow = date("j");
 <td>Tidak Absen</td>
 <td>Tidak Absen</td>
 <td>Tidak Absen</td> 
+<td>Tidak Absen</td>
+<td>Tidak Absen</td> 
+<td>Tidak Absen</td> 
 @endif  
 @else
 @if ($dayList[$d].", ".$tahun."-".$bulan."-".$i == $harian[$j]->tgl)
     <td>{{ $harian[$j]->jam }}</td>
     <td><img src="{{asset('/foto/'. $harian[$j]->fotofasdes)}}"  alt="Gambar" width="50" height="50"></td>
     <td><img src="{{asset('/foto/'. $harian[$j]->fotokegiatanharian)}}"  alt="Gambar" width="50" height="50"></td>
+    <td>{{ $harian[$j]->deskripsi }}</td>
+    @if ($harian[$j]->jampulang == null)
+    @if ($harian[$j]->tgl == $dayList[$d].", ".$t )
+    <td>Belum Absen</td>
+    <td>Belum Absen</td>
+    <td>Belum Absen</td> 
+    <td>Belum Absen</td> 
+    @else
+    <td>Tidak Absen</td>
+    <td>Tidak Absen</td>
+    <td>Tidak Absen</td>
+    <td>Tidak Absen</td>
+    @endif
+    @else
     <td>{{ $harian[$j]->jampulang }}</td>
     <td><img src="{{asset('/foto/'. $harian[$j]->fotofasdespulang)}}"  alt="Gambar" width="50" height="50"></td>
     <td><img src="{{asset('/foto/'. $harian[$j]->fotokegiatanharianpulang)}}"  alt="Gambar" width="50" height="50"></td>
+    <td>{{ $harian[$j]->deskripsipulang }}</td>
+    @endif
+    <td>{{ $harian[$j]->jenis }}</td>
     <td>
         @php
         $dat = explode(":" , $harian[$j]->jam);
@@ -145,6 +166,9 @@ $dnow = date("j");
 <td>Belum Absen</td>
 <td>Belum Absen</td>
 <td>Belum Absen</td> 
+<td>Belum Absen</td>
+<td>Belum Absen</td> 
+<td>Belum Absen</td> 
 @else
 <td>Tidak Absen</td>
 <td>Tidak Absen</td>
@@ -153,22 +177,25 @@ $dnow = date("j");
 <td>Tidak Absen</td>
 <td>Tidak Absen</td>
 <td>Tidak Absen</td> 
+<td>Tidak Absen</td>
+<td>Tidak Absen</td> 
+<td>Tidak Absen</td> 
 @endif
 @endif
 @endif
 </tr>  
-  @endif
 @endfor
 </tbody>
 </table>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+</script>
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
     $(document).ready(function() {
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    } );
+        window.print();
+        $(".action-button").click();
 } );
 </script>
 </body>

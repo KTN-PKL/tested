@@ -2,7 +2,7 @@
     @csrf
     <div class="col-12">
       <label for="inputNanme4" class="form-label">Kecamatan</label>
-      <input type="text" class="form-control" name="kecamatan">
+      <input type="text" class="form-control" name="kecamatan" required>
     </div>
     <div class="text-center">
       <button type="submit" class="btn btn-primary">Submit</button>

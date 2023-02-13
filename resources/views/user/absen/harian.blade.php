@@ -50,8 +50,17 @@
 
     <!-- container -->
     <div class="container mt-3">
-      @if ($dayList[$d] == "Sabtu" || $dayList[$d] == "Minggu")
-      <center>     <h1>LIBUR</h1></center>
+      @if ($dayList[$d] == "t" || $dayList[$d] == "t") 
+      <!--line diatas di bypass dulu-->
+      <!--($dayList[$d] == "Sabtu" || $dayList[$d] == "Minggu")-->
+      <center> <div class="alert alert-warning fa-2xl" role="alert">
+          <i class="fa-solid fa-triangle-exclamation mb-3"></i>
+         <marquee>
+           <h5>
+               Wah kamu rajin kerja sampe absen hari libur!
+           </h5>
+         </marquee>
+      </div></center>
       @else
       <!-- componen card -->
       <div class="card">
@@ -92,15 +101,15 @@
           </div>
           
           {{-- This is the code that will display the image that has been taken by the user.   --}}
-          <div id="hasilselfie"></div>
+          <div id="hasilselfie" class="overflow-hidden d-flex justify-content-center"></div>
           <input type="text" id="gambarselfie" name="selfie" hidden>
 
           <!-- select posisi-->
           <div>
             <p>Pilih posisi</p>
-            <select class="form-select" aria-label="Default select">
-              <option value="1" selected>Dalam Kantor</option>
-              <option value="2">Luar Kantor</option>
+            <select class="form-select" aria-label="Default select" name="jenis" id="jenis">
+              <option value="Dalam Kantor" selected>Dalam Kantor</option>
+              <option value="Luar Kantor">Luar Kantor</option>
             </select>
           </div>
           <!-- end select posisi-->
@@ -119,7 +128,7 @@
             <a href="#" class="btn btn-block btn-primary" onclick="fotokegiatan()">
               <i class="fa-solid fa-camera"></i> Foto kegiatan</a>
           </div>
-          <div id="hasilkegiatan"></div>
+          <div id="hasilkegiatan" class="overflow-hidden d-flex justify-content-center"></div>
           <input type="text" id="gambarkegiatan" name="kegiatan" hidden>
           <input type="submit"  value="submit" id="klik" hidden>
         </form>
@@ -132,13 +141,13 @@
         </div>
       </div>
       <!-- akhir componen card -->
-      
-      <!-- nav bottom -->
+      @endif
+            <!-- nav bottom -->
       <div class="botnav fixed-bottom bg-dark text-light text-center mb-0">
         <div class="row">
           <div class="col-4 p-3">
             <a
-              href="{{url('dashboard')}}"
+              href="{{url('fasdes/dashboard')}}"
               class="text-decoration-none text-light fa-solid fa-house-user text-light"
             ></a>
           </div>
@@ -157,24 +166,23 @@
         </div>
       </div>
       <!-- end nav bottom -->
-      @endif
     </div>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-xl">
-          <div class="modal-content">
+      <div class="modal-dialog modal-xl ">
+          <div class="modal-content bg-dark text-light">
               <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="vidOff()"></button>
+                  <div id="ambilgambar" class="pt-3"></div>
+                  <button type="button" class="btn-close bg-danger rounded" data-bs-dismiss="modal" aria-label="Close" onclick="vidOff()"></button>
               </div>
               <div class="modal-body">
                 <center>
-                    <div id="container" class="ratio ratio-16x9">
+                    <div id="container" class="overflow-hidden d-flex justify-content-center">
                     <video autoplay="true" id="videoElement">
                     </video>
                     </div>
-                    <div id="ambilgambar" class="pt-3"></div>
+                    
                 </div>
                 </center>
           </div>
@@ -233,6 +241,8 @@
       function jarak()
       {
         var data =  $('#lokasiisi').val()
+        var jenis = $('#jenis').val()
+        if (jenis == "Dalam Kantor") {
         $.get("{{ url('harian/jarak') }}/"+data, {}, function(data, status) {
         if (data > 0.2) {
           $("#exampleModal2").modal('show');
@@ -241,7 +251,10 @@
         } else {
         $("#klik").click();
         }
-        });
+        });    
+      } else {
+        $("#klik").click();
+        }
       }
       //webcam selfie
       function selfie()

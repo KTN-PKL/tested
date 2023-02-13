@@ -58,7 +58,9 @@
             <a href="#" class="btn btn-block btn-warning" onclick="selfie()">
               <i class="fa-solid fa-user"></i> Foto Selfie</a>
           </div>
-          <div id="hasilselfie"></div>
+          
+         <!--tampilan hasil foto selfie-->
+          <div id="hasilselfie" class="overflow-hidden d-flex justify-content-center mt-3"></div>
           <input type="text" id="gambarselfie" name="selfie" hidden  data-parsley-required="true">
 
         <!-- field deskripsi -->
@@ -78,7 +80,9 @@
             ><i class="fa-solid fa-camera"></i> Foto Kegiatan</a
           >
         </div>
-        <div id="hasilkegiatan"></div>
+        
+        <!--tampilan hasil foto kegiatan-->
+        <div id="hasilkegiatan" class="overflow-hidden d-flex justify-content-center mt-3"></div>
         <input type="text" id="fotokegiatan" name="fotokegiatan" hidden>
 
 
@@ -133,9 +137,10 @@
           <a href="#" class="btn btn-block btn-primary" onclick="fotopelatihan()"
             ><i class="fa-solid fa-camera"></i> Foto Pelatihan</a
           >
-       
         </div>
-        <div id="hasillpelatihan"></div>
+        
+        <!--hasil foto pelatihan-->
+        <div id="hasillpelatihan" class="overflow-hidden d-flex justify-content-center"></div>
         <input type="text" id="fotopelatihan" name="fotopelatihan" hidden>
         </div>
         {{-- end form pelatihan --}}
@@ -154,18 +159,18 @@
      <!-- Modal -->
      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="vidOff()"></button>
+          <div class="modal-content bg-dark text-light">
+              <div class="modal-header ">
+                  <div id="ambilgambar"></div>
+                  <button type="button" class="btn-close bg-danger rounded" data-bs-dismiss="modal" aria-label="Close" onclick="vidOff()"></button>
               </div>
               <div class="modal-body">
                 <center>
-                    <div id="container" class="ratio ratio-16x9">
+                    <div id="container" class="overflow-hidden d-flex justify-content-center">
                     <video autoplay="true" id="videoElement">
                     </video>
                     </div>
-                    <div id="ambilgambar" class="pt-3"></div>
+                   
                 </div>
                 </center>
           </div>

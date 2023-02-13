@@ -18,19 +18,19 @@
         
 
               <!-- Vertical Form -->
-              <form class="row g-3" action="{{route('faskab.fasdes.store')}}" method="POST">
+              <form class="row g-3" action="{{route('faskab.fasdes.store')}}" method="POST" >
                 @csrf
                 <div class="col-12">
                   <label for="inputNanme4" class="form-label">Nama Fasilitator Desa</label>
-                  <input type="text" class="form-control" name="name">
+                  <input type="text" class="form-control" name="name" required>
                 </div>
                 <div class="col-12">
                   <label for="inputEmail4" class="form-label">Email</label>
-                  <input type="email" class="form-control" name="email">
+                  <input type="email" class="form-control" name="email" required>
                 </div>
                 <div class="col-12">
                   <label for="inputPassword4" class="form-label">Password</label>
-                  <input type="password" class="form-control" name="password">
+                  <input type="password" class="form-control" name="password" required>
                 </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary">Submit</button>

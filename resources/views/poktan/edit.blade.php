@@ -23,13 +23,13 @@
                 @csrf
                 <div class="col-12">
                   <label for="inputNanme4" class="form-label">Nama Kelompok Petani</label>
-                  <input type="text" class="form-control" name="namapoktan" value="{{$poktan->namapoktan}}">
+                  <input type="text" class="form-control" name="namapoktan" value="{{$poktan->namapoktan}}" required>
                 </div>
                 <div class="col-12">
                     <div class="row">
                         <div class="col-6">
                           <label for="inputEmail4" class="form-label">Luas Tanah</label>
-                          <input type="number" class="form-control" name="luastanah" value="{{$poktan->luastanah}}">
+                          <input type="number" class="form-control" name="luastanah" value="{{$poktan->luastanah}}" required>
                         </div>
                         <div class="col-6">
                           <label for="inputEmail4" class="form-label">Pasar</label>
@@ -51,7 +51,7 @@
                     <div class="row">
                         <div class="col-12">
                             <label for="inputEmail4" class="form-label">Jumlah Produksi</label>
-                            <input type="number" class="form-control" name="jumlahproduksi" value="{{$poktan->jumlahproduksi}}">
+                            <input type="number" class="form-control" name="jumlahproduksi" value="{{$poktan->jumlahproduksi}}" required>
                         </div>
                       
                     </div>
@@ -59,12 +59,12 @@
                 </div>
                 <div class="col-12">
                     <label for="inputEmail4" class="form-label">Pemeliharaan</label>
-                    <input type="text" class="form-control" name="pemeliharaan" value="{{$poktan->pemeliharaan}}">
+                    <input type="text" class="form-control" name="pemeliharaan" value="{{$poktan->pemeliharaan}}" required>
                 </div>
               
                 <div class="col-12">
                     <label for="inputEmail4" class="form-label">Alamat</label>
-                    <input type="text" class="form-control" name="lokasipoktan" value="{{$poktan->lokasipoktan}}">
+                    <input type="text" class="form-control" name="lokasipoktan" value="{{$poktan->lokasipoktan}}" required>
                 </div>
 
                 <div class="col-6">

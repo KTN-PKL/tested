@@ -22,11 +22,11 @@
                 @csrf
                 <div class="col-12">
                   <label for="inputNanme4" class="form-label">Nama Fasilitator Desa</label>
-                  <input type="text" class="form-control" name="name" value="{{$fasdes->name}}">
+                  <input type="text" class="form-control" name="name" value="{{$fasdes->name}}" required>
                 </div>
                 <div class="col-12">
                   <label for="inputEmail4" class="form-label">Email</label>
-                  <input type="email" class="form-control" name="email" value="{{$fasdes->email}}">
+                  <input type="email" class="form-control" name="email" value="{{$fasdes->email}}" required>
                 </div>
                 <div class="col-12">
                   <label for="inputPassword4" class="form-label">Password</label> <i style="font-size:12px" class="text-muted">Masukkan Password Baru</i>

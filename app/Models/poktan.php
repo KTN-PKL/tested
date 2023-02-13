@@ -34,4 +34,8 @@ class poktan extends Model
     {
         return DB::table('poktans')->count();    
     }
+    public function maxIdPoktan()
+    {
+        return DB::table('poktans')->max('id_poktan');
+    }
 }

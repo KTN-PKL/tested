@@ -17,7 +17,7 @@
     <title>Absen Harian</title>
   </head>
   <body class="d-flex flex-column min-vh-100">
-    <div class="title bg-primary text-light text-center p-3">
+    <div class="title bg-prim text-light text-center p-3">
       <h1 class="display-5">
         @php
         date_default_timezone_set("Asia/Jakarta");
@@ -125,7 +125,7 @@
             <label for="floatingTextarea">Deskripsi Absensi</label>
           </div>
           <div class="button text-center d-grid">
-            <a href="#" class="btn btn-block btn-primary" onclick="fotokegiatan()">
+            <a href="#" class="btn btn-block btn-warning" onclick="fotokegiatan()">
               <i class="fa-solid fa-camera"></i> Foto kegiatan</a>
           </div>
           <div id="hasilkegiatan" class="overflow-hidden d-flex justify-content-center"></div>
@@ -192,7 +192,7 @@
       <!-- footer -->
       <footer class="text-light text-center text-lg-start mt-auto pt-5">
         <!-- Copyright -->
-        <div class="text-center p-3 bg-primary" style="height: 20vh">
+        <div class="text-center p-3 bg-prim" style="height: 20vh">
           ©2023 Copyright:
           <a class="text-dark" href="#"></a>
         </div>
@@ -267,7 +267,7 @@
           console.log("Something went wrong!");
           });
       }
-      var data = `<a href="#" onclick="snapselfie()" class="btn btn-primary">Ambil Gambar</a>`;
+      var data = `<a href="#" onclick="snapselfie()" class="btn btn-prim">Ambil Gambar</a>`;
         $("#exampleModal").modal('show');
         $("#ambilgambar").html(data);
         
@@ -283,7 +283,7 @@
           console.log("Something went wrong!");
           });
       }
-        var data = `<a href="#" onclick="snapkegiatan()" class="btn btn-primary">Ambil Gambar Kegiatan</a>`;
+        var data = `<a href="#" onclick="snapkegiatan()" class="btn btn-prim">Ambil Gambar Kegiatan</a>`;
         $("#exampleModal").modal('show');
         $("#ambilgambar").html(data);
       }

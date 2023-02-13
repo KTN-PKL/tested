@@ -37,9 +37,13 @@
      
     </div>
 
-
-
+ 
     <div class="container p-1">
+     
+      @if(session()->has('success'))
+        <div id="login-alert" class="alert alert-success custom-alert col-md-12"><b>Warning!</b> {{session('error')}}</div>
+        @endif
+   
       <!-- main menu -->
       <div class="header pt-3">
         <div class="card shadow p-3" style="width: 100%">
@@ -57,6 +61,7 @@
             </div>
           </div>
           <div class="card-body">
+        
             <div class="container">
               <div class="row row-cols-2 row-cols-md-2 row-cols-lg-4">
                 <div class="col mt-3">

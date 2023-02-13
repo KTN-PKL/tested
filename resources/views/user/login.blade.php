@@ -17,6 +17,11 @@
         @if(session()->has('error'))
         <div id="login-alert" class="alert alert-danger custom-alert col-md-12"><b>Warning!</b> {{session('error')}}</div>
         @endif
+        @if(session()->has('success'))
+        <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+          {{session()->get('success')}}
+        @endif
+     
         @csrf
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label" >Email</label>

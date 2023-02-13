@@ -46,7 +46,7 @@ Route::controller(c_fasdes::class)->middleware('auth')->group(function () {
     Route::get('fasdess/edit/{id}', 'edit')->name('fasdes.edit');
     Route::get('fasdess/detail/{id}', 'detail')->name('fasdes.detail');
     Route::post('fasdess/update/{id}', 'update')->name('faskab.fasdes.update');
-    Route::post('fasdess/verifikasi/{id}', 'verifikasi')->name('faskab.fasdes.verifikasi');
+    Route::get('fasdess/verifikasi/{id}', 'verifikasi')->name('faskab.fasdes.verifikasi');
     Route::get('fasdess/destroy/{id}', 'destroy')->name('faskab.fasdes.destroy');
 });
 

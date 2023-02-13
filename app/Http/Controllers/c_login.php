@@ -28,8 +28,14 @@ class c_login extends Controller
 
         $data =[
             'id_user'=>$id+1,
+            'lokasi'=> $request->lokasi,
         ];
         $this->lokasi->addData($data);
+
+        $file  = $request->profil;
+        $filename = $request->email.'.'.$file->extension();
+        $file->move(public_path('foto/profilfasdes'),$filename);
+      
 
         $data = [
             'id' => $id+1,
@@ -39,9 +45,10 @@ class c_login extends Controller
             'password' => Hash::make($request->password),
             'level'=> "fasdes",
             'statusakun'=>"noverified",
+            'profil'=>$filename,
         ];
         $this->fasdes->addData($data);
-        return view ('user.login');
+        return redirect()->route('loginfasdes');
     
     }
 
@@ -83,10 +90,10 @@ class c_login extends Controller
 
     // Login multiuser
     public function dashboard(){
-        if (Auth::user()->level == "fasdes") {
+        if (Auth::user()->level == "fasdes" && Auth::user()->statusakun == "verified") {
             return view('user.dashboard');
         }else{
-            return redirect()->back()->with('error', 'Masukkan Akun Fasdes');
+            return redirect()->back()->with('error', 'Email atau Password Salah!');
         }
        
     }

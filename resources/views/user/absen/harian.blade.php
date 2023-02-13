@@ -267,7 +267,7 @@
           console.log("Something went wrong!");
           });
       }
-      var data = `<a href="#" onclick="snapselfie()" class="btn btn-prim">Ambil Gambar</a>`;
+      var data = `<a href="#" onclick="snapselfie()" class="btn btn-primary">Ambil Gambar</a>`;
         $("#exampleModal").modal('show');
         $("#ambilgambar").html(data);
         
@@ -283,7 +283,7 @@
           console.log("Something went wrong!");
           });
       }
-        var data = `<a href="#" onclick="snapkegiatan()" class="btn btn-prim">Ambil Gambar Kegiatan</a>`;
+        var data = `<a href="#" onclick="snapkegiatan()" class="btn btn-primary">Ambil Gambar Kegiatan</a>`;
         $("#exampleModal").modal('show');
         $("#ambilgambar").html(data);
       }

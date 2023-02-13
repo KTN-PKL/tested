@@ -6,6 +6,7 @@ use App\Models\poktan;
 use App\Models\lokasi;
 use App\Models\petani;
 use Illuminate\Http\Request;
+use Auth;
 
 class c_profil extends Controller
 {
@@ -23,8 +24,9 @@ class c_profil extends Controller
     //     return view('fasdes.index', $data);
     // }
 
-     public function viewProfil($id)
+     public function viewProfil()
     {
+        $id = Auth::user()->id;
         $data = ['fasdes' => $this->fasdes->detailData($id),
                  'poktan' => $this->poktan->fasdesData($id),
                 ];

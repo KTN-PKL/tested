@@ -71,9 +71,18 @@
     <!-- nav bottom -->
     <div class="botnav fixed-bottom bg-dark text-light text-center">
         <div class="row">
-           <div class="col-4 p-3"><a href="{{url('fasdes/dashboard')}}" class="text-decoration-none text-light fa-solid fa-house-user text-light"></a></div>
-          <div class="col-4 p-3"><a href="{{url('harian/absen')}}" class="text-decoration-none text-light fa-solid fa-camera"></a></div>
-          <div class="col-4 p-3"><a href="{{route('fasdes.profil', Auth::user()->id)}}" class="text-decoration-none text-light fa-solid fa-user"></a></div>
+            <div class="col-4 p-3">
+                <a href="{{url('fasdes/dashboard')}}" class="text-decoration-none text-light fa-solid fa-house-user text-light">
+                </a>
+              </div>
+              <div class="col-4 p-3">
+                <a href="{{url('harian/absen')}}" class="text-decoration-none text-light fa-solid fa-camera">
+                </a>
+              </div>
+              <div class="col-4 p-3">
+                <a href="{{route('fasdes.profil')}}" class="text-decoration-none text-light fa-solid fa-user">
+                </a>
+              </div>
         </div>
     </div>
     

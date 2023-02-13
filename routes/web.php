@@ -120,7 +120,7 @@ Route::controller(c_absenkegiatan::class)->middleware('auth')->group(function ()
 });
 
 Route::controller(c_profil::class)->middleware('auth')->group(function () {
-    Route::get('fasdes/profil/{id}', 'viewProfil')->name('fasdes.profil');
+    Route::get('fasdes/profil', 'viewProfil')->name('fasdes.profil');
     Route::get('fasdes/history/{id}', 'viewHistory')->name('fasdes.history');
     Route::get('fasdes/detail/{id}', 'viewDetailpoktan')->name('fasdes.detailpoktan');
     Route::get('fasdes/create/{id}', 'viewCreatepoktan')->name('fasdes.createpoktan');

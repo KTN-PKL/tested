@@ -29,7 +29,11 @@ class c_absenharian extends Controller
         $data = ['cek'=> $this->harian->cek(Auth::user()->id, $t),];
         return view('user.absen.harian', $data);
     }
-
+    public function detail($id)
+    {
+        $data = ['harian' => $this->harian->detailData($id),];
+        return view('absenharian.detail', $data);
+    }
     public function simpangambar($data, $name)
     {
         $img = str_replace('data:image/png;base64,', '', $data);

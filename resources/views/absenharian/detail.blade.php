@@ -6,7 +6,7 @@
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Dashboard</a></li>
         <li class="breadcrumb-item"><a href="{{route('kegiatan.index')}}">Daftar Fasilitator Desa</a></li>
-        <li class="breadcrumb-item"><a href="{{route('kegiatan.kegiatan', $absen->id_user)}}">Daftar Absen Fasilitator Desa</a></li>
+        {{-- <li class="breadcrumb-item"><a href="{{route('kegiatan.kegiatan', $absen->id_user)}}">Daftar Absen Fasilitator Desa</a></li> --}}
         <li class="breadcrumb-item active">Detail Data Absen Kegiatan</li>
       </ol>
     </nav>
@@ -23,43 +23,43 @@
                 <tr>
                     <td valign="top" style="width:40%"><h6>Nama Fasilitator Desa</h6></td>
                     <td valign="top"><h6>:</h6></td>
-                    <td valign="top"><h6 style="color: black">{{$absen->name}}</h6></td>
+                    <td valign="top"><h6 style="color: black"></h6></td>
                 </tr>
                 <tr>
                   <td valign="top"><h6>Tanggal Absen</h6></td>
                   <td valign="top"><h6>:</h6></td>
-                  <td valign="top"><h6 style="color: black">{{$absen->tanggalabsen}}</h6></td>
+                  <td valign="top"><h6 style="color: black"></h6></td>
               </tr>
                 <tr>
                     <td valign="top"><h6>Jam Absen</h6></td>
                     <td valign="top"><h6>:</h6></td>
-                    <td valign="top"><h6 style="color: black">{{$absen->waktuabsen}} WIB</h6></td>
+                    <td valign="top"><h6 style="color: black"></h6></td>
                 </tr>
                 <tr>
                     <td valign="top"><h6>Jenis Kegiatan</h6></td>
                     <td valign="top"><h6>:</h6></td>
-                    <td valign="top"><h6 style="color: black">{{$absen->jeniskegiatan}}</h6></td>
+                    <td valign="top"><h6 style="color: black"></h6></td>
                 </tr>
                 <tr>
                   <td valign="top"><h6>Pelatihan</h6></td>
                   <td valign="top"><h6>:</h6></td>
-                  <td valign="top"><h6 style="color: black">{{$absen->pelatihan}}</h6></td>
+                  <td valign="top"><h6 style="color: black"></h6></td>
                 </tr>
                 @if($absen->pelatihan == "pelatihan")
                 <tr>
                   <td valign="top"><h6>Judul Pelatihan</h6></td>
                   <td valign="top"><h6>:</h6></td>
-                  <td valign="top"><h6 style="color: black">{{$absen->judulpelatihan}}</h6></td>
+                  <td valign="top"><h6 style="color: black"></h6></td>
                 </tr>
                 <tr>
                   <td valign="top"><h6>Durasi Pelatihan</h6></td>
                   <td valign="top"><h6>:</h6></td>
-                  <td valign="top"><h6 style="color: black">{{$absen->durasipelatihan}} Menit</h6></td>
+                  <td valign="top"><h6 style="color: black"> Menit</h6></td>
                 </tr>
                 <tr>
                   <td valign="top"><h6>Tempat Pelatihan</h6></td>
                   <td valign="top"><h6>:</h6></td>
-                  <td valign="top"><h6 style="color: black">{{$absen->tempatpelatihan}}</h6></td>
+                  <td valign="top"><h6 style="color: black"></h6></td>
                 </tr>
                 @endif
             </table>
@@ -68,22 +68,14 @@
               <div class="row">
                 <div class="col-4 col-md-4 ">
                   <span class="badge bg-primary">Foto Selfie</span>
-                  <img id="imageResult" class="img-thumbnail btn" src="{{asset('/foto/absenkegiatan/'. $absen->selfiekegiatan)}}" width="100%" alt="">
+                  <img id="imageResult" class="img-thumbnail btn"  width="100%" alt="">
              
                 </div>
                 <div class="col-4 col-md-4 ">
                   <span class="badge bg-primary">Foto Kegiatan</span>
-                  <img id="imageResult2" class="img-thumbnail btn" src="{{asset('/foto/absenkegiatan/'. $absen->fotokegiatan)}}" width="100%" alt="">
+                  <img id="imageResult2" class="img-thumbnail btn"  width="100%" alt="">
                  
                 </div>
-                <div class="col-4 col-md-4 ">
-                  @if($absen->pelatihan == "pelatihan")
-                  <span class="badge bg-primary">Foto Pelatihan</span>
-                  <img id="imageResult3" class="img-thumbnail btn" src="{{asset('/foto/absenkegiatan/'. $absen->fotopelatihan)}}" width="100%" alt="">
-                  
-                  @endif
-
-              </div>
             </div>
           </div>
         </div>
@@ -95,7 +87,7 @@
           </table>
           <div style="border:1px solid grey;height:200px;">
             <div style="margin-left:1em;margin-top:1em;margin-right:1em;margin-bottom:1em;">
-              <h6>{{$absen->deskripsikegiatan}}</h6>
+              <h6></h6>
             </div>
            
           </div>

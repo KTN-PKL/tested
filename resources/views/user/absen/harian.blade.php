@@ -92,7 +92,7 @@
           @endif
           @csrf
           <p class="card-text">Hari/Tanggal : {{ $dayList[$d].", ".$t }}</p>
-          <input type="text" name="harian" value="{{ $dayList[$d].", ".$t }}" hidden>
+          <input type="text" name="harian" value="{{ $t }}" hidden>
           <p class="card-text">Kordinat lokasi :  <span id="lokasi"></span></p>
           <input type="text" id="lokasiisi" name="lokasi" hidden>
           <div class="button text-center d-grid">
@@ -234,7 +234,6 @@
         //console.log(posisi);
         var latitude 	= posisi.coords.latitude;
         var longitude 	= posisi.coords.longitude;
-        
               $('#lokasi').html(latitude+","+longitude);
               $('#lokasiisi').val(latitude+","+longitude);
       }

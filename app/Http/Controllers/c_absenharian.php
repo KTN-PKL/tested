@@ -108,11 +108,21 @@ class c_absenharian extends Controller
         $this->harian->editData(Auth::user()->id,$request->harian, $data);
         return redirect()->route('absen.harian');
     }
+    public function hari($id)
+    {
+        $data = strtotime($id);
+        $kalender = CAL_GREGORIAN;
+        $bulan = date('m', $data);
+        $tahun = date('Y', $data);
+        $hari = cal_days_in_month($kalender, $bulan, $tahun);
+        return $hari;
+    }
     public function read(Request $request)
     {
-        $data = ['harian' => $this->harian->allData($request->id, $request->bulan),
-                 'jumlah' => $this->harian->jumlahData($request->id, $request->bulan),
-                'bulans' => $request->bulan,];
+        $data = ['harian' => $this->harian->search($request->id, $request->dari, $request->sampai),
+                 'jumlah' => $this->harian->jumlahData($request->id, $request->dari, $request->sampai),
+                'dari' => $request->dari,
+                'sampai' => $request->sampai];
         return view('absenharian.table', $data);
     }
     public function absen($id)

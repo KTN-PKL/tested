@@ -118,13 +118,13 @@ $dnow = date("j");
 <td>Tidak Absen</td> 
 @endif  
 @else
-@if ($dayList[$d].", ".$tahun."-".$bulan."-".$i == $harian[$j]->tgl)
+@if ($tahun."-".$bulan."-".$i == $harian[$j]->tgl)
     <td>{{ $harian[$j]->jam }}</td>
     <td><img src="{{asset('/foto/'. $harian[$j]->fotofasdes)}}"  alt="Gambar" width="50" height="50"></td>
     <td><img src="{{asset('/foto/'. $harian[$j]->fotokegiatanharian)}}"  alt="Gambar" width="50" height="50"></td>
     <td>{{ $harian[$j]->deskripsi }}</td>
     @if ($harian[$j]->jampulang == null)
-    @if ($harian[$j]->tgl == $dayList[$d].", ".$t )
+    @if ($harian[$j]->tgl == $t )
     <td>Belum Absen</td>
     <td>Belum Absen</td>
     <td>Belum Absen</td> 

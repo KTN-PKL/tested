@@ -11,13 +11,17 @@ class absenharian extends Model
 {
     use HasFactory;
 
+    public function search($id, $tgl1, $tgl2)
+    {
+        return DB::table('absenharians')->where('id_user', $id)->whereBetween('tgl', [$tgl1, $tgl2])->get();
+    }
     public function allData($id, $bulan)
     {
         return DB::table('absenharians')->where('id_user', $id)->where('tgl', 'like', '%'.$bulan.'%')->get();
     }
-    public function jumlahData($id, $bulan)
+    public function jumlahData($id, $tgl1, $tgl2)
     {
-        return DB::table('absenharians')->where('id_user', $id)->where('tgl', 'like', '%'.$bulan.'%')->count();
+        return DB::table('absenharians')->where('id_user', $id)->whereBetween('tgl', [$tgl1, $tgl2])->count();
     }
     public function addData($data)
     {

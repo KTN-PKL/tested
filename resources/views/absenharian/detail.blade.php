@@ -1,7 +1,7 @@
 @extends('layouts.template')
 @section('content')
 <div class="pagetitle">
-    <h1>Detail Absen Fasilitator Desa {{$absen->name}}</h1>
+    <h1>Detail Absen Fasilitator Desa</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Dashboard</a></li>
@@ -15,6 +15,12 @@
     <div class="card-body">
         <center>
             <h5 class="card-title">Detail Absen</h5>
+            <div class="col col-md-3">
+              <select class="form-select" id="absen" onchange="absens()" name="absen">
+                <option value="masuk" selected>Masuk</option>
+                <option value="pulang">Pulang</option>
+                </select>
+            </div>
         </center>
         <div class="col-12">
           <div class="row">
@@ -28,52 +34,46 @@
                 <tr>
                   <td valign="top"><h6>Tanggal Absen</h6></td>
                   <td valign="top"><h6>:</h6></td>
-                  <td valign="top"><h6 style="color: black"></h6></td>
+                  <td valign="top"><h6 style="color: black">{{ $harian->tgl }}</h6></td>
               </tr>
                 <tr>
                     <td valign="top"><h6>Jam Absen</h6></td>
                     <td valign="top"><h6>:</h6></td>
-                    <td valign="top"><h6 style="color: black"></h6></td>
+                    <td valign="top"><h6 style="color: black" id="jam"></h6></td>
                 </tr>
                 <tr>
-                    <td valign="top"><h6>Jenis Kegiatan</h6></td>
+                    <td valign="top"><h6>Jenis Absen</h6></td>
                     <td valign="top"><h6>:</h6></td>
-                    <td valign="top"><h6 style="color: black"></h6></td>
+                    <td valign="top"><h6 style="color: black">{{ $harian->jenis }}</h6></td>
                 </tr>
                 <tr>
-                  <td valign="top"><h6>Pelatihan</h6></td>
+                  <td valign="top"><h6>Status Absen</h6></td>
                   <td valign="top"><h6>:</h6></td>
-                  <td valign="top"><h6 style="color: black"></h6></td>
+                  <td valign="top"><h6 style="color: black">
+                    @php
+                    $dat = explode(":" , $harian->jam);
+                     $H = $dat[0] * 60;
+                     $hasil = $H + $dat[1];
+                    @endphp
+                    @if ($hasil > 420)
+                    Terlambat
+                    @else
+                    Tepat Waktu
+                    @endif
+                  </h6></td>
                 </tr>
-                @if($absen->pelatihan == "pelatihan")
-                <tr>
-                  <td valign="top"><h6>Judul Pelatihan</h6></td>
-                  <td valign="top"><h6>:</h6></td>
-                  <td valign="top"><h6 style="color: black"></h6></td>
-                </tr>
-                <tr>
-                  <td valign="top"><h6>Durasi Pelatihan</h6></td>
-                  <td valign="top"><h6>:</h6></td>
-                  <td valign="top"><h6 style="color: black"> Menit</h6></td>
-                </tr>
-                <tr>
-                  <td valign="top"><h6>Tempat Pelatihan</h6></td>
-                  <td valign="top"><h6>:</h6></td>
-                  <td valign="top"><h6 style="color: black"></h6></td>
-                </tr>
-                @endif
             </table>
             </div>
             <div class="col-6">
               <div class="row">
                 <div class="col-4 col-md-4 ">
                   <span class="badge bg-primary">Foto Selfie</span>
-                  <img id="imageResult" class="img-thumbnail btn"  width="100%" alt="">
+                  <div id="fasdes"></div>
              
                 </div>
                 <div class="col-4 col-md-4 ">
                   <span class="badge bg-primary">Foto Kegiatan</span>
-                  <img id="imageResult2" class="img-thumbnail btn"  width="100%" alt="">
+                 <div id="kegiatan"></div>
                  
                 </div>
             </div>
@@ -87,7 +87,7 @@
           </table>
           <div style="border:1px solid grey;height:200px;">
             <div style="margin-left:1em;margin-top:1em;margin-right:1em;margin-bottom:1em;">
-              <h6></h6>
+              <h6 id="deskripsi"></h6>
             </div>
            
           </div>
@@ -99,17 +99,27 @@
           </table>
           <div id="googleMap" style="width:100%;height:380px;"></div>
         </div>
-    
+        <input type="text" id="lokasi1" value="{{ $harian->lokasiharian }}">
+        <input type="text" id="lokasi2" value="{{ $harian->lokasipulang }}">
        
     </div>
   </div>  
 
-
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+  integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+  </script>
+  
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script>
-function initialize() {
+  $(document).ready(function() {
+    absens()
+} );
+function initialize1() {
+  var lokkasi = $("#lokasi1").val();
+  var cek = parseFloat(lokkasi)
   var propertiPeta = {
-    center:new google.maps.LatLng(-8.5830695,116.3202515),
+    center:new google.maps.LatLng(cek),
     zoom:15,
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };
@@ -118,14 +128,50 @@ function initialize() {
   
   // membuat Marker
   var marker=new google.maps.Marker({
-      position: new google.maps.LatLng(-8.5830695,116.3202515),
+      position: new google.maps.LatLng(cek),
+      map: peta,
+      animation: google.maps.Animation.BOUNCE
+  });
+
+}
+function initialize2() {
+  var lokkasi = $("#lokasi2").val();
+  var propertiPeta = {
+    center:new google.maps.LatLng(-6.9451822,106.876853),
+    zoom:15,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  
+  var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
+  
+  // membuat Marker
+  var marker=new google.maps.Marker({
+      position: new google.maps.LatLng(-6.9451822,106.876853),
       map: peta,
       animation: google.maps.Animation.BOUNCE
   });
 
 }
 
-// event jendela di-load  
-google.maps.event.addDomListener(window, 'load', initialize);
+// // event jendela di-load  
+// google.maps.event.addDomListener(window, 'load', initialize);
+  function absens()
+  {
+    var absen = $("#absen").val();
+    if (absen == "masuk") {
+      $("#jam").html("{{ $harian->jam }}");
+      $("#fasdes").html(`<img id="imageResult" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotofasdes)}}" width="100%" height="100" alt="">`);
+      $("#kegiatan").html(` <img id="imageResult2" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotokegiatanharian)}}" width="100%" height="100" alt="">`);
+      $("#deskripsi").html("{{ $harian->deskripsi }}");
+      initialize1()
+    } else {
+      $("#jam").html("{{ $harian->jampulang }}");
+      $("#fasdes").html(`<img id="imageResult" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotofasdespulang)}}" width="100%" height="100" alt="">`);
+      $("#kegiatan").html(` <img id="imageResult2" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotokegiatanharianpulang)}}" width="100%" height="100" alt="">`);
+      $("#deskripsi").html("{{ $harian->deskripsipulang }}");
+      initialize2()
+    }
+    
+  }
 </script>
 @endsection

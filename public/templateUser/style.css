@@ -12,3 +12,11 @@
   height: 100%;
   object-fit: cover;
 }
+
+.bg-prim{
+  background-color: #056839;
+}
+
+.bg-sec{
+  background-color: #8DC63F;
+}

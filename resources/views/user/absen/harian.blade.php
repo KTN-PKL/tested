@@ -107,9 +107,9 @@
           <!-- select posisi-->
           <div>
             <p>Pilih posisi</p>
-            <select class="form-select" aria-label="Default select">
-              <option value="1" selected>Dalam Kantor</option>
-              <option value="2">Luar Kantor</option>
+            <select class="form-select" aria-label="Default select" name="jenis" id="jenis">
+              <option value="Dalam Kantor" selected>Dalam Kantor</option>
+              <option value="Luar Kantor">Luar Kantor</option>
             </select>
           </div>
           <!-- end select posisi-->
@@ -241,6 +241,8 @@
       function jarak()
       {
         var data =  $('#lokasiisi').val()
+        var jenis = $('#jenis').val()
+        if (jenis == "Dalam Kantor") {
         $.get("{{ url('harian/jarak') }}/"+data, {}, function(data, status) {
         if (data > 0.2) {
           $("#exampleModal2").modal('show');
@@ -249,7 +251,10 @@
         } else {
         $("#klik").click();
         }
-        });
+        });    
+      } else {
+        $("#klik").click();
+        }
       }
       //webcam selfie
       function selfie()

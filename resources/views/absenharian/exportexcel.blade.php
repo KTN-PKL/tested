@@ -141,7 +141,7 @@ $dnow = date("j");
     <td><img src="{{asset('/foto/'. $harian[$j]->fotokegiatanharianpulang)}}"  alt="Gambar" width="50" height="50"></td>
     <td>{{ $harian[$j]->deskripsipulang }}</td>
     @endif
-    <td>Di Kantor</td>
+    <td>{{ $harian[$j]->jenis }}</td>
     <td>
         @php
         $dat = explode(":" , $harian[$j]->jam);

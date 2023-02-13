@@ -85,6 +85,7 @@ class c_absenharian extends Controller
             'fotokegiatanharian' => $filename1,
             'tgl' => $request->harian,
             'jam' => $t,
+            'jenis' => $request->jenis,
         ];
         $this->harian->addData($data);
         return redirect()->route('absen.harian');
@@ -179,11 +180,6 @@ class c_absenharian extends Controller
         $data = ['harian' => $this->harian->allData($request->id, $request->bulan),
         'jumlah' => $this->harian->jumlahData($request->id, $request->bulan),
        'bulans' => $request->bulan,];
-    //    $pdf = PDF::loadView('absenharian.exportexcel', $data);
-    
-
-    //     return $pdf->stream('document.pdf');
-     
        return view('absenharian.exportexcel', $data);
     }
     public function destroy($id)

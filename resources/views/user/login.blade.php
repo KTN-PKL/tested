@@ -32,7 +32,7 @@
         </div>
         <div class="text-center p-3 mt-2 fw-bold">Atau</div>
         <div class="d-grid gap-2">
-          <a href="#" class="btn btn-warning shadow mt-3"><b>Daftar</b></a>
+          <a href="{{route('fasdes.register')}}" class="btn btn-warning shadow mt-3"><b>Daftar</b></a>
         </div>
         
 

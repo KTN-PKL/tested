@@ -34,6 +34,7 @@
               <th>No</th>
               <th>Email</th>
               <th>Nama Fasilitator Desa</th>
+              <th>Status Akun</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -49,10 +50,19 @@
               <td>{{$i}}</td>
               <td>{{$data->email}}</td>
               <td>{{$data->name}}</td>
+              <td>
+                @if($data->statusakun == "noverified")
+                <span class="badge bg-danger">Belum Terverifikasi</span>
+                @else
+                <span class="badge bg-success">Terverifikasi</span>
+                @endif
+                </td>
               <td style="width:25%">
                 <a href="{{route('fasdes.detail', $data->id)}}" class="btn btn-sm btn-primary"> <i class="bi bi-eye"></i> Lihat</a>
                 <a href="{{route('fasdes.edit', $data->id)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
                 <a href="{{route('faskab.fasdes.destroy', $data->id)}}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Hapus</a>
+                <a href="{{route('faskab.fasdes.verifikasi', $data->id)}}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Verifikasi</a>
+
               </td>
             </tr>
             @endforeach

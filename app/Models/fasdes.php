@@ -35,4 +35,8 @@ class fasdes extends Model
     {
         return DB::table('users')->where('id', $id)->delete();
     }
+    public function maxIdUser()
+    {
+        return DB::table('users')->max('id');
+    }
 }

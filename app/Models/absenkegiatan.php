@@ -38,9 +38,17 @@ class absenkegiatan extends Model
     {
         return DB::table('absenkegiatans')->where('tanggalabsen','like','%'.$t.'%')->where('id_user', $id)->get();
     }
+    public function filterWaktu($id, $awal, $akhir)
+    {
+        return DB::table('absenkegiatans')->whereBetween('tanggalabsen',[$awal, $akhir])->where('id_user', $id)->get();
+    }
     public function filterKegiatan($id, $filter)
     {
         return DB::table('absenkegiatans')->where('jeniskegiatan','like','%'.$filter.'%')->where('id_user', $id)->get();
+    }
+    public function filterKegiatanWaktu($id, $filter, $awal, $akhir)
+    {
+        return DB::table('absenkegiatans')->where('jeniskegiatan','like','%'.$filter.'%')->whereBetween('tanggalabsen',[$awal, $akhir])->where('id_user', $id)->get();
     }
 
     public function joinData($id)

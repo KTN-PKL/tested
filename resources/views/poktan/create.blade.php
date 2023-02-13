@@ -48,23 +48,46 @@
                 
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-12">
-                            <label for="inputEmail4" class="form-label">Jumlah Produksi</label>
-                            <input type="number" class="form-control" name="jumlahproduksi" required>
+                      <div class="col-6">
+                        <div class="col-12 mt-2">
+                          <label for="inputEmail4" class="form-label">Jumlah Produksi</label>
+                          <input type="number" class="form-control" name="jumlahproduksi" required>
                         </div>
+                        <div class="col-12 mt-2">
+                          <label for="inputEmail4" class="form-label">Pemeliharaan</label>
+                          <input type="text" class="form-control" name="pemeliharaan" required>
+                        </div>
+                        <div class="col-12 mt-2">
+                          <label for="inputEmail4" class="form-label">Alamat</label>
+                          <input type="text" class="form-control" name="lokasipoktan" required>
+                        </div>
+                       
+                      </div>
+                        <div class="col-6">
+                          <div class="col-12 mt-2">
+                            <label for="inputEmail4" class="form-label">Nama Bantuan</label>
+                            <input type="text" class="form-control" name="namabantuan" required>
+                          </div>
+                          <div class="col-12 mt-2">
+                            <label for="inputEmail4" class="form-label">Kuantitas</label>
+                            <input type="number" class="form-control" name="qtybantuan" required>
+                          </div>
+                          <div class="col-12 mt-2">
+                            <label for="inputEmail4" class="form-label">Waktu Penyaluran</label>
+                            <input type="date" class="form-control" name="waktubantuan" required>
+                          </div>
+                         
+                        </div>
+
+                     
+                     
                      
                     </div>
                     
                 </div>
-                <div class="col-12">
-                    <label for="inputEmail4" class="form-label">Pemeliharaan</label>
-                    <input type="text" class="form-control" name="pemeliharaan" required>
-                </div>
-              
-                <div class="col-12">
-                    <label for="inputEmail4" class="form-label">Alamat</label>
-                    <input type="text" class="form-control" name="lokasipoktan" required>
-                </div>
+               
+
+             
 
                 <div class="col-6">
                   <label class="form-label">List Daftar Petani</label>

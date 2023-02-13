@@ -148,17 +148,46 @@ class c_absenkegiatan extends Controller
         date_default_timezone_set("Asia/Jakarta");
         $t = date("Y-m");
         $filter = $request->filter;
-        if($filter <> "all"){
+        $awal = $request->awal;
+        $akhir = $request->akhir;
+        if($awal && $akhir == null){
+            $awal = date("Y-m-01");
+            $akhir =date("Y-m-31");
+        }
+
+        if($filter == null){
+            $data = ['kegiatan' => $this->kegiatan->filterWaktu($id, $awal, $akhir),
+            'fasdes'=>$this->fasdes->detailData($id),
+            'id'=>$id,
+            'filter'=>$filter,
+            'awal' => $awal,
+            'akhir'=>$akhir,
+           ];
+       
+        }
+        elseif($awal == null OR $akhir == null){
             $data = ['kegiatan' => $this->kegiatan->filterKegiatan($id, $filter),
             'fasdes'=>$this->fasdes->detailData($id),
             'id'=>$id,
             'filter'=>$filter,
+            'awal' => $awal,
+            'akhir'=>$akhir,
            ];
-       
-        }else{
+        }elseif($awal <> null AND $akhir <> null AND $filter <> null){
+            $data = ['kegiatan' => $this->kegiatan->filterKegiatanWaktu($id, $filter, $awal, $akhir),
+            'fasdes'=>$this->fasdes->detailData($id),
+            'id'=>$id,
+            'filter'=>$filter,
+            'awal' => $awal,
+            'akhir'=>$akhir,
+           ];
+        }
+        else{
             $data = ['kegiatan' => $this->kegiatan->absenKegiatan($id, $t),
                  'fasdes'=>$this->fasdes->detailData($id),
                  'id'=>$id,
+                 'awal' => $awal,
+                 'akhir'=>$akhir,
                   'filter'=>"Semua Kegiatan",
                 ];
         }

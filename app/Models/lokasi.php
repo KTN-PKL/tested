@@ -33,6 +33,7 @@ class lokasi extends Model
     }
     public function deleteData($id)
     {
-        return DB::table('lokasis')->where('id_lokasi', $id)->delete();
+        return DB::table('lokasis')->where('id_user', $id)->delete();
     }
+
 }

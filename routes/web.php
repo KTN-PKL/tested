@@ -28,6 +28,8 @@ Route::get('/fasdes', [App\Http\Controllers\c_login::class, 'index'])->name('log
 Route::get('/fasdes/dashboard', [App\Http\Controllers\c_login::class, 'dashboard'] )->name('fasdes.dashboard')->middleware('auth');
 Route::get('/fasdes/check', [App\Http\Controllers\c_login::class, 'check'])->name('login.check');
 Route::post('/fasdes', [App\Http\Controllers\c_login::class, 'logout'])->name('user.logout');
+Route::get('/fasdes/register', [App\Http\Controllers\c_login::class, 'register'])->name('fasdes.register');
+Route::post('/fasdes/postregister', [App\Http\Controllers\c_login::class, 'postRegister'])->name('fasdes.postregister');
 
 Route::get('/', [App\Http\Controllers\c_loginadmin::class, 'index'])->name('loginadmin');
 Route::get('/dashboard', [App\Http\Controllers\c_loginadmin::class, 'dashboard'] )->name('faskab.dashboard')->middleware('auth');
@@ -44,6 +46,7 @@ Route::controller(c_fasdes::class)->middleware('auth')->group(function () {
     Route::get('fasdess/edit/{id}', 'edit')->name('fasdes.edit');
     Route::get('fasdess/detail/{id}', 'detail')->name('fasdes.detail');
     Route::post('fasdess/update/{id}', 'update')->name('faskab.fasdes.update');
+    Route::post('fasdess/verifikasi/{id}', 'verifikasi')->name('faskab.fasdes.verifikasi');
     Route::get('fasdess/destroy/{id}', 'destroy')->name('faskab.fasdes.destroy');
 });
 
@@ -90,6 +93,7 @@ Route::controller(c_absenharian::class)->middleware('auth')->group(function () {
     Route::get('faskab/harian', 'index')->name('faskab.harian.index');
     Route::get('harian/absenharian/{id}', 'absen')->name('faskab.harian.absen');
     Route::get('harian/pulang/{id}', 'pulang')->name('faskab.harian.pulang');
+    Route::get('harian/detail/{id}', 'detail')->name('faskab.harian.detail');
     Route::get('harian/absen', 'create')->name('absen.harian');
     Route::post('harian/store', 'store')->name('absen.harian.store');
     Route::post('harian/storepulang', 'storepulang')->name('absen.harian.storepulang');

@@ -26,18 +26,7 @@ class c_absenharian extends Controller
     {
         date_default_timezone_set("Asia/Jakarta");
           $t = date("Y-m-d");
-          $d = date("D");
-          $dayList = array(
-            'Sun' => 'Minggu',
-            'Mon' => 'Senin',
-            'Tue' => 'Selasa',
-            'Wed' => 'Rabu',
-            'Thu' => 'Kamis',
-            'Fri' => 'Jumat',
-            'Sat' => 'Sabtu'
-            );
-        $cek = $dayList[$d].", ".$t;
-        $data = ['cek'=> $this->harian->cek(Auth::user()->id, $cek),];
+        $data = ['cek'=> $this->harian->cek(Auth::user()->id, $t),];
         return view('user.absen.harian', $data);
     }
 
@@ -69,6 +58,10 @@ class c_absenharian extends Controller
 	    $jarak = (round($distance,3)); 
         return $jarak;
     }
+    // public function detail($id)
+    // {
+
+    // }
     public function store(Request $request)
     {
         date_default_timezone_set("Asia/Jakarta");

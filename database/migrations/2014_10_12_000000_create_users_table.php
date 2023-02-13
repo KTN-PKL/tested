@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('alamat', 50)->nullable();
             $table->string('no_telp', 20)->nullable();
             $table->string('jeniskelamin', 20)->nullable();
+            $table->string('statusakun', 20)->nullable();
+            $table->string('profil', 20)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

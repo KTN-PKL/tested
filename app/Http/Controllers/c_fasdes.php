@@ -80,6 +80,7 @@ class c_fasdes extends Controller
             'statusakun'=> "verified",
         ];
         $this->fasdes->editData($id, $data);
+        return redirect()->route('faskab.fasdes.index')->with('success','Fasilitator Desa Berhasil diverifikasi');
     }
     public function destroy($id)
     {

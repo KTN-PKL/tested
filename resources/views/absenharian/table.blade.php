@@ -9,12 +9,15 @@ $bnow = date('m');
 $tnow = date('Y');
 $hari = cal_days_in_month($kalender, $bulan, $tahun);
 $t = date("Y-m-d");
+$d = date("D");
           $dayList = array(
             'Mon' => 'Senin',
             'Tue' => 'Selasa',
             'Wed' => 'Rabu',
             'Thu' => 'Kamis',
             'Fri' => 'Jumat',
+            'Sat' => 'Sabtu',
+            'Sun' => 'Minggu',
             );
 $j = 0;
 $dnow = date("j");
@@ -39,7 +42,7 @@ $dnow = date("j");
             $now = strtotime($i."-".$bulan."-".$tahun);
             $d = date("D", $now);
 @endphp
-@if ($d <> "Sat" && $d <> "Sun")
+{{-- @if ($d <> "Sat" && $d <> "Sun") --}}
 <tr>
     <td style="width:10%">{{$dayList[$d].", ".$i."-".$bulan."-".$tahun}}</td>
 @php
@@ -69,9 +72,21 @@ $dnow = date("j");
     <td>{{ $harian[$j]->jam }}</td>
     <td><img src="{{asset('/foto/'. $harian[$j]->fotofasdes)}}"  alt="Gambar" width="80px" height="80px"></td>
     <td><img src="{{asset('/foto/'. $harian[$j]->fotokegiatanharian)}}"  alt="Gambar" width="80px" height="80px"></td>
+    @if ($harian[$j]->jampulang == null)
+    @if ($harian[$j]->tgl == $dayList[$d].", ".$t )
+    <td>Belum Absen</td>
+    <td>Belum Absen</td>
+    <td>Belum Absen</td> 
+    @else
+    <td>Tidak Absen</td>
+    <td>Tidak Absen</td>
+    <td>Tidak Absen</td>
+    @endif
+    @else
     <td>{{ $harian[$j]->jampulang }}</td>
     <td><img src="{{asset('/foto/'. $harian[$j]->fotofasdespulang)}}"  alt="Gambar" width="80px" height="80px"></td>
     <td><img src="{{asset('/foto/'. $harian[$j]->fotokegiatanharianpulang)}}"  alt="Gambar" width="80px" height="80px"></td>
+    @endif
     <td>
         @php
         $dat = explode(":" , $harian[$j]->jam);
@@ -109,7 +124,7 @@ $dnow = date("j");
 @endif
 @endif
 </tr>  
-  @endif
+  {{-- @endif --}}
 @endfor
 </tbody>
 </table>

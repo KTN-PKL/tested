@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{asset('templateUser')}}/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="stylesheet" href="{{asset('templateUser')}}/login.css" />
     <title>Daftar</title>
 </head>
 <body class="css-selector">
-        <div class="container p-5">
+        <div class="container p-5 text-light">
             <div class="icon text-center p-5"><i  class="fa-solid fa-id-card-clip fa-5x text-light"></i></div>
             <h1>Pendaftaran Fasdes</h1>
             <form enctype="multipart/form-data" action="{{route('fasdes.postregister')}}" method="POST">

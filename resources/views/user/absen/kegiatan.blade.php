@@ -137,9 +137,10 @@
           <a href="#" class="btn btn-block btn-primary" onclick="fotopelatihan()"
             ><i class="fa-solid fa-camera"></i> Foto Pelatihan</a
           >
-       
         </div>
-        <div id="hasillpelatihan"></div>
+        
+        <!--hasil foto pelatihan-->
+        <div id="hasillpelatihan" class="overflow-hidden d-flex justify-content-center"></div>
         <input type="text" id="fotopelatihan" name="fotopelatihan" hidden>
         </div>
         {{-- end form pelatihan --}}

@@ -14,31 +14,43 @@
     <title>Fasilitator Desa</title>
   </head>
   <body onload="startTime()" class="d-flex flex-column min-vh-100">
-    <div class="title bg-primary text-light text-center p-3">
-      <h1 class="display-5">
-        <i class="fa-solid fa-id-card-clip text-light"></i> Selamat datang
-      </h1>
-      <p>{{Auth::user()->name}}</p>
-      <form method="POST" action="{{route('user.logout')}}">
-        @csrf
-      <button type="submit" class="btn btn-warning">
-        <i class="bi bi-box-arrow-right"></i>
-        <span>Sign Out</span>
-      </button>
-    </form>
+
+    <div id="carouselExampleSlidesOnly" class="carousel slide p-3" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{{asset('template')}}/assets/img/logoupland.png" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{{asset('template')}}/assets/img/logoupland.png" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{{asset('template')}}/assets/img/logoupland.png" class="d-block w-100" alt="...">
+      </div>
     </div>
+    </div>
+
+    <div class="title bg-prim text-light text-center p-3">
+      <h1 class="display-5 ">
+       Selamat Datang Fasilitator Desa
+      </h1>
+    
+     
+    </div>
+
+
+
     <div class="container p-1">
       <!-- main menu -->
       <div class="header pt-3">
         <div class="card shadow p-3" style="width: 100%">
           <div class="row">
             <div class="col-6">
-              <h1 class="display-6">Absensi Fasdes</h1>
+              <h1 class="display-6 fw-bold">{{Auth::user()->name}}</h1>
             </div>
             <div class="col-6 display-6 d-flex justify-content-end">
               <div
                 id="txt"
-                class="bg-info rounded-4 text-light w-100 text-center p-2"
+                class="bg-prim rounded-4 text-light w-100 text-center p-2"
               >
                 <div id="txt"></div>
               </div>
@@ -50,7 +62,7 @@
                 <div class="col mt-3">
                   <a href="{{url('harian/absen')}}" class="text-decoration-none">
                     <div
-                      class="item d-grid bg-primary rounded mx-auto text-center p-2 text-light shadow"
+                      class="item d-grid bg-prim rounded mx-auto text-center p-2 text-light shadow"
                     >
                       <i class="fa-regular fa-calendar fa-2x"></i
                       ><span>Absen harian</span>
@@ -60,7 +72,7 @@
                 <div class="col mt-3">
                   <a href="{{route('absenkegiatan.index')}}" class="text-decoration-none">
                     <div
-                      class="item d-grid bg-primary rounded mx-auto text-center p-2 text-light shadow"
+                      class="item d-grid bg-prim rounded mx-auto text-center p-2 text-light shadow"
                     >
                       <i class="fa-solid fa-camera-retro fa-2x"></i
                       ><span>Absen kegiatan</span>
@@ -71,7 +83,7 @@
                 <div class="col mt-3">
                   <a href="#" class="text-decoration-none">
                     <div
-                      class="item d-grid bg-info rounded mx-auto text-center p-2 text-light shadow"
+                      class="item d-grid bg-prim rounded mx-auto text-center p-2 text-light shadow"
                     >
                       <i class="fa-solid fa-book fa-2x"></i><span>History</span>
                     </div>
@@ -80,13 +92,23 @@
                 <div class="col mt-3">
                   <a href="#" class="text-decoration-none">
                     <div
-                      class="item d-grid bg-secondary rounded mx-auto text-center p-2 text-light shadow"
+                      class="item d-grid bg-prim rounded mx-auto text-center p-2 text-light shadow"
                     >
                       <i class="fa-solid fa-user fa-2x"></i>Profile
                     </div>
                   </a>
                 </div>
               </div>
+              
+              <div class="text-center mt-5">
+                  <form method="POST" action="{{route('user.logout')}}">
+                        @csrf
+                      <button type="submit" class="btn btn-warning">
+                      <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Sign Out</span>
+                      </button>
+                    </form>
+                </div>
             </div>
           </div>
         </div>
@@ -96,7 +118,7 @@
       <div class="container mt-3">
         <div class="row text-center">
           <div class="col-6">
-            <div class="card bg-primary text-light shadow p-2">
+            <div class="card shadow p-2">
               Absen Masuk
               <h5>Selesai</h5>
             </div>
@@ -115,14 +137,14 @@
         <h5>Rekap Absen</h5>
         <div class="row text-center">
           <div class="col-6">
-            <div class="card bg-info shadow mt-2 p-1">
+            <div class="card  shadow mt-2 p-1">
               Masuk
               <h5>0</h5>
             </div>
           </div>
 
           <div class="col-6">
-            <div class="card bg-warning shadow mt-2 p-1">
+            <div class="card shadow mt-2 p-1">
               Terlambat
               <h5>0</h5>
             </div>
@@ -156,7 +178,7 @@
     <!-- footer -->
     <footer class="text-light text-center text-lg-start mt-auto pt-5" >
       <!-- Copyright -->
-      <div class="text-center p-3 bg-primary" style="height:20vh;">
+      <div class="text-center p-3 bg-prim" style="height:20vh;">
         ©2023 Copyright:
         <a class="text-dark" href="#"></a>
       </div>

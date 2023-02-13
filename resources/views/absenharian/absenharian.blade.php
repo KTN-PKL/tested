@@ -40,9 +40,12 @@
               <input type="date" id="sampai" class="form-control" onchange="read()">
             </div>
           </div>
+          <div class="col col-md-2"></div>
+          <div class="col col-md-2">
+            <div id="excel"></div>
+          </div>
         </div>
       </div>
-     <div id="excel"></div>
       <br>
       <div id="table"></div>
     </div>
@@ -60,10 +63,13 @@
             });
             function read() {
                 var id = {{ $id }};
-                var bulan =  $("#bulan").val();
                 var dari = $("#dari").val();
                 var sampai = $("#sampai").val();
-                $("#excel").html(` <a target="_blank" class="btn btn-primary" href="{{ url('harian/excel?id=`+id+`&bulan=`+bulan+`') }}">EXPORT</a>`);
+                if (dari > sampai) {
+                  $("#sampai").val(dari);
+                  sampai = dari;
+                }
+                $("#excel").html(` <a target="_blank" class="btn btn-primary" href="{{ url('harian/excel?id=`+id+`&dari=`+dari+`&sampai=`+sampai+`') }}">EXPORT</a>`);
                 $.ajax({
                     type: "get",
                     url: "{{ url('harian/read') }}",
@@ -76,6 +82,9 @@
                     $("#table").html(data);
                     }
                 });
+                var myarr = dari.split("-");
+                var myvar = myarr[0] + "-" + myarr[1];
+                $("#bulan").val(myvar);
             }
             function jh()
             {

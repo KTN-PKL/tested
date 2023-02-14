@@ -99,7 +99,8 @@
                     <div
                       class="item d-grid bg-prim rounded mx-auto text-center p-2 text-light shadow"
                     >
-                      <i class="fa-solid fa-user fa-2x"></i>Profile
+                      <i class="fa-solid fa-user fa-2x"></i>
+                      <span>Profile</span>
                     </div>
                   </a>
                 </div>

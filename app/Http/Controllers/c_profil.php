@@ -64,7 +64,7 @@ class c_profil extends Controller
                 $referenceID = $this->poktan->countAllPoktan();
                 $id_poktan = $referenceID + 1;
                 $data = [
-                    'id_fasdes' => $id,
+                
                     'id_poktan' => $id_poktan,
                     'namapetani' => $request->{"namapetani".$i },
                 ];
@@ -75,7 +75,7 @@ class c_profil extends Controller
                 $referenceMAXID = $this->poktan->maxIdPoktan();
                 $id_poktan = $referenceMAXID + 1;
                 $data = [
-                    'id_fasdes' => $id,
+                
                     'id_poktan' => $id_poktan,
                     'namapetani' => $request->{"namapetani".$i },
                 ];

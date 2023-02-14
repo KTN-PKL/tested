@@ -55,8 +55,8 @@ class c_fasdes extends Controller
         $z = $this->poktan->fasdesData($id);
         $data = ['fasdes' => $this->fasdes->detailData($id),
                  'poktan' => $this->poktan->fasdesData($id),
-                'petani'=> $this->petani->jumlahPetaniFasdes($id),
-                'lokasi'=> $this->lokasi->detail3Data($id),];
+                 'petani'=> $this->petani->jumlahPetaniFasdes($id),
+                    'lokasi'=> $this->lokasi->detail3Data($id),];
         return view('fasdes.detail', $data);
     }
     public function update(Request $request, $id)

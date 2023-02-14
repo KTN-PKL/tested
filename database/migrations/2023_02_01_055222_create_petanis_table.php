@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('petanis', function (Blueprint $table) {
             $table->id('id_petani');
-            $table->string('id_fasdes');
             $table->string('id_poktan');
             $table->string('namapetani');
             $table->timestamps();

@@ -131,29 +131,17 @@ class c_poktan extends Controller
 
     public function update(Request $request, $id)
     {
-        $count1 = $this->petani->countPetani($id);
-        $id_poktan = $count1[0]->id_poktan;
+        $this->petani->deleteData($id);
         $count=count($count1);
         if($request->jf > $count){
-            // for ($i=0; $i < $request->jf; $i++) { 
-            //     $data = [
-            //         'id_fasdes' => $id,
-            //         'id_poktan' => $id_poktan,
-            //         'namapetani' => $request->{"namapetani".$i },
-            //     ];
-            //     $this->petani->addData($data);
-            // }
-    
-        }else{
-            for ($i=0; $i < $request->jf; $i++){
+            for ($i=0; $i < $request->jf; $i++) { 
                 $data = [
-                    'id_petani'=>$count1[$i]->id_petani,
-                    'namapetani'=>$request->{"namapetani".$i },
-                    ];
-                    
-                    $this->petani->editData($count1[$i]->id_petani, $data);
-            };    
+                    'id_poktan' => $id,
+                    'namapetani' => $request->{"namapetani".$i },
+                ];
+                $this->petani->addData($data);
             }
+        }
         $data = [
             'namapoktan' => $request->namapoktan,
             'luastanah' => $request->luastanah,
@@ -164,7 +152,6 @@ class c_poktan extends Controller
             'namabantuan' => $request->namabantuan,
             'qtybantuan' => $request->qtybantuan,
             'waktubantuan'=> $request->waktubantuan,
-            
     
         ];
         $this->poktan->editData($id, $data);

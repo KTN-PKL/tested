@@ -99,8 +99,8 @@
           </table>
           <div id="googleMap" style="width:100%;height:380px;"></div>
         </div>
-        <input type="text" id="lokasi1" value="{{ $harian->lokasiharian }}">
-        <input type="text" id="lokasi2" value="{{ $harian->lokasipulang }}">
+        <input type="text" id="lokasi1" value="{{ $harian->lokasiharian }}" hidden>
+        <input type="text" id="lokasi2" value="{{ $harian->lokasipulang }}" hidden>
        
     </div>
   </div>  
@@ -115,29 +115,21 @@
   $(document).ready(function() {
     absens()
 } );
-function initialize1() {
+function initialize() {
+  var absen = $("#absen").val();
+    if (absen == "masuk") {
   var lokkasi = $("#lokasi1").val();
-  var cek = parseFloat(lokkasi)
-  var propertiPeta = {
-    center:new google.maps.LatLng(cek),
-    zoom:15,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
-  };
-  
-  var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
-  
-  // membuat Marker
-  var marker=new google.maps.Marker({
-      position: new google.maps.LatLng(cek),
-      map: peta,
-      animation: google.maps.Animation.BOUNCE
-  });
-
-}
-function initialize2() {
+}else{
   var lokkasi = $("#lokasi2").val();
+}
+  var myarr = lokkasi.split(",");
+  var lat = parseFloat(myarr[0]);
+  var long = parseFloat(myarr[1]);
   var propertiPeta = {
-    center:new google.maps.LatLng(-6.9451822,106.876853),
+    center: {
+      lat: lat,
+      lng: long
+    },
     zoom:15,
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };
@@ -146,7 +138,10 @@ function initialize2() {
   
   // membuat Marker
   var marker=new google.maps.Marker({
-      position: new google.maps.LatLng(-6.9451822,106.876853),
+      position: {
+      lat: lat,
+      lng: long
+    },
       map: peta,
       animation: google.maps.Animation.BOUNCE
   });
@@ -163,13 +158,13 @@ function initialize2() {
       $("#fasdes").html(`<img id="imageResult" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotofasdes)}}" width="100%" height="100" alt="">`);
       $("#kegiatan").html(` <img id="imageResult2" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotokegiatanharian)}}" width="100%" height="100" alt="">`);
       $("#deskripsi").html("{{ $harian->deskripsi }}");
-      initialize1()
+      initialize()
     } else {
       $("#jam").html("{{ $harian->jampulang }}");
       $("#fasdes").html(`<img id="imageResult" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotofasdespulang)}}" width="100%" height="100" alt="">`);
       $("#kegiatan").html(` <img id="imageResult2" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotokegiatanharianpulang)}}" width="100%" height="100" alt="">`);
       $("#deskripsi").html("{{ $harian->deskripsipulang }}");
-      initialize2()
+      initialize()
     }
     
   }

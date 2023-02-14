@@ -94,7 +94,7 @@ class c_absenkegiatan extends Controller
                         'fotopelatihan' => $filename3,
                     ];
                     $this->kegiatan->addData($data);
-                    return redirect()->route('fasdes.dashboard')->with('msg', 'Absen Berhasil');
+                    return redirect()->route('fasdes.dashboard')->with(['success' => Auth::user()->name. " Telah Melakukan Absen Kegiatan. Selamat bekerja"]);
                 } 
         }else{
             date_default_timezone_set("Asia/Jakarta");

@@ -37,9 +37,13 @@
      
     </div>
 
-
-
+ 
     <div class="container p-1">
+     
+      @if(session()->has('success'))
+        <div id="login-alert" class="alert alert-success custom-alert col-md-12"><b>Warning!</b> {{session('error')}}</div>
+        @endif
+   
       <!-- main menu -->
       <div class="header pt-3">
         <div class="card shadow p-3" style="width: 100%">
@@ -57,6 +61,7 @@
             </div>
           </div>
           <div class="card-body">
+        
             <div class="container">
               <div class="row row-cols-2 row-cols-md-2 row-cols-lg-4">
                 <div class="col mt-3">
@@ -81,7 +86,7 @@
                 </div>
 
                 <div class="col mt-3">
-                  <a href="#" class="text-decoration-none">
+                  <a href="{{route('fasdes.history', Auth::user()->id )}}" class="text-decoration-none">
                     <div
                       class="item d-grid bg-prim rounded mx-auto text-center p-2 text-light shadow"
                     >
@@ -90,7 +95,7 @@
                   </a>
                 </div>
                 <div class="col mt-3">
-                  <a href="#" class="text-decoration-none">
+                  <a href="{{route('fasdes.profil')}}" class="text-decoration-none">
                     <div
                       class="item d-grid bg-prim rounded mx-auto text-center p-2 text-light shadow"
                     >
@@ -167,7 +172,7 @@
             </a>
           </div>
           <div class="col-4 p-3">
-            <a href="{{url('#')}}" class="text-decoration-none text-light fa-solid fa-user">
+            <a href="{{route('fasdes.profil')}}" class="text-decoration-none text-light fa-solid fa-user">
             </a>
           </div>
         </div>

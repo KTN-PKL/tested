@@ -48,7 +48,7 @@ class c_login extends Controller
             'profil'=>$filename,
         ];
         $this->fasdes->addData($data);
-        return redirect()->route('loginfasdes');
+        return redirect()->route('loginfasdes')->with('success', 'Pendaftaran selesai, silahkan tunggu verifikasi admin');
     
     }
 

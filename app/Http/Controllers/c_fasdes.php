@@ -38,6 +38,7 @@ class c_fasdes extends Controller
             'password' => Hash::make($request->password),
             'level'=> "fasdes",
             'statusakun'=>"verified",
+            'profil'=>"default.jpg",
         ];
         $this->fasdes->addData($data);
         $data = ['id_user' => $id,];

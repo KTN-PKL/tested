@@ -78,6 +78,10 @@
                   
                     </div>
                     <div class="mb-3">
+                      <label for="jumlahproduksi" class="form-label">Koordinat Lokasi</label>
+                      <input type="text" class="form-control" id="jumlahproduksi" name="lokasi" value="{{$lokasi->lokasi}}" >
+                    </div>
+                    <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="text" class="form-control" id="jumlahproduksi" name="email" value="{{$fasdes->email}}" readonly >
                       </div>

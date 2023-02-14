@@ -170,6 +170,13 @@ class c_profil extends Controller
             $this->fasdes->editData($id, $data);
         }
 
+        
+        $data = [
+            'id_desa' => $request->id_desa,
+            'lokasi'=> $request->lokasi,    
+        ];
+        $this->lokasi->editDataFasdes($id, $data);
+
 
         $data = [
             'name'=>$request->name,

@@ -31,6 +31,7 @@ Route::get('/fasdes/check', [App\Http\Controllers\c_login::class, 'check'])->nam
 Route::post('/fasdes', [App\Http\Controllers\c_login::class, 'logout'])->name('user.logout');
 Route::get('/fasdes/register', [App\Http\Controllers\c_login::class, 'register'])->name('fasdes.register');
 Route::post('/fasdes/postregister', [App\Http\Controllers\c_login::class, 'postRegister'])->name('fasdes.postregister');
+Route::get('register/desa/{id_kecamatan}', [App\Http\Controllers\c_login::class, 'desa'])->name('register.desa');
 
 Route::get('/', [App\Http\Controllers\c_loginadmin::class, 'index'])->name('loginadmin');
 Route::get('/dashboard', [App\Http\Controllers\c_loginadmin::class, 'dashboard'] )->name('faskab.dashboard')->middleware('auth');

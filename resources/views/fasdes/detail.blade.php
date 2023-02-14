@@ -37,6 +37,11 @@
                 @endif
                 </h6></td>
           </tr>
+          <tr>
+            <td valign="top"><h6>Desa</h6></td>
+            <td valign="top"><h6>:</h6></td>
+            <td valign="top"><h6 style="color: black">{{$lokasi->desa}}</h6></td>
+        </tr>
             <tr>
               <td valign="top"><h6>Email</h6></td>
               <td valign="top"><h6>:</h6></td>

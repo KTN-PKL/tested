@@ -5,12 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\fasdes;
 use App\Models\lokasi;
+use App\Models\desa;
+use App\Models\kecamatan;
 use Auth;
 use DB;
 use Illuminate\Support\Facades\Hash;
 
 class c_login extends Controller
 {
+    public function __construct()
+    {
+        $this->lokasi = new lokasi();
+        $this->desa = new desa();
+        $this->kecamatan = new kecamatan();
+        $this->fasdes = new fasdes();
+    }
+
     public function index()
     {
         return view('user.login');
@@ -18,16 +28,20 @@ class c_login extends Controller
 
     public function register()
     {
-        return view('user.absen.register');
+        $data = [
+            'desa' => $this->desa->allData(),
+            'kecamatan' => $this->kecamatan->allData(),
+        ];
+        return view('user.absen.register', $data);
     }
     public function postRegister(Request $request)
     {
-        $this->fasdes = new fasdes();
-        $this->lokasi = new lokasi();
+      
         $id = $this->fasdes->maxIdUser();
 
         $data =[
             'id_user'=>$id+1,
+            'id_desa'=> $request->id_desa,
             'lokasi'=> $request->lokasi,
         ];
         $this->lokasi->addData($data);
@@ -46,10 +60,20 @@ class c_login extends Controller
             'level'=> "fasdes",
             'statusakun'=>"noverified",
             'profil'=>$filename,
+            'jeniskelamin'=> $request->jeniskelamin,
+            'no_telp'=>$request->no_telp,
         ];
         $this->fasdes->addData($data);
         return redirect()->route('loginfasdes')->with('success', 'Pendaftaran selesai, silahkan tunggu verifikasi admin');
     
+    }
+
+    public function desa($id_kecamatan)
+    {
+        $data = [
+            'desa' => $this->desa->kecamatanData($id_kecamatan),
+        ];
+        return view('user.absen.desa', $data);
     }
 
    

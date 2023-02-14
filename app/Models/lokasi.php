@@ -35,5 +35,9 @@ class lokasi extends Model
     {
         return DB::table('lokasis')->where('id_user', $id)->delete();
     }
+    public function detail3Data($id)
+    {
+        return DB::table('lokasis')->join('users', 'lokasis.id_user', '=', 'users.id')->leftjoin('desas', 'lokasis.id_desa', '=', 'desas.id_desa')->where('id_user', $id)->first();
+    }
 
 }

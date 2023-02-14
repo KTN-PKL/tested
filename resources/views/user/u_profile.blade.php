@@ -17,7 +17,7 @@
 <body class="d-flex flex-column min-vh-100">
 
     <!-- header -->
-    <div class="title bg-primary text-light text-center p-3">
+    <div class="title bg-prim text-light text-center p-3">
         <h1 class="display-5"><i class="fa-solid fa-id-card-clip text-light"></i> Selamat datang</h1>
         <p>User</p>
     </div>
@@ -33,13 +33,18 @@
             </div>
             @endif
             <!-- foto profile -->
-            <div class="profile-pic mt-3 mb-3">
-                <img src="{{asset('/foto/profilfasdes/'. $fasdes->profil)}}" class="circular--portrait mx-auto d-block " alt="foto profile">
-            </div>
+               <!-- foto profile -->
+               <center>
+                <div class=" img-circle">
+                  <div style="position: relative; padding: 0; cursor: pointer;">
+                          <img class="img-circle" style="width: 140px; height: 140px;" src="{{asset('/foto/profilfasdes/'. $fasdes->profil)}}" alt="foto profile">                   
+                  </div>
+                </div>
+               </center>
             <!-- foto profile end -->
 
             {{-- title --}}
-        <div class="rounded label bg-primary mt-3">
+        <div class="rounded label bg-prim mt-3">
             <div class="row p-3">
                 <div class="col-9 p-2 d-flex justify-content-start">
                     <h4 class="text-light "><i class="fa-solid fa-users"></i> Profil</h4>
@@ -68,7 +73,7 @@
             <!-- card profile end -->
 
             {{-- <!-- title -->
-            <div class="rounded label bg-primary mt-3">
+            <div class="rounded label bg-prim mt-3">
                 <div class="row p-3">
                     <div class="col-8 p-2 d-flex justify-content-start">
                         <h4 class="text-light "><i class="fa-solid fa-users"></i> Profile Poktan</h4>
@@ -97,7 +102,7 @@
 
         {{-- Kelola Poktan --}}
         {{-- title --}}
-        <div class="rounded label bg-primary mt-3">
+        <div class="rounded label bg-prim mt-3">
             <div class="row p-3">
                 <div class="col-9 p-2 d-flex justify-content-start">
                     <h4 class="text-light "><i class="fa-solid fa-users"></i> Kelola Poktan</h4>
@@ -134,7 +139,7 @@
                 <center>
                     <div class="col-12">
                         <a href="{{route('fasdes.editpoktan', $data->id_poktan)}}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                        <a href="{{route('fasdes.detailpoktan', $data->id_poktan)}}" class="btn btn-primary"><i class="fa-solid fa-eye"></i> Lihat</a>
+                        <a href="{{route('fasdes.detailpoktan', $data->id_poktan)}}" class="btn btn-success"><i class="fa-solid fa-eye"></i> Lihat</a>
                         <a href="{{route('fasdes.destroypoktan', $data->id_poktan)}}" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Hapus</a>
                     </div>
                 </center>
@@ -173,7 +178,7 @@
     <!-- footer -->
     <footer class="text-light text-center text-lg-start mt-auto pt-5">
         <!-- Copyright -->
-        <div class="text-center p-3 bg-primary" style="height: 20vh">
+        <div class="text-center p-3 bg-prim" style="height: 20vh">
             ©2023 Copyright:
             <a class="text-dark" href="#"></a>
         </div>

@@ -13,7 +13,7 @@
     <title>Update</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <div class="title bg-primary text-light text-center p-3">
+    <div class="title bg-prim text-light text-center p-3">
     <h1 class="display-5"><i class="fa-solid fa-id-card-clip text-light"></i> Selamat datang</h1>
         <p>User</p>
     </div>
@@ -36,7 +36,7 @@
     <!-- foto profile end -->
         <!-- main menu -->
         <div class="history p-2 rou">
-        <div class="rounded label bg-primary">
+        <div class="rounded label bg-prim">
             <h4 class="text-light p-3"><i class="fa-solid fa-pencil"></i> Update Profile Fasdes</h4>
         </div>
         <!-- card -->
@@ -90,7 +90,7 @@
                         <input type="password" class="form-control" id="pasar" name="password">
                     </div>
                     <div class="d-grid ">
-                        <button type="submit" class="btn btn-block btn-primary"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
+                        <button type="submit" class="btn btn-block btn-success"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
                     </div>
                   </form>
             </div>
@@ -123,7 +123,7 @@
     <!-- footer -->
     <footer class="text-light text-center text-lg-start mt-auto pt-5">
         <!-- Copyright -->
-        <div class="text-center p-3 bg-primary" style="height: 20vh">
+        <div class="text-center p-3 bg-prim" style="height: 20vh">
             ©2023 Copyright:
         <a class="text-dark" href="#"></a>
         </div>

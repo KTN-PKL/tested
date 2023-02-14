@@ -128,6 +128,10 @@ Route::controller(c_profil::class)->middleware('auth')->group(function () {
     Route::post('fasdes/store/{id}', 'storePoktan')->name('fasdes.storepoktan');
     Route::get('fasdes/edit/{id}', 'viewEditpoktan')->name('fasdes.editpoktan');
     Route::get('fasdes/destroy/{id}', 'destroyPoktan')->name('fasdes.destroypoktan');
+    Route::get('fasdes/editprofil', 'viewEditprofil')->name('fasdes.editprofil');
+    Route::get('fasdes/profil/{id_kecamatan}', 'desa')->name('fasdes.profildesa');
+    Route::post('fasdes/updateprofil/{id}', 'updateProfil')->name('fasdes.updateprofil');
+
 
 
   

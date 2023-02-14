@@ -5,6 +5,8 @@ use App\Models\fasdes;
 use App\Models\poktan;
 use App\Models\lokasi;
 use App\Models\petani;
+use App\Models\kecamatan;
+use App\Models\desa;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -16,6 +18,8 @@ class c_profil extends Controller
         $this->poktan = new poktan();
         $this->lokasi = new lokasi();
         $this->petani = new petani();
+        $this->kecamatan = new kecamatan();
+        $this->desa = new desa();
     }
 
     // public function index($id)
@@ -32,6 +36,26 @@ class c_profil extends Controller
                 ];
         return view('user.u_profile', $data);
     }
+    public function viewEditprofil()
+    {
+        $id = Auth::user()->id;
+        $data = ['fasdes' => $this->fasdes->detailData($id),
+                 'lokasi'=> $this->lokasi->detail3Data($id),
+                 'kecamatan' => $this->kecamatan->allData(),
+                  ];
+        return view('user.edit_profil', $data);
+    }
+
+    public function desa($id_kecamatan)
+    {
+        $id = Auth::user()->id;
+        $data = [
+            'desa' => $this->desa->kecamatanData($id_kecamatan),
+            'lokasi' => $this->lokasi->detail3Data($id),
+        ];
+        return view('user.p_desa', $data);
+    }
+
     public function viewHistory($id)
     {
         $data = ['fasdes' => $this->fasdes->detailData($id),
@@ -128,6 +152,36 @@ class c_profil extends Controller
      
         return redirect()->route('fasdes.profil', $id)->with('success', 'Kelompok Petani Berhasil Dibuat');
     }
+     
+    public function updateProfil(Request $request, $id)
+    {
+        if($request->profil <> null){
+            $file = $request->profil;
+            $filename=$request->email.'.png';   
+            $file->move(public_path('foto/profilfasdes'),$filename);
+            $data['profil'] = $filename;
+            $this->fasdes->editData($id, $data);
+        }
+
+        if($request->password <> null){
+            $data = [
+                'password' => Hash::make($request->password),
+            ];
+            $this->fasdes->editData($id, $data);
+        }
+
+
+        $data = [
+            'name'=>$request->name,
+            'jeniskelamin'=>$request->jeniskelamin,
+            'no_telp'=>$request->no_telp,
+            'alamat'=>$request->alamat,
+            
+        ];
+        $this->fasdes->editData($id, $data);
+        return redirect()->route('fasdes.profil', $id)->with('success','Profil berhasil diupdate');
+    }
+
     public function destroyPoktan($id)
     {
         $data = $this->poktan->detailData($id);

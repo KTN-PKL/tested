@@ -27,22 +27,29 @@
     <div class="container p-1">
         <!-- main menu -->
         <div class="history p-2">
+            @if(session()->has('success'))
             <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
-                {{session()->get('success')}}
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
+              {{session()->get('success')}}
+            </div>
+            @endif
             <!-- foto profile -->
             <div class="profile-pic mt-3 mb-3">
                 <img src="{{asset('/foto/profilfasdes/'. $fasdes->profil)}}" class="circular--portrait mx-auto d-block " alt="foto profile">
             </div>
             <!-- foto profile end -->
 
-            <!-- title -->
-            <div class="rounded label bg-primary">
-                <h4 class="text-light p-3"><i class="fa-solid fa-user"></i> Profile</h4>
+            {{-- title --}}
+        <div class="rounded label bg-primary mt-3">
+            <div class="row p-3">
+                <div class="col-9 p-2 d-flex justify-content-start">
+                    <h4 class="text-light "><i class="fa-solid fa-users"></i> Profil</h4>
+                </div>
+                <div class="col-3 p-2 d-flex justify-content-center">
+                    <a href="{{route('fasdes.editprofil')}}" class="btn btn-warning"><i class="fa fa-pen-to-square"></i> Edit Profil</a>
+                </div>
             </div>
-           
-            <!-- title end -->
+        </div>
+        {{-- end title --}}
 
             <!-- card profile-->
             <div class="card shadow" style="width: 100%">

@@ -132,8 +132,8 @@ class c_poktan extends Controller
     public function update(Request $request, $id)
     {
         $this->petani->deleteData($id);
-        $count=count($count1);
-        if($request->jf > $count){
+      
+        
             for ($i=0; $i < $request->jf; $i++) { 
                 $data = [
                     'id_poktan' => $id,
@@ -141,7 +141,7 @@ class c_poktan extends Controller
                 ];
                 $this->petani->addData($data);
             }
-        }
+    
         $data = [
             'namapoktan' => $request->namapoktan,
             'luastanah' => $request->luastanah,

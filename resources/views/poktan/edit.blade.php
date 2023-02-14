@@ -67,15 +67,15 @@
                         <div class="col-6">
                           <div class="col-12 mt-2">
                             <label for="inputEmail4" class="form-label">Nama Bantuan</label>
-                            <input type="text" class="form-control" name="namabantuan" required>
+                            <input type="text" class="form-control" name="namabantuan" value="{{$poktan->namabantuan}}" required>
                           </div>
                           <div class="col-12 mt-2">
                             <label for="inputEmail4" class="form-label">Kuantitas</label>
-                            <input type="number" class="form-control" name="qtybantuan" required>
+                            <input type="number" class="form-control" name="qtybantuan" value="{{$poktan->qtybantuan}}" required>
                           </div>
                           <div class="col-12 mt-2">
                             <label for="inputEmail4" class="form-label">Waktu Penyaluran</label>
-                            <input type="date" class="form-control" name="waktubantuan" required>
+                            <input type="date" class="form-control" name="waktubantuan" value="{{$poktan->waktubantuan}}" required>
                           </div>
                          
                         </div>
@@ -85,8 +85,9 @@
                 </div>
   
 
-                <div class="col-6">
-                  @php
+                <div class="col-12">
+                  <div class="col-6">
+                    @php
                       $jf = count($petani);
                   @endphp
                   <input type="text" hidden value="{{ $jf }}" name="jf" id="jf">
@@ -124,12 +125,15 @@
                       @endif
                     @endif
                   @endforeach
-              </div>
+                   </div>
+                  </div>
+                </div>
+                  
                 
                 
-
+                </div>
                 
-                <div class="text-center">
+                <div class="text-center mt-4">
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
               </form><!-- Vertical Form -->

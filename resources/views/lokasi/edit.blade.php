@@ -87,7 +87,16 @@
 
 
 @endsection
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+{{-- Script tambahan --}}
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+</script>
 <script>
+   $(document).ready(function() {
+            desa()
+            });
   function desa() {
     var id_kecamatan = $("#id_kecamatan").val();
     var id = $("#id").val();
@@ -96,7 +105,9 @@
             });
         }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js"></script>
+
+
+
 <script>
 // variabel global marker
 var marker;

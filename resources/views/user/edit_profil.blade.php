@@ -18,19 +18,7 @@
         <p>User</p>
     </div>
     <div class="container p-1">
-       <!-- foto profile -->
-       <center>
-        <div class=" img-circle">
-          <div style="position: relative; padding: 0; cursor: pointer;">
-            <img onclick="ubahProfil()" class="img-circle" style="width: 140px; height: 140px;" src="{{asset('/foto/profilfasdes/'. $fasdes->profil)}}" >
-            <span onclick="ubahProfil()" style="position: absolute; color: red; ">Ubah
-            </span>
-            <form enctype="multipart/form-data" action="{{route('fasdes.updateprofil', Auth::user()->id)}}" method="POST">
-              @csrf
-            <input type="file" hidden name="profil" id="profil">
-          </div>
-        </div>
-       </center>
+     
        
       
     <!-- foto profile end -->
@@ -39,6 +27,19 @@
         <div class="rounded label bg-prim">
             <h4 class="text-light p-3"><i class="fa-solid fa-pencil"></i> Update Profile Fasdes</h4>
         </div>
+          <!-- foto profile -->
+       <center>
+        <div class=" img-circle">
+          <div style="position: relative; padding: 0; cursor: pointer;">
+            <img id="imageResult" onclick="ubahProfil()" class="img-circle" style="width: 140px; height: 140px;" src="{{asset('/foto/profilfasdes/'. $fasdes->profil)}}" >
+            <span onclick="ubahProfil()" style="position: absolute; color: red; ">Ubah
+            </span>
+            <form enctype="multipart/form-data" action="{{route('fasdes.updateprofil', Auth::user()->id)}}" method="POST">
+              @csrf
+            <input onchange="readURL(this);" type="file" hidden name="profil" id="profil">
+          </div>
+        </div>
+       </center>
         <!-- card -->
         <div class="card shadow" style="width: 100%">
             <div class="card-body">
@@ -159,6 +160,17 @@
         $("#idbaru").val(id_desa);
 
       }
+      function readURL(input) {
+      if (input.files && input.files[0]) {
+          var reader = new FileReader();
+  
+          reader.onload = function (e) {
+              $('#imageResult')
+                  .attr('src', e.target.result);
+          };
+          reader.readAsDataURL(input.files[0]);
+      }
+  }
      
      
     </script>

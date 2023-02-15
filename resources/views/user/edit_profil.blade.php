@@ -50,7 +50,12 @@
                       </div>
                     <div class="mb-3">
                       <label for="luastanah" class="form-label">Jenis Kelamin</label>
-                      <input type="text" class="form-control" id="luastanah" name="jeniskelamin" value="{{$fasdes->jeniskelamin}}" >
+                      {{-- <input type="text" class="form-control" id="luastanah" name="jeniskelamin" value="{{$fasdes->jeniskelamin}}" > --}}
+                      <select name="jeniskelamin" class="form-select" id="">
+                        <option value=" " disabled>-- Pilih Jenis Kelamin --</option>
+                        <option value="pria" @if($fasdes->jeniskelamin == "pria") selected @endif>Pria</option>
+                        <option value="wanita" @if($fasdes->jeniskelamin == "wanita") selected @endif>Wanita</option>
+                      </select>
                     </div>
                     <div class="mb-3">
                       <label for="luastanah" class="form-label">Alamat</label>

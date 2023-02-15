@@ -36,6 +36,18 @@
             </div>
           </div>
         </div>  
+        @if($data->jampulang <> null)
+        <div class="card shadow" style="width: 100%">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-8">
+                <p class="fw-bold">{{$data->tgl}} {{$data->jampulang}}</p>
+              </div>
+              <div class="col-4 fw-bold">Status : <span class="badge bg-danger">Absen Pulang</span></div>
+            </div>
+          </div>
+        </div> 
+        @endif 
        @endforeach
         <!-- card history end -->
       </div>

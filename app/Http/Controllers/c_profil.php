@@ -59,8 +59,9 @@ class c_profil extends Controller
         return view('user.p_desa', $data);
     }
 
-    public function viewHistory($id)
+    public function viewHistory()
     {
+        $id = Auth::user()->id;
         $data = ['fasdes' => $this->fasdes->detailData($id),
                 'absenharian'=> $this->absenharian->allData($id),
                   ];

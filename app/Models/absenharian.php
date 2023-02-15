@@ -15,13 +15,21 @@ class absenharian extends Model
     {
         return DB::table('absenharians')->where('id_user', $id)->whereBetween('tgl', [$tgl1, $tgl2])->get();
     }
-    public function allData($id, $bulan)
+    public function allData($id)
     {
-        return DB::table('absenharians')->where('id_user', $id)->where('tgl', 'like', '%'.$bulan.'%')->get();
+        return DB::table('absenharians')->where('id_user', $id)->get();
     }
     public function jumlahData($id, $tgl1, $tgl2)
     {
         return DB::table('absenharians')->where('id_user', $id)->whereBetween('tgl', [$tgl1, $tgl2])->count();
+    }
+    public function rh($data)
+    {
+        return DB::table('absenharians')->where('tgl', $data)->count();
+    }
+    public function rhp($data)
+    {
+        return DB::table('absenharians')->where('tgl', $data)->where('jampulang', 'like', '%%')->count();
     }
     public function addData($data)
     {

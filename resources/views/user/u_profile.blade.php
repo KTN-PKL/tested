@@ -64,7 +64,7 @@
                         <tr><td>Nama</td><td>: </td><td>{{$fasdes->name}}</td></tr>
                         <tr><td>Jenis Kelamin</td><td>: </td><td>{{$fasdes->jeniskelamin}}</td></tr>
                         <tr><td>Alamat</td><td>: </td><td>{{$fasdes->alamat}}</td></tr>
-                        {{-- <tr><td>Alamat</td><td>: </td><td>{{$lokasi->id_desa}}</td></tr> --}}
+                        <tr><td>Desa</td><td>: </td><td>{{$lokasi->desa}}</td></tr>
                         <tr><td>Email</td><td>: </td><td>{{$fasdes->email}}</td></tr>
                         <tr><td>No.hp</td><td>: </td><td>{{$fasdes->no_telp}}</td></tr>
                         </tbody>

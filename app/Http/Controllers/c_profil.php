@@ -33,6 +33,7 @@ class c_profil extends Controller
         $id = Auth::user()->id;
         $data = ['fasdes' => $this->fasdes->detailData($id),
                  'poktan' => $this->poktan->fasdesData($id),
+                 'lokasi' => $this->lokasi->detail3Data($id),
                 ];
         return view('user.u_profile', $data);
     }

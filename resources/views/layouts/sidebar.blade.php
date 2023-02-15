@@ -1,16 +1,16 @@
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
-      <a class="nav-link {{request()->is('dashboard') ? 'collapsed' : ''}}" href="{{url('dashboard')}}">
-        <i class="bi bi-grid"></i>
+      <a class="nav-link {{request()->is('dashboard') ? 'collapse' : ''}}" href="{{url('dashboard')}}">
+        <i style="color:rgb(0, 139, 42)" class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
     </li><!-- End Dashboard Nav -->
 
     <li class="nav-item">
-      <a class="nav-link {{request()->routeIs(['faskab.desa*','faskab.kecamatan*','faskab.lokasi*']) ? 'active' : ''}}" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-menu-button-wide"></i><span>Data Master</span><i class="bi bi-chevron-down ms-auto"></i>
+      <a class="nav-link {{request()->routeIs(['faskab.desa*','faskab.kecamatan*','faskab.lokasi*']) ? 'collapse' : ''}}" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+        <i style="color:rgb(0, 139, 42)" class="bi bi-menu-button-wide"></i><span>Data Master</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul id="components-nav" class="nav-content " data-bs-parent="#sidebar-nav">
+      <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
           <a href="{{url('kecamatan')}}">
             <i class="bi bi-circle"></i><span>Kecamatan</span>
@@ -30,8 +30,8 @@
     </li><!-- End Components Nav -->
 
     <li class="nav-item">
-      <a class="nav-link  {{request()->routeIs(['absensi.harian*','absensi.kegiatan*']) ? 'collapsed' : ''}}" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-gem"></i><span>Data Absensi</span><i class="bi bi-chevron-down ms-auto"></i>
+      <a class="nav-link  {{request()->routeIs(['absensi.harian*','absensi.kegiatan*']) ? 'collapse' : ''}}" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+        <i style="color:rgb(0, 139, 42)" class="bi bi-gem"></i><span>Data Absensi</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
@@ -49,15 +49,15 @@
 
   
     <li class="nav-item">
-      <a class="nav-link {{request()->routeIs('faskab.fasdes*') ? 'collapsed' : ''}}" href="{{route('faskab.fasdes.index')}}">
-        <i class="bi bi-grid"></i>
-        <span>Daftar Fasilitator Desa</span>
+      <a class="nav-link {{request()->routeIs('faskab.fasdes*') ? 'collapse' : ''}}" href="{{route('faskab.fasdes.index')}}">
+        <i style="color:rgb(0, 139, 42)" class="bi bi-grid"></i>
+        <span>Profil Fasilitator Desa</span>
       </a>
     </li><!-- End Fasdes Nav -->
     <li class="nav-item">
-      <a class="nav-link {{request()->routeIs('faskab.poktan*') ? 'collapsed' : ''}}" href="{{route('faskab.poktan.index')}}">
-        <i class="bi bi-grid"></i>
-        <span>Daftar Kelompok Petani</span>
+      <a class="nav-link {{request()->routeIs('faskab.poktan*') ? 'collapse' : ''}}" href="{{route('faskab.poktan.index')}}">
+        <i style="color:rgb(0, 139, 42)" class="bi bi-grid"></i>
+        <span>Profil Kelompok Petani</span>
       </a>
     </li><!-- End Fasdes Nav -->
 

@@ -388,7 +388,7 @@ h6 {
 .logo span {
   font-size: 26px;
   font-weight: 700;
-  color: #012970;
+  color: #2eca6a;
   font-family: "Nunito", sans-serif;
 }
 
@@ -690,7 +690,7 @@ h6 {
 .sidebar-nav .nav-heading {
   font-size: 11px;
   text-transform: uppercase;
-  color: #899bbd;
+  color: #0be500;
   font-weight: 600;
   margin: 10px 0 5px 15px;
 }
@@ -700,9 +700,9 @@ h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #4154f1;
+  color: rgb(0, 139, 42);
   transition: 0.3;
-  background: #ffffff;
+  background: #f6f9ff;
   padding: 10px 15px;
   border-radius: 4px;
 }
@@ -710,12 +710,12 @@ h6 {
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-right: 10px;
-  color: #4154f1;
+  color: rgb(0, 139, 42);
 }
 
 .sidebar-nav .nav-link.collapsed {
-  color: #012970;
-  background: rgb(231, 231, 240);
+  color: rgb(0, 139, 42);
+  background: #fff;
 }
 
 .sidebar-nav .nav-link.collapsed i {
@@ -723,7 +723,7 @@ h6 {
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #4154f1;
+  color: rgb(0, 139, 42);
   background: #f6f9ff;
 }
 
@@ -746,13 +746,12 @@ h6 {
   list-style: none;
 }
 
-
 .sidebar-nav .nav-content a {
   display: flex;
   align-items: center;
   font-size: 14px;
   font-weight: 600;
-  color: #012970;
+  color: rgb(0, 139, 42);;
   transition: 0.3;
   padding: 10px 0 10px 40px;
   transition: 0.3s;

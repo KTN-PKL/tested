@@ -7,6 +7,7 @@ use App\Models\lokasi;
 use App\Models\petani;
 use App\Models\kecamatan;
 use App\Models\desa;
+use App\Models\absenharian;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -20,6 +21,7 @@ class c_profil extends Controller
         $this->petani = new petani();
         $this->kecamatan = new kecamatan();
         $this->desa = new desa();
+        $this->absenharian = new absenharian();
     }
 
     // public function index($id)
@@ -60,6 +62,7 @@ class c_profil extends Controller
     public function viewHistory($id)
     {
         $data = ['fasdes' => $this->fasdes->detailData($id),
+                'absenharian'=> $this->absenharian->allData($id),
                   ];
         return view('user.history', $data);
     }

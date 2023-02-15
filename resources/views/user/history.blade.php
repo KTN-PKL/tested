@@ -25,16 +25,18 @@
           <h4 class="text-light p-3"><i class="fa-solid fa-book"></i> History</h4>
         </div>
         <!-- card -->
+        @foreach($absenharian as $data)
         <div class="card shadow" style="width: 100%">
           <div class="card-body">
             <div class="row">
-              <div class="col-4">
-                <p class="fw-bold">senin,20-02-2023 14:33</p>
+              <div class="col-8">
+                <p class="fw-bold">{{$data->tgl}} {{$data->jam}}</p>
               </div>
-              <div class="col-4 fw-bold">Status : <span class="badge bg-success"> masuk</span></div>
+              <div class="col-4 fw-bold">Status : <span class="badge bg-success">Absen Masuk</span></div>
             </div>
           </div>
-        </div>
+        </div>  
+       @endforeach
         <!-- card history end -->
       </div>
 

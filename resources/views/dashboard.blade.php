@@ -25,6 +25,7 @@
                     var h = data.h;
                     var v = data.v;
                     var p = data.p;
+                    var k = data.k;
                       new ApexCharts(document.querySelector("#reportsChart"), {
                         series: [{
                           name: 'Harian Masuk',
@@ -34,7 +35,7 @@
                           data: p
                         }, {
                           name: 'Kegiatan',
-                          data: [15, 11, 32, 18, 9, 24, 11]
+                          data: k
                         }],
                         chart: {
                           height: 350,

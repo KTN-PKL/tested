@@ -109,6 +109,7 @@ Route::controller(c_absenharian::class)->middleware('auth')->group(function () {
 });
 Route::controller(c_absenkegiatan::class)->middleware('auth')->group(function () {
     Route::get('absenkegiatan', 'index')->name('absenkegiatan.index');
+    Route::get('absen/absenkegiatan', 'index')->name('absen.absenkegiatan.index');
     Route::post('absenkegiatan/store', 'store')->name('absenkegiatan.store');
 
     // Admin
@@ -123,7 +124,7 @@ Route::controller(c_absenkegiatan::class)->middleware('auth')->group(function ()
 
 Route::controller(c_profil::class)->middleware('auth')->group(function () {
     Route::get('fasdes/profil', 'viewProfil')->name('fasdes.profil');
-    Route::get('fasdes/history/{id}', 'viewHistory')->name('fasdes.history');
+    Route::get('fasdes/history', 'viewHistory')->name('fasdes.history');
     Route::get('fasdes/detail/{id}', 'viewDetailpoktan')->name('fasdes.detailpoktan');
     Route::get('fasdes/create/{id}', 'viewCreatepoktan')->name('fasdes.createpoktan');
     Route::post('fasdes/store/{id}', 'storePoktan')->name('fasdes.storepoktan');

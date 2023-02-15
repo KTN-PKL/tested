@@ -47,11 +47,13 @@ class c_absenharian extends Controller
             $h[$i] = $har."-".$m."-".$tahun;
             $v[$i] = $this->harian->rh($tahun."-".$bulan."-".$har);
             $p[$i] = $this->harian->rhp($tahun."-".$bulan."-".$har);
+            $k[$i] = $this->kegiatan->rk($tahun."-".$bulan."-".$har);
         }
         $data = [
             'h' => $h,
             'v' => $v,
             'p' => $p,
+            'k' => $k,
         ];
         return($data);
     }

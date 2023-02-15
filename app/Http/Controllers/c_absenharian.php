@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\absenharian;
+use App\Models\absenkegiatan;
 use App\Models\fasdes;
 use App\Models\lokasi;
 use Auth;
@@ -15,6 +16,7 @@ class c_absenharian extends Controller
     {
         $this->lokasi = new lokasi();
         $this->harian = new absenharian();
+        $this->kegiatan = new absenkegiatan();
         $this->fasdes = new fasdes();
     }
     public function index()
@@ -39,12 +41,17 @@ class c_absenharian extends Controller
         $hari = cal_days_in_month($kalender, $bulan, $tahun);
         for ($i=0; $i < $hari; $i++) { 
             $har = $i+1;
+            if ($har < 10) {
+                $har = "0".$har;
+            }
             $h[$i] = $har."-".$m."-".$tahun;
-            $v[$i] = 5;
+            $v[$i] = $this->harian->rh($tahun."-".$bulan."-".$har);
+            $p[$i] = $this->harian->rhp($tahun."-".$bulan."-".$har);
         }
         $data = [
             'h' => $h,
             'v' => $v,
+            'p' => $p,
         ];
         return($data);
     }

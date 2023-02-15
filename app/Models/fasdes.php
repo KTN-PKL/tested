@@ -19,6 +19,11 @@ class fasdes extends Model
     {
         return DB::table('users')->where('level', "fasdes")->get();
     }
+    
+    public function verifData()
+    {
+        return DB::table('users')->where('level', "fasdes")->where('statusakun', "verified")->get();
+    }
     public function addData($data)
     {
         DB::table('users')->insert($data);

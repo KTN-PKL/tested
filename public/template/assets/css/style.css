@@ -63,7 +63,7 @@ h6 {
   font-size: 24px;
   margin-bottom: 0;
   font-weight: 600;
-  color: #012970;
+  color: #005205;
 }
 
 /*--------------------------------------------------------------
@@ -328,7 +328,7 @@ h6 {
 }
 
 .breadcrumb a {
-  color: #005205;
+  color: #00c10d;
   transition: 0.3s;
 }
 
@@ -337,11 +337,11 @@ h6 {
 }
 
 .breadcrumb .breadcrumb-item::before {
-  color: #005205;
+  color: #00fb11;
 }
 
 .breadcrumb .active {
-  color: #005205;
+  color: #038b0d;
   font-weight: 600;
 }
 
@@ -766,7 +766,7 @@ h6 {
 
 .sidebar-nav .nav-content a:hover,
 .sidebar-nav .nav-content a.active {
-  color: rgb(255, 255, 255);;
+  color: rgb(109, 246, 114);;
 }
 
 .sidebar-nav .nav-content a.active i {
@@ -1258,3 +1258,4 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+

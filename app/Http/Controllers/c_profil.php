@@ -8,6 +8,7 @@ use App\Models\petani;
 use App\Models\kecamatan;
 use App\Models\desa;
 use App\Models\absenharian;
+use App\Models\absenkegiatan;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -22,6 +23,7 @@ class c_profil extends Controller
         $this->kecamatan = new kecamatan();
         $this->desa = new desa();
         $this->absenharian = new absenharian();
+        $this->absenkegiatan = new absenkegiatan();
     }
 
     // public function index($id)
@@ -59,10 +61,12 @@ class c_profil extends Controller
         return view('user.p_desa', $data);
     }
 
-    public function viewHistory($id)
+    public function viewHistory()
     {
+        $id = Auth::user()->id;
         $data = ['fasdes' => $this->fasdes->detailData($id),
                 'absenharian'=> $this->absenharian->allData($id),
+                'absenkegiatan'=> $this->absenkegiatan->historyKegiatan($id),
                   ];
         return view('user.history', $data);
     }

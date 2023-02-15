@@ -16,7 +16,7 @@
   <body class="d-flex flex-column min-vh-100">
     <div class="title bg-primary text-light text-center p-3">
       <h1 class="display-5"><i class="fa-solid fa-id-card-clip text-light"></i> Selamat datang</h1>
-      <p>User</p>
+      <p>{{Auth::user()->name}}</p>
     </div>
     <div class="container p-1">
       <!-- main menu -->
@@ -31,11 +31,38 @@
             <div class="row">
               <div class="col-8">
                 <p class="fw-bold">{{$data->tgl}} {{$data->jam}}</p>
+                <p class="fw-bold">Absen Harian</p>
               </div>
               <div class="col-4 fw-bold">Status : <span class="badge bg-success">Absen Masuk</span></div>
             </div>
           </div>
         </div>  
+        @if($data->jampulang <> null)
+        <div class="card shadow" style="width: 100%">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-8">
+                <p class="fw-bold">{{$data->tgl}} {{$data->jampulang}}</p>
+                <p class="fw-bold">Absen Harian</p>
+              </div>
+              <div class="col-4 fw-bold">Status : <span class="badge bg-danger">Absen Pulang</span></div>
+            </div>
+          </div>
+        </div> 
+        @endif 
+       @endforeach
+       @foreach($absenkegiatan as $datas)
+       <div class="card shadow" style="width: 100%">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <p class="fw-bold">{{$datas->tanggalabsen}} {{$datas->waktuabsen}}</p>
+              <p class="fw-bold">Absen Harian</p>
+            </div>
+            <div class="col-4 fw-bold">Status : <span class="badge bg-danger">Absen Kegiatan</span></div>
+          </div>
+        </div>
+      </div> 
        @endforeach
         <!-- card history end -->
       </div>

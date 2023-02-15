@@ -31,7 +31,7 @@ class c_absenharian extends Controller
         $data = ['cek'=> $this->harian->cek(Auth::user()->id, $t),];
         return view('user.absen.harian', $data);
     }
-    public function chart()
+    public function chart(Request $request)
     {
         date_default_timezone_set("Asia/Jakarta");
         $kalender = CAL_GREGORIAN;

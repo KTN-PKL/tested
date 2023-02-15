@@ -25,9 +25,9 @@
                     </div>
                     <div class="col col-md-5">
                       <div class="input-group">
-                        <input type="date" id="dari" class="form-control" onchange="read()">
+                        <input type="date" id="dari" class="form-control" onchange="chart()">
                         <span class="input-group-text" id="basic-addon2">-</span>
-                        <input type="date" id="sampai" class="form-control" onchange="read()">
+                        <input type="date" id="sampai" class="form-control" onchange="chart()">
                       </div>
                     </div>
                   </div>
@@ -51,7 +51,8 @@
                   $("#sampai").val(dari);
                   sampai = dari;
                 }
-                      $.get("{{ url('harian/chart?dari="+dari+"&sampai="+sampai+"') }}/", {}, function(data, status) {
+                var isi = "dari="+dari+"&sampai="+sampai;
+                      $.get(`{{ url('harian/chart?`+isi+`') }}/`, {}, function(data, status) {
                     var h = data.h;
                     var v = data.v;
                     var p = data.p;
@@ -106,7 +107,7 @@
                       }).render();
                     });
                   }
-                  function jh()
+            function jh()
             {
               var bulan =  $("#bulan").val();
               $.get("{{ url('harian/hari') }}/"+bulan, {}, function(data, status) {
@@ -123,8 +124,16 @@
               <!-- Bar Chart -->
               <canvas id="barChart" style="max-height: 400px;"></canvas>
               <script>
+                
                 document.addEventListener("DOMContentLoaded", () => {
-                  $.get("{{ url('harian/chart') }}/", {}, function(data, status) {
+                  var dari = $("#dari").val();
+                var sampai = $("#sampai").val();
+                if (dari > sampai) {
+                  $("#sampai").val(dari);
+                  sampai = dari;
+                }
+                var isi = "dari="+dari+"&sampai="+sampai;
+                      $.get(`{{ url('harian/chart?`+isi+`') }}/`, {}, function(data, status) {
                     var h = data.h;
                     var v = data.v;
                     new Chart(document.querySelector('#barChart'), {

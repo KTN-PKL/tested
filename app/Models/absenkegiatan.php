@@ -30,6 +30,10 @@ class absenkegiatan extends Model
     {
         return DB::table('absenkegiatans')->where('id_absenkegiatan', $id)->delete();
     }
+    public function rk($data)
+    {
+        return DB::table('absenkegiatans')->where('tanggalabsen', $data)->count();
+    }
     public function lokasi($id)
     {
         return DB::table('absenkegiatans')->join('lokasis', 'absenkegiatans.id','=','lokasis.id_user')->where('id', $id);

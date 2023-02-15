@@ -60,4 +60,9 @@ class absenkegiatan extends Model
         return DB::table('absenkegiatans')->join('users', 'absenkegiatans.id_user','=','users.id')->where('id_absenkegiatan', $id)->first();
     }
 
+    public function historyKegiatan($id)
+    {
+        return DB::table('absenkegiatans')->where('id_user', $id)->get();
+    }
+
 }

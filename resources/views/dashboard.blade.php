@@ -9,19 +9,50 @@
       </ol>
     </nav>
   </div><!-- End Page Title -->
+  @php
+  date_default_timezone_set("Asia/Jakarta");
+  $d = date("Y-m");
+@endphp
               <div class="line">
                   <!-- Reports -->
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
+                  <br>
+                  <div class="row">
+                    <div class="col col-md-3">
+                      <input type="month" id="bulan" class="form-control"  value="{{ $d }}" onchange="jh()">
+                    </div>
+                    <div class="col col-md-5">
+                      <div class="input-group">
+                        <input type="date" id="dari" class="form-control" onchange="chart()">
+                        <span class="input-group-text" id="basic-addon2">-</span>
+                        <input type="date" id="sampai" class="form-control" onchange="chart()">
+                      </div>
+                    </div>
+                  </div>
                   <h5 class="card-title">Reports</h5>
 
                   <!-- Line Chart -->
                   <div id="reportsChart"></div>
-
+                  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+                  integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+                </script>
+                
+                <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
                   <script>
-                    document.addEventListener("DOMContentLoaded", () => {
-                      $.get("{{ url('harian/chart') }}/", {}, function(data, status) {
+                     $(document).ready(function() {
+            jh()
+            });
+                   function chart(){
+                    var dari = $("#dari").val();
+                var sampai = $("#sampai").val();
+                if (dari > sampai) {
+                  $("#sampai").val(dari);
+                  sampai = dari;
+                }
+                var isi = "dari="+dari+"&sampai="+sampai;
+                      $.get(`{{ url('harian/chart?`+isi+`') }}/`, {}, function(data, status) {
                     var h = data.h;
                     var v = data.v;
                     var p = data.p;
@@ -75,7 +106,16 @@
                         }
                       }).render();
                     });
-                  });
+                  }
+            function jh()
+            {
+              var bulan =  $("#bulan").val();
+              $.get("{{ url('harian/hari') }}/"+bulan, {}, function(data, status) {
+                $("#dari").val(bulan+"-01");
+                $("#sampai").val(bulan+"-"+data);
+                chart()
+              });    
+            }
                   </script>
                   <!-- End Line Chart -->
 
@@ -84,8 +124,16 @@
               <!-- Bar Chart -->
               <canvas id="barChart" style="max-height: 400px;"></canvas>
               <script>
+                
                 document.addEventListener("DOMContentLoaded", () => {
-                  $.get("{{ url('harian/chart') }}/", {}, function(data, status) {
+                  var dari = $("#dari").val();
+                var sampai = $("#sampai").val();
+                if (dari > sampai) {
+                  $("#sampai").val(dari);
+                  sampai = dari;
+                }
+                var isi = "dari="+dari+"&sampai="+sampai;
+                      $.get(`{{ url('harian/chart?`+isi+`') }}/`, {}, function(data, status) {
                     var h = data.h;
                     var v = data.v;
                     new Chart(document.querySelector('#barChart'), {

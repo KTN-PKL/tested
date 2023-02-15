@@ -323,12 +323,12 @@ h6 {
 .breadcrumb {
   font-size: 14px;
   font-family: "Nunito", sans-serif;
-  color: #899bbd;
+  color: #005205;
   font-weight: 600;
 }
 
 .breadcrumb a {
-  color: #899bbd;
+  color: #005205;
   transition: 0.3s;
 }
 
@@ -337,11 +337,11 @@ h6 {
 }
 
 .breadcrumb .breadcrumb-item::before {
-  color: #899bbd;
+  color: #005205;
 }
 
 .breadcrumb .active {
-  color: #51678f;
+  color: #005205;
   font-weight: 600;
 }
 
@@ -702,7 +702,7 @@ h6 {
   font-weight: 600;
   color: rgb(0, 139, 42);
   transition: 0.3;
-  background: #f6f9ff;
+  background: #ffffff;
   padding: 10px 15px;
   border-radius: 4px;
 }
@@ -715,7 +715,7 @@ h6 {
 
 .sidebar-nav .nav-link.collapsed {
   color: rgb(0, 139, 42);
-  background: #fff;
+  background: rgb(255, 255, 255);
 }
 
 .sidebar-nav .nav-link.collapsed i {
@@ -766,7 +766,7 @@ h6 {
 
 .sidebar-nav .nav-content a:hover,
 .sidebar-nav .nav-content a.active {
-  color: #4154f1;
+  color: rgb(255, 255, 255);;
 }
 
 .sidebar-nav .nav-content a.active i {

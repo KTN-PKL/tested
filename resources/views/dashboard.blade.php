@@ -13,7 +13,8 @@
               <canvas id="barChart" style="max-height: 400px;"></canvas>
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
-                  new Chart(document.querySelector('#barChart'), {
+                  $.get("{{ url('harian/chart') }}/", {}, function(data, status) {
+                    new Chart(document.querySelector('#barChart'), {
                     type: 'bar',
                     data: {
                       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'November', 'December'],
@@ -60,6 +61,7 @@
                       }
                     }
                   });
+                  });    
                 });
               </script>
               <!-- End Bar CHart -->

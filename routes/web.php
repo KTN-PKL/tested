@@ -104,6 +104,7 @@ Route::controller(c_absenharian::class)->middleware('auth')->group(function () {
     Route::post('harian/update/{id}', 'update')->name('faskab.harian.update');
     Route::get('harian/edit/{id}', 'edit')->name('faskab.harian.edit');
     Route::get('harian/hari/{id}', 'hari')->name('faskab.harian.hari');
+    Route::get('harian/chart', 'chart')->name('faskab.chartan.chart');
     Route::get('harian/excel', 'excel')->name('faskab.harian.excel');
 });
 Route::controller(c_absenkegiatan::class)->middleware('auth')->group(function () {

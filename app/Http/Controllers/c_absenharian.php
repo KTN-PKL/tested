@@ -29,6 +29,25 @@ class c_absenharian extends Controller
         $data = ['cek'=> $this->harian->cek(Auth::user()->id, $t),];
         return view('user.absen.harian', $data);
     }
+    public function chart()
+    {
+        date_default_timezone_set("Asia/Jakarta");
+        $kalender = CAL_GREGORIAN;
+        $bulan = date('m');
+        $tahun = date('Y');
+        $m = date('M');
+        $hari = cal_days_in_month($kalender, $bulan, $tahun);
+        for ($i=0; $i < $hari; $i++) { 
+            $har = $i+1;
+            $h[$i] = $har."-".$m."-".$tahun;
+            $v[$i] = 5;
+        }
+        $data = [
+            'h' => $h,
+            'v' => $v,
+        ];
+        return($data);
+    }
     public function detail($id)
     {
         $data = ['harian' => $this->harian->detailData($id),];

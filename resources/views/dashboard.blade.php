@@ -2,6 +2,7 @@
 @section('content')
 <div class="pagetitle">
     <h1>Dashboard</h1>
+    <div id="cek"></div>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Dashboard</a></li>
@@ -14,13 +15,15 @@
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
                   $.get("{{ url('harian/chart') }}/", {}, function(data, status) {
+                    var h = data.h;
+                    var v = data.v;
                     new Chart(document.querySelector('#barChart'), {
                     type: 'bar',
                     data: {
-                      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'November', 'December'],
+                      labels: h,
                       datasets: [{
                         label: 'Bar Chart',
-                        data: [65, 59, 80, 81, 56, 55, 40, 66, 66, 66, 66],
+                        data: v,
                         backgroundColor: [
                           'rgba(255, 99, 132, 0.2)',
                           'rgba(255, 159, 64, 0.2)',
@@ -34,7 +37,6 @@
                           'rgba(255, 205, 86, 0.2)',
                           'rgba(255, 205, 86, 0.2)',
                           'rgba(201, 203, 207, 0.2)'
-
                         ],
                         borderColor: [
                           'rgb(255, 99, 132)',

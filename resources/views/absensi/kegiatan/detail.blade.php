@@ -105,10 +105,11 @@
               <td style="width:30%" valign="top"><h6>Lokasi Kegiatan</h6></td>
            </tr>
           </table>
+          <input type="text" value="{{ $absen->lokasiabsen }}" id="lokasi" hidden>
           <div id="googleMap" style="width:100%;height:380px;"></div>
         </div>
     
-       
+      
     </div>
   </div>  
 
@@ -116,8 +117,15 @@
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script>
 function initialize() {
+  var lokkasi = $("#lokasi").val();
+  var myarr = lokkasi.split(",");
+  var lat = parseFloat(myarr[0]);
+  var long = parseFloat(myarr[1]);
   var propertiPeta = {
-    center:new google.maps.LatLng(-8.5830695,116.3202515),
+    center: {
+      lat: lat,
+      lng: long
+    },
     zoom:15,
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };
@@ -126,7 +134,10 @@ function initialize() {
   
   // membuat Marker
   var marker=new google.maps.Marker({
-      position: new google.maps.LatLng(-8.5830695,116.3202515),
+      position:  {
+      lat: lat,
+      lng: long
+    },
       map: peta,
       animation: google.maps.Animation.BOUNCE
   });

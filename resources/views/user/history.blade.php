@@ -57,7 +57,7 @@
           <div class="row">
             <div class="col-8">
               <p class="fw-bold">{{$datas->tanggalabsen}} {{$datas->waktuabsen}}</p>
-              <p class="fw-bold">Absen Harian</p>
+              <p class="fw-bold">Absen Kegiatan {{$datas->jeniskegiatan}}</p>
             </div>
             <div class="col-4 fw-bold">Status : <span class="badge bg-danger">Absen Kegiatan</span></div>
           </div>

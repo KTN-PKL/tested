@@ -56,7 +56,39 @@
                         <label for="pasarlokal" class="form-label">Lokasi Kelompok Petani</label>
                         <input type="text" class="form-control" id="lokasipoktan" name="lokasipoktan" value="{{old('lokasipoktan')}}" >
                     </div>
+
                     <div class="mb-3">
+                      <input type="text" name="jp" hidden value="1" id="jp">
+                                
+                      <div class="form-group">
+                        <label for="paket" class="form-label">Nama Bantuan</label>
+                          <input type="text" id="paket" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan0" data-parsley-required="true">
+                          <div class="row mt-2">
+                              <div class="col col-6 col-md-6">
+                                  <label for="weekday" class="form-label">Waktu Penyaluran</label>
+                                  <input type="date" id="weekday" class="form-control" placeholder="Waktu Penyaluran Bantuan" name="waktubantuan0" data-parsley-required="true">
+                              </div>
+                              <div class="col col-6 col-md-6">
+                                  <label for="weekend" class="form-label">Kuantitas Bantuan</label>
+                                  <input type="number" id="weekend" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan0" data-parsley-required="true">
+                              </div>
+                          </div>
+                          
+                          <center>
+                          <div id="mp1"></div>
+                          <div class="col-md-8 mt-2">
+                          <a id="tp1" class="btn btn-success" onclick="tambahpaket(1)">Tambah Bantuan</a>
+                          </div>
+                        </center>
+                        <div id="paket1"></div>
+                      </div>
+                    
+                    </div>
+                   
+
+
+
+                    {{-- <div class="mb-3">
                         <label for="pasarlokal" class="form-label">Nama Bantuan</label>
                         <input type="text" class="form-control" id="namabantuan" name="namabantuan" value="{{old('namabantuan')}}" >
                     </div>
@@ -67,7 +99,7 @@
                     <div class="mb-3">
                         <label for="pasarlokal" class="form-label">Waktu Penyaluran Bantuan</label>
                         <input type="date" class="form-control" id="waktubantuan" name="waktubantuan" value="{{old('waktubantuan')}}" >
-                    </div>
+                    </div> --}}
                     <div class="mb-3">
                         <label class="form-label">List Daftar Petani</label>
                         <input type="text" name="jumlah" value="1" id="jumlah" hidden>
@@ -156,6 +188,53 @@
           $("#jumlah").val(x)
           $("#plus"+ x).html(`  `);
         }
+
+        // script bantuan
+        function tambahpaket(id)
+    {
+      var x = id + 1;
+      document.getElementById("tp" + id).style.display="none";
+      document.getElementById("mp" + id).style.display="none";
+      $("#jp").val(x)
+      $("#paket" + id).html(`
+      <div class="form-group">
+      <label for="paket" class="form-label">Nama Bantuan</label>
+      <input type="text" id="paket" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan`+id+`" data-parsley-required="true">
+        <div class="row mt-2">
+          <div class="col col-6 col-md-6">
+            <label for="weekday" class="form-label">Waktu Penyaluran</label>
+            <input type="date" id="weekday" class="form-control" placeholder="Penyaluran Bantuan" name="waktubantuan`+id+`" data-parsley-required="true">
+            </div>
+              <div class="col col-6 col-md-6">
+              <label for="weekend" class="form-label">Kuantitas Bantuan</label>
+              <input type="number" id="weekend" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan`+id+`" data-parsley-required="true">
+              </div>
+            </div>
+              <div class="row">
+              <center>
+              
+              <div class="col-md-4 mt-2">
+              <a id="tp`+x+`" class="btn btn-success" onclick="tambahpaket(`+x+`)">Tambah Bantuan</a>
+              </div>
+              <div class="col-md-4">
+              <a id="mp`+x+`" class="btn btn-warning" onclick="minpaket(`+x+`)">Hapus Bantuan</a>
+              </div>
+            
+              </center>
+            </div>
+            <div id="paket`+x+`"></div>
+            </div>
+   
+      `);
+    }
+    function minpaket(id)
+    {
+      var x = id - 1;
+      document.getElementById("tp" + x).style.display="block";
+      document.getElementById("mp" + x).style.display="block";
+      $("#jp").val(x)
+      $("#paket"+ x).html(`  `);
+    }
       </script>
     </body>
 </html>

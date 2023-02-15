@@ -147,7 +147,7 @@
       
 
         <div class="button text-center d-grid pt-3">
-          <button type="submit" class="btn btn-block btn-success"
+          <button onclick="myFunction()" id="Btn" type="submit" class="btn btn-block btn-success"
             ><i class="fa-solid fa-floppy-disk"></i> Simpan</button
           >
         </div>
@@ -295,6 +295,12 @@
       var tracks = mediaStream.getTracks();
       tracks[0].stop();
       }
+
+      function myFunction() {
+    var x = document.getElementById("Btn");
+    $(x).click();
+    x.disabled = true;
+}
 
       
   </script>

@@ -62,7 +62,7 @@ class absenkegiatan extends Model
 
     public function historyKegiatan($id)
     {
-        return DB::table('absenkegiatans')->where('id_user', $id)->get();
+        return DB::table('absenkegiatans')->where('id_user', $id)->orderBy('tanggalabsen', 'DESC')->orderBy('waktuabsen','DESC')->get();
     }
 
 }

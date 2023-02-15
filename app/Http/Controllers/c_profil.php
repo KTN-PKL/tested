@@ -89,6 +89,7 @@ class c_profil extends Controller
     }
     public function storePoktan(Request $request ,$id)
     {
+        dd($request->all());
         $count = $this->poktan->maxIdPoktan();
         if($count == null)
         {
@@ -131,9 +132,6 @@ class c_profil extends Controller
                     'pemeliharaan' => $request->pemeliharaan,
                     'pasar' => $request->pasar,
                     'lokasipoktan' => $request->lokasipoktan,
-                    'namabantuan' => $request->namabantuan,
-                    'qtybantuan' => $request->qtybantuan,
-                    'waktubantuan'=> $request->waktubantuan,
                 ];
                 $this->poktan->addData($data);
         }else{
@@ -149,9 +147,6 @@ class c_profil extends Controller
                     'pemeliharaan' => $request->pemeliharaan,
                     'pasar' => $request->pasar,
                     'lokasipoktan' => $request->lokasipoktan,
-                    'namabantuan' => $request->namabantuan,
-                    'qtybantuan' => $request->qtybantuan,
-                    'waktubantuan'=> $request->waktubantuan,
                 ];
                 $this->poktan->addData($data);
       

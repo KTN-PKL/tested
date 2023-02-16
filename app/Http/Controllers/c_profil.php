@@ -72,6 +72,7 @@ class c_profil extends Controller
                 'absenharian'=> $this->absenharian->allData($id),
                 'absenkegiatan'=> $this->absenkegiatan->historyKegiatan($id),
                   ];
+           
         return view('user.history', $data);
     }
     public function viewDetailpoktan($id)

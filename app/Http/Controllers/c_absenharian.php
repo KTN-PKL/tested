@@ -231,13 +231,13 @@ class c_absenharian extends Controller
         return redirect()->route('faskab.harian.index');
         
     }
-    public function excel(Request $request)
+    public function export(Request $request)
     {
         $data = ['harian' => $this->harian->search($request->id, $request->dari, $request->sampai),
                  'jumlah' => $this->harian->jumlahData($request->id, $request->dari, $request->sampai),
                 'dari' => $request->dari,
                 'sampai' => $request->sampai];
-       return view('absenharian.exportexcel', $data);
+       return view('absenharian.export', $data);
     }
     public function destroy($id)
     {

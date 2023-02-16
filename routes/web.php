@@ -105,7 +105,7 @@ Route::controller(c_absenharian::class)->middleware('auth')->group(function () {
     Route::get('harian/edit/{id}', 'edit')->name('faskab.harian.edit');
     Route::get('harian/hari/{id}', 'hari')->name('faskab.harian.hari');
     Route::get('harian/chart', 'chart')->name('faskab.chartan.chart');
-    Route::get('harian/excel', 'excel')->name('faskab.harian.excel');
+    Route::get('harian/export', 'export')->name('faskab.harian.export');
 });
 Route::controller(c_absenkegiatan::class)->middleware('auth')->group(function () {
     Route::get('absenkegiatan', 'index')->name('absenkegiatan.index');
@@ -117,6 +117,8 @@ Route::controller(c_absenkegiatan::class)->middleware('auth')->group(function ()
     Route::get('kegiatan/kegiatan/{id}', 'kegiatan')->name('kegiatan.kegiatan');
     Route::get('kegiatan/detail/{id}', 'detailAbsen')->name('kegiatan.detail');
     Route::get('kegiatan/edit/{id}', 'editAbsen')->name('kegiatan.edit');
+    Route::get('kegiatan/export/{id}', 'export')->name('kegiatan.export');
+    Route::get('kegiatan/export2', 'export2')->name('kegiatan.export2');
     Route::post('kegiatan/update/{id}', 'updateAbsen')->name('kegiatan.updateAbsen');
     Route::post('kegiatan/kegiatan/filter/{id}', 'filterKegiatan')->name('kegiatan.kegiatan.filter');
 

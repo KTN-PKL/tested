@@ -25,8 +25,14 @@
         <div class="rounded label bg-primary">
           <h4 class="text-light p-3"><i class="fa-solid fa-book"></i> History</h4>
         </div>
+        <div class="col col-md-4">
+          <select class="form-select" id="absen" onchange="absen()">
+            <option value="Harian" selected>Harian</option>
+            <option value="Kegiatan">Kegiatan</option>
+            </select>
+        </div>
+        <br>
         <!-- card -->
-        <h6 style="color:grey">Absen Harian</h6>
         @forelse($absenharian as $data)
         <div class="card shadow" style="width: 100%">
           <div class="card-body">
@@ -72,8 +78,9 @@
       </div> 
        @endforelse
         <!-- card history end -->
+       
       </div>
-
+      <div id="histori"></div>
       <!-- end main menu -->
 
       <!-- nav bottom -->
@@ -107,5 +114,24 @@
     <!-- end footer -->
     <script src="{{asset('templateUser')}}/js/bootstrap.bundle.min.js"></script>
   </body>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      absen()
+    });
+    function absen()
+    {
+      var absen = $("#absen").val();
+      if (absen == "Harian") {
+        $.get("{{ url('fasdes/historiharian') }}/", {}, function(data, status) {
+                $("#histori").html(data);
+              });    
+      } else {
+        $.get("{{ url('fasdes/historikegiatan') }}/", {}, function(data, status) {
+                $("#histori").html(data);
+              });   
+      }
+    }
+  </script>
   @endauth
 </html>

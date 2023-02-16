@@ -9,6 +9,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     />
+    <link rel="stylesheet" href="{{ config('sweetalert.animatecss') }}">
     <link rel="stylesheet" href="{{asset('templateUser')}}/style.css" />
 
     <title>Fasilitator Desa</title>
@@ -107,7 +108,7 @@
               </div>
               
               <div class="text-center mt-5">
-                  <form method="POST" action="{{route('user.logout')}}">
+                  <form id="logoutform" method="POST" action="{{route('user.logout')}}">
                         @csrf
                       <button type="submit" class="btn btn-warning">
                       <i class="fa-solid fa-right-from-bracket"></i>
@@ -229,6 +230,32 @@
         } // add zero in front of numbers < 10
         return i;
       }
+    </script>
+
+    <script src="{{ $cdn ?? asset('vendor/sweetalert/sweetalert.all.js')  }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+    $(document).on("submit", "#logoutform", function(event) {
+    event.preventDefault();
+    let form = $(this);
+    
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'logout!'
+    }).then((willDelete) => {
+            if (willDelete) {
+              document.getElementById("logoutform").submit();
+            } else {
+                swal("Logout Canceled");
+            }
+        });
+    });
+
     </script>
   </body>
 </html>

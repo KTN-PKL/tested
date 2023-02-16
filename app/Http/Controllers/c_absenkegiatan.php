@@ -8,6 +8,7 @@ use App\Models\lokasi;
 use App\Models\fasdes;
 use Storage;
 use Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class c_absenkegiatan extends Controller
 {
@@ -21,6 +22,7 @@ class c_absenkegiatan extends Controller
 
     public function index()
     {
+     
         return view('user.absen.kegiatan');
     }
 
@@ -68,7 +70,8 @@ if ($request->pelatihan == "pelatihan") {
                 $jarak = (round($distance,3)); 
                 
                 if($jarak > 0.200 ){
-                    return redirect()->back()->with('msg', 'Jarak terlalu jauh');
+                    Alert::error('Absen Kegiatan Tidak Berhasil', 'Lokasi Anda Terlalu Jauh dari Kantor');
+                    return redirect()->back();
                 }
                 else{
                     date_default_timezone_set("Asia/Jakarta");
@@ -111,6 +114,7 @@ if ($request->pelatihan == "pelatihan") {
             ];
         
             $this->kegiatan->addData($data);
+            Alert::success('Absen Kegiatan Berhasil', 'Selamat Bekerja');
             return redirect()->route('fasdes.dashboard');
         }
        

@@ -42,7 +42,7 @@
         </div>
         <div class="col-4 p-3">
           <a
-            href="{{url('#')}}"
+            href="{{route('fasdes.profil')}}"
             class="text-decoration-none text-light fa-solid fa-user"
           ></a>
         </div>

@@ -13,6 +13,7 @@ use App\Models\pelatihan;
 use App\Models\bantuan;
 use Illuminate\Http\Request;
 use Auth;
+use Alert;
 
 class c_profil extends Controller
 {
@@ -243,8 +244,8 @@ class c_profil extends Controller
       
         }
       
-     
-        return redirect()->route('fasdes.profil', $id)->with('success', 'Kelompok Petani Berhasil Dibuat');
+        Alert::success('Berhasil', 'Poktan Berhasil Dibuat');
+        return redirect()->route('fasdes.profil', $id);
     }
      
     public function updateProfil(Request $request, $id)
@@ -280,7 +281,8 @@ class c_profil extends Controller
             
         ];
         $this->fasdes->editData($id, $data);
-        return redirect()->route('fasdes.profil', $id)->with('success','Profil berhasil diupdate');
+        Alert::success('Berhasil', 'Profil Fasdes Berhasil diupdate')->showConfirmButton('Confirm', '#056839');
+        return redirect()->route('fasdes.profil', $id);
     }
 
     public function destroyPoktan($id)
@@ -290,11 +292,57 @@ class c_profil extends Controller
         $this->petani->deleteData($id);
         $this->bantuan->deleteData($id);
         $this->pelatihan->deleteData($id);
+        Alert::success('Berhasil', 'Poktan Berhasil Dihapus');
         return redirect()->route('fasdes.profil', $data->id_user)->with('success', 'Kelompok Petani Berhasil Dihapus');
     }
 
     public function updatepoktan(Request $request, $id)
     {
-        dd($request->all());
+       
+        $this->petani->deleteData($id);
+        $this->bantuan->deleteData($id);
+        $this->pelatihan->deleteData($id);
+      
+        
+            for ($i=0; $i < $request->jf; $i++) { 
+                $data = [
+                    'id_poktan' => $id,
+                    'namapetani' => $request->{"namapetani".$i },
+                ];
+                $this->petani->addData($data);
+            }
+
+            for ($i=0; $i < $request->jp; $i++) { 
+                $data = [
+                    'id_poktan' => $id,
+                    'namabantuan' => $request->{"namabantuan".$i },
+                    'waktubantuan' => $request->{"waktubantuan".$i },
+                    'qtybantuan' => $request->{"qtybantuan".$i },
+                ];
+                $this->bantuan->addData($data);
+            }
+
+            for ($i=0; $i < $request->jz; $i++) { 
+                $data = [
+                    'id_poktan' => $id,
+                    'namapelatihan' => $request->{"namapelatihan".$i },
+                    'waktupelatihan' => $request->{"waktupelatihan".$i },
+                    'jumlahpeserta' => $request->{"jumlahpeserta".$i },
+                ];
+                $this->pelatihan->addData($data);
+            }
+    
+        $data = [
+            'namapoktan' => $request->namapoktan,
+            'luastanah' => $request->luastanah,
+            'jumlahproduksi' => $request->jumlahproduksi,
+            'pemeliharaan' => $request->pemeliharaan,
+            'pasar' => $request->pasar,
+            'lokasipoktan' => $request->lokasipoktan,    
+        ];
+        $this->poktan->editData($id, $data);
+        $data = $this->poktan->detailData($id);
+        Alert::success('Berhasil', 'Profil Poktan Berhasil Diupdate');
+        return redirect()->route('fasdes.profil', Auth::user()->id);
     }
 }

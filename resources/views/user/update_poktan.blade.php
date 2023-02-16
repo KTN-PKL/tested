@@ -61,7 +61,7 @@
                     @if ($a <> 0)
                     <div id="paket{{ $a }}">
                     @endif
-                    <div class="form-group">
+               
                       <label for="paket" class="form-label">Paket Wisata</label>
                         <input type="text" id="paket" class="form-control" placeholder="Masukkan Nama Paket" name="paket{{ $a }}" data-parsley-required="true" value="{{ $pkt->namabantuan }}">
                         <div class="row mt-2">
@@ -74,8 +74,6 @@
                                 <input type="text" id="weekend" class="form-control" placeholder="Harga Weekend" name="harga_wend{{ $a }}" data-parsley-required="true" value="{{ $pkt->qtybantuan}}">
                             </div>
                         </div>
-                        
-            
                               @php
                               $a = $a + 1;
                              @endphp
@@ -106,7 +104,6 @@
                               @endif  
                               @endforeach
                             </div>
-                            </div>
                     </div>
                    
                     <div class="d-grid ">
@@ -121,6 +118,7 @@
     <!-- end main menu -->
 
     <!-- nav bottom -->
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <div class="botnav fixed-bottom bg-dark text-light text-center">
         <div class="row">
             <div class="col-4 p-3">

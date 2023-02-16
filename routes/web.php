@@ -127,6 +127,8 @@ Route::controller(c_absenkegiatan::class)->middleware('auth')->group(function ()
 Route::controller(c_profil::class)->middleware('auth')->group(function () {
     Route::get('fasdes/profil', 'viewProfil')->name('fasdes.profil');
     Route::get('fasdes/history', 'viewHistory')->name('fasdes.history');
+    Route::get('fasdes/historiharian', 'historiharian')->name('fasdes.historiharian');
+    Route::get('fasdes/historikegiatan', 'historikegiatan')->name('fasdes.historikegiatan');
     Route::get('fasdes/detail/{id}', 'viewDetailpoktan')->name('fasdes.detailpoktan');
     Route::get('fasdes/create/{id}', 'viewCreatepoktan')->name('fasdes.createpoktan');
     Route::post('fasdes/store/{id}', 'storePoktan')->name('fasdes.storepoktan');
@@ -135,7 +137,7 @@ Route::controller(c_profil::class)->middleware('auth')->group(function () {
     Route::get('fasdes/editprofil', 'viewEditprofil')->name('fasdes.editprofil');
     Route::get('fasdes/profil/{id_kecamatan}', 'desa')->name('fasdes.profildesa');
     Route::post('fasdes/updateprofil/{id}', 'updateProfil')->name('fasdes.updateprofil');
-
+    Route::post('fasdes/updatepoktan/{id}', 'updatepoktan')->name('fasdes.updatepoktan');
 
 
   

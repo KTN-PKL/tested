@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use Alert;
 use App\Models\fasdes;
 use App\Models\lokasi;
 use App\Models\desa;
@@ -66,6 +66,7 @@ class c_login extends Controller
             'no_telp'=>$request->no_telp,
         ];
         $this->fasdes->addData($data);
+        Alert::success('Pendaftaran Berhasil', 'Pendaftaran akun anda berhasil tunggu verifikasi dari Admin')->showConfirmButton('Confirm', '#056839');
         return redirect()->route('loginfasdes')->with('success', 'Pendaftaran selesai, silahkan tunggu verifikasi admin');
     
     }
@@ -98,6 +99,7 @@ class c_login extends Controller
         }
         else
         {
+            Alert::error('Login Gagal', 'Email atau password salah Silahkan coba kembali')->showConfirmButton('Confirm', '#056839');
             session()->flash('error', 'Email atau password salah');
             return redirect()->back();
         }
@@ -105,12 +107,13 @@ class c_login extends Controller
 
     public function logout(Request $request)
     {
+        
         Auth::logout();
  
         $request->session()->invalidate();
      
         $request->session()->regenerateToken();
-     
+
         return redirect()->route('user.logout');
     }
 

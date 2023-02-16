@@ -47,41 +47,6 @@
             <td valign="top"><h6>:</h6></td>
             <td valign="top"><h6 style="color: black">{{$poktan->lokasipoktan}}</h6></td>
           </tr>
-          <tr>
-            <td valign="top"><h6>Nama Bantuan</h6></td>
-            <td valign="top"><h6>:</h6></td>
-            <td valign="top"><h6 style="color: black">
-              @if($poktan->namabantuan <> null)
-              {{$poktan->namabantuan}}
-              @else
-              Nama Bantuan Belum Diinputkan.
-              @endif
-            </h6></td>
-          </tr>
-          <tr>
-            <td valign="top"><h6>Kuantitas Bantuan</h6></td>
-            <td valign="top"><h6>:</h6></td>
-            <td valign="top"><h6 style="color: black">
-              @if($poktan->qtybantuan <> null)
-              {{$poktan->qtybantuan}}
-              @else
-              Kuantitas Bantuan Belum Diinputkan.
-              @endif
-            </h6></td>
-         
-          </tr>
-          <tr>
-            <td valign="top"><h6>Waktu Penyaluran</h6></td>
-            <td valign="top"><h6>:</h6></td>
-            <td valign="top"><h6 style="color: black"> 
-              @if($poktan->waktubantuan <> null)
-              {{$poktan->waktubantuan}}
-              @else
-              Waktu Penyaluran Bantuan Belum Diinputkan.
-              @endif
-            </h6></td>
-        
-          </tr>
       
       </table>
 
@@ -106,6 +71,58 @@
               @endforeach
             </table>
       </div>
+      <div class="poktan mt-4" >
+        <h5><u>Data Bantuan</u></h5>
+            <table style="width:100%" class="table table-sm table-primary table-bordered">
+              <tr>
+                <th>No</th>
+                <th>Nama Bantuan</th>
+                <th>Waktu Penyaluran</th>
+                <th>Kuantitas Bantuan</th>
+              </tr>
+              @php
+              $i=0;
+              @endphp
+              @foreach($bantuan as $data)
+              @php
+                  $i=$i+1;
+              @endphp
+              <tr>
+                <td>{{$i}}</td>
+                <td>{{$data->namabantuan}}</td>
+                <td>{{$data->waktubantuan}}</td>
+                <td>{{$data->qtybantuan}}</td>
+              </tr>
+              @endforeach
+            </table>
+      </div>
+
+      <div class="poktan mt-4" >
+        <h5><u>Data Pelatihan</u></h5>
+            <table style="width:100%" class="table table-sm table-primary table-bordered">
+              <tr>
+                <th>No</th>
+                <th>Nama Pelatihan</th>
+                <th>Waktu Pelatihan</th>
+                <th>Jumlah Peserta</th>
+              </tr>
+              @php
+              $i=0;
+              @endphp
+              @foreach($pelatihan as $data)
+              @php
+                  $i=$i+1;
+              @endphp
+              <tr>
+                <td>{{$i}}</td>
+                <td>{{$data->namapelatihan}}</td>
+                <td>{{$data->waktupelatihan}}</td>
+                <td>{{$data->jumlahpeserta}}</td>
+              </tr>
+              @endforeach
+            </table>
+      </div>
+
 
 
 @endsection

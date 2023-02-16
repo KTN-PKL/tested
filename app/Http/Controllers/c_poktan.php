@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\fasdes;
 use App\Models\poktan;
 use App\Models\petani;
+use App\Models\pelatihan;
+use App\Models\bantuan;
 
 class c_poktan extends Controller
 {
@@ -14,6 +16,8 @@ class c_poktan extends Controller
         $this->poktan = new poktan();
         $this->fasdes = new fasdes();
         $this->petani = new petani();
+        $this->pelatihan = new pelatihan();
+        $this->bantuan = new bantuan();
     }
     public function index()
     {
@@ -68,6 +72,62 @@ class c_poktan extends Controller
       
         }
 
+        if($count == null)
+        {
+            for ($i=0; $i < $request->jp; $i++) { 
+                $referenceID = $this->poktan->countAllPoktan();
+                $id_poktan = $referenceID + 1;
+                $data = [
+                    'id_poktan' => $id_poktan,
+                    'namabantuan' => $request->{"namabantuan".$i },
+                    'waktubantuan' => $request->{"waktubantuan".$i },
+                    'qtybantuan' => $request->{"qtybantuan".$i },
+                ];
+                $this->bantuan->addData($data);
+            }
+        }else{
+            for ($i=0; $i < $request->jp; $i++) { 
+                $referenceMAXID = $this->poktan->maxIdPoktan();
+                $id_poktan = $referenceMAXID + 1;
+                $data = [
+                    'id_poktan' => $id_poktan,
+                    'namabantuan' => $request->{"namabantuan".$i },
+                    'waktubantuan' => $request->{"waktubantuan".$i },
+                    'qtybantuan' => $request->{"qtybantuan".$i },
+                ];
+                $this->bantuan->addData($data);
+            }
+      
+        }
+
+        if($count == null)
+        {
+            for ($i=0; $i < $request->jl; $i++) { 
+                $referenceID = $this->poktan->countAllPoktan();
+                $id_poktan = $referenceID + 1;
+                $data = [
+                    'id_poktan' => $id_poktan,
+                    'namapelatihan' => $request->{"namapelatihan".$i },
+                    'waktupelatihan' => $request->{"waktupelatihan".$i },
+                    'jumlahpeserta' => $request->{"jumlahpeserta".$i },
+                ];
+                $this->pelatihan->addData($data);
+            }
+        }else{
+            for ($i=0; $i < $request->jl; $i++) { 
+                $referenceMAXID = $this->poktan->maxIdPoktan();
+                $id_poktan = $referenceMAXID + 1;
+                $data = [
+                    'id_poktan' => $id_poktan,
+                    'namapelatihan' => $request->{"namapelatihan".$i },
+                    'waktupelatihan' => $request->{"waktupelatihan".$i },
+                    'jumlahpeserta' => $request->{"jumlahpeserta".$i },
+                ];
+                $this->pelatihan->addData($data);
+            }
+      
+        }
+
         $count = $this->poktan->maxIdPoktan();
         if($count == null)
         {
@@ -117,6 +177,8 @@ class c_poktan extends Controller
     {
         $data = ['poktan' => $this->poktan->detailData($id),
         'petani'=>$this->petani->countPetani($id),
+        'pelatihan' => $this->pelatihan->detailData($id),
+        'bantuan' => $this->bantuan->detailData($id),
                               
     ];
         return view('poktan.edit', $data);
@@ -125,7 +187,9 @@ class c_poktan extends Controller
     public function detail($id)
     {
         $data = ['poktan' => $this->poktan->detailData($id),
-        'petani' => $this->petani->countPetani($id),];
+        'petani' => $this->petani->countPetani($id),
+        'pelatihan' => $this->pelatihan->detailData($id),
+        'bantuan' => $this->bantuan->detailData($id),];
         return view('poktan.detail', $data);
     }
 

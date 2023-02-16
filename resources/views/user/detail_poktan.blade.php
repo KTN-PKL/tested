@@ -27,7 +27,7 @@
         <div class="card shadow" style="width: 100%">
             <div class="card-body">
               <div class="row">
-                <div class="col-10">
+                <div class="col-12">
                     <table border="0">
                         <tbody>
                             <tr><td>Nama Poktan</td><td>: </td><td>{{$poktan->namapoktan}}</td></tr>
@@ -36,30 +36,77 @@
                             <tr><td>Pemelihara</td><td>: </td><td>{{$poktan->pemeliharaan}}</td></tr>
                             <tr><td>Pasar Lokal</td><td>: </td><td>{{$poktan->pasar}}</td></tr>
                             <tr><td>Lokasi Poktan</td><td>: </td><td>{{$poktan->lokasipoktan}}</td></tr>
-                            <tr><td>Nama Bantuan</td><td>: </td><td>{{$poktan->namabantuan}}</td></tr>
-                            <tr><td>Kuantitas Bantuan</td><td>: </td><td>{{$poktan->qtybantuan}}</td></tr>
-                            <tr><td>Waktu Penyaluran</td><td>: </td><td>{{$poktan->waktubantuan}}</td></tr>
                             <tr><td>List Data Petani</td><td>: </td></tr>
+                            <table style="width:100%" class="table table-sm table-primary table-bordered">
+                              <tr>
+                                <th>No</th>
+                                <th>Nama Petani</th>
+                              </tr>
+                              @php
+                              $i=0;
+                              @endphp
+                              @foreach($petani as $data)
+                              @php
+                                  $i=$i+1;
+                              @endphp
+                              <tr>
+                                <td>{{$i}}</td>
+                                <td>{{$data->namapetani}}</td>
+                              </tr>
+                              @endforeach
+                            </table>
+                            <tr><td>List Data Bantuan</td><td>: </td></tr>
+                            <table style="width:100%" class="table table-sm table-primary table-bordered">
+                              <tr>
+                                <th>No</th>
+                                <th>Nama Bantuan</th>
+                                <th>Waktu Penyaluran</th>
+                                <th>Kuantitas Penyaluran</th>
+                              </tr>
+                              @php
+                              $i=0;
+                              @endphp
+                              @foreach($bantuan as $data)
+                              @php
+                                  $i=$i+1;
+                              @endphp
+                              <tr>
+                                <td>{{$i}}</td>
+                                <td>{{$data->namabantuan}}</td>
+                                <td>{{$data->waktubantuan}}</td>
+                                <td>{{$data->qtybantuan}}</td>
+                              </tr>
+                              @endforeach
+                            </table>
+                            <tr><td>List Data Pelatihan</td><td>: </td></tr>
+                            <table style="width:100%" class="table table-sm table-primary table-bordered">
+                              <tr>
+                                <th>No</th>
+                                <th>Nama Pelatihan</th>
+                                <th>Waktu Pelatihan</th>
+                                <th>Jumlah Peserta</th>
+                              </tr>
+                              @php
+                              $i=0;
+                              @endphp
+                              @foreach($pelatihan as $data)
+                              @php
+                                  $i=$i+1;
+                              @endphp
+                              <tr>
+                                <td>{{$i}}</td>
+                                <td>{{$data->namapelatihan}}</td>
+                                <td>{{$data->waktupelatihan}}</td>
+                                <td>{{$data->jumlahpeserta}}</td>
+                              </tr>
+                              @endforeach
+                            </table>
                         </tbody>
                     </table>
-                    <table style="width:30%" class="table table-sm table-primary table-bordered">
-                      <tr>
-                        <th>No</th>
-                        <th>Nama Petani</th>
-                      </tr>
-                      @php
-                      $i=0;
-                      @endphp
-                      @foreach($petani as $data)
-                      @php
-                          $i=$i+1;
-                      @endphp
-                      <tr>
-                        <td>{{$i}}</td>
-                        <td>{{$data->namapetani}}</td>
-                      </tr>
-                      @endforeach
-                    </table>
+                
+
+                   
+                   
                 </div>
             </div>
         </div>

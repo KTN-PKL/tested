@@ -292,4 +292,9 @@ class c_profil extends Controller
         $this->pelatihan->deleteData($id);
         return redirect()->route('fasdes.profil', $data->id_user)->with('success', 'Kelompok Petani Berhasil Dihapus');
     }
+
+    public function updatepoktan(Request $request, $id)
+    {
+        dd($request->all());
+    }
 }

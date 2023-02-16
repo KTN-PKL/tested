@@ -34,10 +34,9 @@ class c_absenkegiatan extends Controller
         file_put_contents($file, $data);
         return $filename;
     }
-
-
     public function store(Request $request)
     {
+
         $id = Auth::user()->id;
         $name = "fasdes_".$request->tanggalabsen.".png";
         $name1 = "kegiatan_".$request->tanggalabsen.".png";
@@ -45,15 +44,11 @@ class c_absenkegiatan extends Controller
         $filename = $this->simpangambar($request->selfie, $name);
         $filename2 = $this->simpangambar($request->fotokegiatan, $name1);
         $filename3 = $this->simpangambar($request->fotopelatihan, $name2);
-
-       
-
+if ($request->pelatihan == "pelatihan") {
+    
+}
         if($request->jeniskegiatan == "kantor"){
-           
-
-         
             // radius lokasi
-
              $lokasi = $this->lokasi->detailData2(Auth::user()->id);
              $longi1 = $lokasi->lokasi;
              $longi = $request->lokasiabsen;
@@ -209,7 +204,67 @@ class c_absenkegiatan extends Controller
         return view('absensi.kegiatan.edit', $data);
     }
 
+    public function export($id)
+    {
+        date_default_timezone_set("Asia/Jakarta");
+        $t = date("Y-m");
+        $data = ['kegiatan' => $this->kegiatan->absenKegiatan($id, $t),
+                 'fasdes'=>$this->fasdes->detailData($id),
+                ];
+       return view('absensi.kegiatan.export', $data);
+    } 
+    public function export2(Request $request)
+    {
+        date_default_timezone_set("Asia/Jakarta");
+        $t = date("Y-m");
+        $filter = $request->filter;
+        $awal = $request->awal;
+        $akhir = $request->akhir;
+        $id = $request->id;
+        if($awal && $akhir == null){
+            $awal = date("Y-m-01");
+            $akhir =date("Y-m-31");
+        }
 
+        if($filter == null){
+            $data = ['kegiatan' => $this->kegiatan->filterWaktu($id, $awal, $akhir),
+            'fasdes'=>$this->fasdes->detailData($id),
+            'id'=>$id,
+            'filter'=>$filter,
+            'awal' => $awal,
+            'akhir'=>$akhir,
+           ];
+       
+        }
+        elseif($awal == null OR $akhir == null){
+            $data = ['kegiatan' => $this->kegiatan->filterKegiatan($id, $filter),
+            'fasdes'=>$this->fasdes->detailData($id),
+            'id'=>$id,
+            'filter'=>$filter,
+            'awal' => $awal,
+            'akhir'=>$akhir,
+           ];
+        }elseif($awal <> null AND $akhir <> null AND $filter <> null){
+            $data = ['kegiatan' => $this->kegiatan->filterKegiatanWaktu($id, $filter, $awal, $akhir),
+            'fasdes'=>$this->fasdes->detailData($id),
+            'id'=>$id,
+            'filter'=>$filter,
+            'awal' => $awal,
+            'akhir'=>$akhir,
+           ];
+        }
+        else{
+            $data = ['kegiatan' => $this->kegiatan->absenKegiatan($id, $t),
+                 'fasdes'=>$this->fasdes->detailData($id),
+                 'id'=>$id,
+                 'awal' => $awal,
+                 'akhir'=>$akhir,
+                  'filter'=>"Semua Kegiatan",
+                ];
+        }
+       return view('absensi.kegiatan.export', $data);
+    } 
+    
     public function updateAbsen(Request $request, $id)
     {
         date_default_timezone_set("Asia/Jakarta");

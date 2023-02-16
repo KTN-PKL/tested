@@ -13,6 +13,7 @@
 
     <title>History</title>
   </head>
+  @auth
   <body class="d-flex flex-column min-vh-100">
     <div class="title bg-primary text-light text-center p-3">
       <h1 class="display-5"><i class="fa-solid fa-id-card-clip text-light"></i> Selamat datang</h1>
@@ -25,7 +26,8 @@
           <h4 class="text-light p-3"><i class="fa-solid fa-book"></i> History</h4>
         </div>
         <!-- card -->
-        @foreach($absenharian as $data)
+        <h6 style="color:grey">Absen Harian</h6>
+        @forelse($absenharian as $data)
         <div class="card shadow" style="width: 100%">
           <div class="card-body">
             <div class="row">
@@ -50,8 +52,11 @@
           </div>
         </div> 
         @endif 
-       @endforeach
-       @foreach($absenkegiatan as $datas)
+        @empty
+        <p class="bg-danger text-white p-1">Belum Ada Absen Harian</p>
+       @endforelse
+       <h6 style="color:grey">Absen Kegiatan</h6>
+       @forelse($absenkegiatan as $datas)
        <div class="card shadow" style="width: 100%">
         <div class="card-body">
           <div class="row">
@@ -62,8 +67,10 @@
             <div class="col-4 fw-bold">Status : <span class="badge bg-danger">Absen Kegiatan</span></div>
           </div>
         </div>
+        @empty
+        <p class="bg-danger text-white p-1">Belum Ada Absen Kegiatan</p>
       </div> 
-       @endforeach
+       @endforelse
         <!-- card history end -->
       </div>
 
@@ -100,4 +107,5 @@
     <!-- end footer -->
     <script src="{{asset('templateUser')}}/js/bootstrap.bundle.min.js"></script>
   </body>
+  @endauth
 </html>

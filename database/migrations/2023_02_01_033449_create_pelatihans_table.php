@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bantuans', function (Blueprint $table) {
-            $table->id('id_bantuan');
+        Schema::create('pelatihans', function (Blueprint $table) {
+            $table->id('id_pelatihan');
             $table->string('id_poktan');
-            $table->string('namabantuan')->nullable();
-            $table->string('qtybantuan')->nullable();
-            $table->string('waktubantuan')->nullable();
+            $table->string('namapelatihan')->nullable();
+            $table->string('waktupelatihan')->nullable();
+            $table->string('jumlahpeserta')->nullable();
             $table->timestamps();
         });
     }

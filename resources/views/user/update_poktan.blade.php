@@ -52,17 +52,60 @@
                         <input type="text" class="form-control" id="lokasipoktan" name="lokasipoktan" value="{{$poktan->lokasipoktan}}" >
                     </div>
                     <div class="mb-3">
-                        <label for="pasarlokal" class="form-label">Nama Bantuan</label>
-                        <input type="text" class="form-control" id="namabantuan" name="namabantuan" value="{{$poktan->namabantuan}}" >
+                        @php
+                        $jp = count($bantuan);
+                        $a = 0;
+                    @endphp
+                    <input type="text" name="jp" hidden value="{{ $jp }}" id="jp">
+                    @foreach ($bantuan as $pkt)
+                    @if ($a <> 0)
+                    <div id="paket{{ $a }}">
+                    @endif
+               
+                      <label for="paket" class="form-label">Paket Wisata</label>
+                        <input type="text" id="paket" class="form-control" placeholder="Masukkan Nama Paket" name="paket{{ $a }}" data-parsley-required="true" value="{{ $pkt->namabantuan }}">
+                        <div class="row mt-2">
+                            <div class="col col-6 col-md-6">
+                                <label for="weekday" class="form-label">Harga Weekday</label>
+                                <input type="text" id="weekday" class="form-control" placeholder="Harga Weekday" name="harga_wday{{ $a }}" data-parsley-required="true"  value="{{ $pkt->waktubantuan }}">
+                            </div>
+                            <div class="col col-6 col-md-6">
+                                <label for="weekend" class="form-label">Harga Weekend</label>
+                                <input type="text" id="weekend" class="form-control" placeholder="Harga Weekend" name="harga_wend{{ $a }}" data-parsley-required="true" value="{{ $pkt->qtybantuan}}">
+                            </div>
+                        </div>
+                              @php
+                              $a = $a + 1;
+                             @endphp
+                                 <center>
+                                  <div class="col-md-4">
+                                  <a id="tp{{ $a }}" class="btn btn-success" onclick="tambahpaket({{ $a }})" @if ($a <> $jp)
+                                    style="display: none"
+                                  @endif>Tambah Paket</a>
+                                  </div>
+                                  @if ($a == 1)
+                                  <div id="mp1"></div>
+                                  @else
+                                  <div class="col-md-4">
+                                    <a id="mp{{ $a }}" class="btn btn-warning" onclick="minpaket({{ $a }})" @if ($a <> $jp)
+                                      style="display: none"
+                                    @endif>Hapus Paket</a>
+                                  </div>   
+                                  @endif
+                                </center>
+                             
+                              @if ($a == $jp)
+                              <div id="paket{{ $a }}"></div>  
+                              @else
+                              @if ($a <> 1)
+                           
+                              @endif
+                             
+                              @endif  
+                              @endforeach
+                            </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="pasarlokal" class="form-label">Kuantitas Bantuan</label>
-                        <input type="text" class="form-control" id="qtybantuan" name="qtybantuan" value="{{$poktan->qtybantuan}}" >
-                    </div>
-                    <div class="mb-3">
-                        <label for="pasarlokal" class="form-label">Waktu Penyaluran Bantuan</label>
-                        <input type="date" class="form-control" id="waktubantuan" name="waktubantuan" value="{{$poktan->waktubantuan}}" >
-                    </div>
+                   
                     <div class="d-grid ">
                         <button type="submit" class="btn btn-block btn-primary"><i class="fa-solid fa-floppy-disk"></i> Submit</button>
                     </div>
@@ -75,6 +118,7 @@
     <!-- end main menu -->
 
     <!-- nav bottom -->
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <div class="botnav fixed-bottom bg-dark text-light text-center">
         <div class="row">
             <div class="col-4 p-3">
@@ -105,5 +149,51 @@
     </footer>
     <!-- end footer -->
     <script src="{{asset('templateUser')}}/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function tambahpaket(id)
+  {
+    var x = id + 1;
+    document.getElementById("tp" + id).style.display="none";
+    document.getElementById("mp" + id).style.display="none";
+    $("#jp").val(x)
+    $("#paket" + id).html(`
+    <div class="form-group">
+    <label for="paket" class="form-label">Paket Wisata</label>
+    <input type="text" id="paket" class="form-control" placeholder="Masukkan Nama Paket" name="paket`+id+`" data-parsley-required="true">
+      <div class="row mt-2">
+        <div class="col col-6 col-md-6">
+          <label for="weekday" class="form-label">Harga Weekday</label>
+          <input type="text" id="weekday" class="form-control" placeholder="Harga Weekday" name="harga_wday`+id+`" data-parsley-required="true">
+          </div>
+            <div class="col col-6 col-md-6">
+            <label for="weekend" class="form-label">Harga Weekend</label>
+            <input type="text" id="weekend" class="form-control" placeholder="Harga Weekend" name="harga_wend`+id+`" data-parsley-required="true">
+            </div>
+          </div>
+            <div class="row">
+            <center>
+            
+            <div class="col-md-4">
+            <a id="tp`+x+`" class="btn btn-success" onclick="tambahpaket(`+x+`)">Tambah Paket</a>
+            </div>
+            <div class="col-md-4">
+            <a id="mp`+x+`" class="btn btn-warning" onclick="minpaket(`+x+`)">Hapus Paket</a>
+            </div>
+          
+            </center>
+          </div>
+          </div>
+    <div id="paket`+x+`"></div>
+    `);
+  }
+  function minpaket(id)
+  {
+    var x = id - 1;
+    document.getElementById("tp" + x).style.display="block";
+    document.getElementById("mp" + x).style.display="block";
+    $("#jp").val(x)
+    $("#paket"+ x).html(`  `);
+  }
+    </script>
     </body>
 </html>

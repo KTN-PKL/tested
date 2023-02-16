@@ -128,10 +128,6 @@
                                 <tr><td>Pemelihara</td><td>: </td><td>{{$data->pemeliharaan}}</td></tr>
                                 <tr><td>Pasar Lokal</td><td>: </td><td>{{$data->pasar}}</td></tr>
                                 <tr><td>Lokasi Poktan</td><td>: </td><td>{{$data->lokasipoktan}}</td></tr>
-                                <tr><td>Nama Bantuan</td><td>: </td><td>{{$data->namabantuan}}</td></tr>
-                                <tr><td>Kuantitas Bantuan</td><td>: </td><td>{{$data->qtybantuan}}</td></tr>
-                                <tr><td>Waktu Penyaluran</td><td>: </td><td>{{$data->waktubantuan}}</td></tr>
-                            
                             </tbody>
                         </table>
                     </div>

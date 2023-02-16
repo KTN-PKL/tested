@@ -127,13 +127,30 @@
           <div class="col-6">
             <div class="card shadow p-2">
               Absen Masuk
-              <h5>Selesai</h5>
+              <h5>
+              @if($cek <> null)  
+                Sudah Absen
+                @else 
+                Belum Absen
+              @endif
+              </h5>
             </div>
           </div>
           <div class="col-6">
             <div class="card shadow p-2">
               Absen Pulang
-              <h5>Selesai</h5>
+              <h5>
+                @if($cek <> null)
+                @if($cek->jampulang <> null)
+                Sudah Absen
+                @else
+                Belum Absen
+                @endif
+                @else
+                Belum Absen
+                @endif
+               
+              </h5>
             </div>
           </div>
         </div>
@@ -146,7 +163,7 @@
           <div class="col-6">
             <div class="card  shadow mt-2 p-1">
               Masuk
-              <h5>0</h5>
+              <h5>{{$rekap}}</h5>
             </div>
           </div>
 

@@ -69,7 +69,7 @@
                   $("#sampai").val(dari);
                   sampai = dari;
                 }
-                $("#excel").html(` <a target="_blank" class="btn btn-primary" href="{{ url('harian/excel?id=`+id+`&dari=`+dari+`&sampai=`+sampai+`') }}">EXPORT</a>`);
+                $("#excel").html(` <a target="_blank" class="btn btn-primary" href="{{ url('harian/export?id=`+id+`&dari=`+dari+`&sampai=`+sampai+`') }}">EXPORT</a>`);
                 $.ajax({
                     type: "get",
                     url: "{{ url('harian/read') }}",

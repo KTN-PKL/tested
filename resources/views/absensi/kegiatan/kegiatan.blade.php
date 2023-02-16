@@ -50,15 +50,18 @@
           <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
             Cari Data
           </a>
-
           @if(Route::current()->getName() == 'kegiatan.kegiatan.filter')
           <a href="{{route('kegiatan.kegiatan', $fasdes->id)}}" type="button" class="btn btn-warning">
            Reset Pencarian
           </a>
           @endif
-     
-     
+          @if(Route::current()->getName() == 'kegiatan.kegiatan.filter')
+          <a target="_blank" class="btn btn-primary" href="{{ url('kegiatan/export2?id='.$fasdes->id.'&awal='.$awal.'&akhir='.$akhir.'&filter='.$filter) }}">EXPORT</a>
+          @else
+          <a target="_blank" class="btn btn-primary" href="{{ url('kegiatan/export/'.$fasdes->id) }}">EXPORT</a>
+          @endif
         </div>
+        
        
        <br>
        @php
@@ -86,9 +89,9 @@
           @elseif(Route::current()->getName() == 'kegiatan.kegiatan.filter')
           Data Absensi Kegiatan {{$filter}} Periode {{$awal}} - {{$akhir}} 
           @endif
-        
-
-        </h5></div>
+        </h5>
+      </div>
+      
         <table id="satu" class="datatable">
           <thead>
             <tr>

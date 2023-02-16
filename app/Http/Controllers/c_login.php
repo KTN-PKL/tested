@@ -6,6 +6,7 @@ use Alert;
 use App\Models\fasdes;
 use App\Models\lokasi;
 use App\Models\desa;
+use App\Models\absenharian;
 use App\Models\kecamatan;
 use Auth;
 use DB;
@@ -19,6 +20,7 @@ class c_login extends Controller
         $this->desa = new desa();
         $this->kecamatan = new kecamatan();
         $this->fasdes = new fasdes();
+        $this->harian = new absenharian();
     }
 
     public function index()
@@ -118,7 +120,11 @@ class c_login extends Controller
     // Login multiuser
     public function dashboard(){
         if (Auth::user()->level == "fasdes" && Auth::user()->statusakun == "verified") {
-            return view('user.dashboard');
+            date_default_timezone_set("Asia/Jakarta");
+              $t = date("Y-m-d");
+            $data = ['cek'=> $this->harian->cek(Auth::user()->id, $t),
+        'rekap'=> $this->harian->hitungRekapMasuk(Auth::user()->id)];
+            return view('user.dashboard', $data);
         }else{
             return redirect()->back()->with('error', 'Email atau Password Salah!');
         }

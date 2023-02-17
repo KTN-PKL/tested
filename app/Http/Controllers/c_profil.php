@@ -281,7 +281,9 @@ class c_profil extends Controller
             
         ];
         $this->fasdes->editData($id, $data);
-        Alert::success('Berhasil', 'Profil Fasdes Berhasil diupdate')->showConfirmButton('Confirm', '#056839');
+        alert()->success('Berhasil', 'Profil Fasdes Berhasil diupdate')->iconHtml('<i class="far fa-thumbs-up"></i>');
+        
+        // Alert::success('Berhasil', 'Profil Fasdes Berhasil diupdate')->showConfirmButton('Confirm', '#056839');
         return redirect()->route('fasdes.profil', $id);
     }
 

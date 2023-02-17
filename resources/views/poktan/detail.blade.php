@@ -30,7 +30,7 @@
           <tr>
               <td valign="top"><h6>Luas Tanah</h6></td>
               <td valign="top"><h6>:</h6></td>
-              <td valign="top"><h6 style="color: black">{{$poktan->luastanah}}</h6></td>
+              <td valign="top"><h6 style="color: black">{{$poktan->luastanah}} Hektar</h6></td>
           </tr>
           <tr>
               <td valign="top"><h6>Jumlah Produksi</h6></td>

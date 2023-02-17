@@ -34,7 +34,7 @@
             <tr>
               <th>No</th>
               <th>Nama Kelompok Petani</th>
-              <th>Jumlah Petani</th>
+              <th>Jumlah Produksi</th>
               <th>Pasar</th>
               <th>Action</th>
             </tr>
@@ -50,7 +50,7 @@
             <tr>
               <td style="width:8%">{{$i}}</td>
               <td>{{$data->namapoktan}}</td>
-              <td>x</td>
+              <td>{{$data->jumlahproduksi}} KG</td>
               <td>{{$data->pasar}}</td>
               <td style="width:30%">
                 <a href="{{route('poktan.detail', $data->id_poktan)}}" class="btn btn-sm btn-primary"> <i class="bi bi-eye"></i> Lihat</a>

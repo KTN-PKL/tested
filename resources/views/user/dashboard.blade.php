@@ -187,24 +187,26 @@
         <div class="card-body">
         
           <h5 class="card-title">Chart Absen Harian</h5>
-          <div class="row">
-            <div class="col col-md-3">
+        
+            <div class="col col-12 col-md-12">
               <input type="month" id="bulan" class="form-control"  value="{{ $d }}" onchange="jh()">
             </div>
-            <div class="col col-md-4">
+            <div style="margin-top:1em" class="col col-12 col-md-12">
               <div class="input-group">
                 <input type="date" id="dari" class="form-control" onchange="bar()">
-                <span class="input-group-text" id="basic-addon2">-</span>
+                <div style="width:20%">
+                  <input style="text-align:center" type="text" class="form-control" value="-" readonly>
+                </div>
                 <input type="date" id="sampai" class="form-control" onchange="bar()">
               </div>
             </div>
-            <div class="col col-md-4">
+            <div style="margin-top:1em" class="col col-12 col-md-12"> 
               <select class="form-select" id="absen" onchange="bar()">
                 <option value="masuk" selected>Masuk</option>
                 <option value="pulang">Pulang</option>
                 </select>
             </div>
-          </div>
+    
            <div id="chartharian"></div>
         </div>
       </div>

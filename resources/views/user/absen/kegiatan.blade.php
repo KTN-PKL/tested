@@ -67,12 +67,12 @@
 
         <!-- field deskripsi -->
         <div class="form-floating mb-3 pt-3">
+          <p>Deskripsi</p>
           <textarea
             class="form-control"
             placeholder="Leave a comment here"
             id="floatingTextarea" name="deskripsikegiatan"  data-parsley-required="true"
           ></textarea>
-          <label for="floatingTextarea">Deskripsi Absensi</label>
         </div>
         <!-- akhir field deskripsi -->
 
@@ -112,29 +112,32 @@
         {{-- form jika pelatihan --}}
         <div id="form" style="display: none">
           <div class="form-floating mb-3 pt-3">
+            <p>Judul</p>
             <textarea
             class="form-control  @error('judupelatihan') is-invalid @enderror"
             placeholder="Leave a comment here"
             id="judul" name="judulpelatihan"  
           ></textarea>
-          <label for="floatingTextarea">Judul</label>
+          
           
         </div>
         <div class="form-floating mb-3 pt-3">
+          <p>Durasi Pelatihan</p>
           <textarea
           class="form-control"
           placeholder="Leave a comment here"
           id="durasi" name="durasipelatihan"
         ></textarea>
-        <label for="floatingTextarea">Durasi Waktu</label>
+       
         </div>
         <div class="form-floating mb-3 pt-3">
+          <p>Tempat Pelatihan</p>
           <textarea
           class="form-control"
           placeholder="Leave a comment here"
           id="tempat" name="tempatpelatihan"
         ></textarea>
-        <label for="floatingTextarea">Tempat</label>
+        
         </div>
         <div class="button text-center d-grid">
           <a href="#" class="btn btn-block btn-primary" onclick="fotopelatihan()"

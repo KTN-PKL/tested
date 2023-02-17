@@ -244,7 +244,7 @@ class c_profil extends Controller
       
         }
       
-        Alert::success('Berhasil', 'Poktan Berhasil Dibuat');
+        alert()->success('Berhasil', 'Poktan Berhasil Dibuat')->iconHtml('<i class="far fa-thumbs-up"></i>');
         return redirect()->route('fasdes.profil', $id);
     }
      
@@ -283,7 +283,6 @@ class c_profil extends Controller
         $this->fasdes->editData($id, $data);
         alert()->success('Berhasil', 'Profil Fasdes Berhasil diupdate')->iconHtml('<i class="far fa-thumbs-up"></i>');
         
-        // Alert::success('Berhasil', 'Profil Fasdes Berhasil diupdate')->showConfirmButton('Confirm', '#056839');
         return redirect()->route('fasdes.profil', $id);
     }
 
@@ -294,7 +293,7 @@ class c_profil extends Controller
         $this->petani->deleteData($id);
         $this->bantuan->deleteData($id);
         $this->pelatihan->deleteData($id);
-        Alert::success('Berhasil', 'Poktan Berhasil Dihapus');
+        alert()->error('Berhasil', 'Poktan Berhasil Dihapus')->iconHtml('<i class="fa fa-trash"></i>');
         return redirect()->route('fasdes.profil', $data->id_user)->with('success', 'Kelompok Petani Berhasil Dihapus');
     }
 
@@ -344,7 +343,7 @@ class c_profil extends Controller
         ];
         $this->poktan->editData($id, $data);
         $data = $this->poktan->detailData($id);
-        Alert::success('Berhasil', 'Profil Poktan Berhasil Diupdate');
+        alert()->success('Berhasil', 'Poktan Berhasil diupdate')->iconHtml('<i class="far fa-thumbs-up"></i>');
         return redirect()->route('fasdes.profil', Auth::user()->id);
     }
 }

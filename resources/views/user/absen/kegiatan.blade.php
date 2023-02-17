@@ -46,6 +46,7 @@
             );
           @endphp
 
+
           <form action="{{route('absenkegiatan.store')}}" method="POST" data-parsley-validate>
           @csrf
           <p class="card-text">Hari/Tanggal : {{ $dayList[$d].", ".$t }}</p>
@@ -110,11 +111,12 @@
         <div id="form" style="display: none">
           <div class="form-floating mb-3 pt-3">
             <textarea
-            class="form-control"
+            class="form-control  @error('judupelatihan') is-invalid @enderror"
             placeholder="Leave a comment here"
-            id="floatingTextarea" name="judulpelatihan"
+            id="floatingTextarea" name="judulpelatihan"  
           ></textarea>
           <label for="floatingTextarea">Judul</label>
+          
         </div>
         <div class="form-floating mb-3 pt-3">
           <textarea

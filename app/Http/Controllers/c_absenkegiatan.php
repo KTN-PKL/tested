@@ -46,9 +46,8 @@ class c_absenkegiatan extends Controller
         $filename = $this->simpangambar($request->selfie, $name);
         $filename2 = $this->simpangambar($request->fotokegiatan, $name1);
         $filename3 = $this->simpangambar($request->fotopelatihan, $name2);
-if ($request->pelatihan == "pelatihan") {
-    
-}
+
+
         if($request->jeniskegiatan == "kantor"){
             // radius lokasi
              $lokasi = $this->lokasi->detailData2(Auth::user()->id);
@@ -70,7 +69,7 @@ if ($request->pelatihan == "pelatihan") {
                 $jarak = (round($distance,3)); 
                 
                 if($jarak > 0.200 ){
-                    Alert::error('Absen Kegiatan Tidak Berhasil', 'Lokasi Anda Terlalu Jauh dari Kantor');
+                    alert()->error('Gagal', 'Jarak Anda terlalu Jauh')->iconHtml('<i class="fa fa-times"></i>');
                     return redirect()->back();
                 }
                 else{
@@ -92,6 +91,7 @@ if ($request->pelatihan == "pelatihan") {
                         'fotopelatihan' => $filename3,
                     ];
                     $this->kegiatan->addData($data);
+                    alert()->success('Berhasil', 'Absen Kegiatan Berhasil')->iconHtml('<i class="far fa-thumbs-up"></i>');
                     return redirect()->route('fasdes.dashboard')->with(['success' => Auth::user()->name. " Telah Melakukan Absen Kegiatan. Selamat bekerja"]);
                 } 
         }else{
@@ -114,7 +114,7 @@ if ($request->pelatihan == "pelatihan") {
             ];
         
             $this->kegiatan->addData($data);
-            Alert::success('Absen Kegiatan Berhasil', 'Selamat Bekerja');
+            alert()->success('Berhasil', 'Absen Kegiatan Berhasil')->iconHtml('<i class="far fa-thumbs-up"></i>');
             return redirect()->route('fasdes.dashboard');
         }
        

@@ -353,12 +353,17 @@ class c_profil extends Controller
         $poktan = $this->poktan->fasdesData($id);
 
         $i = 0;
-        foreach($poktan as $poktans)
-        {
-            $h[$i] = $poktans->namapoktan;
-            $v[$i] = $poktans->jumlahproduksi;
-            $i = $i+1;
+        $h[0] = "Belum Ada Kelompok Tani";
+        $v[0] = 0;
+        if($poktan <> null){
+            foreach($poktan as $poktans)
+            {
+                $h[$i] = $poktans->namapoktan;
+                $v[$i] = $poktans->jumlahproduksi;
+                $i = $i+1;
+            }
         }
+       
         $data = [
             'h' => $h,
             'v' => $v,
@@ -373,12 +378,19 @@ class c_profil extends Controller
         $poktan = $this->poktan->fasdesData($id);
 
         $i = 0;
-        foreach($poktan as $poktans)
+        $h[0] = "Belum Ada Kelompok Tani";
+        $v[0] = 0;
+
+        if($poktan <> null)
         {
-            $h[$i] = $poktans->namapoktan;
-            $v[$i] = $poktans->luastanah;
-            $i = $i+1;
+            foreach($poktan as $poktans)
+            {
+                $h[$i] = $poktans->namapoktan;
+                $v[$i] = $poktans->luastanah;
+                $i = $i+1;
+            }
         }
+       
         $data = [
             'h' => $h,
             'v' => $v,

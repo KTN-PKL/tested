@@ -78,6 +78,51 @@ class c_absenharian extends Controller
         ];
         return($data);
     }
+    public function chart2(Request $request)
+    {
+        $data1 = strtotime($request->dari);
+        $bulan1 = date('m', $data1);
+        $tahun1 = date('Y', $data1);
+        $hari1 = date('d', $data1);
+        $sampai = str_replace("/","",$request->sampai);
+        $data2 = strtotime($sampai);
+        $bulan2 = date('m', $data2);
+        $tahun2 = date('Y', $data2);
+        $hari2 = date('d', $data2);
+        $a = 0;
+        for ($tahun = $tahun1; $tahun <= $tahun2 ; $tahun++) { 
+            
+            for ($bulan = $bulan1; $bulan <= $bulan2; $bulan++) { 
+                if ($bulan == $bulan1) {
+                    $jh = $hari1;
+                  } else {
+                    $jh = 1;
+                  }
+                  if ($bulan == $bulan2) {
+                    $hari = $hari2;
+                  } else {
+                    $kalender = CAL_GREGORIAN;
+                    $hari = cal_days_in_month($kalender, $bulan, $tahun);
+                  }
+                for ($i = $jh; $i <= $hari; $i++) { 
+                    $har = $i;
+                    // if ($har < 10) {
+                    // $har = "0".$har;
+                    // }
+                    $h[$a] = $har."-".$bulan."-".$tahun;
+                    $v[$a] = $this->harian->rhu($tahun."-".$bulan."-".$har);
+                    $p[$a] = $this->harian->rhpu($tahun."-".$bulan."-".$har);
+                    $a = $a+1;
+                }
+            }
+        }
+        $data = [
+            'h' => $h,
+            'v' => $v,
+            'p' => $p,
+        ];
+        return($data);
+    }
     public function detail($id)
     {
         $data = ['harian' => $this->harian->detailData($id),];

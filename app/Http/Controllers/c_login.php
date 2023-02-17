@@ -122,8 +122,23 @@ class c_login extends Controller
         if (Auth::user()->level == "fasdes" && Auth::user()->statusakun == "verified") {
             date_default_timezone_set("Asia/Jakarta");
               $t = date("Y-m-d");
+            $harian = $this->harian->cekid(Auth::user()->id);
+            $masuk = 0;
+            $terlambat = 0;
+            if ($harian <> null) {
+                foreach ($harian as $item) {
+                    $masuk = $masuk + 1;
+                    $dat = explode(":" , $item->jam);
+                    $H = $dat[0] * 60;
+                    $hasil = $H + $dat[1];
+                    if ($hasil > 480) {
+                        $terlambat = $terlambat + 1;
+                    }
+                }
+            }
             $data = ['cek'=> $this->harian->cek(Auth::user()->id, $t),
-        'rekap'=> $this->harian->hitungRekapMasuk(Auth::user()->id)];
+        'rekap'=> $masuk,
+        'telat'=> $terlambat];
             return view('user.dashboard', $data);
         }else{
             return redirect()->back()->with('error', 'Email atau Password Salah!');

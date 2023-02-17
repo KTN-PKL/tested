@@ -31,6 +31,14 @@ class absenharian extends Model
     {
         return DB::table('absenharians')->where('tgl', $data)->where('jampulang', 'like', '%%')->count();
     }
+    public function rhu($data)
+    {
+        return DB::table('absenharians')->where('id_user', Auth::user()->id)->where('tgl', $data)->count();
+    }
+    public function rhpu($data)
+    {
+        return DB::table('absenharians')->where('id_user', Auth::user()->id)->where('tgl', $data)->where('jampulang', 'like', '%%')->count();
+    }
     public function addData($data)
     {
         DB::table('absenharians')->insert($data);
@@ -38,6 +46,10 @@ class absenharian extends Model
     public function cek($id, $data)
     {
         return DB::table('absenharians')->where('id_user', $id)->where('tgl', $data)->first();
+    }
+    public function cekid($id)
+    {
+        return DB::table('absenharians')->where('id_user', $id)->get();
     }
     public function detailData($id)
     {

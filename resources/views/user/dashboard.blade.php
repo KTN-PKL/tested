@@ -104,11 +104,15 @@
                   </a>
                 </div>
               </div>
-              
+            
               <div class="text-center mt-5">
+                <button id="logot" class="btn btn-warning" onclick="hapus()">
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Sign Out</span>
+                  </button>
                   <form id="logoutform" method="POST" action="{{route('user.logout')}}">
                         @csrf
-                      <button type="submit" class="btn btn-warning">
+                      <button type="submit" id="logout" class="btn btn-warning" hidden>
                       <i class="fa-solid fa-right-from-bracket"></i>
                         <span>Sign Out</span>
                       </button>
@@ -173,7 +177,37 @@
           </div>
         </div>
       </div>
-
+      @php
+      date_default_timezone_set("Asia/Jakarta");
+      $d = date("Y-m");
+    @endphp
+      {{-- barchart --}}
+      <br>
+      <div class="card">
+        <div class="card-body">
+        
+          <h5 class="card-title">Chart Absen Harian</h5>
+          <div class="row">
+            <div class="col col-md-3">
+              <input type="month" id="bulan" class="form-control"  value="{{ $d }}" onchange="jh()">
+            </div>
+            <div class="col col-md-4">
+              <div class="input-group">
+                <input type="date" id="dari" class="form-control" onchange="bar()">
+                <span class="input-group-text" id="basic-addon2">-</span>
+                <input type="date" id="sampai" class="form-control" onchange="bar()">
+              </div>
+            </div>
+            <div class="col col-md-4">
+              <select class="form-select" id="absen" onchange="bar()">
+                <option value="masuk" selected>Masuk</option>
+                <option value="pulang">Pulang</option>
+                </select>
+            </div>
+          </div>
+           <div id="chartharian"></div>
+        </div>
+      </div>
       <!-- end main menu -->
      
 
@@ -209,7 +243,7 @@
     <!-- end footer -->
 
     
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('template')}}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
       function startTime() {
         const today = new Date();
@@ -231,29 +265,98 @@
     </script>
 
     <script src="{{ $cdn ?? asset('vendor/sweetalert/sweetalert.all.js')  }}"></script>
+    <script src="{{asset('template')}}/assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="{{asset('template')}}/assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="{{asset('template')}}/assets/vendor/echarts/echarts.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {{-- <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> --}}
     <script>
-    $(document).on("submit", "#logoutform", function(event) {
-    event.preventDefault();
-    let form = $(this);
-    
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'logout!'
-    }).then((willDelete) => {
-            if (willDelete) {
-              document.getElementById("logoutform").submit();
-            } else {
-                swal("Logout Canceled");
-            }
-        });
-    });
+$(document).ready(function() {
+jh()
+});
+function jh()
+{
+var bulan =  $("#bulan").val();
+$.get("{{ url('harian/hari') }}/"+bulan, {}, function(data, status) {
+  $("#dari").val(bulan+"-01");
+  $("#sampai").val(bulan+"-"+data);
+  bar()
+});    
+}
+function bar() {
+$("#chartharian").html(`<canvas id="barChart" style="max-height: 400px;"></canvas>`);
+var dari = $("#dari").val();
+var absen = $("#absen").val();
+  var sampai = $("#sampai").val();
+  if (dari > sampai) {
+    $("#sampai").val(dari);
+    sampai = dari;
+  }
+  var myarr = dari.split("-");
+  var myvar = myarr[0] + "-" + myarr[1];
+  $("#bulan").val(myvar);
+  var isi = "dari="+dari+"&sampai="+sampai;
+        $.get(`{{ url('harian/chart?`+isi+`') }}/`, {}, function(data, status) {
+      var h = data.h;
+      if (absen == "masuk") {
+        var v = data.v;
+      } else {
+        var v = data.p;
+      }
+      var barc = document.getElementById("barChart").getContext('2d');
 
+  new Chart( barc, {
+  type: 'bar',
+  data: {
+    labels: h,
+    datasets: [{
+      label: 'Bar Chart',
+      data: v,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(255, 205, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(201, 203, 207, 0.2)'
+      ],
+      borderColor: [
+        'rgb(255, 99, 132)',
+        'rgb(255, 159, 64)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(54, 162, 235)',
+        'rgb(153, 102, 255)',
+        'rgb(201, 203, 207)'
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+}); });
+}
+      function hapus() {
+            Swal.fire({
+            title: 'Apakah Anda Yakin?',
+            text: "Anda Ingin Menghapus Item ",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Iya Saya Yakin!',
+            cancelButtonText: 'Tidak'
+            }).then((result) => {
+            if (result.value) {
+              document.getElementById("logoutform").submit();}
+                })
+        }
     </script>
   </body>
 </html>

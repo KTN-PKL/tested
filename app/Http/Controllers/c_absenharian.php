@@ -162,6 +162,19 @@ class c_absenharian extends Controller
     // }
     public function store(Request $request)
     {
+       
+        if($request->jenis == "Dalam Kantor"){
+            $jarak = $this->jarak($request->lokasi);
+      
+            if($jarak > 0.200)
+            {
+                alert()->error('Gagal', 'Jarak Anda terlalu Jauh')->iconHtml('<i class="fa fa-times"></i>');
+                return redirect()->back();
+            }
+        }
+           
+        
+       
         date_default_timezone_set("Asia/Jakarta");
         $t = date("H:i");
         $name = "fasdes_masuk_".$request->harian.".png";
@@ -179,10 +192,23 @@ class c_absenharian extends Controller
             'jenis' => $request->jenis,
         ];
         $this->harian->addData($data);
+
+        alert()->success('Berhasil', 'Absen Harian Berhasil, Selamat Bekerja')->iconHtml('<i class="far fa-thumbs-up"></i>');
         return redirect()->route('absen.harian');
+      
     }
     public function storepulang(Request $request)
     {
+        if($request->jenis == "Dalam Kantor"){
+            $jarak = $this->jarak($request->lokasi);
+      
+            if($jarak > 0.200)
+            {
+                alert()->error('Gagal', 'Jarak Anda terlalu Jauh')->iconHtml('<i class="fa fa-times"></i>');
+                return redirect()->back();
+            }
+        }
+
         date_default_timezone_set("Asia/Jakarta");
         $t = date("H:i");
         $name = "fasdes_pulang_".$request->harian.".png";
@@ -197,6 +223,7 @@ class c_absenharian extends Controller
             'jampulang' => $t,
         ];
         $this->harian->editData(Auth::user()->id,$request->harian, $data);
+        alert()->success('Berhasil', 'Absen Harian Sudah Selesai, Hati Hati Dijalan')->iconHtml('<i class="far fa-thumbs-up"></i>');
         return redirect()->route('absen.harian');
     }
     public function hari($id)

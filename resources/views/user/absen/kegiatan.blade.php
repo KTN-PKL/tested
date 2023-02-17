@@ -2,14 +2,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-<link rel="stylesheet" href="{{ config('sweetalert.animatecss') }}">
+{{-- <link rel="stylesheet" href="{{ config('sweetalert.animatecss') }}"> --}}
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'>
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 {{-- <style type="text/css">
   #results { padding:20px; border:1px solid; background:#ccc; }
 </style> --}}
 @section('content')
 
-{{-- @include('sweetalert::alert') --}}
+@include('sweetalert::alert')
     <!-- componen card -->
     <div class="card">
       <div class="card-body">
@@ -312,8 +314,9 @@
         var fotopelatihan = $("#fotopelatihan").val();
         if (judul == ""|| durasi == ""|| fotopelatihan == ""|| tempat == "") {
           Swal.fire({
-            text: "Anda Ingin Menghapus Item ",
-            type: 'error',
+            text: "Lengkapi Data Pelatihan!",
+            type: "warning",
+       
             // showCancelButton: true,
             // confirmButtonColor: '#d33',
             // cancelButtonColor: '#3085d6',

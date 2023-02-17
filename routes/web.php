@@ -140,6 +140,7 @@ Route::controller(c_profil::class)->middleware('auth')->group(function () {
     Route::post('fasdes/updateprofil/{id}', 'updateProfil')->name('fasdes.updateprofil');
     Route::post('fasdes/updatepoktan/{id}', 'updatepoktan')->name('fasdes.updatepoktan');
     Route::get('profil/chartpanen', 'chartPanen')->name('profil.chartpanen');
+    Route::get('profil/chartlahan', 'chartLahan')->name('profil.chartlahan');
 
 
   

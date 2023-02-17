@@ -448,7 +448,7 @@ function bar2() {
       function hapus() {
             Swal.fire({
             title: 'Apakah Anda Yakin?',
-            text: "Anda Ingin Menghapus Item ",
+            text: "Anda Ingin Keluar ",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',

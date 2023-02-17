@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="{{asset('templateUser')}}/style.css" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
+    <link rel="stylesheet" href="{{ config('sweetalert.animatecss') }}">
     <title>Absen Harian</title>
   </head>
   <body class="d-flex flex-column min-vh-100">
@@ -50,6 +50,7 @@
 
     <!-- container -->
     <div class="container mt-3">
+      @include('sweetalert::alert')
       @if ($dayList[$d] == "t" || $dayList[$d] == "t") 
       <!--line diatas di bypass dulu-->
       <!--($dayList[$d] == "Sabtu" || $dayList[$d] == "Minggu")-->
@@ -130,13 +131,16 @@
           </div>
           <div id="hasilkegiatan" class="overflow-hidden d-flex justify-content-center"></div>
           <input type="text" id="gambarkegiatan" name="kegiatan" hidden>
-          <input type="submit"  value="submit" id="klik" hidden>
+          <div class="button text-center d-grid pt-3">
+            <button type="submit" class="btn btn-block btn-success">
+              <i class="fa-solid fa-floppy-disk"></i> Simpan</button>
+          </div>
         </form>
 
-        <div class="button text-center d-grid pt-3">
+        {{-- <div class="button text-center d-grid pt-3">
           <div class="btn btn-block btn-success" onclick="jarak()">
             <i class="fa-solid fa-floppy-disk"></i> Simpan</div>
-        </div>
+        </div> --}}
 
         </div>
       </div>
@@ -217,6 +221,8 @@
 
     <!-- akhir container -->
     <script src="{{asset('templateUser')}}/js/bootstrap.bundle.min.js"></script>
+
+    <script src="{{ $cdn ?? asset('vendor/sweetalert/sweetalert.all.js')  }}"></script>
     <script type="text/javascript">
     var video = document.querySelector("#videoElement");
     
@@ -237,24 +243,26 @@
               $('#lokasi').html(latitude+","+longitude);
               $('#lokasiisi').val(latitude+","+longitude);
       }
-      function jarak()
-      {
-        var data =  $('#lokasiisi').val()
-        var jenis = $('#jenis').val()
-        if (jenis == "Dalam Kantor") {
-        $.get("{{ url('harian/jarak') }}/"+data, {}, function(data, status) {
-        if (data > 0.2) {
-          $("#exampleModal2").modal('show');
-          var jarak = data * 1000;
-        $("#jarak").html("Jarak Anda dari titik absen : "+ jarak +" meter");
-        } else {
-        $("#klik").click();
-        }
-        });    
-      } else {
-        $("#klik").click();
-        }
-      }
+      // function jarak()
+      // {
+      //   var data =  $('#lokasiisi').val()
+      //   var jenis = $('#jenis').val()
+      //   if (jenis == "Dalam Kantor") {
+      //   $.get("{{ url('harian/jarak') }}/"+data, {}, function(data, status) {
+      //   if (data > 0.2) {
+      //     $("#exampleModal2").modal('show');
+      //     var jarak = data * 1000;
+      //   $("#jarak").html("Jarak Anda dari titik absen : "+ jarak +" meter");
+      //   } else {
+      //   $("#klik").click();
+   
+      //   }
+      //   });    
+      // } else {
+      //   $("#klik").click();
+     
+      //   }
+      // }
       //webcam selfie
       function selfie()
       {

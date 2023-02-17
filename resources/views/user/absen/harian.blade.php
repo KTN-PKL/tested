@@ -117,13 +117,13 @@
 
           <!-- field deskripsi -->
           <div class="form-floating mb-3 pt-3">
+            <p>Deskripsi Absensi</p>
             <textarea
               class="form-control"
               placeholder="Leave a comment here"
               id="floatingTextarea"
               name="deskripsi"
             ></textarea>
-            <label for="floatingTextarea">Deskripsi Absensi</label>
           </div>
           <div class="button text-center d-grid">
             <a href="#" class="btn btn-block btn-warning" onclick="fotokegiatan()">

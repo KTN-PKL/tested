@@ -367,7 +367,7 @@ class c_profil extends Controller
         return $data;
     }
 
-    public function chartLokasi()
+    public function chartLahan()
     {
         $id = Auth::user()->id;
         $poktan = $this->poktan->fasdesData($id);

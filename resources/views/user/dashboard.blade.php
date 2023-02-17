@@ -210,9 +210,22 @@
            <div id="chartharian"></div>
         </div>
       </div>
+      <div class="card">
+      <div class="card-body">
+        
+        <h5 class="card-title">Chart Hasil Panen</h5>
+        <canvas id="barChart1" style="max-height: 400px;"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        
+        <h5 class="card-title">Chart Luas Lokasi</h5>
+        <canvas id="barChart2" style="max-height: 400px;"></canvas>
+      </div>
+    </div>
       <!-- end main menu -->
      
-
       <!-- nav bottom -->
       <div class="botnav fixed-bottom bg-dark text-light text-center mb-0">
         <div class="row">
@@ -306,6 +319,92 @@ var absen = $("#absen").val();
         var v = data.p;
       }
       var barc = document.getElementById("barChart").getContext('2d');
+
+  new Chart( barc, {
+  type: 'bar',
+  data: {
+    labels: h,
+    datasets: [{
+      label: 'Bar Chart',
+      data: v,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(255, 205, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(201, 203, 207, 0.2)'
+      ],
+      borderColor: [
+        'rgb(255, 99, 132)',
+        'rgb(255, 159, 64)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(54, 162, 235)',
+        'rgb(153, 102, 255)',
+        'rgb(201, 203, 207)'
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+}); });
+}
+function bar1() {
+        $.get("{{ url('profil/chartpanen') }}/", {}, function(data, status) {
+      var h = data.h;
+      var v = data.v
+      var barc = document.getElementById("barChart1").getContext('2d');
+
+  new Chart( barc, {
+  type: 'bar',
+  data: {
+    labels: h,
+    datasets: [{
+      label: 'Bar Chart',
+      data: v,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(255, 205, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(201, 203, 207, 0.2)'
+      ],
+      borderColor: [
+        'rgb(255, 99, 132)',
+        'rgb(255, 159, 64)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(54, 162, 235)',
+        'rgb(153, 102, 255)',
+        'rgb(201, 203, 207)'
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+}); });
+}
+function bar2() {
+        $.get("{{ url('profil/chartlahan') }}/", {}, function(data, status) {
+      var h = data.h;
+      var v = data.v
+      var barc = document.getElementById("barChart2").getContext('2d');
 
   new Chart( barc, {
   type: 'bar',

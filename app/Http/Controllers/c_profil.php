@@ -346,4 +346,44 @@ class c_profil extends Controller
         alert()->success('Berhasil', 'Poktan Berhasil diupdate')->iconHtml('<i class="far fa-thumbs-up"></i>');
         return redirect()->route('fasdes.profil', Auth::user()->id);
     }
+
+    public function chartPanen()
+    {
+        $id = Auth::user()->id;
+        $poktan = $this->poktan->fasdesData($id);
+
+        $i = 0;
+        foreach($poktan as $poktans)
+        {
+            $h[$i] = $poktans->namapoktan;
+            $v[$i] = $poktans->jumlahproduksi;
+            $i = $i+1;
+        }
+        $data = [
+            'h' => $h,
+            'v' => $v,
+        ];
+
+        return $data;
+    }
+
+    public function chartLokasi()
+    {
+        $id = Auth::user()->id;
+        $poktan = $this->poktan->fasdesData($id);
+
+        $i = 0;
+        foreach($poktan as $poktans)
+        {
+            $h[$i] = $poktans->namapoktan;
+            $v[$i] = $poktans->luastanah;
+            $i = $i+1;
+        }
+        $data = [
+            'h' => $h,
+            'v' => $v,
+        ];
+
+        return $data;
+    }
 }

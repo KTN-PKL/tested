@@ -126,11 +126,11 @@
                         <div class="row mt-2">
                             <div class="col col-6 col-md-6">
                                 <label for="weekday" class="form-label">Waktu Pelatihan</label>
-                                <input type="text" id="waktupelatihan" class="form-control" placeholder="Waktu Pelatihan" name="waktupelatihan{{ $a }}" data-parsley-required="true"  value="{{ $pkt->waktupelatihan }}">
+                                <input type="date" id="waktupelatihan" class="form-control" placeholder="Waktu Pelatihan" name="waktupelatihan{{ $a }}" data-parsley-required="true"  value="{{ $pkt->waktupelatihan }}">
                             </div>
                             <div class="col col-6 col-md-6">
                                 <label for="weekend" class="form-label">Jumlah Peserta</label>
-                                <input type="text" id="jumlahpeserta" class="form-control" placeholder="Jumlah Peserta" name="jumlahpeserta{{ $a }}" data-parsley-required="true" value="{{ $pkt->jumlahpeserta}}">
+                                <input type="number" id="jumlahpeserta" class="form-control" placeholder="Jumlah Peserta" name="jumlahpeserta{{ $a }}" data-parsley-required="true" value="{{ $pkt->jumlahpeserta}}">
                             </div>
                         </div>
                               @php

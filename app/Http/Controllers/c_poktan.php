@@ -186,6 +186,7 @@ class c_poktan extends Controller
 
     public function detail($id)
     {
+       
         $data = ['poktan' => $this->poktan->detailData($id),
         'petani' => $this->petani->countPetani($id),
         'pelatihan' => $this->pelatihan->detailData($id),
@@ -196,6 +197,8 @@ class c_poktan extends Controller
     public function update(Request $request, $id)
     {
         $this->petani->deleteData($id);
+        $this->bantuan->deleteData($id);
+        $this->pelatihan->deleteData($id);
       
         
             for ($i=0; $i < $request->jf; $i++) { 
@@ -205,6 +208,26 @@ class c_poktan extends Controller
                 ];
                 $this->petani->addData($data);
             }
+
+            for ($i=0; $i < $request->jp; $i++) { 
+                $data = [
+                    'id_poktan' => $id,
+                    'namabantuan' => $request->{"namabantuan".$i },
+                    'waktubantuan' => $request->{"waktubantuan".$i },
+                    'qtybantuan' => $request->{"qtybantuan".$i },
+                ];
+                $this->bantuan->addData($data);
+            }
+
+            for ($i=0; $i < $request->jz; $i++) { 
+                $data = [
+                    'id_poktan' => $id,
+                    'namapelatihan' => $request->{"namapelatihan".$i },
+                    'waktupelatihan' => $request->{"waktupelatihan".$i },
+                    'jumlahpeserta' => $request->{"jumlahpeserta".$i },
+                ];
+                $this->pelatihan->addData($data);
+            }
     
         $data = [
             'namapoktan' => $request->namapoktan,
@@ -212,11 +235,7 @@ class c_poktan extends Controller
             'jumlahproduksi' => $request->jumlahproduksi,
             'pemeliharaan' => $request->pemeliharaan,
             'pasar' => $request->pasar,
-            'lokasipoktan' => $request->lokasipoktan,
-            'namabantuan' => $request->namabantuan,
-            'qtybantuan' => $request->qtybantuan,
-            'waktubantuan'=> $request->waktubantuan,
-    
+            'lokasipoktan' => $request->lokasipoktan,    
         ];
         $this->poktan->editData($id, $data);
         $data = $this->poktan->detailData($id);
@@ -227,6 +246,8 @@ class c_poktan extends Controller
         $data = $this->poktan->detailData($id);
         $this->poktan->deleteData($id);
         $this->petani->deleteData($id);
+        $this->bantuan->deleteData($id);
+        $this->pelatihan->deleteData($id);
         return redirect()->route('poktan', $data->id_user)->with('success', 'Kelompok Petani Berhasil Dihapus');
     }
 }

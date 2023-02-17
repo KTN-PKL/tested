@@ -25,13 +25,10 @@
 
     <!-- container -->
     <div class="container p-1">
+        @include('sweetalert::alert')
         <!-- main menu -->
         <div class="history p-2">
-            @if(session()->has('success'))
-            <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
-              {{session()->get('success')}}
-            </div>
-            @endif
+       
             <!-- foto profile -->
                <!-- foto profile -->
                <center>

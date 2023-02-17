@@ -48,44 +48,83 @@
                 </div>
                 
                 <div class="col-12">
-                    <div class="row">
-                      <div class="col-6">
-                        <div class="col-12 mt-2">
-                          <label for="inputEmail4" class="form-label">Jumlah Produksi</label>
-                          <input type="number" class="form-control" name="jumlahproduksi" value="{{$poktan->jumlahproduksi}}" required>
-                       </div>
-                        <div class="col-12">
-                            <label for="inputEmail4" class="form-label">Pemeliharaan</label>
-                            <input type="text" class="form-control" name="pemeliharaan" value="{{$poktan->pemeliharaan}}" required>
-                        </div>
-                        <div class="col-12">
-                            <label for="inputEmail4" class="form-label">Alamat</label>
-                            <input type="text" class="form-control" name="lokasipoktan" value="{{$poktan->lokasipoktan}}" required>
-                        </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="col-12 mt-2">
+                        <label for="inputEmail4" class="form-label">Pemeliharaan</label>
+                        <input type="text" class="form-control" name="pemeliharaan" value="{{$poktan->pemeliharaan}}" required>
+                      </div>  
+                    </div> 
+                    <div class="col-6">
+                      <div class="col-12 mt-2">
+                        <label for="inputEmail4" class="form-label">Jumlah Produksi</label>
+                        <input type="number" class="form-control" name="jumlahproduksi" value="{{$poktan->jumlahproduksi}}" required>
                       </div>
-                      
-                        <div class="col-6">
-                          <div class="col-12 mt-2">
-                            <label for="inputEmail4" class="form-label">Nama Bantuan</label>
-                            <input type="text" class="form-control" name="namabantuan" value="{{$poktan->namabantuan}}" required>
-                          </div>
-                          <div class="col-12 mt-2">
-                            <label for="inputEmail4" class="form-label">Kuantitas</label>
-                            <input type="number" class="form-control" name="qtybantuan" value="{{$poktan->qtybantuan}}" required>
-                          </div>
-                          <div class="col-12 mt-2">
-                            <label for="inputEmail4" class="form-label">Waktu Penyaluran</label>
-                            <input type="date" class="form-control" name="waktubantuan" value="{{$poktan->waktubantuan}}" required>
-                          </div>
-                         
-                        </div>
-                      
-                    </div>
-                    
-                </div>
+                    </div>        
+                  </div>        
+              </div>
+              <div class="col-12 mt-2">
+                <label for="inputEmail4" class="form-label">Alamat</label>
+                <textarea type="text" class="form-control" name="lokasipoktan" required>{{$poktan->lokasipoktan}}</textarea>
+              </div>      
   
+                <div class="col-6">
+                  <div class="bantuan">
+                    @php
+                      $jp = count($bantuan);
+                      $a = 0;
+                      @endphp
+                       <input type="text" name="jp" hidden value="{{ $jp }}" id="jp">
+                       @foreach ($bantuan as $pkt)
+                       @if ($a <> 0)
+                       <div id="namabantuan{{ $a }}">
+                       @endif
+                       <label for="paket" class="form-label">Nama Bantuan</label>
+                       <input type="text" id="namabantuan" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan{{ $a }}" data-parsley-required="true" value="{{ $pkt->namabantuan }}">
+                        <div class="row mt-2">
+                            <div class="col col-6 col-md-6">
+                                <label for="weekday" class="form-label">Waktu Penyaluran</label>
+                                <input type="text" id="waktubantuan" class="form-control" placeholder="Waktu Penyaluran" name="waktubantuan{{ $a }}" data-parsley-required="true"  value="{{ $pkt->waktubantuan }}">
+                            </div>
+                            <div class="col col-6 col-md-6">
+                                <label for="weekend" class="form-label">Kuantitas Bantuan</label>
+                                <input type="text" id="qtybantuan" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan{{ $a }}" data-parsley-required="true" value="{{ $pkt->qtybantuan}}">
+                            </div>
+                        </div> 
 
-                <div class="col-12">
+                        @php
+                          $a = $a + 1;
+                         @endphp
+                       
+                       <center>
+                        <div id="tp{{ $a }}" class="col-md-4 mt-2"  @if ($a <> $jp)
+                          style="display: none"
+                        @endif>
+                        <a  class="btn btn-success" onclick="tambahpaket({{ $a }})">Tambah Bantuan</a>
+                        </div>
+                        @if ($a == 1)
+                        <div id="mp1"></div>
+                        @else
+                        <div id="mp{{ $a }}" class="col-md-4 mt-2" @if ($a <> $jp)
+                          style="display: none"
+                        @endif>
+                          <a  class="btn btn-warning" onclick="minpaket({{ $a }})" >Hapus Bantuan</a>
+                        </div>   
+                        @endif
+                      </center>
+                  
+                       @endforeach
+                       @if ($a == $jp)
+                       <div id="namabantuan{{ $a }}"></div>  
+                       @else
+                       @if ($a <> 1)
+                    
+                       @endif
+                      
+                       @endif  
+                      </div>
+                  </div>
+
                   <div class="col-6">
                     @php
                       $jf = count($petani);
@@ -117,6 +156,7 @@
                   </div> 
                   <div id="Mf1"></div>   
                     @endif
+                    @endforeach
                     @if ($i == $jf)
                     <div id="plusf{{ $jf }}"></div>
                     @else
@@ -124,10 +164,69 @@
                      
                       @endif
                     @endif
-                  @endforeach
+               
                    </div>
-                  </div>
+                 
                 </div>
+
+              
+
+                </div>
+            
+                <div class="col-6">
+                  @php
+                  $jz = count($pelatihan);
+                  $a = 0;
+              @endphp
+              <input type="text" name="jz" hidden value="{{ $jz }}" id="jz">
+              @foreach ($pelatihan as $pkt)
+              @if ($a <> 0)
+              <div id="namapelatihan{{ $a }}">
+              @endif
+         
+                <label for="paket" class="form-label">Nama Pelatihan</label>
+                  <input type="text" id="namapelatihan" class="form-control" placeholder="Masukkan Nama Pelatihan" name="namapelatihan{{ $a }}" data-parsley-required="true" value="{{ $pkt->namapelatihan }}">
+                  <div class="row mt-2">
+                      <div class="col col-6 col-md-6">
+                          <label for="weekday" class="form-label">Waktu Pelatihan</label>
+                          <input type="text" id="waktupelatihan" class="form-control" placeholder="Harga Weekday" name="waktupelatihan{{ $a }}" data-parsley-required="true"  value="{{ $pkt->waktupelatihan }}">
+                      </div>
+                      <div class="col col-6 col-md-6">
+                          <label for="weekend" class="form-label">Jumlah Peserta</label>
+                          <input type="text" id="jumlahpeserta" class="form-control" placeholder="Harga Weekend" name="jumlahpeserta{{ $a }}" data-parsley-required="true" value="{{ $pkt->jumlahpeserta}}">
+                      </div>
+                  </div>
+                        @php
+                        $a = $a + 1;
+                       @endphp
+                           <center>
+                            <div id="tz{{ $a }}" class="col-md-6 mt-2"  @if ($a <> $jz)
+                              style="display: none"
+                            @endif>
+                            <a  class="btn btn-success" onclick="tambahpelatihan({{ $a }})">Tambah Pelatihan</a>
+                            </div>
+                            @if ($a == 1)
+                            <div id="mz1"></div>
+                            @else
+                            <div id="mz{{ $a }}" class="col-md-6 mt-2" @if ($a <> $jz)
+                              style="display: none"
+                            @endif>
+                              <a  class="btn btn-warning" onclick="minpelatihan({{ $a }})" >Hapus Pelatihan</a>
+                            </div>   
+                            @endif
+                          </center>
+                          @endforeach
+                       
+                          @if ($a == $jz)
+                          <div id="namapelatihan{{ $a }}"></div>  
+                          @else
+                          @if ($a <> 1)
+                       
+                          @endif
+                         
+                          @endif  
+                         </div>
+                
                   
                 
                 
@@ -166,5 +265,94 @@
     $("#jf").val(x)
     $("#plusf"+ x).html(`  `);
   }
+
+  function tambahpaket(id)
+  {
+    var x = id + 1;
+    document.getElementById("tp" + id).style.display="none";
+    document.getElementById("mp" + id).style.display="none";
+    $("#jp").val(x)
+    $("#namabantuan" + id).html(`
+  
+    <label for="paket" class="form-label">Nama Bantuan</label>
+    <input type="text" id="namabantuan" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan`+id+`" data-parsley-required="true">
+      <div class="row mt-2">
+          <div class="col col-6 col-md-6">
+          <label for="weekday" class="form-label">Waktu Penyaluran</label>
+          <input type="date" id="waktubantuan" class="form-control" placeholder="Waktu Penyaluran" name="waktubantuan`+id+`" data-parsley-required="true">
+          </div>
+          <div class="col col-6 col-md-6">
+            <label for="weekend" class="form-label">Kuantitas Bantuan</label>
+            <input type="number" id="qtybantuan" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan`+id+`" data-parsley-required="true">
+            </div>
+          </div>
+            <div class="row">
+            <center>
+            
+            <div id="tp`+x+`" class="col-md-4  mt-2">
+            <a  class="btn btn-success" onclick="tambahpaket(`+x+`)">Tambah Bantuan</a>
+            </div>
+            <div  id="mp`+x+`"  class="col-md-4 mt-2">
+            <a class="btn btn-warning" onclick="minpaket(`+x+`)">Hapus Bantuan</a>
+            </div>
+          
+            </center>
+          </div>
+    <div id="namabantuan`+x+`"></div>
+    `);
+  }
+  function minpaket(id)
+  {
+    var x = id - 1;
+    document.getElementById("tp" + x).style.display="block";
+    document.getElementById("mp" + x).style.display="block";
+    $("#jp").val(x)
+    $("#namabantuan"+ x).html(`  `);
+  }
+
+  // script pelatihan
+  function tambahpelatihan(id)
+  {
+    var x = id + 1;
+    document.getElementById("tz" + id).style.display="none";
+    document.getElementById("mz" + id).style.display="none";
+    $("#jz").val(x)
+    $("#namapelatihan" + id).html(`
+    <label for="paket" class="form-label">Nama Pelatihan</label>
+    <input type="text" id="namapelatihan" class="form-control" placeholder="Masukkan Nama Pelatihan" name="namapelatihan`+id+`" data-parsley-required="true">
+      <div class="row mt-2">
+        <div class="col col-6 col-md-6">
+          <label for="weekday" class="form-label">Waktu Pelatihan</label>
+          <input type="date" id="waktupelatihan" class="form-control" placeholder="Waktu Pelatihan" name="waktupelatihan`+id+`" data-parsley-required="true">
+          </div>
+            <div class="col col-6 col-md-6">
+            <label for="weekend" class="form-label">Jumlah Peserta</label>
+            <input type="number" id="jumlahpeserta" class="form-control" placeholder="Jumlah Peserta Pelatihan" name="jumlahpeserta`+id+`" data-parsley-required="true">
+            </div>
+          </div>
+            <div class="row">
+            <center>
+            
+            <div id="tz`+x+`" class="col-md-6  mt-2">
+            <a  class="btn btn-success" onclick="tambahpelatihan(`+x+`)">Tambah Pelatihan</a>
+            </div>
+            <div  id="mz`+x+`"  class="col-md-6 mt-2">
+            <a class="btn btn-warning" onclick="minpelatihan(`+x+`)">Hapus Pelatihan</a>
+            </div>
+          
+            </center>
+          </div>
+    <div id="namapelatihan`+x+`"></div>
+    `);
+  }
+  function minpelatihan(id)
+  {
+    var x = id - 1;
+    document.getElementById("tz" + x).style.display="block";
+    document.getElementById("mz" + x).style.display="block";
+    $("#jz").val(x)
+    $("#namapelatihan"+ x).html(`  `);
+  }
+  // end script pelatihan
 </script>
 @endsection

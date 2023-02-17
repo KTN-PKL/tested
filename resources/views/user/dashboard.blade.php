@@ -41,9 +41,7 @@
  
     <div class="container p-1">
      
-      @if(session()->has('success'))
-        <div id="login-alert" class="alert alert-success custom-alert col-md-12"><b>Warning!</b> {{session('error')}}</div>
-        @endif
+      @include('sweetalert::alert')
    
       <!-- main menu -->
       <div class="header pt-3">

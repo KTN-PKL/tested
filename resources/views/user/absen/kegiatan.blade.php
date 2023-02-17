@@ -6,9 +6,8 @@
   #results { padding:20px; border:1px solid; background:#ccc; }
 </style>
 @section('content')
-@if(session()->has('msg'))
-<div id="login-alert" class="alert alert-danger custom-alert col-md-12"><b>Warning!</b> {{session('msg')}}</div>
-@endif
+
+@include('sweetalert::alert')
     <!-- componen card -->
     <div class="card">
       <div class="card-body">

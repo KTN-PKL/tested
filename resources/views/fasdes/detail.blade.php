@@ -69,11 +69,6 @@
                   @endif
                 </h6></td>
             </tr>
-            <tr>
-              <td valign="top"><h6>Total Petani</h6></td>
-              <td valign="top"><h6>:</h6></td>
-              <td valign="top"><h6 style="color: black">{{$petani}} Orang</h6></td>
-          </tr>
         </table>
         </div>
 

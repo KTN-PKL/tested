@@ -287,7 +287,9 @@
     {{-- <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script> --}}
     <script>
 $(document).ready(function() {
-jh()
+jh(),
+bar1(),
+bar2()
 });
 function jh()
 {

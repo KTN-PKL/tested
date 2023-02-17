@@ -2,12 +2,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-<style type="text/css">
+<link rel="stylesheet" href="{{ config('sweetalert.animatecss') }}">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{{-- <style type="text/css">
   #results { padding:20px; border:1px solid; background:#ccc; }
-</style>
+</style> --}}
 @section('content')
 
-@include('sweetalert::alert')
+{{-- @include('sweetalert::alert') --}}
     <!-- componen card -->
     <div class="card">
       <div class="card-body">
@@ -113,7 +115,7 @@
             <textarea
             class="form-control  @error('judupelatihan') is-invalid @enderror"
             placeholder="Leave a comment here"
-            id="floatingTextarea" name="judulpelatihan"  
+            id="judul" name="judulpelatihan"  
           ></textarea>
           <label for="floatingTextarea">Judul</label>
           
@@ -122,7 +124,7 @@
           <textarea
           class="form-control"
           placeholder="Leave a comment here"
-          id="floatingTextarea" name="durasipelatihan"
+          id="durasi" name="durasipelatihan"
         ></textarea>
         <label for="floatingTextarea">Durasi Waktu</label>
         </div>
@@ -130,7 +132,7 @@
           <textarea
           class="form-control"
           placeholder="Leave a comment here"
-          id="floatingTextarea" name="tempatpelatihan"
+          id="tempat" name="tempatpelatihan"
         ></textarea>
         <label for="floatingTextarea">Tempat</label>
         </div>
@@ -145,15 +147,16 @@
         <input type="text" id="fotopelatihan" name="fotopelatihan" hidden>
         </div>
         {{-- end form pelatihan --}}
-      
+        <button id="Btn" type="submit" class="btn btn-block btn-success" hidden></button>
+      </form>
 
         <div class="button text-center d-grid pt-3">
-          <button onclick="myFunction()" id="Btn" type="submit" class="btn btn-block btn-success"
+          <button onclick="myFunction()" class="btn btn-block btn-success"
             ><i class="fa-solid fa-floppy-disk"></i> Simpan</button
           >
         </div>
       </div>
-    </form>
+  <div id="cek"></div>
     </div>
     <!-- akhir componen card -->
 
@@ -179,7 +182,7 @@
       </div>
       
       {{-- end modal --}}    
-    
+      <script src="{{ $cdn ?? asset('vendor/sweetalert/sweetalert.all.js')  }}"></script>
   <script src="{{asset('templateUser')}}/js/bootstrap.bundle.min.js"></script>
   <script>
     // script tambahan form pelatihan
@@ -298,10 +301,30 @@
       }
 
       function myFunction() {
-    var x = document.getElementById("Btn");
-    $(x).click();
-    x.disabled = true;
-}
+      var pelatihan = $("#pelatihan").val();
+      if (pelatihan == "pelatihan") {
+        var judul = $("#judul").val();
+        var durasi = $("#durasi").val();
+        var tempat = $("#tempat").val();
+        var fotopelatihan = $("#fotopelatihan").val();
+        if (judul == ""|| durasi == ""|| fotopelatihan == ""|| tempat == "") {
+          Swal.fire({
+            text: "Anda Ingin Menghapus Item ",
+            type: 'error',
+            // showCancelButton: true,
+            // confirmButtonColor: '#d33',
+            // cancelButtonColor: '#3085d6',
+            // confirmButtonText: 'Iya Saya Yakin!',
+            // cancelButtonText: 'Tidak'
+            })
+        } else {
+          $("#Btn").click();
+        }
+        // $("#cek").html(judul);
+      } else {
+        $("#Btn").click();
+      }
+      }
 
       
   </script>

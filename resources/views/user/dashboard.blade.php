@@ -172,7 +172,7 @@
           <div class="col-6">
             <div class="card shadow mt-2 p-1">
               Terlambat
-              <h5>0</h5>
+              <h5>{{ $telat }}</h5>
             </div>
           </div>
         </div>
@@ -298,7 +298,7 @@ var absen = $("#absen").val();
   var myvar = myarr[0] + "-" + myarr[1];
   $("#bulan").val(myvar);
   var isi = "dari="+dari+"&sampai="+sampai;
-        $.get(`{{ url('harian/chart?`+isi+`') }}/`, {}, function(data, status) {
+        $.get(`{{ url('harian/chart2?`+isi+`') }}/`, {}, function(data, status) {
       var h = data.h;
       if (absen == "masuk") {
         var v = data.v;

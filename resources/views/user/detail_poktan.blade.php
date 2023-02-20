@@ -21,7 +21,7 @@
         <!-- main menu -->
         <div class="history p-2 rou">
         <div class="rounded label bg-prim">
-            <h4 class="text-light p-3"><i class="fa-solid fa-pencil"></i> Detail PokTan</h4>
+            <h4 class="text-light p-3"><i class="fa-solid fa-eye"></i> Detail PokTan</h4>
         </div>
         <!-- card -->
         <div class="card shadow" style="width: 100%">

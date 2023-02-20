@@ -50,18 +50,25 @@
                     <div class="row">
                       <div class="col-6">
                         <div class="col-12 mt-2">
-                          <label for="inputEmail4" class="form-label">Pemeliharaan</label>
-                          <input type="text" class="form-control" name="pemeliharaan" required>
-                        </div>  
-                      </div> 
-                      <div class="col-6">
-                        <div class="col-12 mt-2">
                           <label for="inputEmail4" class="form-label">Jumlah Produksi</label>
                           <input type="number" class="form-control" name="jumlahproduksi" required>
                         </div>
-                      </div>        
+                      </div>  
+                      <div class="col-6">
+                        <div class="col-12 mt-2">
+                          <label for="inputEmail4" class="form-label">Jumlah Petani</label>
+                          <input type="number" class="form-control" name="jumlahpetani" required>
+                        </div>
+                      </div>       
                     </div>        
                 </div>
+                <div class="col-12 mt-2">
+                  <label for="inputEmail4" class="form-label">Pemeliharaan</label>
+                  <input type="text" class="form-control" name="pemeliharaan" required>
+                </div>  
+
+              
+             
                 <div class="col-12 mt-2">
                   <label for="inputEmail4" class="form-label">Alamat</label>
                   <textarea type="text" class="form-control" name="lokasipoktan" required></textarea>

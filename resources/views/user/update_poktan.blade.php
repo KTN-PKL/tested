@@ -49,8 +49,12 @@
                         <input type="text" class="form-control" id="pasar" name="pasar" value="{{$poktan->pasar}}" >
                     </div>
                     <div class="mb-3">
+                      <label for="jumlahpetani" class="form-label">Jumlah Petani</label>
+                      <input type="number" class="form-control" id="jumlahproduksi" name="jumlahpetani" value="{{$poktan->jumlahpetani}}">
+                    </div>
+                    <div class="mb-3">
                         <label for="pasarlokal" class="form-label">Lokasi Kelompok Petani</label>
-                        <input type="text" class="form-control" id="lokasipoktan" name="lokasipoktan" value="{{$poktan->lokasipoktan}}" >
+                        <input type="text" class="form-control" id="lokasipoktan" name="lokasipoktan" value="{{$poktan->lokasipoktan}}">
                     </div>
                     <div class="mb-3">
                       @php

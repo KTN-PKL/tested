@@ -34,6 +34,11 @@
               <td valign="top"><h6 style="color: black">{{$poktan->jumlahproduksi}} Kilogram</h6></td>
           </tr>
           <tr>
+            <td valign="top"><h6>Jumlah Petani</h6></td>
+            <td valign="top"><h6>:</h6></td>
+            <td valign="top"><h6 style="color: black">{{$poktan->jumlahpetani}} Orang</h6></td>
+        </tr>
+          <tr>
               <td valign="top"><h6>Pemeliharaan</h6></td>
               <td valign="top"><h6>:</h6></td>
               <td valign="top"><h6 style="color: black">{{$poktan->pemeliharaan}}</h6></td>

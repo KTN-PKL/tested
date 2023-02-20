@@ -143,9 +143,8 @@ class c_poktan extends Controller
                     'pemeliharaan' => $request->pemeliharaan,
                     'pasar' => $request->pasar,
                     'lokasipoktan' => $request->lokasipoktan,
-                    'namabantuan' => $request->namabantuan,
-                    'qtybantuan' => $request->qtybantuan,
-                    'waktubantuan'=> $request->waktubantuan,
+                    'jumlahpetani' => $request->jumlahpetani,
+              
                 ];
                 $this->poktan->addData($data);
         }else{
@@ -161,9 +160,8 @@ class c_poktan extends Controller
                     'pemeliharaan' => $request->pemeliharaan,
                     'pasar' => $request->pasar,
                     'lokasipoktan' => $request->lokasipoktan,
-                    'namabantuan' => $request->namabantuan,
-                    'qtybantuan' => $request->qtybantuan,
-                    'waktubantuan'=> $request->waktubantuan,
+                    'jumlahpetani' => $request->jumlahpetani,
+              
                 ];
                 $this->poktan->addData($data);
       
@@ -235,7 +233,8 @@ class c_poktan extends Controller
             'jumlahproduksi' => $request->jumlahproduksi,
             'pemeliharaan' => $request->pemeliharaan,
             'pasar' => $request->pasar,
-            'lokasipoktan' => $request->lokasipoktan,    
+            'lokasipoktan' => $request->lokasipoktan,
+            'jumlahpetani' => $request->jumlahpetani,     
         ];
         $this->poktan->editData($id, $data);
         $data = $this->poktan->detailData($id);

@@ -53,6 +53,10 @@
                         </select>
                     </div>
                     <div class="mb-3">
+                      <label for="jumlahpetani" class="form-label">Jumlah Petani</label>
+                      <input type="number" class="form-control" id="jumlahproduksi" name="jumlahpetani" value="{{old('jumlahpetani')}}"required>
+                    </div>
+                    <div class="mb-3">
                         <label for="pasarlokal" class="form-label">Lokasi Kelompok Petani</label>
                         <input type="text" class="form-control" id="lokasipoktan" name="lokasipoktan" value="{{old('lokasipoktan')}}" required >
                     </div>

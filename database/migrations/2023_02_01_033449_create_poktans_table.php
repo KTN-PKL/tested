@@ -22,9 +22,7 @@ return new class extends Migration
             $table->string('pemeliharaan');
             $table->string('pasar', 15);
             $table->string('lokasipoktan');
-            $table->string('namabantuan')->nullable();
-            $table->string('qtybantuan')->nullable();
-            $table->string('waktubantuan')->nullable();
+            $table->string('jumlahpetani')->nullable();
             $table->timestamps();
         });
     }

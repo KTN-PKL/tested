@@ -13,14 +13,14 @@
     <title>Detail Poktan</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <div class="title bg-primary text-light text-center p-3">
+    <div class="title bg-prim text-light text-center p-3">
     <h1 class="display-5"><i class="fa-solid fa-id-card-clip text-light"></i> Selamat datang</h1>
         <p>User</p>
     </div>
     <div class="container p-1">
         <!-- main menu -->
         <div class="history p-2 rou">
-        <div class="rounded label bg-primary">
+        <div class="rounded label bg-prim">
             <h4 class="text-light p-3"><i class="fa-solid fa-pencil"></i> Detail PokTan</h4>
         </div>
         <!-- card -->
@@ -31,8 +31,9 @@
                     <table border="0">
                         <tbody>
                             <tr><td>Nama Poktan</td><td>: </td><td>{{$poktan->namapoktan}}</td></tr>
-                            <tr><td>Luas Tanah</td><td>: </td><td>{{$poktan->luastanah}}</td></tr>
-                            <tr><td>Jumlah Produksi</td><td>: </td><td>{{$poktan->jumlahproduksi}}</td></tr>
+                            <tr><td>Luas Tanah</td><td>: </td><td>{{$poktan->luastanah}} Hektar</td></tr>
+                            <tr><td>Jumlah Produksi</td><td>: </td><td>{{$poktan->jumlahproduksi}} Kilogram</td></tr>
+                            <tr><td>Jumlah Petani</td><td>: </td><td>{{$poktan->jumlahpetani}} Orang</td></tr>
                             <tr><td>Pemelihara</td><td>: </td><td>{{$poktan->pemeliharaan}}</td></tr>
                             <tr><td>Pasar Lokal</td><td>: </td><td>{{$poktan->pasar}}</td></tr>
                             <tr><td>Lokasi Poktan</td><td>: </td><td>{{$poktan->lokasipoktan}}</td></tr>
@@ -138,7 +139,7 @@
     <!-- footer -->
     <footer class="text-light text-center text-lg-start mt-auto pt-5">
         <!-- Copyright -->
-        <div class="text-center p-3 bg-primary" style="height: 20vh">
+        <div class="text-center p-3 bg-prim" style="height: 20vh">
             ©2023 Copyright:
         <a class="text-dark" href="#"></a>
         </div>

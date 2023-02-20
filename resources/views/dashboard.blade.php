@@ -60,6 +60,20 @@
                    <div id="chartkegiatan"></div>
                 </div>
               </div>
+              <div class="card">
+                <div class="card-body">
+                  
+                  <h5 class="card-title">Chart Hasil Panen</h5>
+                  <canvas id="barChart2" style="max-height: 400px;"></canvas>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  
+                  <h5 class="card-title">Chart Luas Lokasi</h5>
+                  <canvas id="barChart3" style="max-height: 400px;"></canvas>
+                </div>
+              </div>
                   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
                   integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
                 </script>
@@ -68,7 +82,9 @@
                   <script>
              $(document).ready(function() {
             jh(),
-            jh1()
+            jh1(),
+            bar2(),
+            bar3()
             });
             function jh()
             {
@@ -148,7 +164,7 @@
               });    
             }
             function bar1() {
-              $("#chartkegiatan").html(`<canvas id="barChart2" style="max-height: 400px;"></canvas>`);
+              $("#chartkegiatan").html(`<canvas id="barChart1" style="max-height: 400px;"></canvas>`);
               var dari = $("#dari1").val();
               var absen = $("#absen1").val();
                 var sampai = $("#sampai1").val();
@@ -163,7 +179,7 @@
                       $.get(`{{ url('harian/chart?`+isi+`') }}/`, {}, function(data, status) {
                     var h = data.h;
                     var v = data.k
-                    var barc = document.getElementById("barChart2").getContext('2d');
+                    var barc = document.getElementById("barChart1").getContext('2d');
               
                 new Chart( barc, {
                 type: 'bar',
@@ -202,6 +218,92 @@
                 }
               }); });
             }
+function bar2() {
+        $.get("{{ url('faskab/chartpanen') }}/", {}, function(data, status) {
+      var h = data.h;
+      var v = data.v
+      var barc = document.getElementById("barChart2").getContext('2d');
+
+  new Chart( barc, {
+  type: 'bar',
+  data: {
+    labels: h,
+    datasets: [{
+      label: 'Bar Chart',
+      data: v,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(255, 205, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(201, 203, 207, 0.2)'
+      ],
+      borderColor: [
+        'rgb(255, 99, 132)',
+        'rgb(255, 159, 64)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(54, 162, 235)',
+        'rgb(153, 102, 255)',
+        'rgb(201, 203, 207)'
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+}); });
+}
+function bar3() {
+        $.get("{{ url('faskab/chartlahan') }}/", {}, function(data, status) {
+      var h = data.h;
+      var v = data.v
+      var barc = document.getElementById("barChart3").getContext('2d');
+
+  new Chart( barc, {
+  type: 'bar',
+  data: {
+    labels: h,
+    datasets: [{
+      label: 'Bar Chart',
+      data: v,
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(255, 205, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(201, 203, 207, 0.2)'
+      ],
+      borderColor: [
+        'rgb(255, 99, 132)',
+        'rgb(255, 159, 64)',
+        'rgb(255, 205, 86)',
+        'rgb(75, 192, 192)',
+        'rgb(54, 162, 235)',
+        'rgb(153, 102, 255)',
+        'rgb(201, 203, 207)'
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+}); });
+}
                   </script>
                   <!-- End Line Chart -->
 

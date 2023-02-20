@@ -33,7 +33,7 @@
 	</style>
  
 	<center>
-		<h1>Absen Harian</h1>
+		<h1>Absen Kegiatan</h1>
 	</center>
 <div>
 <h3>Name   : {{ $fasdes->name }}</h3> 

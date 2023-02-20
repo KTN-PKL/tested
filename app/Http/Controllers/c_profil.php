@@ -83,6 +83,15 @@ class c_profil extends Controller
            
         return view('user.historikegiatan', $data);
     }
+    public function exportkegiatan(Request $request)
+    {
+        $id = Auth::user()->id;
+        $data = ['fasdes' => $this->fasdes->detailData($id),
+                'kegiatan'=> $this->absenkegiatan->historyKegiatan($id, $request->dari, $request->sampai),
+                  ];
+           
+        return view('user.printkegiatan', $data);
+    }
 
     public function detailAbsenKegiatan($id)
     {
@@ -99,6 +108,15 @@ class c_profil extends Controller
                   ];
            
         return view('user.historiharian', $data);
+    }
+    public function exportharian(Request $request)
+    {
+        $id = Auth::user()->id;
+        $data = ['fasdes' => $this->fasdes->detailData($id),
+                'harian'=> $this->absenharian->allData($id, $request->dari, $request->sampai),
+                  ];
+           
+        return view('user.printharian', $data);
     }
     public function viewDetailpoktan($id)
     {

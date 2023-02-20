@@ -32,8 +32,8 @@
         <div class="row">
         <div class="col col-md-4">
           <select class="form-select" id="absen" onchange="absen()">
-            <option value="Harian" selected>Harian</option>
-            <option value="Kegiatan">Kegiatan</option>
+            <option value="harian" selected>Harian</option>
+            <option value="kegiatan">Kegiatan</option>
             </select>
         </div>
         <div class="col col-md-3">
@@ -46,6 +46,8 @@
             <input type="date" id="sampai" class="form-control" onchange="read()">
           </div>
         </div>
+        </div>
+        <div id="export">
         </div>
         <br>
         <!-- card -->
@@ -98,12 +100,11 @@
       var dari = $("#dari").val();
       var sampai = $("#sampai").val();
       var absen = $("#absen").val();
-      if (absen == "Harian") {
+      if (absen == "harian") {
         $.ajax({
                     type: "get",
                     url: "{{ url('fasdes/historiharian') }}",
                     data: {
-                    "absen": absen,
                     "sampai": sampai,
                     "dari": dari,
                     },
@@ -116,7 +117,6 @@
                     type: "get",
                     url: "{{ url('fasdes/historikegiatan') }}",
                     data: {
-                    "absen": absen,
                     "dari": dari,
                     "sampai": sampai,
                     },
@@ -125,6 +125,7 @@
                     }
                 }); 
       }
+      $("#export").html(`<a href="/fasdes/export`+absen+`?&dari=`+dari+`&sampai=`+sampai+`" class="btn btn-sm btn-primary">Export</a>`);
     }
     function jh()
             {

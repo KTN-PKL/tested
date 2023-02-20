@@ -130,6 +130,8 @@ Route::controller(c_profil::class)->middleware('auth')->group(function () {
     Route::get('fasdes/history', 'viewHistory')->name('fasdes.history');
     Route::get('fasdes/historiharian', 'historiharian')->name('fasdes.historiharian');
     Route::get('fasdes/historikegiatan', 'historikegiatan')->name('fasdes.historikegiatan');
+    Route::get('fasdes/exportharian', 'exportharian')->name('fasdes.exportharian');
+    Route::get('fasdes/exportkegiatan', 'exportkegiatan')->name('fasdes.exportkegiatan');
     Route::get('fasdes/detail/{id}', 'viewDetailpoktan')->name('fasdes.detailpoktan');
     Route::get('fasdes/create/{id}', 'viewCreatepoktan')->name('fasdes.createpoktan');
     Route::post('fasdes/store/{id}', 'storePoktan')->name('fasdes.storepoktan');

@@ -47,6 +47,7 @@
 <table class="table table-bordered table-responsive">
           <thead>
             <tr>
+                <th>No</th>
                 <th>Tanggal</th>
                 <th>Jam Masuk</th>
                 <th>Foto Fasdes Masuk</th>
@@ -72,13 +73,13 @@
               <td>{{$i}}</td>
               <td>{{$data->tgl}}</td>
               <td>{{$data->jam}} WIB</td>
-              <td><img class="img-thumbnail" src="{{asset('/foto/absenkegiatan/'. $data->fotofasdes)}}" width="80px" alt=""></td>
-              <td><img class="img-thumbnail" src="{{ asset('foto/absenkegiatan/'. $data->fotokegiatanharian) }}" width="80px" alt=""></td>
+              <td><img class="img-thumbnail" src="{{asset('/foto/'. $data->fotofasdes)}}" width="80px" alt=""></td>
+              <td><img class="img-thumbnail" src="{{ asset('foto/'. $data->fotokegiatanharian) }}" width="80px" alt=""></td>
               <td>{{$data->deskripsi}}</td>
               @if ($data->jampulang <> null)
               <td>{{ $data->jampulang }}</td>
-              <td><img class="img-thumbnail" src="{{asset('/foto/absenkegiatan/'. $data->fotofasdespulang)}}" width="80px" alt=""></td>
-              <td><img class="img-thumbnail" src="{{ asset('foto/absenkegiatan/'. $data->fotokegiatanharianpulang) }}" width="80px" alt=""></td>
+              <td><img class="img-thumbnail" src="{{asset('/foto/'. $data->fotofasdespulang)}}" width="80px" alt=""></td>
+              <td><img class="img-thumbnail" src="{{ asset('foto/'. $data->fotokegiatanharianpulang) }}" width="80px" alt=""></td>
               <td>{{ $data->deskripsipulang }}</td>
               @else
               <td>Tidak Absen Pulang</td>

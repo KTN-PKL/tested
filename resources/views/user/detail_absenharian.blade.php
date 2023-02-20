@@ -113,7 +113,7 @@
     </footer>
     <!-- end footer -->
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
 <script>
 $(document).ready(function() {
 initialize(),

@@ -29,14 +29,14 @@
   date_default_timezone_set("Asia/Jakarta");
   $d = date("Y-m");
 @endphp
-        <div class="row">
+      
         <div class="col col-md-4">
           <select class="form-select" id="absen" onchange="absen()">
             <option value="harian" selected>Harian</option>
             <option value="kegiatan">Kegiatan</option>
             </select>
         </div>
-        <div class="col col-md-3">
+        <div class="col col-md-3 mt-2">
           <input type="month" id="bulan" class="form-control"  value="{{ $d }}" onchange="jh()">
         </div>
         <div class="col col-md-5 mt-2">
@@ -48,7 +48,7 @@
             <input type="date" id="sampai" class="form-control" onchange="read()">
           </div>
         </div>
-        </div>
+    
         <div class="col-12 mt-2">
           <div id="export"> </div>
         </div>

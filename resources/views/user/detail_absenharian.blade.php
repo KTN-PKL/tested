@@ -49,7 +49,8 @@
                         </tbody>
                     </table>
                 </div>
-
+                <input type="text" id="lokasi1" value="{{ $absenharian->lokasiharian }}" hidden>
+                <div id="googleMap" style="width:100%;height:380px;"></div>
                 @if($absenharian->jampulang <> null)
                 <div class="row mt-4">
                     <div class="col-6">
@@ -71,6 +72,8 @@
                         </tbody>
                     </table>
                 </div>
+                <input type="text" id="lokasi2" value="{{ $absenharian->lokasipulang }}" hidden>
+                <div id="googleMap2" style="width:100%;height:380px;"></div>
                 @endif
            
         </div>
@@ -109,6 +112,72 @@
         <!-- Copyright -->
     </footer>
     <!-- end footer -->
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+<script>
+$(document).ready(function() {
+initialize(),
+initialize2()
+} );
+function initialize() {
+
+var lokkasi = $("#lokasi1").val();
+
+  var myarr = lokkasi.split(",");
+  var lat = parseFloat(myarr[0]);
+  var long = parseFloat(myarr[1]);
+  var propertiPeta = {
+    center: {
+      lat: lat,
+      lng: long
+    },
+    zoom:15,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  
+  var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
+  
+  // membuat Marker
+  var marker=new google.maps.Marker({
+      position: {
+      lat: lat,
+      lng: long
+    },
+      map: peta,
+      animation: google.maps.Animation.BOUNCE
+  });
+
+}
+function initialize2() {
+
+var lokkasi = $("#lokasi2").val();
+
+  var myarr = lokkasi.split(",");
+  var lat = parseFloat(myarr[0]);
+  var long = parseFloat(myarr[1]);
+  var propertiPeta = {
+    center: {
+      lat: lat,
+      lng: long
+    },
+    zoom:15,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  
+  var peta = new google.maps.Map(document.getElementById("googleMap2"), propertiPeta);
+  
+  // membuat Marker
+  var marker=new google.maps.Marker({
+      position: {
+      lat: lat,
+      lng: long
+    },
+      map: peta,
+      animation: google.maps.Animation.BOUNCE
+  });
+
+}
+    </script>
     <script src="{{asset('templateUser')}}/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

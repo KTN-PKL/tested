@@ -262,7 +262,7 @@ class c_poktan extends Controller
         {
             foreach($poktan as $poktans)
             {
-                $h[$i] = $poktans->namapoktan;
+                $h[$i] = $poktans->name."(".$poktans->namapoktan.")";
                 $v[$i] = $poktans->luastanah;
                 $i = $i+1;
             }
@@ -288,8 +288,8 @@ class c_poktan extends Controller
         {
             foreach($poktan as $poktans)
             {
-                $h[$i] = $poktans->namapoktan;
-                $v[$i] = $poktans->luastanah;
+                $h[$i] = $poktans->name."(".$poktans->namapoktan.")";
+                $v[$i] = $poktans->jumlahproduksi;
                 $i = $i+1;
             }
         }

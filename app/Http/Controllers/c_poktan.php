@@ -249,4 +249,56 @@ class c_poktan extends Controller
         $this->pelatihan->deleteData($id);
         return redirect()->route('poktan', $data->id_user)->with('success', 'Kelompok Petani Berhasil Dihapus');
     }
+
+    public function chartLahan()
+    {
+        $poktan = $this->poktan->chartData();
+
+        $i = 0;
+        $h[0] = "Belum Ada Kelompok Tani";
+        $v[0] = 0;
+
+        if($poktan <> null)
+        {
+            foreach($poktan as $poktans)
+            {
+                $h[$i] = $poktans->namapoktan;
+                $v[$i] = $poktans->luastanah;
+                $i = $i+1;
+            }
+        }
+       
+        $data = [
+            'h' => $h,
+            'v' => $v,
+        ];
+
+        return $data;
+    }
+
+    public function chartPanen()
+    {
+        $poktan = $this->poktan->chartData();
+
+        $i = 0;
+        $h[0] = "Belum Ada Kelompok Tani";
+        $v[0] = 0;
+
+        if($poktan <> null)
+        {
+            foreach($poktan as $poktans)
+            {
+                $h[$i] = $poktans->namapoktan;
+                $v[$i] = $poktans->luastanah;
+                $i = $i+1;
+            }
+        }
+       
+        $data = [
+            'h' => $h,
+            'v' => $v,
+        ];
+
+        return $data;
+    }
 }

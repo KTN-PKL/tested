@@ -89,6 +89,8 @@ Route::controller(c_poktan::class)->middleware('auth')->group(function () {
     Route::get('poktan/detail/{id}', 'detail')->name('poktan.detail');
     Route::post('poktan/update/{id}', 'update')->name('faskab.poktan.update');
     Route::get('poktan/destroy/{id}', 'destroy')->name('faskab.poktan.destroy');
+    Route::get('faskab/chartpanen', 'chartPanen')->name('faskab.poktan.chartpanen');
+    Route::get('faskab/chartlahan', 'chartLahan')->name('faskab.poktan.chartlahan');
 });
 
 Route::controller(c_absenharian::class)->middleware('auth')->group(function () {

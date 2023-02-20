@@ -38,4 +38,9 @@ class poktan extends Model
     {
         return DB::table('poktans')->max('id_poktan');
     }
+    public function chartData()
+    {
+        return DB::table('poktans')->join('users','poktans.id_user','=','users.id')->get();
+    }
+
 }

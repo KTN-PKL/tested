@@ -7,10 +7,10 @@
               <p class="fw-bold">{{$datas->tanggalabsen}} {{$datas->waktuabsen}}</p>
               <p class="fw-bold">Absen Kegiatan {{$datas->jeniskegiatan}}</p>
             </div>
-            <div class="col-4 fw-bold">Status : <span class="badge bg-danger">Absen Kegiatan</span></div>
+            <div class="col-4 fw-bold">Status : <span class="badge bg-primary">Absen Kegiatan</span></div>
           </div>
         </div>
         @empty
-        <p class="bg-danger text-white p-1">Belum Ada Absen Kegiatan</p>
+        <p class="bg-primary text-white p-1">Belum Ada Absen Kegiatan</p>
       </div> 
        @endforelse

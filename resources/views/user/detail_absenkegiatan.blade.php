@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,23 +22,39 @@
         <!-- main menu -->
         <div class="history p-2 rou">
         <div class="rounded label bg-prim">
-            <h4 class="text-light p-3"><i class="fa-solid fa-pencil"></i> Detail Absen Kegiatan</h4>
+            <h4 class="text-light p-3"><i class="fa-solid fa-eye"></i> Detail Absen Kegiatan</h4>
         </div>
         <!-- card -->
         <div class="card shadow" style="width: 100%">
             <div class="card-body">
-              <div class="row">
-                <div class="col-12">
+                <div class="row">
+                    <div @if($absenkegiatan->pelatihan == "pelatihan") class="col-4" @else class="col-6" @endif>
+                        <span class="badge bg-prim">Foto Kegiatan</span>
+                        <img class="img" src="{{asset('/foto/absenkegiatan/'. $absenkegiatan->fotokegiatan)}}" width="100%" alt="">
+                    </div>
+                    <div @if($absenkegiatan->pelatihan == "pelatihan") class="col-4" @else class="col-6" @endif>
+                        <span class="badge bg-prim">Selfie</span>
+                        <img class="img" src="{{asset('/foto/absenkegiatan/'. $absenkegiatan->selfiekegiatan)}}" width="100%" alt="">
+                    </div>
+                    @if($absenkegiatan->pelatihan == "pelatihan")
+                    <div class="col-4">
+                        <span class="badge bg-prim">Foto Pelatihan</span>
+                        <img class="img" src="{{asset('/foto/absenkegiatan/'. $absenkegiatan->fotopelatihan)}}" width="100%" alt="">
+                    </div>
+                    @endif
+
+                </div>
+                <div class="col-12 mt-2">
                     <table border="0">
                         <tbody>
-                            <tr><td>Tanggal Absen</td><td>: </td><td>{{$kegiatan->tanggalabsen}} {{$kegiatan->waktuabsen}}</td></tr>
-                            <tr><td>Jenis Kegiatan</td><td>: </td><td>{{$kegiatan->jeniskegiatan}}</td></tr>
-                            <tr><td>Deskripsi Kegiatan</td><td>: </td><td>{{$kegiatan->deskripsikegiatan}}</td></tr>
-                            <tr><td>Pelatihan</td><td>: </td><td>{{$kegiatan->pelatihan}}</td></tr>
-                            @if($kegiatan->pelatihan == "pelatihan")
-                            <tr><td>Judul Pelatihan</td><td>: </td><td>{{$kegiatan->judulpelatihan}}</td></tr>
-                            <tr><td>Durasi Pelatihan</td><td>: </td><td>{{$kegiatan->durasipelatihan}} Menit</td></tr>
-                            <tr><td>Tempat Pelatihan</td><td>: </td><td>{{$kegiatan->tempatpelatihan}}</td></tr>
+                            <tr><td>Tanggal Absen</td><td>: </td><td>{{$absenkegiatan->tanggalabsen}} {{$absenkegiatan->waktuabsen}}</td></tr>
+                            <tr><td>Jenis Kegiatan</td><td>: </td><td>{{$absenkegiatan->jeniskegiatan}}</td></tr>
+                            <tr><td valign="top">Deskripsi Kegiatan</td><td valign="top">: </td><td valign="top">{{$absenkegiatan->deskripsikegiatan}}</td></tr>
+                            <tr><td>Pelatihan</td><td>: </td><td>{{$absenkegiatan->pelatihan}}</td></tr>
+                            @if($absenkegiatan->pelatihan == "pelatihan")
+                            <tr><td valign="top">Judul Pelatihan</td><td valign="top">: </td><td valign="top">{{$absenkegiatan->judulpelatihan}}</td></tr>
+                            <tr><td>Durasi Pelatihan</td><td>: </td><td>{{$absenkegiatan->durasipelatihan}} Menit</td></tr>
+                            <tr><td valign="top">Tempat Pelatihan</td><td valign="top">: </td><td valign="top">{{$absenkegiatan->tempatpelatihan}}</td></tr>
                             @endif
                         </tbody>
                     </table>
@@ -46,7 +63,7 @@
                    
                    
                 </div>
-            </div>
+           
         </div>
         <!-- card history end -->
     </div>

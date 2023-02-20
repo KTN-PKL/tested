@@ -83,6 +83,14 @@ class c_profil extends Controller
            
         return view('user.historikegiatan', $data);
     }
+
+    public function detailAbsenKegiatan($id)
+    {
+        $data = [
+            'absenkegiatan' => $this->kegiatan->detailData($id),
+        ];
+        return view('user.detail_absenkegiatan', $data);
+    }
     public function historiharian(Request $request)
     {
         $id = Auth::user()->id;
@@ -222,6 +230,7 @@ class c_profil extends Controller
                     'pemeliharaan' => $request->pemeliharaan,
                     'pasar' => $request->pasar,
                     'lokasipoktan' => $request->lokasipoktan,
+                    'jumlahpetani' => $request->jumlahpetani,
                 ];
                 $this->poktan->addData($data);
         }else{
@@ -237,6 +246,7 @@ class c_profil extends Controller
                     'pemeliharaan' => $request->pemeliharaan,
                     'pasar' => $request->pasar,
                     'lokasipoktan' => $request->lokasipoktan,
+                    'jumlahpetani' => $request->jumlahpetani,
                 ];
                 $this->poktan->addData($data);
       
@@ -337,7 +347,8 @@ class c_profil extends Controller
             'jumlahproduksi' => $request->jumlahproduksi,
             'pemeliharaan' => $request->pemeliharaan,
             'pasar' => $request->pasar,
-            'lokasipoktan' => $request->lokasipoktan,    
+            'lokasipoktan' => $request->lokasipoktan,   
+            'jumlahpetani' => $request->jumlahpetani, 
         ];
         $this->poktan->editData($id, $data);
         $data = $this->poktan->detailData($id);

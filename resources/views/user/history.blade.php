@@ -15,14 +15,14 @@
   </head>
   @auth
   <body class="d-flex flex-column min-vh-100">
-    <div class="title bg-primary text-light text-center p-3">
+    <div class="title bg-prim text-light text-center p-3">
       <h1 class="display-5"><i class="fa-solid fa-id-card-clip text-light"></i> Selamat datang</h1>
       <p>{{Auth::user()->name}}</p>
     </div>
     <div class="container p-1">
       <!-- main menu -->
       <div class="history p-2 rou">
-        <div class="rounded label bg-primary">
+        <div class="rounded label bg-prim">
           <h4 class="text-light p-3"><i class="fa-solid fa-book"></i> History</h4>
         </div>
         <div class="col col-md-4">
@@ -63,7 +63,7 @@
     <!-- footer -->
     <footer class="text-light text-center text-lg-start mt-auto pt-5">
       <!-- Copyright -->
-      <div class="text-center p-3 bg-primary" style="height: 20vh">
+      <div class="text-center p-3 bg-prim" style="height: 20vh">
         ©2023 Copyright:
         <a class="text-dark" href="#"></a>
       </div>

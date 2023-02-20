@@ -120,7 +120,10 @@ $dnow = date("j");
         @else
         Tepat Waktu
         @endif</td>
-      <td><a href="{{ route('faskab.harian.edit', $harian[$j]->id_absenharian) }}" class="btn btn-primary btn-sm">Edit</a></td>
+      <td>
+        <a href="{{ route('faskab.harian.edit', $harian[$j]->id_absenharian) }}" class="btn btn-warning btn-sm">Edit</a>
+        <a href="{{ route('faskab.harian.detail', $harian[$j]->id_absenharian) }}" class="btn btn-primary btn-sm">Detail</a>
+      </td>
       @php
            $j = $j+1;
          $jumlah = $jumlah - 1;

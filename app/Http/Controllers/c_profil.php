@@ -93,6 +93,7 @@ class c_profil extends Controller
         return view('user.printkegiatan', $data);
     }
 
+    // Detail Absen Pada Fasdes
     public function detailAbsenKegiatan($id)
     {
         $data = [
@@ -100,6 +101,17 @@ class c_profil extends Controller
         ];
         return view('user.detail_absenkegiatan', $data);
     }
+
+    public function detailAbsenHarian($id)
+    {
+        $data = [
+            'absenharian' => $this->absenharian->detailData($id),
+        ];
+        return view('user.detail_absenharian', $data);
+    }
+    // End Detail Absen pada Fasdes
+    
+
     public function historiharian(Request $request)
     {
         $id = Auth::user()->id;

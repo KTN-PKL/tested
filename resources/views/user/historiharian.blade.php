@@ -15,6 +15,11 @@
         @endif 
       </div>
     </div>
+    <center>
+      <div class="foot">
+        <a href="{{route('fasdes.detailabsenharian', $data->id_absenharian)}}"><i class="fa-solid fa-eye"></i></a>
+      </div>
+    </center>
   </div>
 </div>  
 @empty

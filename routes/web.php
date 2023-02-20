@@ -146,6 +146,7 @@ Route::controller(c_profil::class)->middleware('auth')->group(function () {
     Route::get('profil/chartpanen', 'chartPanen')->name('profil.chartpanen');
     Route::get('profil/chartlahan', 'chartLahan')->name('profil.chartlahan');
     Route::get('fasdes/kegiatan/{id}', 'detailAbsenKegiatan')->name('fasdes.detailabsenkegiatan');
+    Route::get('fasdes/harian/{id}', 'detailAbsenHarian')->name('fasdes.detailabsenharian');
 
 
   

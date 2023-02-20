@@ -25,11 +25,27 @@
         <div class="rounded label bg-prim">
           <h4 class="text-light p-3"><i class="fa-solid fa-book"></i> History</h4>
         </div>
+        @php
+  date_default_timezone_set("Asia/Jakarta");
+  $d = date("Y-m");
+@endphp
+        <div class="row">
         <div class="col col-md-4">
           <select class="form-select" id="absen" onchange="absen()">
             <option value="Harian" selected>Harian</option>
             <option value="Kegiatan">Kegiatan</option>
             </select>
+        </div>
+        <div class="col col-md-3">
+          <input type="month" id="bulan" class="form-control"  value="{{ $d }}" onchange="jh()">
+        </div>
+        <div class="col col-md-5">
+          <div class="input-group">
+            <input type="date" id="dari" class="form-control" onchange="read()">
+            <span class="input-group-text" id="basic-addon2">-</span>
+            <input type="date" id="sampai" class="form-control" onchange="read()">
+          </div>
+        </div>
         </div>
         <br>
         <!-- card -->
@@ -75,21 +91,50 @@
   <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
   <script>
     $(document).ready(function() {
-      absen()
+      jh()
     });
     function absen()
     {
+      var dari = $("#dari").val();
+      var sampai = $("#sampai").val();
       var absen = $("#absen").val();
       if (absen == "Harian") {
-        $.get("{{ url('fasdes/historiharian') }}/", {}, function(data, status) {
-                $("#histori").html(data);
-              });    
+        $.ajax({
+                    type: "get",
+                    url: "{{ url('fasdes/historiharian') }}",
+                    data: {
+                    "absen": absen,
+                    "sampai": sampai,
+                    "dari": dari,
+                    },
+                success: function(data, status) {
+                  $("#histori").html(data);
+                    }
+                });
       } else {
-        $.get("{{ url('fasdes/historikegiatan') }}/", {}, function(data, status) {
-                $("#histori").html(data);
-              });   
+        $.ajax({
+                    type: "get",
+                    url: "{{ url('fasdes/historikegiatan') }}",
+                    data: {
+                    "absen": absen,
+                    "dari": dari,
+                    "sampai": sampai,
+                    },
+                success: function(data, status) {
+                  $("#histori").html(data);
+                    }
+                }); 
       }
     }
+    function jh()
+            {
+              var bulan =  $("#bulan").val();
+              $.get("{{ url('harian/hari') }}/"+bulan, {}, function(data, status) {
+                $("#dari").val(bulan+"-01");
+                $("#sampai").val(bulan+"-"+data);
+                absen()
+              });    
+            }
   </script>
   @endauth
 </html>

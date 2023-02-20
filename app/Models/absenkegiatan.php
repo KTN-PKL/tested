@@ -60,9 +60,9 @@ class absenkegiatan extends Model
         return DB::table('absenkegiatans')->join('users', 'absenkegiatans.id_user','=','users.id')->where('id_absenkegiatan', $id)->first();
     }
 
-    public function historyKegiatan($id)
+    public function historyKegiatan($id, $tgl1, $tgl2)
     {
-        return DB::table('absenkegiatans')->where('id_user', $id)->orderBy('tanggalabsen', 'DESC')->orderBy('waktuabsen','DESC')->get();
+        return DB::table('absenkegiatans')->where('id_user', $id)->whereBetween('tanggalabsen', [$tgl1, $tgl2])->orderBy('tanggalabsen', 'DESC')->orderBy('waktuabsen','DESC')->get();
     }
 
 }

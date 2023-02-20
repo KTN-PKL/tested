@@ -15,9 +15,9 @@ class absenharian extends Model
     {
         return DB::table('absenharians')->where('id_user', $id)->whereBetween('tgl', [$tgl1, $tgl2])->get();
     }
-    public function allData($id)
+    public function allData($id, $tgl1, $tgl2)
     {
-        return DB::table('absenharians')->where('id_user', $id)->get();
+        return DB::table('absenharians')->where('id_user', $id)->whereBetween('tgl', [$tgl1, $tgl2])->get();
     }
     public function jumlahData($id, $tgl1, $tgl2)
     {

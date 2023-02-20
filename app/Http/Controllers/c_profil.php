@@ -96,7 +96,7 @@ class c_profil extends Controller
     public function detailAbsenKegiatan($id)
     {
         $data = [
-            'absenkegiatan' => $this->kegiatan->detailData($id),
+            'absenkegiatan' => $this->absenkegiatan->detailData($id),
         ];
         return view('user.detail_absenkegiatan', $data);
     }

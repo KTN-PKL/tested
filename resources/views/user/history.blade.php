@@ -39,16 +39,20 @@
         <div class="col col-md-3">
           <input type="month" id="bulan" class="form-control"  value="{{ $d }}" onchange="jh()">
         </div>
-        <div class="col col-md-5">
+        <div class="col col-md-5 mt-2">
           <div class="input-group">
             <input type="date" id="dari" class="form-control" onchange="read()">
-            <span class="input-group-text" id="basic-addon2">-</span>
+            <div style="width:20%">
+              <input style="text-align:center" type="text" class="form-control" value="-" readonly>
+            </div>
             <input type="date" id="sampai" class="form-control" onchange="read()">
           </div>
         </div>
         </div>
-        <div id="export">
+        <div class="col-12 mt-2">
+          <div id="export"> </div>
         </div>
+        
         <br>
         <!-- card -->
         
@@ -125,7 +129,7 @@
                     }
                 }); 
       }
-      $("#export").html(`<a href="/fasdes/export`+absen+`?&dari=`+dari+`&sampai=`+sampai+`" class="btn btn-sm btn-primary">Export</a>`);
+      $("#export").html(`<a href="/fasdes/export`+absen+`?&dari=`+dari+`&sampai=`+sampai+`" class="btn btn-sm btn-primary col col-12">Export</a>`);
     }
     function jh()
             {

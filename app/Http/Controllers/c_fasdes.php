@@ -63,6 +63,14 @@ class c_fasdes extends Controller
     }
     public function update(Request $request, $id)
     {
+        if($request->profil <> null){
+            $file = $request->profil;
+            $filename=$request->email.'.png';   
+            $file->move(public_path('foto/profilfasdes'),$filename);
+            $data['profil'] = $filename;
+            $this->fasdes->editData($id, $data);
+        }
+        
         $data = [
             'name' => $request->name,
             'email' => $request->email,

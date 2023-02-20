@@ -54,7 +54,7 @@ class c_loginadmin extends Controller
     
             return view('dashboard');
         }else{
-            return redirect()->back()->with('error', 'Masukkan Akun Admin');
+            return redirect()->back()->with('error', 'Masukkan Akun Fasilitator Kabupaten');
         }
        
     }

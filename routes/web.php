@@ -91,6 +91,14 @@ Route::controller(c_poktan::class)->middleware('auth')->group(function () {
     Route::get('poktan/destroy/{id}', 'destroy')->name('faskab.poktan.destroy');
     Route::get('faskab/chartpanen', 'chartPanen')->name('faskab.poktan.chartpanen');
     Route::get('faskab/chartlahan', 'chartLahan')->name('faskab.poktan.chartlahan');
+    // datamaster
+    Route::get('dmpoktan', 'tampilPoktan')->name('dmpoktan.index');
+    Route::get('dmpoktan/create', 'tampilCreate')->name('dmpoktan.create');
+    Route::post('dmpoktan/store', 'storePoktan')->name('dmpoktan.store');
+    Route::get('dmpoktan/edit/{id}', 'tampilEdit')->name('dmpoktan.edit');
+    Route::get('dmpoktan/detail/{id}', 'detail')->name('dmpoktan.detail');
+    Route::post('dmpoktan/update/{id}', 'updatePoktan')->name('dmpoktan.update');
+    // end datamaster
 });
 
 Route::controller(c_absenharian::class)->middleware('auth')->group(function () {

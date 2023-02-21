@@ -27,7 +27,20 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="nama" class="form-label" >Nama</label>
+                    <label for="exampleInputEmail1" class="form-label" >Email</label>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="inputusername" aria-describedby="emailelp" name="email" placeholder="user@mail.com" required/>
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1"    class="form-label">Password</label>
+                    <input type="password" class="form-control" id="inputpassword" name="password" placeholder="******" required/>
+                </div>
+                <div class="mb-3">
+                    <label for="nama" class="form-label" >Nama Fasilitator Desa</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="user" required />
                 </div>
                 <div class="mb-3">
@@ -71,17 +84,8 @@
                 </div>                      
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label" >Email</label>
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="inputusername" aria-describedby="emailelp" name="email" placeholder="user@mail.com" required/>
-                    @error('email')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1"    class="form-label">Password</label>
-                    <input type="password" class="form-control" id="inputpassword" name="password" placeholder="******" required/>
+                    <label for="exampleInputPassword1"    class="form-label">Poktan</label>
+                    <input type="text" class="form-control" id="inputpassword" name="poktan" placeholder="Tambahkan Poktan" required/>
                 </div>
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-warning shadow mt-3"><b>Daftar</b></button>

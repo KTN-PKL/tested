@@ -23,7 +23,7 @@
         @csrf
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label" >Email</label>
-          <input type="email" class="form-control" id="inputusername" aria-describedby="emailelp" name="email" placeholder="user@mail.com" />
+          <input type="text" class="form-control" id="inputusername" aria-describedby="emailelp" name="email" placeholder="Masukkan ID atau Email" />
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>

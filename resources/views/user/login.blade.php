@@ -13,7 +13,7 @@
     <div class="container p-5">
        @include('sweetalert::alert')
        <div class="card-title text-center">
-        <img src="{{asset('template')}}/assets/img/logoupland.png" class="w-25" alt="tes">
+        <img src="{{asset('template')}}/assets/img/logoupland.png" class="w-50" alt="tes">
       </div>
       <h1>Selamat Datang Fasdes</h1>
       <form action="{{route('login.check')}}">

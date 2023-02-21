@@ -6,6 +6,7 @@ use Alert;
 use App\Models\fasdes;
 use App\Models\lokasi;
 use App\Models\desa;
+use App\Models\poktan;
 use App\Models\absenharian;
 use App\Models\kecamatan;
 use Auth;
@@ -17,6 +18,7 @@ class c_login extends Controller
     public function __construct()
     {
         $this->lokasi = new lokasi();
+        $this->poktan = new poktan();
         $this->desa = new desa();
         $this->kecamatan = new kecamatan();
         $this->fasdes = new fasdes();
@@ -33,11 +35,13 @@ class c_login extends Controller
         $data = [
             'desa' => $this->desa->allData(),
             'kecamatan' => $this->kecamatan->allData(),
+            'poktan' =>$this->poktan->freePoktan(),
         ];
         return view('user.absen.register', $data);
     }
     public function postRegister(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'username' => 'unique:users',
             'email' => 'unique:users',
@@ -75,6 +79,12 @@ class c_login extends Controller
             'no_telp'=>$request->no_telp,
         ];
         $this->fasdes->addData($data);
+        foreach ($request->poktan as $poktans) {
+            $data = [
+                'id_user' => $id+1,
+            ];
+            $this->poktan->editData($poktans, $data);
+        }
         Alert::success('Pendaftaran Berhasil', 'Pendaftaran akun anda berhasil tunggu verifikasi dari Admin')->showConfirmButton('Confirm', '#056839');
         return redirect()->route('loginfasdes')->with('success', 'Pendaftaran selesai, silahkan tunggu verifikasi admin');
     

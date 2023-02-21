@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="{{asset('templateUser')}}/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="stylesheet" href="{{asset('templateUser')}}/login.css" />
+      <!-- Select2 -->
+  <link rel="stylesheet" href="{{asset('templateUser')}}/select2/css/select2.min.css">
+  <link rel="stylesheet" href="{{asset('templateUser')}}/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="{{asset('templateUser')}}/select2/js/select2.full.min.js"></script>
+
     <title>Daftar</title>
 </head>
 <body class="css-selector">
@@ -84,8 +90,14 @@
                 </div>                      
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputPassword1"    class="form-label">Poktan</label>
-                    <input type="text" class="form-control" id="inputpassword" name="poktan" placeholder="Tambahkan Poktan" required/>
+                    <div class="form-group">
+                        <label>Nama Poktan</label>
+                        <select class="select2" multiple="multiple" name="poktan[]" data-placeholder="Pilih Poktan" style="width: 100%;">
+                            @foreach ($poktan as $item)
+                              <option value="{{$item->id_poktan}}">{{ $item->namapoktan }}</option>
+                            @endforeach
+                        </select>
+                      </div>
                 </div>
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-warning shadow mt-3"><b>Daftar</b></button>
@@ -100,8 +112,18 @@
  integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
 </script>
 
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
 <script>
+    
+    $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })})
     function desa() {
       var id_kecamatan = $("#id_kecamatan").val();
               $.get("{{ url('register/desa') }}/" +id_kecamatan, {}, function(data, status) {

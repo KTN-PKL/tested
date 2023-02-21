@@ -17,7 +17,9 @@
   <body class="d-flex flex-column min-vh-100">
     <div class="title bg-prim text-light text-center p-3">
       <h1 class="display-5">
-        <i class="fa-solid fa-id-card-clip text-light"></i> Sistem Absensi (Kegiatan)
+        <div class="card-title text-center">
+          <img src="{{asset('template')}}/assets/img/logoupland.png" style="width:150px;background-color:white" alt="tes">
+        </div> Sistem Absensi (Kegiatan)
       </h1>
       <p>{{Auth::user()->name}}</p>
     </div>

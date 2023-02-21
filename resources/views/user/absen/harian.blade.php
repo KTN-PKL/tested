@@ -37,11 +37,17 @@
       <i class="fa-solid fa-id-card-clip text-light"></i> Libur !
       @else
       @if ($cek == null)
-        <i class="fa-solid fa-id-card-clip text-light"></i> Absen Harian (Masuk)
+      <div class="card-title text-center">
+        <img src="{{asset('template')}}/assets/img/logoupland.png" style="width:150px;background-color:white" alt="tes">
+      </div> Absen Harian (Masuk)
       @elseif ($cek->jampulang == null)
-        <i class="fa-solid fa-id-card-clip text-light"></i> Absen Harian (Pulang)
+      <div class="card-title text-center">
+        <img src="{{asset('template')}}/assets/img/logoupland.png" style="width:150px;background-color:white" alt="tes">
+      </div> Absen Harian (Pulang)
       @else
-      <i class="fa-solid fa-id-card-clip text-light"></i> Anda Telah Absen Hari Ini!
+      <div class="card-title text-center">
+        <img src="{{asset('template')}}/assets/img/logoupland.png" style="width:150px;background-color:white" alt="tes">
+      </div> Anda Telah Absen Hari Ini!
       @endif
       @endif
     </h1>

@@ -22,7 +22,10 @@
         <!-- main menu -->
         <div class="history p-2 rou">
         <div class="rounded label bg-prim">
-            <h4 class="text-light p-3"><i class="fa-solid fa-eye"></i> Detail Absen Kegiatan</h4>
+            <div class="card-title text-center">
+                <img src="{{asset('template')}}/assets/img/logoupland.png" style="width:150px;background-color:white;" alt="tes">
+            </div>
+            <h4 class="text-light p-3"> Detail Absen Kegiatan</h4>
         </div>
         <!-- card -->
         <div class="card shadow" style="width: 100%">

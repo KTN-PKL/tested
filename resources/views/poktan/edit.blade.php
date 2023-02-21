@@ -70,7 +70,7 @@
   
               <div class="col-12 mt-2">
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-12">
                     <div class="bantuan">
                       @php
                         $jp = count($bantuan);
@@ -117,7 +117,7 @@
                     
                          @endforeach
                          @if ($a == $jp)
-                         <div id="namabantuan{{ $a }}"></div>  
+                         <div class="col-md-12" id="namabantuan{{ $a }}"></div>  
                          @else
                          @if ($a <> 1)
                       
@@ -131,7 +131,8 @@
                   </div>
 
                   
-                <div class="col-6">
+              <div class="col-12">
+                <div class="pelatihan">
                   @php
                   $jz = count($pelatihan);
                   $a = 0;
@@ -176,22 +177,22 @@
                           @endforeach
                        
                           @if ($a == $jz)
-                          <div id="namapelatihan{{ $a }}"></div>  
+                          <div class="col-md-12" id="namapelatihan{{ $a }}"></div>  
                           @else
                           @if ($a <> 1)
                        
                           @endif
                          
                           @endif  
-                         </div>
-                
-                  
-                
-                
                 </div>
-
-                </div>
+              
+              
               </div>
+                
+            </div>
+
+              </div>
+              
              
               <div class="col-12">
                 @php

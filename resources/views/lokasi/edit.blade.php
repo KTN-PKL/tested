@@ -42,7 +42,7 @@
                   <label for="inputNanme4" class="form-label">Lokasi</label>
                   <div class="form-group">
                     <center>
-                    <input style="width:50%" class="form-control" type="text" id="lat" name="lokasi" value="{{$lokasi->lokasi}}" readonly>
+                    <input style="width:50%" class="form-control" type="text" id="lat" name="lokasi" value="{{$lokasi->lokasi}}">
                     </center>
                 </div>
                   <div id="googleMap" style="width:100%;height:380px;"></div>

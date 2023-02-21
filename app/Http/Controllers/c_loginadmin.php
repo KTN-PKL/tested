@@ -59,5 +59,13 @@ class c_loginadmin extends Controller
        
     }
 
+    public function viewEditprofil()
+    {
+        $id = Auth::user()->id;
+        $data = ['fasdes' => $this->fasdes->detailData($id),
+                  ];
+        return view('profilfaskab', $data);
+    }
+
    
 }

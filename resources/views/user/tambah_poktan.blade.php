@@ -44,10 +44,6 @@
                       <input type="number" class="form-control" id="jumlahproduksi" name="jumlahproduksi" value="{{old('jumlahproduksi')}}"required>
                     </div>
                     <div class="mb-3">
-                        <label for="jumlahproduksi" class="form-label">Pemeliharaan</label>
-                        <input type="text" class="form-control" id="pemeliharaan" name="pemeliharaan" value="{{old('pemeliharaan')}}" required>
-                      </div>
-                    <div class="mb-3">
                         <label for="pasarlokal" class="form-label">Pasar</label>
                         <select name="pasar" id="" class="form-select" required>
                             <option value=" " selected disabled>-- Pilih Pasar --</option>

@@ -92,15 +92,18 @@
         </h5>
       </div>
       
-        <table id="satu" class="datatable">
+        <table style="width:100%" id="satu" class="datatable">
           <thead>
             <tr>
               <th>No</th>
               <th>Tanggal</th>
               <th>Waktu</th>
               <th>Kegiatan</th>
-              <th>Selfie</th>
+              <th>Deskripsi Kegiatan</th>
+              <th>Pelatihan</th>
+              <th>Selfie Kegiatan</th>
               <th>Foto Kegiatan</th>
+              <th>Judul Pelatihan</th>
               <th>Foto Pelatihan</th>
               <th>Action</th>
             </tr>
@@ -118,15 +121,16 @@
               <td style="width:12%">{{$data->tanggalabsen}}</td>
               <td style="width:10%">{{$data->waktuabsen}} WIB</td>
               <td style="width:10%">{{$data->jeniskegiatan}}</td>
-              <td style="width:15%"><img class="img-thumbnail" src="{{asset('/foto/absenkegiatan/'. $data->selfiekegiatan)}}" width="30%" alt=""></td>
-              <td style="width:15%"><img class="img-thumbnail" src="{{ asset('foto/absenkegiatan/'. $data->fotokegiatan) }}" width="30%" alt=""></td>
-              <td style="width:15%">
-                @if($data->fotopelatihan <> null)
-                <img class="img-thumbnail" src="{{ asset('foto/absenkegiatan/'. $data->fotopelatihan) }}" width="30%" alt="">
-                @else
-                <h6>Tidak ada Foto Pelatihan</h6>
-                @endif
-              </td>
+              <td>{{$data->deskripsikegiatan}}</td>
+              <td>{{$data->pelatihan}}</td>
+              <td style="width:10%"><img class="img-thumbnail" src="{{asset('/foto/absenkegiatan/'. $data->selfiekegiatan)}}" width="80px" alt=""></td>
+              <td style="width:10%"><img class="img-thumbnail" src="{{asset('foto/absenkegiatan/'. $data->fotokegiatan) }}" width="80px" alt=""></td>
+              @if($data->pelatihan == "pelatihan")
+              <td style="width:10%">{{ $data->judulpelatihan }}</td>
+              <td style="width:10%"><img class="img-thumbnail" src="{{asset('foto/absenkegiatan/'. $data->fotopelatihan) }}" width="80px" alt=""></td>
+              @else
+              <td>Non Pelatihan</td>
+              @endif
               <td style="width:10%">
                 <a href="{{route('kegiatan.detail', $data->id_absenkegiatan)}}" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
                 <a href="{{route('kegiatan.edit', $data->id_absenkegiatan)}}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>

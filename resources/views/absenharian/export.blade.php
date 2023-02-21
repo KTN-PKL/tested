@@ -36,7 +36,14 @@
 	<center>
 		<h1>Absen Harian</h1>
 	</center>
- 
+  <div>
+    <h3>Name   : {{ $fasdes->name }}</h3> 
+    <h3>Alamat : @if($fasdes->alamat <> null)
+      {{$fasdes->alamat}}
+      @else
+      Alamat Belum ditentukan.
+      @endif</h3> 
+    </div> 
 	
 @php
 date_default_timezone_set("Asia/Jakarta");

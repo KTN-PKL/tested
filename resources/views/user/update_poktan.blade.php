@@ -44,10 +44,6 @@
                       <input type="number" class="form-control" id="jumlahproduksi" name="jumlahproduksi" value="{{$poktan->jumlahproduksi}}" >
                     </div>
                     <div class="mb-3">
-                        <label for="jumlahproduksi" class="form-label">Pemeliharaan</label>
-                        <input type="text" class="form-control" id="jumlahproduksi" name="pemeliharaan" value="{{$poktan->pemeliharaan}}" >
-                      </div>
-                    <div class="mb-3">
                         <label for="pasarlokal" class="form-label">Pasar</label>
                         <input type="text" class="form-control" id="pasar" name="pasar" value="{{$poktan->pasar}}" >
                     </div>

@@ -57,11 +57,14 @@ class c_fasdes extends Controller
 
     public function detail($id)
     {
+        
         $z = $this->poktan->fasdesData($id);
         $data = ['fasdes' => $this->fasdes->detailData($id),
                  'poktan' => $this->poktan->fasdesData($id),
                 //  'petani'=> $this->petani->jumlahPetaniFasdes($id),
-                    'lokasi'=> $this->lokasi->detail3Data($id),];
+                    // 'lokasi'=> $this->lokasi->detail3Data($id),
+                    'lokasi'=> $this->lokasi->detailData3($id),
+                ];
              
         return view('fasdes.detail', $data);
     }

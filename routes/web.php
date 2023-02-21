@@ -96,8 +96,9 @@ Route::controller(c_poktan::class)->middleware('auth')->group(function () {
     Route::get('dmpoktan/create', 'tampilCreate')->name('dmpoktan.create');
     Route::post('dmpoktan/store', 'storePoktan')->name('dmpoktan.store');
     Route::get('dmpoktan/edit/{id}', 'tampilEdit')->name('dmpoktan.edit');
-    Route::get('dmpoktan/detail/{id}', 'detail')->name('dmpoktan.detail');
+    Route::get('dmpoktan/detail/{id}', 'tampilDetail')->name('dmpoktan.detail');
     Route::post('dmpoktan/update/{id}', 'updatePoktan')->name('dmpoktan.update');
+    Route::get('dmpoktan/destroy/{id}', 'destroyPoktan')->name('dmpoktan.destroy');
     // end datamaster
 });
 

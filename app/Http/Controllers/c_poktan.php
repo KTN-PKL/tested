@@ -502,5 +502,28 @@ class c_poktan extends Controller
         return redirect()->route('dmpoktan.index')->with('success', 'Poktan berhasil dibuat.');
     }
 
+    public function tampilDetail($id)
+    {
+        
+        $data = ['poktan' => $this->poktan->detailData($id),
+        'petani'=>$this->petani->countPetani($id),
+        'pelatihan' => $this->pelatihan->detailData($id),
+        'bantuan' => $this->bantuan->detailData($id),
+                              
+    ];
+
+        return view ('dmpoktan.detail',$data);
+    }
+
+    public function destroyPoktan($id)
+    {
+        $this->poktan->deleteData($id);
+        $this->petani->deleteData($id);
+        $this->bantuan->deleteData($id);
+        $this->pelatihan->deleteData($id);
+        return redirect()->route('dmpoktan.index')->with('success', 'Kelompok Petani Berhasil Dihapus');
+    }
+
+
     // End Data Master Poktan
 }

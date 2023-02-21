@@ -54,7 +54,7 @@
               <td style="width:30%">
                 <a href="{{route('dmpoktan.detail', $data->id_poktan)}}" class="btn btn-sm btn-primary"> <i class="bi bi-eye"></i> Lihat</a>
                 <a href="{{route('dmpoktan.edit', $data->id_poktan)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
-                {{-- <a href="{{route('dmpoktan.destroy', $data->id_poktan)}}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Hapus</a> --}}
+                <a href="{{route('dmpoktan.destroy', $data->id_poktan)}}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Hapus</a>
               </td>
             </tr>
             @endforeach

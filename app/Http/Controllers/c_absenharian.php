@@ -307,6 +307,7 @@ class c_absenharian extends Controller
     {
         $data = ['harian' => $this->harian->search($request->id, $request->dari, $request->sampai),
                  'jumlah' => $this->harian->jumlahData($request->id, $request->dari, $request->sampai),
+                 'fasdes'=>$this->fasdes->detailData($request->id),
                 'dari' => $request->dari,
                 'sampai' => $request->sampai];
        return view('absenharian.export', $data);

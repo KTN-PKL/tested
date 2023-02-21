@@ -69,7 +69,7 @@
   
               <div class="col-12 mt-2">
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-12">
                     <div class="bantuan">
                       @php
                         $jp = count($bantuan);
@@ -116,7 +116,7 @@
                     
                          @endforeach
                          @if ($a == $jp)
-                         <div id="namabantuan{{ $a }}"></div>  
+                         <div class="col-md-12" id="namabantuan{{ $a }}"></div>  
                          @else
                          @if ($a <> 1)
                       
@@ -130,7 +130,8 @@
                   </div>
 
                   
-                <div class="col-6">
+              <div class="col-12">
+                <div class="pelatihan">
                   @php
                   $jz = count($pelatihan);
                   $a = 0;
@@ -175,22 +176,22 @@
                           @endforeach
                        
                           @if ($a == $jz)
-                          <div id="namapelatihan{{ $a }}"></div>  
+                          <div class="col-md-12" id="namapelatihan{{ $a }}"></div>  
                           @else
                           @if ($a <> 1)
                        
                           @endif
                          
                           @endif  
-                         </div>
-                
-                  
-                
-                
                 </div>
-
-                </div>
+              
+              
               </div>
+                
+            </div>
+
+              </div>
+              
              
               <div class="col-12">
                 @php
@@ -304,8 +305,8 @@
             </div>
           
             </center>
-          </div>
-    <div id="namabantuan`+x+`"></div>
+            </div>
+    <div class="col-md-6" id="namabantuan`+x+`"></div>
     `);
   }
   function minpaket(id)
@@ -348,8 +349,8 @@
             </div>
           
             </center>
-          </div>
-    <div id="namapelatihan`+x+`"></div>
+            </div>
+    <div class="col-md-6" id="namapelatihan`+x+`"></div>
     `);
   }
   function minpelatihan(id)

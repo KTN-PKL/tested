@@ -19,6 +19,11 @@
         <h5><u>Identitas Fasilitator Desa</u></h5>
           <table>
             <tr>
+              <td valign="top" style="width:30%"><h6>ID</h6></td>
+              <td valign="top"><h6>:</h6></td>
+              <td valign="top"><h6 style="color: black">{{$fasdes->username}}</h6></td>
+          </tr>
+            <tr>
                 <td valign="top" style="width:30%"><h6>Nama Fasilitator Desa</h6></td>
                 <td valign="top"><h6>:</h6></td>
                 <td valign="top"><h6 style="color: black">{{$fasdes->name}}</h6></td>
@@ -37,6 +42,11 @@
                 @endif
                 </h6></td>
           </tr>
+          <tr>
+            <td valign="top"><h6>Kecamatan</h6></td>
+            <td valign="top"><h6>:</h6></td>
+            <td valign="top"><h6 style="color: black">{{$lokasi->kecamatan}}</h6></td>
+        </tr>
           <tr>
             <td valign="top"><h6>Desa</h6></td>
             <td valign="top"><h6>:</h6></td>

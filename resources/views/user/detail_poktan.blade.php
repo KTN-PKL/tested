@@ -37,7 +37,6 @@
                             <tr><td>Luas Tanah</td><td>: </td><td>{{$poktan->luastanah}} Hektar</td></tr>
                             <tr><td>Jumlah Produksi</td><td>: </td><td>{{$poktan->jumlahproduksi}} Kilogram</td></tr>
                             <tr><td>Jumlah Petani</td><td>: </td><td>{{$poktan->jumlahpetani}} Orang</td></tr>
-                            <tr><td>Pemelihara</td><td>: </td><td>{{$poktan->pemeliharaan}}</td></tr>
                             <tr><td>Pasar Lokal</td><td>: </td><td>{{$poktan->pasar}}</td></tr>
                             <tr><td>Lokasi Poktan</td><td>: </td><td>{{$poktan->lokasipoktan}}</td></tr>
                             <tr><td>List Data Petani</td><td>: </td></tr>

@@ -128,7 +128,6 @@
                                 <tr><td>Nama Poktan</td><td>: </td><td>{{$data->namapoktan}}</td></tr>
                                 <tr><td>Luas Tanah</td><td>: </td><td>{{$data->luastanah}}</td></tr>
                                 <tr><td>Jumlah Produksi</td><td>: </td><td>{{$data->jumlahproduksi}}</td></tr>
-                                <tr><td>Pemelihara</td><td>: </td><td>{{$data->pemeliharaan}}</td></tr>
                                 <tr><td>Pasar Lokal</td><td>: </td><td>{{$data->pasar}}</td></tr>
                                 <tr><td>Lokasi Poktan</td><td>: </td><td>{{$data->lokasipoktan}}</td></tr>
                             </tbody>

@@ -325,12 +325,17 @@ class c_profil extends Controller
     public function destroyPoktan($id)
     {
         $data = $this->poktan->detailData($id);
-        $this->poktan->deleteData($id);
-        $this->petani->deleteData($id);
-        $this->bantuan->deleteData($id);
-        $this->pelatihan->deleteData($id);
+        $ids = Auth::user()->id;
+        // $this->poktan->deleteData($id);
+        // $this->petani->deleteData($id);
+        // $this->bantuan->deleteData($id);
+        // $this->pelatihan->deleteData($id);
+        $data = [
+            'id_user' => null,
+        ];
+        $this->poktan->editData($id, $data);
         alert()->error('Berhasil', 'Poktan Berhasil Dihapus')->iconHtml('<i class="fa fa-trash"></i>');
-        return redirect()->route('fasdes.profil', $data->id_user)->with('success', 'Kelompok Petani Berhasil Dihapus');
+        return redirect()->route('fasdes.profil', $ids)->with('success', 'Kelompok Petani Berhasil Dihapus');
     }
 
     public function updatepoktan(Request $request, $id)

@@ -20,7 +20,7 @@
     <!-- header -->
     <div class="title bg-prim text-light text-center p-3">
         <h1 class="display-5"><i class="fa-solid fa-id-card-clip text-light"></i> Selamat datang</h1>
-        <p>User</p>
+        <p>{{Auth::user()->name}}</p>
     </div>
     <!-- header -->
 

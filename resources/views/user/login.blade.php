@@ -12,7 +12,9 @@
   <body class="css-selector text-light">
     <div class="container p-5">
        @include('sweetalert::alert')
-      <div class="icon text-center p-5"><i class="fa-solid fa-id-card-clip fa-5x text-light"></i></div>
+       <div class="card-title text-center">
+        <img src="{{asset('template')}}/assets/img/logoupland.png" class="w-25" alt="tes">
+      </div>
       <h1>Selamat Datang Fasdes</h1>
       <form action="{{route('login.check')}}">
 

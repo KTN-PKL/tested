@@ -19,7 +19,7 @@
       <h1 class="display-5">
         <i class="fa-solid fa-id-card-clip text-light"></i> Sistem Absensi (Kegiatan)
       </h1>
-      <p>user</p>
+      <p>{{Auth::user()->name}}</p>
     </div>
 
     <!-- container -->

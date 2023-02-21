@@ -10,8 +10,8 @@
   #results { padding:20px; border:1px solid; background:#ccc; }
 </style> --}}
 @section('content')
-
-@include('sweetalert::alert')
+<body onload="startTime()">
+  @include('sweetalert::alert')
     <!-- componen card -->
     <div class="card">
       <div class="card-body">
@@ -34,6 +34,9 @@
     <div class="card mt-3">
       <div class="card-body">
         <h5 class="card-title mb-3">Absensi Kegiatan</h5>
+        <div id="txt" class="bg-prim rounded-4 text-light w-100 text-center p-2">
+          <div id="txt"></div>
+        </div>
         @php
           date_default_timezone_set("Asia/Jakarta");
           $s = date("Y-m-d H:i:s");
@@ -332,7 +335,22 @@
       }
       }
 
-      
+      function startTime() {
+        const today = new Date();
+        let h = today.getHours();
+        let m = today.getMinutes();
+        let s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById("txt").innerHTML = h + ":" + m + ":" + s;
+        setTimeout(startTime, 1000);
+      }
+      function checkTime(i) {
+        if (i < 10) {
+          i = "0" + i;
+        } // add zero in front of numbers < 10
+        return i;
+      }
   </script>
 
   
@@ -340,7 +358,9 @@
 
 
  
-</body>
+
 @endsection
+</body>
+
   
-</html>
+

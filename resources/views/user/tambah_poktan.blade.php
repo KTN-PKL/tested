@@ -15,7 +15,7 @@
 <body class="d-flex flex-column min-vh-100">
     <div class="title bg-prim text-light text-center p-3">
     <h1 class="display-5"><i class="fa-solid fa-id-card-clip text-light"></i> Selamat datang</h1>
-        <p>User</p>
+        <p>{{Auth::user()->name}}</p>
     </div>
     <div class="container p-1">
         <!-- main menu -->

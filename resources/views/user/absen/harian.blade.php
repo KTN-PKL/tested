@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ config('sweetalert.animatecss') }}">
     <title>Absen Harian</title>
   </head>
-  <body class="d-flex flex-column min-vh-100">
+  <body onload="startTime()" class="d-flex flex-column min-vh-100">
     <div class="title bg-prim text-light text-center p-3">
       <h1 class="display-5">
         @php
@@ -85,6 +85,9 @@
       <div class="card mt-3">
         <div class="card-body">
           <h5 class="card-title mb-3">Absensi Harian</h5>
+          <div id="txt" class="bg-prim rounded-4 text-light w-100 text-center p-2">
+            <div id="txt"></div>
+          </div>
           @if ($cek == null)
           <form class="row g-3" action="{{route('absen.harian.store')}}" method="POST">
           
@@ -96,6 +99,7 @@
           <input type="text" name="harian" value="{{ $t }}" hidden>
           <p class="card-text">Kordinat lokasi :  <span id="lokasi"></span></p>
           <input type="text" id="lokasiisi" name="lokasi" hidden>
+
           <div class="button text-center d-grid">
             <a href="#" class="btn btn-block btn-warning" onclick="selfie()">
               <i class="fa-solid fa-user"></i> Foto Selfie</a>
@@ -242,6 +246,22 @@
         var longitude 	= posisi.coords.longitude;
               $('#lokasi').html(latitude+","+longitude);
               $('#lokasiisi').val(latitude+","+longitude);
+      }
+      function startTime() {
+        const today = new Date();
+        let h = today.getHours();
+        let m = today.getMinutes();
+        let s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById("txt").innerHTML = h + ":" + m + ":" + s;
+        setTimeout(startTime, 1000);
+      }
+      function checkTime(i) {
+        if (i < 10) {
+          i = "0" + i;
+        } // add zero in front of numbers < 10
+        return i;
       }
       // function jarak()
       // {

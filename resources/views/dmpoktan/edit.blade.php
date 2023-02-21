@@ -5,8 +5,7 @@
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{route('faskab.poktan.index')}}">Kelompok Petani Fasilitator Desa</a></li>
-        <li class="breadcrumb-item"><a href="{{route('poktan', $poktan->id_user)}}">Daftar Kelompok Petani</a></li>
+        <li class="breadcrumb-item"><a href="{{route('dmpoktan.index')}}">Daftar Kelompok Petani</a></li>
         <li class="breadcrumb-item active">Edit Kelompok Petani</li>
       </ol>
     </nav>
@@ -19,7 +18,7 @@
         
 
               <!-- Vertical Form -->
-              <form class="row g-3" action="{{route('faskab.poktan.update', $poktan->id_poktan)}}" method="POST">
+              <form class="row g-3" action="{{route('dmpoktan.update', $poktan->id_poktan)}}" method="POST">
                 @csrf
                 <div class="col-12">
                   <label for="inputNanme4" class="form-label">Nama Kelompok Petani</label>

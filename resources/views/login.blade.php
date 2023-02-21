@@ -23,7 +23,7 @@
 
               <div class="text-center">
               </i></div>
-              <h1 class="text-center">Selamat Datang Admin</h1>
+              <h1 class="text-center">Selamat Datang Manajer Fasdes</h1>
 
               <form action="{{route('loginadmin.check')}}">
                 @if(session()->has('error'))

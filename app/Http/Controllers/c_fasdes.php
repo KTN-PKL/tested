@@ -7,6 +7,8 @@ use App\Models\fasdes;
 use App\Models\poktan;
 use App\Models\lokasi;
 use App\Models\petani;
+use App\Models\absenharian;
+use App\Models\absenkegiatan;
 use Illuminate\Support\Facades\Hash;
 
 class c_fasdes extends Controller
@@ -17,6 +19,8 @@ class c_fasdes extends Controller
         $this->poktan = new poktan();
         $this->lokasi = new lokasi();
         $this->petani = new petani();
+        $this->absenharian = new absenharian();
+        $this->absenkegiatan = new absenkegiatan();
     }
     public function index()
     {
@@ -97,7 +101,15 @@ class c_fasdes extends Controller
     {
         $this->fasdes->deleteData($id);
         $this->lokasi->deleteData($id);
+        $this->absenharian->deleteData2($id);
+        $this->absenkegiatan->deleteData2($id);
 
+        $data = [
+            'id_user' => null,
+        ];
+        $this->poktan->editData2($id, $data);
+
+    
         return redirect()->route('faskab.fasdes.index')->with('deleted','Fasilitator Desa Berhasil Dihapus');
     }
 }

@@ -67,6 +67,10 @@ class absenharian extends Model
     {
         return DB::table('absenharians')->where('id_absenharian', $id)->delete();
     }
+    public function deleteData2($id)
+    {
+       DB::table('absenharians')->where('id_user', $id)->delete();
+    }
     public function hitungRekapMasuk($id)
     {
         return DB::table('absenharians')->where('id_user', $id)->count();

@@ -5,8 +5,7 @@
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{route('faskab.poktan.index')}}">Kelompok Petani Fasilitator Desa</a></li>
-        <li class="breadcrumb-item"><a href="{{route('poktan', $poktan->id_user)}}">Daftar Kelompok Petani</a></li>
+        <li class="breadcrumb-item"><a href="{{route('dmpoktan.index')}}">Daftar Kelompok Petani</a></li>
         <li class="breadcrumb-item active">Detail Kelompok Petani</li>
       </ol>
     </nav>

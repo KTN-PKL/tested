@@ -26,6 +26,11 @@
             <i class="bi bi-circle"></i><span>Lokasi</span>
           </a>
         </li>
+        <li>
+          <a href="{{route('dmpoktan.index')}}">
+            <i class="bi bi-circle"></i><span>Poktan</span>
+          </a>
+        </li>
       </ul>
     </li><!-- End Components Nav -->
 

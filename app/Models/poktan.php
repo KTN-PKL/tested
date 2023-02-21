@@ -26,6 +26,10 @@ class poktan extends Model
     {
         return DB::table('poktans')->where('id_poktan', $id)->update($data);
     }
+    public function editData2($id, $data)
+    {
+        return DB::table('poktans')->where('id_user', $id)->update($data);
+    }
     public function deleteData($id)
     {
         return DB::table('poktans')->where('id_poktan', $id)->delete();
@@ -41,6 +45,11 @@ class poktan extends Model
     public function chartData()
     {
         return DB::table('poktans')->join('users','poktans.id_user','=','users.id')->get();
+    }
+
+    public function freePoktan()
+    {
+        return DB::table('poktans')->where('id_user', null)->get();
     }
 
 }

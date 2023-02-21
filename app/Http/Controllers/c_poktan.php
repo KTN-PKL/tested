@@ -140,7 +140,6 @@ class c_poktan extends Controller
                     'namapoktan' => $request->namapoktan,
                     'luastanah' => $request->luastanah,
                     'jumlahproduksi' => $request->jumlahproduksi,
-                    'pemeliharaan' => $request->pemeliharaan,
                     'pasar' => $request->pasar,
                     'lokasipoktan' => $request->lokasipoktan,
                     'jumlahpetani' => $request->jumlahpetani,
@@ -157,7 +156,6 @@ class c_poktan extends Controller
                     'namapoktan' => $request->namapoktan,
                     'luastanah' => $request->luastanah,
                     'jumlahproduksi' => $request->jumlahproduksi,
-                    'pemeliharaan' => $request->pemeliharaan,
                     'pasar' => $request->pasar,
                     'lokasipoktan' => $request->lokasipoktan,
                     'jumlahpetani' => $request->jumlahpetani,
@@ -231,7 +229,6 @@ class c_poktan extends Controller
             'namapoktan' => $request->namapoktan,
             'luastanah' => $request->luastanah,
             'jumlahproduksi' => $request->jumlahproduksi,
-            'pemeliharaan' => $request->pemeliharaan,
             'pasar' => $request->pasar,
             'lokasipoktan' => $request->lokasipoktan,
             'jumlahpetani' => $request->jumlahpetani,     
@@ -301,4 +298,209 @@ class c_poktan extends Controller
 
         return $data;
     }
+
+
+
+
+    // Data Master Poktan
+    public function tampilPoktan()
+    {
+        $data =[
+            'poktan' => $this->poktan->freePoktan(),
+        ];
+
+        return view ('dmpoktan.poktan', $data);
+    }
+
+    public function tampilCreate()
+    {
+        return view ('dmpoktan.create');
+    }
+    
+    public function storePoktan(Request $request)
+    {
+        $count = $this->poktan->maxIdPoktan();
+        if($count == null)
+        {
+            for ($i=0; $i < $request->jumlah; $i++) { 
+                $referenceID = $this->poktan->countAllPoktan();
+                $id_poktan = $referenceID + 1;
+                $data = [
+                
+                    'id_poktan' => $id_poktan,
+                    'namapetani' => $request->{"namapetani".$i },
+                ];
+                $this->petani->addData($data);
+            }
+        }else{
+            for ($i=0; $i < $request->jumlah; $i++) { 
+                $referenceMAXID = $this->poktan->maxIdPoktan();
+                $id_poktan = $referenceMAXID + 1;
+                $data = [
+                   
+                    'id_poktan' => $id_poktan,
+                    'namapetani' => $request->{"namapetani".$i },
+                ];
+                $this->petani->addData($data);
+            }
+      
+        }
+
+        if($count == null)
+        {
+            for ($i=0; $i < $request->jp; $i++) { 
+                $referenceID = $this->poktan->countAllPoktan();
+                $id_poktan = $referenceID + 1;
+                $data = [
+                    'id_poktan' => $id_poktan,
+                    'namabantuan' => $request->{"namabantuan".$i },
+                    'waktubantuan' => $request->{"waktubantuan".$i },
+                    'qtybantuan' => $request->{"qtybantuan".$i },
+                ];
+                $this->bantuan->addData($data);
+            }
+        }else{
+            for ($i=0; $i < $request->jp; $i++) { 
+                $referenceMAXID = $this->poktan->maxIdPoktan();
+                $id_poktan = $referenceMAXID + 1;
+                $data = [
+                    'id_poktan' => $id_poktan,
+                    'namabantuan' => $request->{"namabantuan".$i },
+                    'waktubantuan' => $request->{"waktubantuan".$i },
+                    'qtybantuan' => $request->{"qtybantuan".$i },
+                ];
+                $this->bantuan->addData($data);
+            }
+      
+        }
+
+        if($count == null)
+        {
+            for ($i=0; $i < $request->jl; $i++) { 
+                $referenceID = $this->poktan->countAllPoktan();
+                $id_poktan = $referenceID + 1;
+                $data = [
+                    'id_poktan' => $id_poktan,
+                    'namapelatihan' => $request->{"namapelatihan".$i },
+                    'waktupelatihan' => $request->{"waktupelatihan".$i },
+                    'jumlahpeserta' => $request->{"jumlahpeserta".$i },
+                ];
+                $this->pelatihan->addData($data);
+            }
+        }else{
+            for ($i=0; $i < $request->jl; $i++) { 
+                $referenceMAXID = $this->poktan->maxIdPoktan();
+                $id_poktan = $referenceMAXID + 1;
+                $data = [
+                    'id_poktan' => $id_poktan,
+                    'namapelatihan' => $request->{"namapelatihan".$i },
+                    'waktupelatihan' => $request->{"waktupelatihan".$i },
+                    'jumlahpeserta' => $request->{"jumlahpeserta".$i },
+                ];
+                $this->pelatihan->addData($data);
+            }
+      
+        }
+
+        $count = $this->poktan->maxIdPoktan();
+        if($count == null)
+        {
+            
+                $referenceID = $this->poktan->countAllPoktan();
+                $id_poktan = $referenceID + 1;
+                $data = [
+                    'id_poktan'=> $id_poktan,
+                    'namapoktan' => $request->namapoktan,
+                    'luastanah' => $request->luastanah,
+                    'jumlahproduksi' => $request->jumlahproduksi,
+                    'pasar' => $request->pasar,
+                    'lokasipoktan' => $request->lokasipoktan,
+                    'jumlahpetani' => $request->jumlahpetani,
+              
+                ];
+                $this->poktan->addData($data);
+        }else{
+           
+                $referenceMAXID = $this->poktan->maxIdPoktan();
+                $id_poktan = $referenceMAXID + 1;
+                $data = [
+                    'id_poktan'=> $id_poktan,
+                    'namapoktan' => $request->namapoktan,
+                    'luastanah' => $request->luastanah,
+                    'jumlahproduksi' => $request->jumlahproduksi,
+                    'pasar' => $request->pasar,
+                    'lokasipoktan' => $request->lokasipoktan,
+                    'jumlahpetani' => $request->jumlahpetani,
+              
+                ];
+                $this->poktan->addData($data);
+      
+        }
+      
+     
+        return redirect()->route('dmpoktan.index');
+    }
+
+    public function tampilEdit($id)
+    {
+        
+        $data = ['poktan' => $this->poktan->detailData($id),
+        'petani'=>$this->petani->countPetani($id),
+        'pelatihan' => $this->pelatihan->detailData($id),
+        'bantuan' => $this->bantuan->detailData($id),
+                              
+    ];
+
+        return view ('dmpoktan.edit',$data);
+    }
+
+    public function updatePoktan(Request $request,$id)
+    {
+        $this->petani->deleteData($id);
+        $this->bantuan->deleteData($id);
+        $this->pelatihan->deleteData($id);
+      
+        
+            for ($i=0; $i < $request->jf; $i++) { 
+                $data = [
+                    'id_poktan' => $id,
+                    'namapetani' => $request->{"namapetani".$i },
+                ];
+                $this->petani->addData($data);
+            }
+
+            for ($i=0; $i < $request->jp; $i++) { 
+                $data = [
+                    'id_poktan' => $id,
+                    'namabantuan' => $request->{"namabantuan".$i },
+                    'waktubantuan' => $request->{"waktubantuan".$i },
+                    'qtybantuan' => $request->{"qtybantuan".$i },
+                ];
+                $this->bantuan->addData($data);
+            }
+
+            for ($i=0; $i < $request->jz; $i++) { 
+                $data = [
+                    'id_poktan' => $id,
+                    'namapelatihan' => $request->{"namapelatihan".$i },
+                    'waktupelatihan' => $request->{"waktupelatihan".$i },
+                    'jumlahpeserta' => $request->{"jumlahpeserta".$i },
+                ];
+                $this->pelatihan->addData($data);
+            }
+    
+        $data = [
+            'namapoktan' => $request->namapoktan,
+            'luastanah' => $request->luastanah,
+            'jumlahproduksi' => $request->jumlahproduksi,
+            'pasar' => $request->pasar,
+            'lokasipoktan' => $request->lokasipoktan,
+            'jumlahpetani' => $request->jumlahpetani,     
+        ];
+        $this->poktan->editData($id, $data);
+        $data = $this->poktan->detailData($id);
+        return redirect()->route('dmpoktan.index')->with('success', 'Poktan berhasil dibuat.');
+    }
+
+    // End Data Master Poktan
 }

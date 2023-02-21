@@ -38,6 +38,13 @@ class c_login extends Controller
     }
     public function postRegister(Request $request)
     {
+        $request->validate([
+            'username' => 'unique:users',
+            'email' => 'unique:users',
+        ],[
+            'email.unique'=>'Email Sudah Terdaftar di Database.',
+            'username.unique'=>'ID Sudah Terdaftar di Database.',
+        ]);
       
         $id = $this->fasdes->maxIdUser();
 
@@ -53,8 +60,10 @@ class c_login extends Controller
         $file->move(public_path('foto/profilfasdes'),$filename);
       
 
+
         $data = [
             'id' => $id+1,
+            'username'=> $request->username,
             'name' => $request->name,
             'alamat' => $request->alamat,
             'email' => $request->email,
@@ -87,7 +96,7 @@ class c_login extends Controller
             'email' => 'required',
             'password' => 'required',
         ],[
-            'email.required'=>'email wajib terisi',
+            'email.required'=>'email atau id wajib terisi',
             'password.required'=>'Password wajib terisi',
         ]);
         $user = $request->email;
@@ -97,9 +106,13 @@ class c_login extends Controller
         {
             return redirect('/fasdes/dashboard');
         }
+        elseif(auth()->attempt(array('username'=>$user,'password'=>$pass)))
+        {
+            return redirect('/fasdes/dashboard');
+        }
         else
         {
-            Alert::error('Login Gagal', 'Email atau password salah Silahkan coba kembali')->showConfirmButton('Confirm', '#056839');
+            Alert::error('Login Gagal', 'Email/ID atau password salah Silahkan coba kembali')->showConfirmButton('Confirm', '#056839');
             session()->flash('error', 'Email atau password salah');
             return redirect()->back();
         }

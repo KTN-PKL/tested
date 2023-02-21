@@ -18,6 +18,15 @@
             <form enctype="multipart/form-data" action="{{route('fasdes.postregister')}}" method="POST">
                 @csrf
                 <div class="mb-3">
+                    <label for="nama" class="form-label" >ID</label>
+                    <input type="number" class="form-control @error('username') is-invalid @enderror"  name="username" placeholder="ID" required />
+                    @error('username')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+                <div class="mb-3">
                     <label for="nama" class="form-label" >Nama</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="user" required />
                 </div>
@@ -63,7 +72,12 @@
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label" >Email</label>
-                    <input type="email" class="form-control" id="inputusername" aria-describedby="emailelp" name="email" placeholder="user@mail.com" required/>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="inputusername" aria-describedby="emailelp" name="email" placeholder="user@mail.com" required/>
+                    @error('email')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1"    class="form-label">Password</label>

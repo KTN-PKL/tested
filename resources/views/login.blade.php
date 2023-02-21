@@ -17,7 +17,7 @@
         <div class="col-lg-4 col-md-6 col-sm-6">
           <div class="card ">
             <div class="card-title text-center border-bottom pt-5">
-              <img src="{{asset('template')}}/assets/img/logoupland.png" class="w-50" alt="tes">
+              <img src="{{asset('template')}}/assets/img/logoupland.png" class="w-100" alt="tes">
             </div>
             <div class="card-body">
 

@@ -82,15 +82,15 @@
                          <div id="namabantuan{{ $a }}">
                          @endif
                          <label for="paket" class="form-label">Nama Bantuan</label>
-                         <input type="text" id="namabantuan" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan{{ $a }}" value="{{ $pkt->namabantuan }}">
+                         <input type="text" id="namabantuan" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan{{ $a }}" value="{{ $pkt->namabantuan }}" required>
                           <div class="row mt-2">
                               <div class="col col-6 col-md-6">
                                   <label for="weekday" class="form-label">Waktu Penyaluran</label>
-                                  <input type="text" id="waktubantuan" class="form-control" placeholder="Waktu Penyaluran" name="waktubantuan{{ $a }}"  value="{{ $pkt->waktubantuan }}">
+                                  <input type="text" id="waktubantuan" class="form-control" placeholder="Waktu Penyaluran" name="waktubantuan{{ $a }}"  value="{{ $pkt->waktubantuan }}" required>
                               </div>
                               <div class="col col-6 col-md-6">
                                   <label for="weekend" class="form-label">Kuantitas Bantuan</label>
-                                  <input type="text" id="qtybantuan" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan{{ $a }}" value="{{ $pkt->qtybantuan}}">
+                                  <input type="text" id="qtybantuan" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan{{ $a }}" value="{{ $pkt->qtybantuan}}" required>
                               </div>
                           </div> 
   
@@ -144,15 +144,15 @@
               @endif
          
                 <label for="paket" class="form-label">Nama Pelatihan</label>
-                  <input type="text" id="namapelatihan" class="form-control" placeholder="Masukkan Nama Pelatihan" name="namapelatihan{{ $a }}"  value="{{ $pkt->namapelatihan }}">
+                  <input type="text" id="namapelatihan" class="form-control" placeholder="Masukkan Nama Pelatihan" name="namapelatihan{{ $a }}"  value="{{ $pkt->namapelatihan }}" required>
                   <div class="row mt-2">
                       <div class="col col-6 col-md-6">
                           <label for="weekday" class="form-label">Waktu Pelatihan</label>
-                          <input type="text" id="waktupelatihan" class="form-control" placeholder="Harga Weekday" name="waktupelatihan{{ $a }}"   value="{{ $pkt->waktupelatihan }}">
+                          <input type="text" id="waktupelatihan" class="form-control" placeholder="Harga Weekday" name="waktupelatihan{{ $a }}"   value="{{ $pkt->waktupelatihan }}" required>
                       </div>
                       <div class="col col-6 col-md-6">
                           <label for="weekend" class="form-label">Jumlah Peserta</label>
-                          <input type="text" id="jumlahpeserta" class="form-control" placeholder="Harga Weekend" name="jumlahpeserta{{ $a }}"  value="{{ $pkt->jumlahpeserta}}">
+                          <input type="text" id="jumlahpeserta" class="form-control" placeholder="Harga Weekend" name="jumlahpeserta{{ $a }}"  value="{{ $pkt->jumlahpeserta}}" required>
                       </div>
                   </div>
                         @php
@@ -208,7 +208,7 @@
                 <div id="plusf{{ $i }}">
               @endif
               <div class="input-group col-md-6"> 
-                <input class="form-control" type="text" name="namapetani{{$i}}" value="{{$item->namapetani}}" id="fasilitas" placeholder="Nama Petani">
+                <input class="form-control" type="text" name="namapetani{{$i}}" value="{{$item->namapetani}}" id="fasilitas" placeholder="Nama Petani" required>
 
                 @php
                 $i = $i+1;
@@ -259,7 +259,7 @@
     $("#jf").val(x)
     $("#plusf" + id).html(`
     <div class="input-group col-md-6"> 
-      <input class="form-control" type="text" name="namapetani`+id+`" id="fasilitas" placeholder="Nama Petani">
+      <input class="form-control" type="text" name="namapetani`+id+`" id="fasilitas" placeholder="Nama Petani" required>
     <span class="input-group-text" id="Tf`+x+`" type = "button" onclick="plusf(`+x+`)"><i class="bi bi-plus"></i></span>   
     <span class="input-group-text" id="Mf`+x+`" type = "button" onclick="minsf(`+x+`)"><i class="bi bi-x"></i></span>
     </div>
@@ -284,15 +284,15 @@
     $("#namabantuan" + id).html(`
   
     <label for="paket" class="form-label">Nama Bantuan</label>
-    <input type="text" id="namabantuan" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan`+id+`">
+    <input type="text" id="namabantuan" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan`+id+`" required>
       <div class="row mt-2">
           <div class="col col-6 col-md-6">
           <label for="weekday" class="form-label">Waktu Penyaluran</label>
-          <input type="date" id="waktubantuan" class="form-control" placeholder="Waktu Penyaluran" name="waktubantuan`+id+`">
+          <input type="date" id="waktubantuan" class="form-control" placeholder="Waktu Penyaluran" name="waktubantuan`+id+`" required>
           </div>
           <div class="col col-6 col-md-6">
             <label for="weekend" class="form-label">Kuantitas Bantuan</label>
-            <input type="number" id="qtybantuan" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan`+id+`">
+            <input type="number" id="qtybantuan" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan`+id+`" required>
             </div>
           </div>
             <div class="row">
@@ -328,15 +328,15 @@
     $("#jz").val(x)
     $("#namapelatihan" + id).html(`
     <label for="paket" class="form-label">Nama Pelatihan</label>
-    <input type="text" id="namapelatihan" class="form-control" placeholder="Masukkan Nama Pelatihan" name="namapelatihan`+id+`">
+    <input type="text" id="namapelatihan" class="form-control" placeholder="Masukkan Nama Pelatihan" name="namapelatihan`+id+`" required>
       <div class="row mt-2">
         <div class="col col-6 col-md-6">
           <label for="weekday" class="form-label">Waktu Pelatihan</label>
-          <input type="date" id="waktupelatihan" class="form-control" placeholder="Waktu Pelatihan" name="waktupelatihan`+id+`">
+          <input type="date" id="waktupelatihan" class="form-control" placeholder="Waktu Pelatihan" name="waktupelatihan`+id+`" required>
           </div>
             <div class="col col-6 col-md-6">
             <label for="weekend" class="form-label">Jumlah Peserta</label>
-            <input type="number" id="jumlahpeserta" class="form-control" placeholder="Jumlah Peserta Pelatihan" name="jumlahpeserta`+id+`">
+            <input type="number" id="jumlahpeserta" class="form-control" placeholder="Jumlah Peserta Pelatihan" name="jumlahpeserta`+id+`" required>
             </div>
           </div>
             <div class="row">

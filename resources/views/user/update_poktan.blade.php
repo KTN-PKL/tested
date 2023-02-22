@@ -66,15 +66,15 @@
                        <div id="namabantuan{{ $a }}">
                        @endif
                        <label for="paket" class="form-label">Nama Bantuan</label>
-                       <input type="text" id="namabantuan" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan{{ $a }}" data-parsley-required="true" value="{{ $pkt->namabantuan }}">
+                       <input type="text" id="namabantuan" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan{{ $a }}" value="{{ $pkt->namabantuan }}">
                         <div class="row mt-2">
                             <div class="col col-6 col-md-6">
                                 <label for="weekday" class="form-label">Waktu Penyaluran</label>
-                                <input type="text" id="waktubantuan" class="form-control" placeholder="Waktu Penyaluran" name="waktubantuan{{ $a }}" data-parsley-required="true"  value="{{ $pkt->waktubantuan }}">
+                                <input type="text" id="waktubantuan" class="form-control" placeholder="Waktu Penyaluran" name="waktubantuan{{ $a }}"  value="{{ $pkt->waktubantuan }}">
                             </div>
                             <div class="col col-6 col-md-6">
                                 <label for="weekend" class="form-label">Kuantitas Bantuan</label>
-                                <input type="text" id="qtybantuan" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan{{ $a }}" data-parsley-required="true" value="{{ $pkt->qtybantuan}}">
+                                <input type="text" id="qtybantuan" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan{{ $a }}" value="{{ $pkt->qtybantuan}}">
                             </div>
                         </div> 
 
@@ -125,15 +125,15 @@
                     @endif
                
                       <label for="paket" class="form-label">Nama Pelatihan</label>
-                        <input type="text" id="namapelatihan" class="form-control" placeholder="Masukkan Nama Pelatihan" name="namapelatihan{{ $a }}" data-parsley-required="true" value="{{ $pkt->namapelatihan }}">
+                        <input type="text" id="namapelatihan" class="form-control" placeholder="Masukkan Nama Pelatihan" name="namapelatihan{{ $a }}"  value="{{ $pkt->namapelatihan }}">
                         <div class="row mt-2">
                             <div class="col col-6 col-md-6">
                                 <label for="weekday" class="form-label">Waktu Pelatihan</label>
-                                <input type="date" id="waktupelatihan" class="form-control" placeholder="Waktu Pelatihan" name="waktupelatihan{{ $a }}" data-parsley-required="true"  value="{{ $pkt->waktupelatihan }}">
+                                <input type="date" id="waktupelatihan" class="form-control" placeholder="Waktu Pelatihan" name="waktupelatihan{{ $a }}"   value="{{ $pkt->waktupelatihan }}">
                             </div>
                             <div class="col col-6 col-md-6">
                                 <label for="weekend" class="form-label">Jumlah Peserta</label>
-                                <input type="number" id="jumlahpeserta" class="form-control" placeholder="Jumlah Peserta" name="jumlahpeserta{{ $a }}" data-parsley-required="true" value="{{ $pkt->jumlahpeserta}}">
+                                <input type="number" id="jumlahpeserta" class="form-control" placeholder="Jumlah Peserta" name="jumlahpeserta{{ $a }}"  value="{{ $pkt->jumlahpeserta}}">
                             </div>
                         </div>
                               @php
@@ -277,15 +277,15 @@
     $("#namabantuan" + id).html(`
   
     <label for="paket" class="form-label">Nama Bantuan</label>
-    <input type="text" id="namabantuan" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan`+id+`" data-parsley-required="true">
+    <input type="text" id="namabantuan" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan`+id+`" >
       <div class="row mt-2">
           <div class="col col-6 col-md-6">
           <label for="weekday" class="form-label">Waktu Penyaluran</label>
-          <input type="date" id="waktubantuan" class="form-control" placeholder="Waktu Penyaluran" name="waktubantuan`+id+`" data-parsley-required="true">
+          <input type="date" id="waktubantuan" class="form-control" placeholder="Waktu Penyaluran" name="waktubantuan`+id+`" >
           </div>
           <div class="col col-6 col-md-6">
             <label for="weekend" class="form-label">Kuantitas Bantuan</label>
-            <input type="number" id="qtybantuan" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan`+id+`" data-parsley-required="true">
+            <input type="number" id="qtybantuan" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan`+id+`" >
             </div>
           </div>
             <div class="row">
@@ -321,15 +321,15 @@
     $("#jz").val(x)
     $("#namapelatihan" + id).html(`
     <label for="paket" class="form-label">Nama Pelatihan</label>
-    <input type="text" id="namapelatihan" class="form-control" placeholder="Masukkan Nama Pelatihan" name="namapelatihan`+id+`" data-parsley-required="true">
+    <input type="text" id="namapelatihan" class="form-control" placeholder="Masukkan Nama Pelatihan" name="namapelatihan`+id+`" >
       <div class="row mt-2">
         <div class="col col-6 col-md-6">
           <label for="weekday" class="form-label">Waktu Pelatihan</label>
-          <input type="date" id="waktupelatihan" class="form-control" placeholder="Waktu Pelatihan" name="waktupelatihan`+id+`" data-parsley-required="true">
+          <input type="date" id="waktupelatihan" class="form-control" placeholder="Waktu Pelatihan" name="waktupelatihan`+id+`" >
           </div>
             <div class="col col-6 col-md-6">
             <label for="weekend" class="form-label">Jumlah Peserta</label>
-            <input type="number" id="jumlahpeserta" class="form-control" placeholder="Jumlah Peserta Pelatihan" name="jumlahpeserta`+id+`" data-parsley-required="true">
+            <input type="number" id="jumlahpeserta" class="form-control" placeholder="Jumlah Peserta Pelatihan" name="jumlahpeserta`+id+`" >
             </div>
           </div>
             <div class="row">

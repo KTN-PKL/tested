@@ -536,7 +536,7 @@ class c_poktan extends Controller
         ];
         $this->poktan->editData($id, $data);
         $data = $this->poktan->detailData($id);
-        return redirect()->route('dmpoktan.index')->with('success', 'Poktan berhasil dibuat.');
+        return redirect()->route('dmpoktan.index')->with('success', 'Poktan berhasil diupdate.');
     }
 
     public function tampilDetail($id)

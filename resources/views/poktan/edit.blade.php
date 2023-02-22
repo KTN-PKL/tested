@@ -76,21 +76,51 @@
                         $jp = count($bantuan);
                         $a = 0;
                         @endphp
+
                          <input type="text" name="jp" hidden value="{{ $jp }}" id="jp">
+                         @if ($jp == 0)
+                         <div class="form-group">
+                          <label for="paket" class="form-label">Nama Bantuan</label>
+                            <input type="text" id="paket" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan0" >
+                            <div class="row mt-2">
+                                <div class="col col-6 col-md-6">
+                                    <label for="weekday" class="form-label">Waktu Penyaluran</label>
+                                    <input type="date" id="weekday" class="form-control" placeholder="Waktu Penyaluran Bantuan" name="waktubantuan0" >
+                                </div>
+                                <div class="col col-6 col-md-6">
+                                    <label for="weekend" class="form-label">Kuantitas Bantuan</label>
+                                    <input type="number" id="weekend" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan0" >
+                                </div>
+                            </div>
+                            
+                            <center>
+                              <div id="mp1" class="col-md-12">
+                                <div ></div>
+                              </div>
+                            <div id="tp1" class="col-md-12 mt-2">
+                            <a  class="btn btn-success" onclick="tambahpaket(1)">Tambah Bantuan</a>
+                            </div>
+                          </center>
+                         
+                            <div class="col-md-12 mt-2" id="namabantuan1"></div>
+                     
+          
+                        </div>
+                         @else
                          @foreach ($bantuan as $pkt)
                          @if ($a <> 0)
                          <div id="namabantuan{{ $a }}">
                          @endif
                          <label for="paket" class="form-label">Nama Bantuan</label>
-                         <input type="text" id="namabantuan" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan{{ $a }}" value="{{ $pkt->namabantuan }}" required>
+                         <input type="text" id="namabantuan" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan{{ $a }}" value="{{ $pkt->namabantuan }}" >
                           <div class="row mt-2">
                               <div class="col col-6 col-md-6">
                                   <label for="weekday" class="form-label">Waktu Penyaluran</label>
-                                  <input type="text" id="waktubantuan" class="form-control" placeholder="Waktu Penyaluran" name="waktubantuan{{ $a }}"  value="{{ $pkt->waktubantuan }}" required>
+                                  <input type="text" id="waktubantuan" class="form-control" placeholder="Waktu Penyaluran" name="waktubantuan{{ $a }}"  value="{{ $pkt->waktubantuan }}" >
                               </div>
                               <div class="col col-6 col-md-6">
                                   <label for="weekend" class="form-label">Kuantitas Bantuan</label>
-                                  <input type="text" id="qtybantuan" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan{{ $a }}" value="{{ $pkt->qtybantuan}}" required>
+                                  <input type="text" id="qtybantuan" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan{{ $a }}" value="{{ $pkt->qtybantuan}}" >
                               </div>
                           </div> 
   
@@ -125,6 +155,7 @@
                         
                          @endif  
                         </div>
+                        @endif 
                     </div>
   
                    
@@ -138,21 +169,48 @@
                   $a = 0;
               @endphp
               <input type="text" name="jz" hidden value="{{ $jz }}" id="jz">
+              @if ($jz == 0)
+              <div class="form-group">
+                <label for="paket" class="form-label">Nama Pelatihan</label>
+                  <input type="text" id="pelatihan" class="form-control" placeholder="Masukkan Nama Pelatihan" name="namapelatihan0" >
+                  <div class="row mt-2">
+                      <div class="col col-6 col-md-6">
+                          <label for="weekday" class="form-label">Waktu Pelaksanaan</label>
+                          <input type="date" id="waktupelatihan" class="form-control" placeholder="Waktu Pelaksanaan" name="waktupelatihan0" >
+                      </div>
+                      <div class="col col-6 col-md-6">
+                          <label for="weekend" class="form-label">Jumlah Peserta</label>
+                          <input type="number" id="jumlahpeserta" class="form-control" placeholder="Jumlah Peserta" name="jumlahpeserta0" >
+                      </div>
+                  </div>
+                  
+                  <center>
+                    <div id="mz1" class="col-md-12">
+                    </div>
+                  <div id="tz1" class="col-md-12 mt-2">
+                  <a  class="btn btn-success" onclick="tambahpelatihan(1)">Tambah Pelatihan</a>
+                  </div>
+                </center>
+               
+                  <div class="col-md-12 mt-2" id="namapelatihan1"></div>
+           
+
+              </div>
+              @else
               @foreach ($pelatihan as $pkt)
               @if ($a <> 0)
               <div id="namapelatihan{{ $a }}">
               @endif
-         
                 <label for="paket" class="form-label">Nama Pelatihan</label>
-                  <input type="text" id="namapelatihan" class="form-control" placeholder="Masukkan Nama Pelatihan" name="namapelatihan{{ $a }}"  value="{{ $pkt->namapelatihan }}" required>
+                  <input type="text" id="namapelatihan" class="form-control" placeholder="Masukkan Nama Pelatihan" name="namapelatihan{{ $a }}"  value="{{ $pkt->namapelatihan }}" >
                   <div class="row mt-2">
                       <div class="col col-6 col-md-6">
                           <label for="weekday" class="form-label">Waktu Pelatihan</label>
-                          <input type="text" id="waktupelatihan" class="form-control" placeholder="Harga Weekday" name="waktupelatihan{{ $a }}"   value="{{ $pkt->waktupelatihan }}" required>
+                          <input type="text" id="waktupelatihan" class="form-control" placeholder="Harga Weekday" name="waktupelatihan{{ $a }}"   value="{{ $pkt->waktupelatihan }}" >
                       </div>
                       <div class="col col-6 col-md-6">
                           <label for="weekend" class="form-label">Jumlah Peserta</label>
-                          <input type="text" id="jumlahpeserta" class="form-control" placeholder="Harga Weekend" name="jumlahpeserta{{ $a }}"  value="{{ $pkt->jumlahpeserta}}" required>
+                          <input type="text" id="jumlahpeserta" class="form-control" placeholder="Harga Weekend" name="jumlahpeserta{{ $a }}"  value="{{ $pkt->jumlahpeserta}}" >
                       </div>
                   </div>
                         @php
@@ -186,7 +244,8 @@
                           @endif  
                 </div>
               
-              
+                  
+         @endif
               </div>
                 
             </div>
@@ -199,7 +258,27 @@
                   $jf = count($petani);
               @endphp
               <input type="text" hidden value="{{ $jf }}" name="jf" id="jf">
+
               <label for="kategori" class="form-label">Petani</label>
+              @if ($jf == 0)
+              <div style="margin-left:1em;margin-right:1em">
+                <label class="form-label">List Daftar Petani</label>
+                <input type="text" name="jumlah" value="1" id="jumlah" hidden>
+                <div class="input-group col-md-6">
+                <input type="text" class="form-control  @error('skill') is-invalid @enderror" value="{{ old('skill') }}" name="namapetani0" placeholder="Nama Petani" >
+                <span class="input-group-text" id="Tf1" type = "button" onclick="plusf(1)"><i class="bi bi-plus"></i></span>
+                </div>
+                <div id="Mf1"></div>
+                <div id="plusf1"></div>
+                 @error('skill')
+                      <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                      </span>
+                 @enderror
+                  </div>
+              @else
+                  
+              @endif
               @php
                 $i = 0;
               @endphp
@@ -208,7 +287,7 @@
                 <div id="plusf{{ $i }}">
               @endif
               <div class="input-group col-md-6"> 
-                <input class="form-control" type="text" name="namapetani{{$i}}" value="{{$item->namapetani}}" id="fasilitas" placeholder="Nama Petani" required>
+                <input class="form-control" type="text" name="namapetani{{$i}}" value="{{$item->namapetani}}" id="fasilitas" placeholder="Nama Petani" >
 
                 @php
                 $i = $i+1;
@@ -259,7 +338,7 @@
     $("#jf").val(x)
     $("#plusf" + id).html(`
     <div class="input-group col-md-6"> 
-      <input class="form-control" type="text" name="namapetani`+id+`" id="fasilitas" placeholder="Nama Petani" required>
+      <input class="form-control" type="text" name="namapetani`+id+`" id="fasilitas" placeholder="Nama Petani" >
     <span class="input-group-text" id="Tf`+x+`" type = "button" onclick="plusf(`+x+`)"><i class="bi bi-plus"></i></span>   
     <span class="input-group-text" id="Mf`+x+`" type = "button" onclick="minsf(`+x+`)"><i class="bi bi-x"></i></span>
     </div>
@@ -284,15 +363,15 @@
     $("#namabantuan" + id).html(`
   
     <label for="paket" class="form-label">Nama Bantuan</label>
-    <input type="text" id="namabantuan" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan`+id+`" required>
+    <input type="text" id="namabantuan" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan`+id+`" >
       <div class="row mt-2">
           <div class="col col-6 col-md-6">
           <label for="weekday" class="form-label">Waktu Penyaluran</label>
-          <input type="date" id="waktubantuan" class="form-control" placeholder="Waktu Penyaluran" name="waktubantuan`+id+`" required>
+          <input type="date" id="waktubantuan" class="form-control" placeholder="Waktu Penyaluran" name="waktubantuan`+id+`" >
           </div>
           <div class="col col-6 col-md-6">
             <label for="weekend" class="form-label">Kuantitas Bantuan</label>
-            <input type="number" id="qtybantuan" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan`+id+`" required>
+            <input type="number" id="qtybantuan" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan`+id+`" >
             </div>
           </div>
             <div class="row">
@@ -328,15 +407,15 @@
     $("#jz").val(x)
     $("#namapelatihan" + id).html(`
     <label for="paket" class="form-label">Nama Pelatihan</label>
-    <input type="text" id="namapelatihan" class="form-control" placeholder="Masukkan Nama Pelatihan" name="namapelatihan`+id+`" required>
+    <input type="text" id="namapelatihan" class="form-control" placeholder="Masukkan Nama Pelatihan" name="namapelatihan`+id+`" >
       <div class="row mt-2">
         <div class="col col-6 col-md-6">
           <label for="weekday" class="form-label">Waktu Pelatihan</label>
-          <input type="date" id="waktupelatihan" class="form-control" placeholder="Waktu Pelatihan" name="waktupelatihan`+id+`" required>
+          <input type="date" id="waktupelatihan" class="form-control" placeholder="Waktu Pelatihan" name="waktupelatihan`+id+`" >
           </div>
             <div class="col col-6 col-md-6">
             <label for="weekend" class="form-label">Jumlah Peserta</label>
-            <input type="number" id="jumlahpeserta" class="form-control" placeholder="Jumlah Peserta Pelatihan" name="jumlahpeserta`+id+`" required>
+            <input type="number" id="jumlahpeserta" class="form-control" placeholder="Jumlah Peserta Pelatihan" name="jumlahpeserta`+id+`" >
             </div>
           </div>
             <div class="row">

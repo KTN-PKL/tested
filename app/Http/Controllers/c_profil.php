@@ -158,89 +158,104 @@ class c_profil extends Controller
     {
       
         $count = $this->poktan->maxIdPoktan();
-        if($count == null)
+        if($request->namapetani0 == null)
         {
-            for ($i=0; $i < $request->jumlah; $i++) { 
-                $referenceID = $this->poktan->countAllPoktan();
-                $id_poktan = $referenceID + 1;
-                $data = [
-                
-                    'id_poktan' => $id_poktan,
-                    'namapetani' => $request->{"namapetani".$i },
-                ];
-                $this->petani->addData($data);
-            }
-        }else{
-            for ($i=0; $i < $request->jumlah; $i++) { 
-                $referenceMAXID = $this->poktan->maxIdPoktan();
-                $id_poktan = $referenceMAXID + 1;
-                $data = [
-                
-                    'id_poktan' => $id_poktan,
-                    'namapetani' => $request->{"namapetani".$i },
-                ];
-                $this->petani->addData($data);
-            }
-      
-        }
 
+        }
+        else
+        {
+            if($count == null)
+            {
+                for ($i=0; $i < $request->jumlah; $i++) { 
+                    $referenceID = $this->poktan->countAllPoktan();
+                    $id_poktan = $referenceID + 1;
+                    $data = [
+                    
+                        'id_poktan' => $id_poktan,
+                        'namapetani' => $request->{"namapetani".$i },
+                    ];
+                    $this->petani->addData($data);
+                }
+            }else{
+                for ($i=0; $i < $request->jumlah; $i++) { 
+                    $referenceMAXID = $this->poktan->maxIdPoktan();
+                    $id_poktan = $referenceMAXID + 1;
+                    $data = [
+                       
+                        'id_poktan' => $id_poktan,
+                        'namapetani' => $request->{"namapetani".$i },
+                    ];
+                    $this->petani->addData($data);
+                }
+          
+            }
+        }
        
-        if($count == null)
-        {
-            for ($i=0; $i < $request->jp; $i++) { 
-                $referenceID = $this->poktan->countAllPoktan();
-                $id_poktan = $referenceID + 1;
-                $data = [
-                    'id_poktan' => $id_poktan,
-                    'namabantuan' => $request->{"namabantuan".$i },
-                    'waktubantuan' => $request->{"waktubantuan".$i },
-                    'qtybantuan' => $request->{"qtybantuan".$i },
-                ];
-                $this->bantuan->addData($data);
-            }
-        }else{
-            for ($i=0; $i < $request->jp; $i++) { 
-                $referenceMAXID = $this->poktan->maxIdPoktan();
-                $id_poktan = $referenceMAXID + 1;
-                $data = [
-                    'id_poktan' => $id_poktan,
-                    'namabantuan' => $request->{"namabantuan".$i },
-                    'waktubantuan' => $request->{"waktubantuan".$i },
-                    'qtybantuan' => $request->{"qtybantuan".$i },
-                ];
-                $this->bantuan->addData($data);
-            }
-      
-        }
 
-        if($count == null)
-        {
-            for ($i=0; $i < $request->jl; $i++) { 
-                $referenceID = $this->poktan->countAllPoktan();
-                $id_poktan = $referenceID + 1;
-                $data = [
-                    'id_poktan' => $id_poktan,
-                    'namapelatihan' => $request->{"namapelatihan".$i },
-                    'waktupelatihan' => $request->{"waktupelatihan".$i },
-                    'jumlahpeserta' => $request->{"jumlahpeserta".$i },
-                ];
-                $this->pelatihan->addData($data);
-            }
-        }else{
-            for ($i=0; $i < $request->jl; $i++) { 
-                $referenceMAXID = $this->poktan->maxIdPoktan();
-                $id_poktan = $referenceMAXID + 1;
-                $data = [
-                    'id_poktan' => $id_poktan,
-                    'namapelatihan' => $request->{"namapelatihan".$i },
-                    'waktupelatihan' => $request->{"waktupelatihan".$i },
-                    'jumlahpeserta' => $request->{"jumlahpeserta".$i },
-                ];
-                $this->pelatihan->addData($data);
-            }
-      
-        }
+        if($request->namabantuan0 == null){
 
+        }else{
+            if($count == null)
+            {
+                for ($i=0; $i < $request->jp; $i++) { 
+                    $referenceID = $this->poktan->countAllPoktan();
+                    $id_poktan = $referenceID + 1;
+                    $data = [
+                        'id_poktan' => $id_poktan,
+                        'namabantuan' => $request->{"namabantuan".$i },
+                        'waktubantuan' => $request->{"waktubantuan".$i },
+                        'qtybantuan' => $request->{"qtybantuan".$i },
+                    ];
+                    $this->bantuan->addData($data);
+                }
+            }else{
+                for ($i=0; $i < $request->jp; $i++) { 
+                    $referenceMAXID = $this->poktan->maxIdPoktan();
+                    $id_poktan = $referenceMAXID + 1;
+                    $data = [
+                        'id_poktan' => $id_poktan,
+                        'namabantuan' => $request->{"namabantuan".$i },
+                        'waktubantuan' => $request->{"waktubantuan".$i },
+                        'qtybantuan' => $request->{"qtybantuan".$i },
+                    ];
+                    $this->bantuan->addData($data);
+                }
+          
+            }
+        }
+       
+        if($request->namapelatihan0 == null){
+
+        }
+        else{
+            if($count == null)
+            {
+                for ($i=0; $i < $request->jl; $i++) { 
+                    $referenceID = $this->poktan->countAllPoktan();
+                    $id_poktan = $referenceID + 1;
+                    $data = [
+                        'id_poktan' => $id_poktan,
+                        'namapelatihan' => $request->{"namapelatihan".$i },
+                        'waktupelatihan' => $request->{"waktupelatihan".$i },
+                        'jumlahpeserta' => $request->{"jumlahpeserta".$i },
+                    ];
+                    $this->pelatihan->addData($data);
+                }
+            }else{
+                for ($i=0; $i < $request->jl; $i++) { 
+                    $referenceMAXID = $this->poktan->maxIdPoktan();
+                    $id_poktan = $referenceMAXID + 1;
+                    $data = [
+                        'id_poktan' => $id_poktan,
+                        'namapelatihan' => $request->{"namapelatihan".$i },
+                        'waktupelatihan' => $request->{"waktupelatihan".$i },
+                        'jumlahpeserta' => $request->{"jumlahpeserta".$i },
+                    ];
+                    $this->pelatihan->addData($data);
+                }
+          
+            }
+        }
 
 
 

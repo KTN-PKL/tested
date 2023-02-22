@@ -335,6 +335,7 @@ class c_poktan extends Controller
     
     public function storePoktan(Request $request)
     {
+      
         $count = $this->poktan->maxIdPoktan();
         if($request->namapetani0 == null)
         {
@@ -490,10 +491,12 @@ class c_poktan extends Controller
 
     public function updatePoktan(Request $request,$id)
     {
+       
         $this->petani->deleteData($id);
         $this->bantuan->deleteData($id);
         $this->pelatihan->deleteData($id);
       
+
         
             for ($i=0; $i < $request->jf; $i++) { 
                 $data = [

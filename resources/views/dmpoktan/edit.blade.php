@@ -76,8 +76,12 @@
                         $a = 0;
                         @endphp
 
-                         <input type="text" name="jp" hidden value="{{ $jp }}" id="jp">
+                        
                          @if ($jp == 0)
+                         @php
+                              $jp = 1;
+                         @endphp
+                         <input type="text" name="jp" hidden value="{{ $jp }}" id="jp">
                          <div class="form-group">
                           <label for="paket" class="form-label">Nama Bantuan</label>
                             <input type="text" id="paket" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan0" >
@@ -106,6 +110,7 @@
           
                         </div>
                          @else
+                         <input type="text" name="jp" hidden value="{{ $jp }}" id="jp">
                          @foreach ($bantuan as $pkt)
                          @if ($a <> 0)
                          <div id="namabantuan{{ $a }}">
@@ -167,8 +172,12 @@
                   $jz = count($pelatihan);
                   $a = 0;
               @endphp
-              <input type="text" name="jz" hidden value="{{ $jz }}" id="jz">
+             
               @if ($jz == 0)
+              @php
+              $jz = 1;
+          @endphp
+              <input type="text" name="jz" hidden value="{{ $jz }}" id="jz">
               <div class="form-group">
                 <label for="paket" class="form-label">Nama Pelatihan</label>
                   <input type="text" id="pelatihan" class="form-control" placeholder="Masukkan Nama Pelatihan" name="namapelatihan0" >
@@ -196,6 +205,7 @@
 
               </div>
               @else
+              <input type="text" name="jz" hidden value="{{ $jz }}" id="jz">
               @foreach ($pelatihan as $pkt)
               @if ($a <> 0)
               <div id="namapelatihan{{ $a }}">
@@ -205,11 +215,11 @@
                   <div class="row mt-2">
                       <div class="col col-6 col-md-6">
                           <label for="weekday" class="form-label">Waktu Pelatihan</label>
-                          <input type="text" id="waktupelatihan" class="form-control" placeholder="Harga Weekday" name="waktupelatihan{{ $a }}"   value="{{ $pkt->waktupelatihan }}" >
+                          <input type="date" id="waktupelatihan" class="form-control" placeholder="Waktu Pelatihan" name="waktupelatihan{{ $a }}"   value="{{ $pkt->waktupelatihan }}" >
                       </div>
                       <div class="col col-6 col-md-6">
                           <label for="weekend" class="form-label">Jumlah Peserta</label>
-                          <input type="text" id="jumlahpeserta" class="form-control" placeholder="Harga Weekend" name="jumlahpeserta{{ $a }}"  value="{{ $pkt->jumlahpeserta}}" >
+                          <input type="number" id="jumlahpeserta" class="form-control" placeholder="Jumlah Peserta" name="jumlahpeserta{{ $a }}"  value="{{ $pkt->jumlahpeserta}}" >
                       </div>
                   </div>
                         @php
@@ -248,76 +258,75 @@
               </div>
                 
             </div>
-
-              </div>
-              
-             
-              <div class="col-12">
-                @php
-                  $jf = count($petani);
-              @endphp
-              <input type="text" hidden value="{{ $jf }}" name="jf" id="jf">
-
-              <label for="kategori" class="form-label">Petani</label>
-              @if ($jf == 0)
-              <div style="margin-left:1em;margin-right:1em">
-                <label class="form-label">List Daftar Petani</label>
-                <input type="text" name="jumlah" value="1" id="jumlah" hidden>
-                <div class="input-group col-md-6">
-                <input type="text" class="form-control  @error('skill') is-invalid @enderror" value="{{ old('skill') }}" name="namapetani0" placeholder="Nama Petani" >
-                <span class="input-group-text" id="Tf1" type = "button" onclick="plusf(1)"><i class="bi bi-plus"></i></span>
-                </div>
-                <div id="Mf1"></div>
-                <div id="plusf1"></div>
-                 @error('skill')
-                      <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                      </span>
-                 @enderror
-                  </div>
-              @else
-                  
-              @endif
+            <div class="col-md-12">
               @php
-                $i = 0;
-              @endphp
-              @foreach ($petani as $item)
-              @if ($i <> 0)
-                <div id="plusf{{ $i }}">
-              @endif
-              <div class="input-group col-md-6"> 
-                <input class="form-control" type="text" name="namapetani{{$i}}" value="{{$item->namapetani}}" id="fasilitas" placeholder="Nama Petani" >
-
-                @php
-                $i = $i+1;
-                @endphp
-                <span class="input-group-text" id="Tf{{ $i }}" type = "button" onclick="plusf({{ $i }})" @if ($i <> $jf)
-                  style="display: none"
-                @endif><i class="bi bi-plus"></i></span>   
-                @if ($i <> 1)
-                <span class="input-group-text" id="Mf{{ $i }}" type = "button" onclick="minsf({{ $i }})" @if ($i <> $jf)
-                  style="display: none"
-                @endif><i class="bi bi-x"></i></span>
-              </div>
-                @else
-              </div> 
-              <div id="Mf1"></div>   
-                @endif
-                @endforeach
-                @if ($i == $jf)
-                <div id="plusf{{ $jf }}"></div>
-                @else
-                  @if ($i <> 1)
-                 
-                  @endif
-                @endif
+                $jf = count($petani);
+            @endphp
            
-               </div>
 
-              
-
+            <label for="kategori" class="form-label">Petani</label>
+            @if ($jf == 0)
+            @php
+            $jf = 1;
+        @endphp
+            <input type="text" hidden value="{{ $jf }}" name="jf" id="jf">
+            <div style="margin-left:1em;margin-right:1em">
+              <label class="form-label">List Daftar Petani</label>
+              <input type="text" name="jumlah" value="1" id="jumlah" hidden>
+              <div class="input-group col-md-6">
+              <input type="text" class="form-control  @error('skill') is-invalid @enderror" value="{{ old('skill') }}" name="namapetani0" placeholder="Nama Petani" >
+              <span class="input-group-text" id="Tf1" type = "button" onclick="plusf(1)"><i class="bi bi-plus"></i></span>
+              </div>
+              <div id="Mf1"></div>
+              <div id="plusf1"></div>
+               @error('skill')
+                    <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                    </span>
+               @enderror
                 </div>
-            
+            @else
+            <input type="text" hidden value="{{ $jf }}" name="jf" id="jf">
+            @php
+              $i = 0;
+            @endphp
+            @foreach ($petani as $item)
+            @if ($i <> 0)
+              <div id="plusf{{ $i }}">
+            @endif
+            <div class="input-group col-md-6"> 
+              <input class="form-control" type="text" name="namapetani{{$i}}" value="{{$item->namapetani}}" id="fasilitas" placeholder="Nama Petani" >
+
+              @php
+              $i = $i+1;
+              @endphp
+              <span class="input-group-text" id="Tf{{ $i }}" type = "button" onclick="plusf({{ $i }})" @if ($i <> $jf)
+                style="display: none"
+              @endif><i class="bi bi-plus"></i></span>   
+              @if ($i <> 1)
+              <span class="input-group-text" id="Mf{{ $i }}" type = "button" onclick="minsf({{ $i }})" @if ($i <> $jf)
+                style="display: none"
+              @endif><i class="bi bi-x"></i></span>
+            </div>
+              @else
+            </div> 
+            <div id="Mf1"></div>   
+              @endif
+              @endforeach
+              @if ($i == $jf)
+              <div id="plusf{{ $jf }}"></div>
+              @else
+                @if ($i <> 1)
+               
+                @endif
+              @endif
+              @endif
+             </div>
+
+              </div>
+              
+          
+         
                 
                 <div class="text-center mt-4">
                   <button type="submit" class="btn btn-primary">Submit</button>

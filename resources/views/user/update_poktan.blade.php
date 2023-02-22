@@ -63,8 +63,13 @@
                           $a = 0;
                           @endphp
   
-                           <input type="text" name="jp" hidden value="{{ $jp }}" id="jp">
+                          
                            @if ($jp == 0)
+                           @php
+                           $jp = 1;
+                           @endphp
+   
+                           <input type="text" name="jp" hidden value="{{ $jp }}" id="jp">
                            <div class="form-group">
                             <label for="paket" class="form-label">Nama Bantuan</label>
                               <input type="text" id="paket" class="form-control" placeholder="Masukkan Nama Bantuan" name="namabantuan0" >
@@ -93,6 +98,7 @@
             
                           </div>
                            @else
+                           <input type="text" name="jp" hidden value="{{ $jp }}" id="jp">
                            @foreach ($bantuan as $pkt)
                            @if ($a <> 0)
                            <div id="namabantuan{{ $a }}">
@@ -102,11 +108,11 @@
                             <div class="row mt-2">
                                 <div class="col col-6 col-md-6">
                                     <label for="weekday" class="form-label">Waktu Penyaluran</label>
-                                    <input type="text" id="waktubantuan" class="form-control" placeholder="Waktu Penyaluran" name="waktubantuan{{ $a }}"  value="{{ $pkt->waktubantuan }}" >
+                                    <input type="date" id="waktubantuan" class="form-control" placeholder="Waktu Penyaluran" name="waktubantuan{{ $a }}"  value="{{ $pkt->waktubantuan }}" >
                                 </div>
                                 <div class="col col-6 col-md-6">
                                     <label for="weekend" class="form-label">Kuantitas Bantuan</label>
-                                    <input type="text" id="qtybantuan" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan{{ $a }}" value="{{ $pkt->qtybantuan}}" >
+                                    <input type="number" id="qtybantuan" class="form-control" placeholder="Kuantitas Bantuan" name="qtybantuan{{ $a }}" value="{{ $pkt->qtybantuan}}" >
                                 </div>
                             </div> 
     
@@ -154,8 +160,12 @@
                     $jz = count($pelatihan);
                     $a = 0;
                 @endphp
-                <input type="text" name="jz" hidden value="{{ $jz }}" id="jz">
+                
                 @if ($jz == 0)
+                @php
+                    $jz = 1;
+                @endphp
+                <input type="text" name="jz" hidden value="{{ $jz }}" id="jz">
                 <div class="form-group">
                   <label for="paket" class="form-label">Nama Pelatihan</label>
                     <input type="text" id="pelatihan" class="form-control" placeholder="Masukkan Nama Pelatihan" name="namapelatihan0" >
@@ -166,7 +176,7 @@
                         </div>
                         <div class="col col-6 col-md-6">
                             <label for="weekend" class="form-label">Jumlah Peserta</label>
-                            <input type="number" id="jumlahpeserta" class="form-control" placeholder="Jumlah Peserta" name="jumlahpeserta0" >
+                            <input type="number" id="jumlahpeserta" class="form-control" placeholder="Jumlah Peserta Pelatihan" name="jumlahpeserta0" >
                         </div>
                     </div>
                     
@@ -183,6 +193,7 @@
   
                 </div>
                 @else
+                <input type="text" name="jz" hidden value="{{ $jz }}" id="jz">
                 @foreach ($pelatihan as $pkt)
                 @if ($a <> 0)
                 <div id="namapelatihan{{ $a }}">
@@ -192,11 +203,11 @@
                     <div class="row mt-2">
                         <div class="col col-6 col-md-6">
                             <label for="weekday" class="form-label">Waktu Pelatihan</label>
-                            <input type="text" id="waktupelatihan" class="form-control" placeholder="Harga Weekday" name="waktupelatihan{{ $a }}"   value="{{ $pkt->waktupelatihan }}" >
+                            <input type="date" id="waktupelatihan" class="form-control" placeholder="Waktu Pelatihan" name="waktupelatihan{{ $a }}"   value="{{ $pkt->waktupelatihan }}" >
                         </div>
                         <div class="col col-6 col-md-6">
                             <label for="weekend" class="form-label">Jumlah Peserta</label>
-                            <input type="text" id="jumlahpeserta" class="form-control" placeholder="Harga Weekend" name="jumlahpeserta{{ $a }}"  value="{{ $pkt->jumlahpeserta}}" >
+                            <input type="number" id="jumlahpeserta" class="form-control" placeholder="Jumlah Peserta Pelatihan" name="jumlahpeserta{{ $a }}"  value="{{ $pkt->jumlahpeserta}}" >
                         </div>
                     </div>
                           @php
@@ -254,10 +265,14 @@
                   @php
                   $jf = count($petani);
               @endphp
-              <input type="text" hidden value="{{ $jf }}" name="jf" id="jf">
+              
 
               <label for="kategori" class="form-label">Petani</label>
               @if ($jf == 0)
+              @php
+              $jf = 1;
+          @endphp
+              <input type="text" hidden value="{{ $jf }}" name="jf" id="jf">
               <div style="margin-left:1em;margin-right:1em">
                 <label class="form-label">List Daftar Petani</label>
                 <input type="text" name="jumlah" value="1" id="jumlah" hidden>
@@ -275,7 +290,7 @@
                   </div>
               @else
                   
-              @endif
+              <input type="text" hidden value="{{ $jf }}" name="jf" id="jf">
               @php
                 $i = 0;
               @endphp
@@ -308,6 +323,7 @@
                   @if ($i <> 1)
                  
                   @endif
+                @endif
                 @endif
                 </div>
              

@@ -38,7 +38,7 @@
 </head>
 
 <body>
-
+  @include('sweetalert::alert')
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -84,16 +84,16 @@
               <hr class="dropdown-divider">
             </li>
 
-            {{-- <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#" onclick="panggilmodal()">
                 <i class="bi bi-person"></i>
-                <span>My Profile</span>
+                <span>Ubah Password</span>
               </a>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
-
+{{-- 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                 <i class="bi bi-gear"></i>
@@ -144,7 +144,28 @@
     @yield('content')
 
   </main>
-
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ubah Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('profil.editpw') }}">
+                <input type="text" name="id" value="{{  Auth::user()->id }}" hidden>
+                <label>Password</label>
+                <input type="password" name="password" class="form-control">
+                <br>
+                <center>
+                  <button class="btn btn-sm btn-primary">Change</button>
+                </center>
+               
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
   <!-- ======= Footer ======= -->
   <footer style="background-color: rgb(244, 251, 249)"  id="footer" class="footer">
     <div class="copyright">
@@ -182,7 +203,11 @@
   </script>
   
   <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-
+<script>
+    function panggilmodal() {
+              $("#exampleModal").modal('show');
+            }
+</script>
 </body>
 
 </html>

@@ -12,6 +12,7 @@ use App\Models\absenkegiatan;
 use App\Models\pelatihan;
 use App\Models\bantuan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Auth;
 use Alert;
 
@@ -59,9 +60,10 @@ class c_profil extends Controller
     public function editpw(Request $request)
     {
         $data = [
-            'password' => $request->password,
+            'password' => Hash::make($request->password),
         ];
         $this->fasdes->editData($request->id, $data);
+        alert()->success('Berhasil', 'Password Berasil Diubah')->iconHtml('<i class="bi bi-check2-circle"></i>');
         return redirect()->back();
     }
     public function desa($id_kecamatan)

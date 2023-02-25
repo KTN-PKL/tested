@@ -25,8 +25,8 @@
 	
 
     // Load kml file
-    var src = '/kml/westcampus.kml';
-    ('test.kml')
+  
+    fetch('public/test.kml')
                 .then(res => res.text())
                 .then(kmltext => {
                     // Create new kml overlay

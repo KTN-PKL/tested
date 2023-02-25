@@ -88,7 +88,7 @@
                     </div>
                     <div class="mb-3">
                       <label for="jumlahproduksi" class="form-label">Koordinat Lokasi</label>
-                      <input type="text" class="form-control" id="jumlahproduksi" name="lokasi" value="{{$lokasi->lokasi}}" >
+                      <input type="text" class="form-control" id="jumlahproduksi" name="lokasi" value="{{$lokasi->lokasi}}" readonly >
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>

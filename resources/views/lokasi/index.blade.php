@@ -41,7 +41,6 @@
                 </td>
               <td style="width:25%">
                 <a href="{{ route('lokasi.edit', $data->id_lokasi) }}" class="btn btn-sm btn-warning" onclick="edit({{ $data->id_lokasi }})"><i class="bi bi-pencil-square"></i> Edit</a>
-                <a href="{{ route('faskab.lokasi.destroy', $data->id_lokasi) }}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Hapus</a>
               </td>
             </tr>
             @endforeach

@@ -23,6 +23,7 @@ use App\Http\Controllers\c_profil;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::view('/test', 'webgis');
 
 
 Route::get('/fasdes', [App\Http\Controllers\c_login::class, 'index'])->name('loginfasdes');
@@ -156,6 +157,7 @@ Route::controller(c_profil::class)->middleware('auth')->group(function () {
     Route::get('profil/chartlahan', 'chartLahan')->name('profil.chartlahan');
     Route::get('fasdes/kegiatan/{id}', 'detailAbsenKegiatan')->name('fasdes.detailabsenkegiatan');
     Route::get('fasdes/harian/{id}', 'detailAbsenHarian')->name('fasdes.detailabsenharian');
+    Route::get('profil/editpw', 'editpw')->name('profil.editpw');
 
 
   

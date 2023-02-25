@@ -17,15 +17,14 @@
       <div class="card-title text-center">
         <img src="{{asset('template')}}/assets/img/logoupland.png" style="width:150px;background-color:white;" alt="tes">
     </div>
-    <h1 class="display-5"><i class="fa-solid fa-id-card-clip text-light"></i> Selamat datang</h1>
-        <p>User</p>
+    <h1 class="display-5"><i class="text-light"></i> Selamat datang</h1>
+        <p>{{Auth::user()->name}}</p>
     </div>
     <div class="container p-1">
         <!-- main menu -->
         <div class="history p-2 rou">
         <div class="rounded label bg-prim">
-          
-            <h4 class="text-light p-3">Update Profile PokTan</h4>
+            <h4 class="text-light p-3"> <i class="fa-solid fa-pencil"></i> Update Profile PokTan</h4>
         </div>
         <!-- card -->
         <div class="card shadow" style="width: 100%">

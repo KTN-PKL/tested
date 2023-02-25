@@ -56,6 +56,14 @@ class c_profil extends Controller
         return view('user.edit_profil', $data);
     }
 
+    public function editpw(Request $request)
+    {
+        $data = [
+            'password' => $request->password,
+        ];
+        $this->fasdes->editData($request->id, $data);
+        return redirect()->back();
+    }
     public function desa($id_kecamatan)
     {
         $id = Auth::user()->id;

@@ -183,7 +183,7 @@ class c_absenharian extends Controller
         if($request->jenis == "UPTD"){
             $jarak = $this->jarak($request->lokasi);
       
-            if($jarak > 0.200)
+            if($jarak > 0.300)
             {
                 alert()->error('Gagal', 'Jarak Anda terlalu Jauh')->iconHtml('<i class="fa fa-times"></i>');
                 return redirect()->back();
@@ -192,7 +192,7 @@ class c_absenharian extends Controller
         if($request->jenis == "Dalam Kantor"){
             $jarak = $this->jarak2($request->lokasi);
       
-            if($jarak > 0.200)
+            if($jarak > 0.300)
             {
                 alert()->error('Gagal', 'Jarak Anda terlalu Jauh')->iconHtml('<i class="fa fa-times"></i>');
                 return redirect()->back();
@@ -226,7 +226,7 @@ class c_absenharian extends Controller
         if($request->jenis == "Dalam Kantor"){
             $jarak = $this->jarak($request->lokasi);
       
-            if($jarak > 0.200)
+            if($jarak > 0.300)
             {
                 alert()->error('Gagal', 'Jarak Anda terlalu Jauh')->iconHtml('<i class="fa fa-times"></i>');
                 return redirect()->back();

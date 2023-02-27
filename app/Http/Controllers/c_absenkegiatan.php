@@ -68,7 +68,7 @@ class c_absenkegiatan extends Controller
                 $distance = $distance * 1.609344; 
                 $jarak = (round($distance,3)); 
                 
-                if($jarak > 0.200 ){
+                if($jarak > 0.300 ){
                     alert()->error('Gagal', 'Jarak Anda terlalu Jauh')->iconHtml('<i class="fa fa-times"></i>');
                     return redirect()->back();
                 }
@@ -115,7 +115,7 @@ class c_absenkegiatan extends Controller
                     $distance = $distance * 1.609344; 
                     $jarak = (round($distance,3)); 
                     
-                    if($jarak > 0.200 ){
+                    if($jarak > 0.300 ){
                         alert()->error('Gagal', 'Jarak Anda terlalu Jauh')->iconHtml('<i class="fa fa-times"></i>');
                         return redirect()->back();
                     }

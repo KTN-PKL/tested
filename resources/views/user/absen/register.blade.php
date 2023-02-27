@@ -80,7 +80,7 @@
 
                 
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label" >Titik Kordinat Absen  </label>
+                    <label for="exampleInputEmail1" class="form-label" >Titik Koordinat Absen UPTD </label>
                     <input type="text" class="form-control" id="inputusername" aria-describedby="emailelp" name="lokasi" placeholder="-6.570845979075066, 107.75895723861193" required />
                 </div>
                 <div class="mb-3">

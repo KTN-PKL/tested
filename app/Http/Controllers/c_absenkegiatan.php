@@ -48,7 +48,7 @@ class c_absenkegiatan extends Controller
         $filename3 = $this->simpangambar($request->fotopelatihan, $name2);
 
 
-        if($request->jeniskegiatan == "kantor"){
+        if($request->jeniskegiatan == "uptd"){
             // radius lokasi
              $lokasi = $this->lokasi->detailData2(Auth::user()->id);
              $longi1 = $lokasi->lokasi;
@@ -68,7 +68,7 @@ class c_absenkegiatan extends Controller
                 $distance = $distance * 1.609344; 
                 $jarak = (round($distance,3)); 
                 
-                if($jarak > 0.200 ){
+                if($jarak > 0.300 ){
                     alert()->error('Gagal', 'Jarak Anda terlalu Jauh')->iconHtml('<i class="fa fa-times"></i>');
                     return redirect()->back();
                 }
@@ -94,7 +94,55 @@ class c_absenkegiatan extends Controller
                     alert()->success('Berhasil', 'Absen Kegiatan Berhasil')->iconHtml('<i class="far fa-thumbs-up"></i>');
                     return redirect()->route('fasdes.dashboard')->with(['success' => Auth::user()->name. " Telah Melakukan Absen Kegiatan. Selamat bekerja"]);
                 } 
-        }else{
+        }
+        elseif($request->jeniskegiatan == "kantor"){
+                // radius lokasi
+                 $lokasi = "-6.553692,107.762491";
+                 $longi1 = $lokasi;
+                 $longi = $request->lokasiabsen;
+    
+                    $L = explode("," , $longi);
+                    $L2 = explode("," , $longi1);
+                    $latitude1 = $L[0];
+                    $longitude1= $L[1];
+                    $latitude2 = $L2[0];
+                    $longitude2= $L2[1];
+                    $theta = $longitude1 - $longitude2; 
+                    $distance = (sin(deg2rad($latitude1)) * sin(deg2rad($latitude2)))  + (cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * cos(deg2rad($theta))); 
+                    $distance = acos($distance); 
+                    $distance = rad2deg($distance); 
+                    $distance = $distance * 60 * 1.1515;  
+                    $distance = $distance * 1.609344; 
+                    $jarak = (round($distance,3)); 
+                    
+                    if($jarak > 0.300 ){
+                        alert()->error('Gagal', 'Jarak Anda terlalu Jauh')->iconHtml('<i class="fa fa-times"></i>');
+                        return redirect()->back();
+                    }
+                    else{
+                        date_default_timezone_set("Asia/Jakarta");
+                        $t = date("H:i");
+                        $data = [
+                            'id_user' => Auth::user()->id,
+                            'tanggalabsen'=>$request->tanggalabsen,
+                            'waktuabsen'=>$t,
+                            'lokasiabsen'=>$request->lokasiabsen,
+                            'jeniskegiatan'=> $request->jeniskegiatan,
+                            'deskripsikegiatan' => $request->deskripsikegiatan,
+                            'pelatihan' => $request->pelatihan,
+                            'judulpelatihan' => $request->judulpelatihan,
+                            'durasipelatihan' => $request->durasipelatihan,
+                            'tempatpelatihan' => $request->tempatpelatihan,
+                            'selfiekegiatan'=>$filename,
+                            'fotokegiatan' => $filename2,
+                            'fotopelatihan' => $filename3,
+                        ];
+                        $this->kegiatan->addData($data);
+                        alert()->success('Berhasil', 'Absen Kegiatan Berhasil')->iconHtml('<i class="far fa-thumbs-up"></i>');
+                        return redirect()->route('fasdes.dashboard')->with(['success' => Auth::user()->name. " Telah Melakukan Absen Kegiatan. Selamat bekerja"]);
+                    } 
+        }
+        else{
             date_default_timezone_set("Asia/Jakarta");
             $t = date("H:i");
             $data = [

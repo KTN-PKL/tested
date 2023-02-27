@@ -47,9 +47,10 @@ class c_lokasi extends Controller
 
     public function update(Request $request, $id)
     {
+        $lokasi = str_replace(" ", "", $request->lokasi);
         $data = [
             'id_desa' => $request->id_desa,
-            'lokasi' => $request->lokasi,
+            'lokasi' => $lokasi,
         ];
         $this->lokasi->editData($id, $data);
         return redirect()->route('faskab.lokasi.index');

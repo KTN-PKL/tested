@@ -24,6 +24,9 @@ use App\Http\Controllers\c_profil;
 |
 */
 Route::view('/test', 'webgis');
+Route::get('path/to/kml', function() {
+    return response()->file(public_path('templateUser/test4.kml'));
+});
 
 
 Route::get('/fasdes', [App\Http\Controllers\c_login::class, 'index'])->name('loginfasdes');

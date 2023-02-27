@@ -138,6 +138,7 @@ class c_absenharian extends Controller
         file_put_contents($file, $data);
         return $filename;
     }
+    // Jarak UPTD 
     public function jarak($data)
     {
         $lokasi = $this->lokasi->detailData2(Auth::user()->id);
@@ -156,14 +157,30 @@ class c_absenharian extends Controller
 	    $jarak = (round($distance,3)); 
         return $jarak;
     }
-    // public function detail($id)
-    // {
+    // jarak Dinas PErtanian
+    public function jarak2($data)
+    {
+        $lokasi = "-6.553692,107.762491";
+        $L = explode("," , $lokasi);
+        $L2 = explode("," , $data);
+        $latitude1 = $L[0];
+        $latitude2 = $L2[0];
+        $longitude1 = $L[1];
+        $longitude2 = $L2[1];
+        $theta = $longitude1 - $longitude2; 
+	    $distance = (sin(deg2rad($latitude1)) * sin(deg2rad($latitude2)))  + (cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) * cos(deg2rad($theta))); 
+	    $distance = acos($distance); 
+	    $distance = rad2deg($distance); 
+	    $distance = $distance * 60 * 1.1515;  
+	    $distance = $distance * 1.609344; 
+	    $jarak = (round($distance,3)); 
+        return $jarak;
+    }
 
-    // }
     public function store(Request $request)
     {
        
-        if($request->jenis == "Dalam Kantor"){
+        if($request->jenis == "UPTD"){
             $jarak = $this->jarak($request->lokasi);
       
             if($jarak > 0.200)
@@ -172,8 +189,15 @@ class c_absenharian extends Controller
                 return redirect()->back();
             }
         }
-           
-        
+        if($request->jenis == "Dalam Kantor"){
+            $jarak = $this->jarak2($request->lokasi);
+      
+            if($jarak > 0.200)
+            {
+                alert()->error('Gagal', 'Jarak Anda terlalu Jauh')->iconHtml('<i class="fa fa-times"></i>');
+                return redirect()->back();
+            }
+        }
        
         date_default_timezone_set("Asia/Jakarta");
         $t = date("H:i");

@@ -52,10 +52,11 @@ class c_login extends Controller
       
         $id = $this->fasdes->maxIdUser();
 
+        $lokasi = str_replace(" ", "", $request->lokasi);
         $data =[
             'id_user'=>$id+1,
             'id_desa'=> $request->id_desa,
-            'lokasi'=> $request->lokasi,
+            'lokasi'=> $lokasi,
         ];
         $this->lokasi->addData($data);
 

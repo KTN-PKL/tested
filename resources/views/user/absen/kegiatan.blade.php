@@ -98,6 +98,7 @@
             <option selected disabled>Jenis Kegiatan</option>
             <option value="lapangan">Lapangan</option>
             <option value="kantor">Kantor</option>
+            <option value="uptd">UPTD</option>
             <option value="dinas luar kota">Dinas Luar Kota</option>
             <option value="dinas luar daerah">Dinas Luar Daerah</option>
             <option value="dinas luar negeri">Dinas Luar Negeri</option>

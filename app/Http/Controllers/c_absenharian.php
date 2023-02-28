@@ -126,7 +126,7 @@ class c_absenharian extends Controller
     public function detail($id)
     {
         $data = ['harian' => $this->harian->detailData($id),
-        'absen'=>$this->kegiatan->joinData($id),];
+        'absen'=>$this->harian->joinData($id),];
         return view('absenharian.detail', $data);
     }
     public function simpangambar($data, $name)

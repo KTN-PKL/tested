@@ -255,12 +255,12 @@ class c_poktan extends Controller
     }
     public function destroy($id)
     {
-        $data = $this->poktan->detailData($id);
-        $this->poktan->deleteData($id);
-        $this->petani->deleteData($id);
-        $this->bantuan->deleteData($id);
-        $this->pelatihan->deleteData($id);
-        return redirect()->route('poktan', $data->id_user)->with('success', 'Kelompok Petani Berhasil Dihapus');
+        $data1 = $this->poktan->detailData($id);
+        $data = [
+            'id_user' => null,
+        ];
+        $this->poktan->editData($id, $data);
+        return redirect()->route('poktan', $data1->id_user)->with('success', 'Kelompok Petani Berhasil Dihapus');
     }
 
     public function chartLahan()

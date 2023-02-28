@@ -42,6 +42,8 @@
   @else
   Alamat Belum ditentukan.
   @endif</h3> 
+  <h3>Kecamatan :{{$fasdes->kecamatan}}</h3>
+  <h3>Desa :{{$fasdes->desa}}</h3>
 </div> 
 
 <table class="table table-bordered table-responsive">

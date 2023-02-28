@@ -44,4 +44,8 @@ class fasdes extends Model
     {
         return DB::table('users')->max('id');
     }
+    public function tested($id)
+    {
+        return DB::table('lokasis')->join('users', 'lokasis.id_user', '=', 'users.id')->leftjoin('desas', 'lokasis.id_desa', '=', 'desas.id_desa')->leftjoin('kecamatans', 'desas.id_kecamatan','=','kecamatans.id_kecamatan')->where('id_user', $id)->first();
+    }
 }

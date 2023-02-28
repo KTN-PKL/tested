@@ -201,8 +201,8 @@ class c_absenharian extends Controller
        
         date_default_timezone_set("Asia/Jakarta");
         $t = date("H:i");
-        $name = "fasdes_masuk_".$request->harian.".png";
-        $name1 = "kegiatan_masuk_".$request->harian.".png";
+        $name = "fasdes_masuk_".$request->harian."_".Auth::user()->id.".png";
+        $name1 = "kegiatan_masuk_".$request->harian."_".Auth::user()->id.".png";
         $filename = $this->simpangambar($request->selfie, $name);
         $filename1 = $this->simpangambar($request->kegiatan, $name1);
         $data = [
@@ -244,8 +244,8 @@ class c_absenharian extends Controller
 
         date_default_timezone_set("Asia/Jakarta");
         $t = date("H:i");
-        $name = "fasdes_pulang_".$request->harian.".png";
-        $name1 = "kegiatan_pulang_".$request->harian.".png";
+        $name = "fasdes_pulang_".$request->harian."_".Auth::user()->id.".png";
+        $name1 = "kegiatan_pulang_".$request->harian."_".Auth::user()->id.".png";
         $filename = $this->simpangambar($request->selfie, $name);
         $filename1 = $this->simpangambar($request->kegiatan, $name1);
         $data = [
@@ -278,7 +278,9 @@ class c_absenharian extends Controller
     }
     public function absen($id)
     {
-        $data = ['id' => $id,];
+        $data = ['id' => $id,
+        'fasdes'=> $this->fasdes->tested($id)];
+
         return view('absenharian.absenharian', $data);
     }
     public function edit($id)
@@ -340,9 +342,10 @@ class c_absenharian extends Controller
     {
         $data = ['harian' => $this->harian->search($request->id, $request->dari, $request->sampai),
                  'jumlah' => $this->harian->jumlahData($request->id, $request->dari, $request->sampai),
-                 'fasdes'=>$this->fasdes->detailData($request->id),
+                 'fasdes'=>$this->fasdes->tested($request->id),
                 'dari' => $request->dari,
                 'sampai' => $request->sampai];
+          
        return view('absenharian.export', $data);
     }
     public function destroy($id)

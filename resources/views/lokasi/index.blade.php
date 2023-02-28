@@ -18,6 +18,8 @@
             <tr>
               <th>No</th>
               <th>Fasilitator Desa</th>
+              <th>Kecamatan</th>
+              <th>Desa</th>
               <th>Lokasi</th>
               <th>Action</th>
             </tr>
@@ -33,6 +35,8 @@
             <tr>
               <td>{{$i}}</td>
               <td>{{ $data->name }}</td>
+              <td>{{$data->kecamatan}}</td>
+              <td>{{$data->desa}}</td>
               <td>@if ($data->lokasi == null)
               Edit Untuk Menambahkan Lokasi
               @else

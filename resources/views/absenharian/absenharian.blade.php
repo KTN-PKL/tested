@@ -29,6 +29,34 @@
   <div class="card">
     <div class="card-body">
       <div class="col mt-4">
+        <table>
+          <tr>
+            <td style="width:30%"><h6>Nama Fasilitator Desa</h6></td>
+            <td><h6>:</h6></td>
+            <td><h6>{{$fasdes->name}}</h6></td>
+          </tr>
+          <tr>
+            <td><h6>Alamat</h6></td>
+            <td><h6>:</h6></td>
+            <td><h6>
+              @if($fasdes->alamat <> null)
+              {{$fasdes->alamat}}
+              @else
+              Alamat Belum ditentukan.
+              @endif
+            </h6></td>
+          </tr>
+          <tr>
+            <td style="width:30%"><h6>Kecamatan</h6></td>
+            <td><h6>:</h6></td>
+            <td><h6>{{$fasdes->kecamatan}}</h6></td>
+          </tr>
+          <tr>
+            <td style="width:30%"><h6>Desa</h6></td>
+            <td><h6>:</h6></td>
+            <td><h6>{{$fasdes->desa}}</h6></td>
+          </tr>
+        </table>
         <div class="row">
           <div class="col col-md-3">
             <input type="month" id="bulan" class="form-control"  value="{{ $d }}" onchange="jh()">

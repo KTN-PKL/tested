@@ -17,7 +17,7 @@ class c_lokasi extends Controller
     }
     public function index()
     {
-        $data = ['lokasi' => $this->lokasi->allData(),];
+        $data = ['lokasi' => $this->lokasi->tested(),];
         return view('lokasi.index', $data);
     }
     public function create($id)

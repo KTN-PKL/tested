@@ -45,6 +45,16 @@
               @endif
             </h6></td>
           </tr>
+          <tr>
+            <td style="width:30%"><h6>Kecamatan</h6></td>
+            <td><h6>:</h6></td>
+            <td><h6>{{$fasdes->kecamatan}}</h6></td>
+          </tr>
+          <tr>
+            <td style="width:30%"><h6>Desa</h6></td>
+            <td><h6>:</h6></td>
+            <td><h6>{{$fasdes->desa}}</h6></td>
+          </tr>
         </table>
         <div class="filter col-12">
           <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
@@ -105,6 +115,7 @@
               <th>Foto Kegiatan</th>
               <th>Judul Pelatihan</th>
               <th>Foto Pelatihan</th>
+              <th>Status Absen</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -117,7 +128,7 @@
             $i=$i+1;
             @endphp
             <tr>
-              <td style="width:8%">{{$i}}</td>
+              <td style="width:5%">{{$i}}</td>
               <td style="width:12%">{{$data->tanggalabsen}}</td>
               <td style="width:10%">{{$data->waktuabsen}} WIB</td>
               <td style="width:10%">{{$data->jeniskegiatan}}</td>
@@ -130,10 +141,16 @@
               <td style="width:10%"><img class="img-thumbnail" src="{{asset('foto/absenkegiatan/'. $data->fotopelatihan) }}" width="80px" alt=""></td>
               @else
               <td>Non Pelatihan</td>
+              <td>Non Pelatihan</td>
               @endif
+              <td>
+                <span class="badge bg-success">Verified</span>
+              </td>
               <td style="width:10%">
                 <a href="{{route('kegiatan.detail', $data->id_absenkegiatan)}}" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
                 <a href="{{route('kegiatan.edit', $data->id_absenkegiatan)}}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                <a href="#" class="btn btn-success btn-sm"><i class="bi bi-check2"></i></a>
+                <a href="#" class="btn btn-danger btn-sm"><i class="bi bi-x"></i></a>
               </td>
             </tr>
             @endforeach
@@ -158,8 +175,9 @@
                   <select style="background-color: rgb(255, 255, 255)" name="filter" class="form-select">
                     <option  selected value=" ">Pilih Jenis Kegiatan</option>
                     <option value=" ">Semua Kegiatan</option>
+                    <option value="uptd">UPTD</option>
                     <option value="lapangan">Lapangan</option>
-                    <option value="kantor">Kantor</option>
+                    <option value="dinas">Dinas</option>
                     <option value="dinas luar kota">Dinas Luar Kota</option>
                     <option value="dinas luar daerah">Dinas Luar Daerah</option>
                     <option value="dinas luar negeri">Dinas Luar Negeri</option>

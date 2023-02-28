@@ -48,4 +48,9 @@ class lokasi extends Model
         return DB::table('lokasis')->where('id_user', $id)->update($data);
     }
 
+    public function tested()
+    {
+        return DB::table('lokasis')->join('users', 'lokasis.id_user', '=', 'users.id')->leftjoin('desas', 'lokasis.id_desa', '=', 'desas.id_desa')->leftjoin('kecamatans', 'desas.id_kecamatan','=','kecamatans.id_kecamatan')->get();
+    }
+
 }

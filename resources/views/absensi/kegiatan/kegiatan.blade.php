@@ -144,13 +144,19 @@
               <td>Non Pelatihan</td>
               @endif
               <td>
+                @if($data->verifikasi == "Verified")
                 <span class="badge bg-success">Verified</span>
+                @elseif($data->verifikasi == "Decline")
+                <span class="badge bg-danger">Decline</span>
+                @else
+                <span class="badge bg-danger">No Status</span>
+                @endif
               </td>
               <td style="width:10%">
                 <a href="{{route('kegiatan.detail', $data->id_absenkegiatan)}}" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
                 <a href="{{route('kegiatan.edit', $data->id_absenkegiatan)}}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
-                <a href="#" class="btn btn-success btn-sm"><i class="bi bi-check2"></i></a>
-                <a href="#" class="btn btn-danger btn-sm"><i class="bi bi-x"></i></a>
+                <a href="{{route('kegiatan.kegiatan.verified', $data->id_absenkegiatan)}}" class="btn btn-success btn-sm"><i class="bi bi-check2"></i></a>
+                <a href="{{route('kegiatan.kegiatan.decline', $data->id_absenkegiatan)}}" class="btn btn-danger btn-sm"><i class="bi bi-x"></i></a>
               </td>
             </tr>
             @endforeach

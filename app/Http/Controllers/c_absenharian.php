@@ -274,7 +274,8 @@ class c_absenharian extends Controller
         $data = ['harian' => $this->harian->search($request->id, $request->dari, $request->sampai),
                  'jumlah' => $this->harian->jumlahData($request->id, $request->dari, $request->sampai),
                 'dari' => $request->dari,
-                'sampai' => $request->sampai];
+                'sampai' => $request->sampai,
+                ];
         return view('absenharian.table', $data);
     }
     public function absen($id)
@@ -353,5 +354,25 @@ class c_absenharian extends Controller
     {
         $this->harian->deleteData($id);
         return redirect()->route('faskab.harian.index');
+    }
+
+    public function verifiedAbsen($id)
+    {
+        $data = [
+            'verifikasi' => "Verified",
+        ];
+        $data = $this->harian->editData2($id, $data);
+        $data1 = $this->harian->detailData($id);
+        return redirect()->route('faskab.harian.absen', $data1->id_user)->with('success', 'Absensi Harian Verified.');
+    }
+
+    public function declineAbsen($id)
+    {
+        $data = [
+            'verifikasi' => "Decline",
+        ];
+        $data = $this->harian->editData2($id, $data);
+        $data1 = $this->harian->detailData($id);
+        return redirect()->route('faskab.harian.absen', $data1->id_user)->with('success', 'Absensi Harian Decline.');
     }
 }

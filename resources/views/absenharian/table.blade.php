@@ -36,7 +36,8 @@ $dnow = date("j");
         <th>Foto Fasdes Pulang</th>
         <th>Foto Kegiatan Pulang</th>
         <th>Jenis</th>
-        <th>status</th>
+        <th>Status</th>
+        <th>Verifikasi</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -120,10 +121,22 @@ $dnow = date("j");
         @else
         Tepat Waktu
         @endif</td>
+        <td>
+          @if($harian[$j]->verifikasi == "Verified")
+          <span class="badge bg-success">Verified</span>
+          @elseif($harian[$j]->verifikasi == "Decline")
+          <span class="badge bg-danger">Decline</span>
+          @else
+          <span class="badge bg-danger">No Status</span>
+          @endif
+        </td>
       <td>
         <a href="{{ route('faskab.harian.edit', $harian[$j]->id_absenharian) }}" class="btn btn-warning btn-sm">Edit</a>
         <a href="{{ route('faskab.harian.detail', $harian[$j]->id_absenharian) }}" class="btn btn-primary btn-sm">Detail</a>
+        <a href="{{route('absen.harian.verified', $harian[$j]->id_absenharian)}}" class="btn btn-success btn-sm">Verified</a>
+        <a href="{{route('absen.harian.decline', $harian[$j]->id_absenharian)}}" class="btn btn-danger btn-sm">Decline</a>
       </td>
+     
       @php
            $j = $j+1;
          $jumlah = $jumlah - 1;

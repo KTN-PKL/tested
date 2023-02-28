@@ -365,5 +365,27 @@ class c_absenkegiatan extends Controller
         $data = $this->kegiatan->detailData($id);
         return redirect()->route('kegiatan.kegiatan', $data->id_user);
     }
+
+    public function verifiedAbsen($id)
+    {
+        $data = [
+            'verifikasi' => "Verified",
+        ];
+        $data = $this->kegiatan->editData($id, $data);
+        $data1 = $this->kegiatan->detailData($id);
+        return redirect()->route('kegiatan.kegiatan', $data1->id_user)->with('success', 'Absensi Kegiatan Verified.');
+    }
+
+    public function declineAbsen($id)
+    {
+        $data = [
+            'verifikasi' => "Decline",
+        ];
+        $data = $this->kegiatan->editData($id, $data);
+        $data1 = $this->kegiatan->detailData($id);
+        return redirect()->route('kegiatan.kegiatan', $data1->id_user)->with('success', 'Absensi Kegiatan Decline.');
+    }
+
+
     // End halaman Admin
 }

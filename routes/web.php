@@ -122,6 +122,9 @@ Route::controller(c_absenharian::class)->middleware('auth')->group(function () {
     Route::get('harian/chart', 'chart')->name('faskab.chartan.chart');
     Route::get('harian/chart2', 'chart2')->name('faskab.chart2an.chart2');
     Route::get('harian/export', 'export')->name('faskab.harian.export');
+    Route::get('harian/absenharian/verified/{id}', 'verifiedAbsen')->name('absen.harian.verified');
+    Route::get('harian/absenharian/decline/{id}', 'declineAbsen')->name('absen.harian.decline');
+    
 });
 Route::controller(c_absenkegiatan::class)->middleware('auth')->group(function () {
     Route::get('absenkegiatan', 'index')->name('absenkegiatan.index');
@@ -137,6 +140,8 @@ Route::controller(c_absenkegiatan::class)->middleware('auth')->group(function ()
     Route::get('kegiatan/export2', 'export2')->name('kegiatan.export2');
     Route::post('kegiatan/update/{id}', 'updateAbsen')->name('kegiatan.updateAbsen');
     Route::post('kegiatan/kegiatan/filter/{id}', 'filterKegiatan')->name('kegiatan.kegiatan.filter');
+    Route::get('kegiatan/kegiatan/verified/{id}', 'verifiedAbsen')->name('kegiatan.kegiatan.verified');
+    Route::get('kegiatan/kegiatan/decline/{id}', 'declineAbsen')->name('kegiatan.kegiatan.decline');
 
 });
 

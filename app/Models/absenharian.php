@@ -75,4 +75,8 @@ class absenharian extends Model
     {
         return DB::table('absenharians')->where('id_user', $id)->count();
     }
+    public function joinData($id)
+    {
+        return DB::table('absenharians')->join('users', 'absenharians.id_user','=','users.id')->where('id_absenharian', $id)->first();
+    }
 }

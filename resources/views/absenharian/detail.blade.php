@@ -29,7 +29,7 @@
                 <tr>
                     <td valign="top" style="width:40%"><h6>Nama Fasilitator Desa</h6></td>
                     <td valign="top"><h6>:</h6></td>
-                    <td valign="top"><h6 style="color: black"></h6></td>
+                    <td valign="top"><h6 style="color: black">{{$absen->name}}</h6></td>
                 </tr>
                 <tr>
                   <td valign="top"><h6>Tanggal Absen</h6></td>

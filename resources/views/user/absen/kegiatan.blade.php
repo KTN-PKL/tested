@@ -97,7 +97,7 @@
           <select class="form-select" aria-label="Default select example" name="jeniskegiatan"  data-parsley-required="true">
             <option selected disabled>Jenis Kegiatan</option>
             <option value="lapangan">Lapangan</option>
-            <option value="kantor">Kantor</option>
+            <option value="dinas">Dinas</option>
             <option value="uptd">UPTD</option>
             <option value="dinas luar kota">Dinas Luar Kota</option>
             <option value="dinas luar daerah">Dinas Luar Daerah</option>

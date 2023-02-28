@@ -95,7 +95,7 @@ class c_absenkegiatan extends Controller
                     return redirect()->route('fasdes.dashboard')->with(['success' => Auth::user()->name. " Telah Melakukan Absen Kegiatan. Selamat bekerja"]);
                 } 
         }
-        elseif($request->jeniskegiatan == "kantor"){
+        elseif($request->jeniskegiatan == "dinas"){
                 // radius lokasi
                  $lokasi = "-6.553692,107.762491";
                  $longi1 = $lokasi;

@@ -120,7 +120,7 @@
             <p>Pilih posisi</p>
             <select class="form-select" aria-label="Default select" name="jenis" id="jenis">
               <option value="UPTD" selected>UPTD</option>
-              <option value="Dalam Kantor">Dalam Kantor</option>
+              <option value="Dinas">Dinas</option>
               <option value="Luar Kantor">Luar Kantor</option>
             </select>
           </div>

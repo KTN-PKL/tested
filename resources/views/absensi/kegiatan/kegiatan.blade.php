@@ -109,7 +109,6 @@
               <th>Tanggal</th>
               <th>Waktu</th>
               <th>Kegiatan</th>
-              <th>Deskripsi Kegiatan</th>
               <th>Pelatihan</th>
               <th>Selfie Kegiatan</th>
               <th>Foto Kegiatan</th>
@@ -132,7 +131,6 @@
               <td style="width:10%">{{$data->tanggalabsen}}</td>
               <td style="width:7%" >{{$data->waktuabsen}} WIB</td>
               <td style="width:7%">{{$data->jeniskegiatan}}</td>
-              <td style="width:10%">{{$data->deskripsikegiatan}}</td>
               <td style="width:7%">{{$data->pelatihan}}</td>
               <td style="width:10%"><img class="img-thumbnail" src="{{asset('/foto/absenkegiatan/'. $data->selfiekegiatan)}}" width="80px" alt=""></td>
               <td style="width:10%"><img class="img-thumbnail" src="{{asset('foto/absenkegiatan/'. $data->fotokegiatan) }}" width="80px" alt=""></td>

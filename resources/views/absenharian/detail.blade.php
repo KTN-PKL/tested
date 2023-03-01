@@ -44,23 +44,10 @@
                 <tr>
                     <td valign="top"><h6>Jenis Absen</h6></td>
                     <td valign="top"><h6>:</h6></td>
-                    <td valign="top"><h6 style="color: black">{{ $harian->jenis }}</h6></td>
+                    <td valign="top"><h6 style="color: black" id="jenis"></h6></td>
                 </tr>
-                <tr>
-                  <td valign="top"><h6>Status Absen</h6></td>
-                  <td valign="top"><h6>:</h6></td>
-                  <td valign="top"><h6 style="color: black">
-                    @php
-                    $dat = explode(":" , $harian->jam);
-                     $H = $dat[0] * 60;
-                     $hasil = $H + $dat[1];
-                    @endphp
-                    @if ($hasil > 420)
-                    Terlambat
-                    @else
-                    Tepat Waktu
-                    @endif
-                  </h6></td>
+                <tr id="status">
+                 
                 </tr>
             </table>
             </div>
@@ -158,12 +145,32 @@ function initialize() {
       $("#fasdes").html(`<img id="imageResult" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotofasdes)}}" width="100%" height="100" alt="">`);
       $("#kegiatan").html(` <img id="imageResult2" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotokegiatanharian)}}" width="100%" height="100" alt="">`);
       $("#deskripsi").html("{{ $harian->deskripsi }}");
+      $("#status").html(`
+       <td valign="top"><h6>Status Absen</h6></td>
+                  <td valign="top"><h6>:</h6></td>
+                  <td valign="top"><h6 style="color: black">
+                    @php
+                    $dat = explode(":" , $harian->jam);
+                     $H = $dat[0] * 60;
+                     $hasil = $H + $dat[1];
+                    @endphp
+                    @if ($hasil > 420)
+                    Terlambat
+                    @else
+                    Tepat Waktu
+                    @endif
+                  </h6></td>
+      `);
+      $("#jenis").html("{{ $harian->jenis }}");
       initialize()
     } else {
       $("#jam").html("{{ $harian->jampulang }}");
       $("#fasdes").html(`<img id="imageResult" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotofasdespulang)}}" width="100%" height="100" alt="">`);
       $("#kegiatan").html(` <img id="imageResult2" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotokegiatanharianpulang)}}" width="100%" height="100" alt="">`);
       $("#deskripsi").html("{{ $harian->deskripsipulang }}");
+        $("#status").html(`
+      `);
+           $("#jenis").html("{{ $harian->jenispulang }}");
       initialize()
     }
     

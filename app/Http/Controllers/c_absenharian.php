@@ -256,6 +256,7 @@ class c_absenharian extends Controller
             'deskripsipulang' => $request->deskripsi,
             'fotokegiatanharianpulang' => $filename1,
             'jampulang' => $t,
+            'jenispulang' => $request->jenis,
         ];
         $this->harian->editData(Auth::user()->id,$request->harian, $data);
         alert()->success('Berhasil', 'Absen Harian Sudah Selesai, Hati Hati Dijalan')->iconHtml('<i class="far fa-thumbs-up"></i>');

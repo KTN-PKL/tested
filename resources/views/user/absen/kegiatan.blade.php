@@ -129,11 +129,11 @@
         </div>
         <div class="form-floating mb-3 pt-3">
           <p>Durasi Pelatihan</p>
-          <textarea
+          <input type="number"
           class="form-control"
-          placeholder="Leave a comment here"
+          placeholder="Masukkan Durasi Dalam Menit"
           id="durasi" name="durasipelatihan"
-        ></textarea>
+        >
        
         </div>
         <div class="form-floating mb-3 pt-3">

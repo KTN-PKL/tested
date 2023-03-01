@@ -215,6 +215,7 @@ class c_absenharian extends Controller
             'tgl' => $request->harian,
             'jam' => $t,
             'jenis' => $request->jenis,
+            'verifikasi' => "Verified",
         ];
         $this->harian->addData($data);
 

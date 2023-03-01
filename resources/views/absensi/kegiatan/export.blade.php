@@ -61,6 +61,7 @@
               <th>Durasi Pelatihan</th>
               <th>Tempat Pelatihan</th>
               <th>Foto Pelatihan</th>
+              <th>Verifikasi</th>
 
             </tr>
           </thead>
@@ -92,7 +93,15 @@
               <td>Non Pelatihan</td>
               <td>Non Pelatihan</td>
               @endif
-              
+              <td>
+                @if($data->verifikasi == "Verified")
+                <span class="badge bg-success">Verified</span>
+                @elseif($data->verifikasi == "Decline")
+                <span class="badge bg-danger">Decline</span>
+                @else
+                <span class="badge bg-danger">No Status</span>
+                @endif
+              </td>
             </tr>
             @endforeach
           </tbody>

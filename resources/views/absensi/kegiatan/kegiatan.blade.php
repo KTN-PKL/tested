@@ -115,7 +115,7 @@
               <th>Foto Kegiatan</th>
               <th>Judul Pelatihan</th>
               <th>Foto Pelatihan</th>
-              <th>Status Absen</th>
+              <th>Verifikasi</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -128,17 +128,17 @@
             $i=$i+1;
             @endphp
             <tr>
-              <td style="width:5%">{{$i}}</td>
-              <td style="width:12%">{{$data->tanggalabsen}}</td>
-              <td style="width:10%">{{$data->waktuabsen}} WIB</td>
-              <td style="width:10%">{{$data->jeniskegiatan}}</td>
+              <td>{{$i}}</td>
+              <td>{{$data->tanggalabsen}}</td>
+              <td>{{$data->waktuabsen}} WIB</td>
+              <td>{{$data->jeniskegiatan}}</td>
               <td>{{$data->deskripsikegiatan}}</td>
               <td>{{$data->pelatihan}}</td>
-              <td style="width:10%"><img class="img-thumbnail" src="{{asset('/foto/absenkegiatan/'. $data->selfiekegiatan)}}" width="80px" alt=""></td>
-              <td style="width:10%"><img class="img-thumbnail" src="{{asset('foto/absenkegiatan/'. $data->fotokegiatan) }}" width="80px" alt=""></td>
+              <td><img class="img-thumbnail" src="{{asset('/foto/absenkegiatan/'. $data->selfiekegiatan)}}" width="80px" alt=""></td>
+              <td><img class="img-thumbnail" src="{{asset('foto/absenkegiatan/'. $data->fotokegiatan) }}" width="80px" alt=""></td>
               @if($data->pelatihan == "pelatihan")
-              <td style="width:10%">{{ $data->judulpelatihan }}</td>
-              <td style="width:10%"><img class="img-thumbnail" src="{{asset('foto/absenkegiatan/'. $data->fotopelatihan) }}" width="80px" alt=""></td>
+              <td>{{ $data->judulpelatihan }}</td>
+              <td><img class="img-thumbnail" src="{{asset('foto/absenkegiatan/'. $data->fotopelatihan) }}" width="80px" alt=""></td>
               @else
               <td>Non Pelatihan</td>
               <td>Non Pelatihan</td>
@@ -152,11 +152,13 @@
                 <span class="badge bg-danger">No Status</span>
                 @endif
               </td>
-              <td style="width:10%">
+              <td>
                 <a href="{{route('kegiatan.detail', $data->id_absenkegiatan)}}" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
                 <a href="{{route('kegiatan.edit', $data->id_absenkegiatan)}}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
-                <a href="{{route('kegiatan.kegiatan.verified', $data->id_absenkegiatan)}}" class="btn btn-success btn-sm"><i class="bi bi-check2"></i></a>
-                <a href="{{route('kegiatan.kegiatan.decline', $data->id_absenkegiatan)}}" class="btn btn-danger btn-sm"><i class="bi bi-x"></i></a>
+                {{-- <a href="{{route('kegiatan.kegiatan.verified', $data->id_absenkegiatan)}}" class="btn btn-success btn-sm"><i class="bi bi-check2"></i></a> --}}
+                @if($data->verifikasi == "Verified")
+                <a onclick="return confirm('Tekan OK untuk Decline')" data-toggle="Tooltip" href="{{route('kegiatan.kegiatan.decline', $data->id_absenkegiatan)}}" class="btn btn-danger btn-sm"><i class="bi bi-x"></i></a>
+                @endif
               </td>
             </tr>
             @endforeach

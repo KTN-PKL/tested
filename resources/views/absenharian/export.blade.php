@@ -87,6 +87,7 @@ $dnow = date("j");
         <th>Deskripsi Pulang</th>
         <th>Jenis</th>
         <th>status</th>
+        <th>Verifikasi</th>
       </tr>
     </thead>
     <tbody>
@@ -107,16 +108,21 @@ $dnow = date("j");
       
 @endphp
 @for ($i = $jh; $i <= $hari; $i++)
+
 @php
             $now = strtotime($i."-".$bulan."-".$tahun);
             $d = date("D", $now);
 @endphp
+@php
+$cek2 = strlen($i);
+    if($cek2 <> 2)
+    {$i = "0".$i;}
+    $cek3 = strlen($bulan);
+    if($cek3 <> 2)
+    {$bulan = "0".$bulan;}
+@endphp
 <tr>
     <td>{{$dayList[$d].", ".$i."-".$bulan."-".$tahun}}</td>
-@php
-    if($i < 10)
-    {$i = "0".$i;}
-@endphp
 @if ($jumlah == 0)
 @if ($bulan >= $bnow && $tahun >= $tnow)
 <td>Belum Absen</td>
@@ -129,6 +135,7 @@ $dnow = date("j");
 <td>Belum Absen</td> 
 <td>Belum Absen</td> 
 <td>Belum Absen</td> 
+<td>Belum Absen</td> 
 @else
 <td>Tidak Absen</td>
 <td>Tidak Absen</td>
@@ -136,6 +143,7 @@ $dnow = date("j");
 <td>Tidak Absen</td>
 <td>Tidak Absen</td>
 <td>Tidak Absen</td>
+<td>Tidak Absen</td> 
 <td>Tidak Absen</td> 
 <td>Tidak Absen</td> 
 <td>Tidak Absen</td> 
@@ -177,6 +185,15 @@ $dnow = date("j");
         @else
         Tepat Waktu
         @endif</td>
+        <td>
+          @if($harian[$j]->verifikasi == "Verified")
+          <span class="badge bg-success">Verified</span>
+          @elseif($harian[$j]->verifikasi == "Decline")
+          <span class="badge bg-danger">Decline</span>
+          @else
+          <span class="badge bg-danger">No Status</span>
+          @endif
+        </td>
       @php
            $j = $j+1;
          $jumlah = $jumlah - 1;
@@ -193,6 +210,7 @@ $dnow = date("j");
 <td>Belum Absen</td> 
 <td>Belum Absen</td> 
 <td>Belum Absen</td> 
+<td>Belum Absen</td> 
 @else
 <td>Tidak Absen</td>
 <td>Tidak Absen</td>
@@ -200,6 +218,7 @@ $dnow = date("j");
 <td>Tidak Absen</td>
 <td>Tidak Absen</td>
 <td>Tidak Absen</td>
+<td>Tidak Absen</td> 
 <td>Tidak Absen</td> 
 <td>Tidak Absen</td> 
 <td>Tidak Absen</td> 

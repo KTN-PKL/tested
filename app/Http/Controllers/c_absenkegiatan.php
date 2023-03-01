@@ -92,6 +92,7 @@ class c_absenkegiatan extends Controller
                         'selfiekegiatan'=>$filename,
                         'fotokegiatan' => $filename2,
                         'fotopelatihan' => $filename3,
+                        'verifikasi' => "Verified",
                     ];
                     $this->kegiatan->addData($data);
                     alert()->success('Berhasil', 'Absen Kegiatan Berhasil')->iconHtml('<i class="far fa-thumbs-up"></i>');
@@ -139,6 +140,7 @@ class c_absenkegiatan extends Controller
                             'selfiekegiatan'=>$filename,
                             'fotokegiatan' => $filename2,
                             'fotopelatihan' => $filename3,
+                            'verifikasi' => "Verified",
                         ];
                         $this->kegiatan->addData($data);
                         alert()->success('Berhasil', 'Absen Kegiatan Berhasil')->iconHtml('<i class="far fa-thumbs-up"></i>');
@@ -162,6 +164,7 @@ class c_absenkegiatan extends Controller
                 'selfiekegiatan'=>$filename,
                 'fotokegiatan' => $filename2,
                 'fotopelatihan' => $filename3,
+                'verifikasi' => "Verified",
             ];
         
             $this->kegiatan->addData($data);

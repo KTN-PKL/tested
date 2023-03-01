@@ -63,12 +63,17 @@ $dnow = date("j");
             $now = strtotime($i."-".$bulan."-".$tahun);
             $d = date("D", $now);
 @endphp
+@php
+$cek2 = strlen($i);
+    if($cek2 <> 2)
+    {$i = "0".$i;}
+    $cek3 = strlen($bulan);
+    if($cek3 <> 2)
+    {$bulan = "0".$bulan;}
+@endphp
 <tr>
     <td>{{$dayList[$d].", ".$i."-".$bulan."-".$tahun}}</td>
-@php
-    if($i < 10)
-    {$i = "0".$i;}
-@endphp
+
 @if ($jumlah == 0)
 @if ($bulan >= $bnow && $tahun >= $tnow)
 <td>Belum Absen</td>
@@ -77,6 +82,7 @@ $dnow = date("j");
 <td>Belum Absen</td>
 <td>Belum Absen</td>
 <td>Belum Absen</td>
+<td>Belum Absen</td> 
 <td>Belum Absen</td> 
 <td>Belum Absen</td> 
 @else
@@ -88,6 +94,7 @@ $dnow = date("j");
 <td>Tidak Absen</td>
 <td>Tidak Absen</td> 
 <td>Tidak Absen</td> 
+<td>Tidak Absen</td>
 @endif  
 @else
 @if ($tahun."-".$bulan."-".$i == $harian[$j]->tgl)
@@ -133,8 +140,10 @@ $dnow = date("j");
       <td>
         <a href="{{ route('faskab.harian.edit', $harian[$j]->id_absenharian) }}" class="btn btn-warning btn-sm">Edit</a>
         <a href="{{ route('faskab.harian.detail', $harian[$j]->id_absenharian) }}" class="btn btn-primary btn-sm">Detail</a>
-        <a href="{{route('absen.harian.verified', $harian[$j]->id_absenharian)}}" class="btn btn-success btn-sm">Verified</a>
-        <a href="{{route('absen.harian.decline', $harian[$j]->id_absenharian)}}" class="btn btn-danger btn-sm">Decline</a>
+        {{-- <a href="{{route('absen.harian.verified', $harian[$j]->id_absenharian)}}" class="btn btn-success btn-sm">Verified</a> --}}
+        @if ($harian[$j]->verifikasi == "Verified")
+        <a onclick="return confirm('Tekan OK untuk Decline')" data-toggle="Tooltip" href="{{route('absen.harian.decline', $harian[$j]->id_absenharian)}}" class="btn btn-danger btn-sm">Decline</a>
+        @endif
       </td>
      
       @php
@@ -151,6 +160,7 @@ $dnow = date("j");
 <td>Belum Absen</td>
 <td>Belum Absen</td> 
 <td>Belum Absen</td> 
+<td>Belum Absen</td> 
 @else
 <td>Tidak Absen</td>
 <td>Tidak Absen</td>
@@ -158,6 +168,7 @@ $dnow = date("j");
 <td>Tidak Absen</td>
 <td>Tidak Absen</td>
 <td>Tidak Absen</td>
+<td>Tidak Absen</td> 
 <td>Tidak Absen</td> 
 <td>Tidak Absen</td> 
 @endif

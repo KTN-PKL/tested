@@ -5,8 +5,8 @@
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{url('poktan')}}">Kelompok Petani Fasilitator Desa</a></li>
-        <li class="breadcrumb-item active">Daftar Kelompok Petani</li>
+        <li class="breadcrumb-item"><a href="{{url('faskab/harian')}}">Absen Harian</a></li>
+        <li class="breadcrumb-item active">Daftar Absen Harian</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->

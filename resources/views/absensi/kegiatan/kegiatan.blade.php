@@ -22,7 +22,7 @@
     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   @endif  
-  <div class="card">
+  <div style="width:100%" class="card">
     <div class="card-body">
       <div class="col mt-4">
       </div>
@@ -128,22 +128,22 @@
             $i=$i+1;
             @endphp
             <tr>
-              <td>{{$i}}</td>
-              <td>{{$data->tanggalabsen}}</td>
-              <td>{{$data->waktuabsen}} WIB</td>
-              <td>{{$data->jeniskegiatan}}</td>
-              <td>{{$data->deskripsikegiatan}}</td>
-              <td>{{$data->pelatihan}}</td>
-              <td><img class="img-thumbnail" src="{{asset('/foto/absenkegiatan/'. $data->selfiekegiatan)}}" width="80px" alt=""></td>
-              <td><img class="img-thumbnail" src="{{asset('foto/absenkegiatan/'. $data->fotokegiatan) }}" width="80px" alt=""></td>
+              <td style="width:5%">{{$i}}</td>
+              <td style="width:10%">{{$data->tanggalabsen}}</td>
+              <td style="width:7%" >{{$data->waktuabsen}} WIB</td>
+              <td style="width:7%">{{$data->jeniskegiatan}}</td>
+              <td style="width:10%">{{$data->deskripsikegiatan}}</td>
+              <td style="width:7%">{{$data->pelatihan}}</td>
+              <td style="width:10%"><img class="img-thumbnail" src="{{asset('/foto/absenkegiatan/'. $data->selfiekegiatan)}}" width="80px" alt=""></td>
+              <td style="width:10%"><img class="img-thumbnail" src="{{asset('foto/absenkegiatan/'. $data->fotokegiatan) }}" width="80px" alt=""></td>
               @if($data->pelatihan == "pelatihan")
-              <td>{{ $data->judulpelatihan }}</td>
-              <td><img class="img-thumbnail" src="{{asset('foto/absenkegiatan/'. $data->fotopelatihan) }}" width="80px" alt=""></td>
+              <td style="width:7%">{{ $data->judulpelatihan }}</td>
+              <td style="width:10%"><img class="img-thumbnail" src="{{asset('foto/absenkegiatan/'. $data->fotopelatihan) }}" width="80px" alt=""></td>
               @else
-              <td>Non Pelatihan</td>
-              <td>Non Pelatihan</td>
+              <td style="width:7%">Non Pelatihan</td>
+              <td style="width:10%">Non Pelatihan</td>
               @endif
-              <td>
+              <td style="width:10%">
                 @if($data->verifikasi == "Verified")
                 <span class="badge bg-success">Verified</span>
                 @elseif($data->verifikasi == "Decline")
@@ -152,7 +152,7 @@
                 <span class="badge bg-danger">No Status</span>
                 @endif
               </td>
-              <td>
+              <td style="width:7%">
                 <a href="{{route('kegiatan.detail', $data->id_absenkegiatan)}}" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
                 <a href="{{route('kegiatan.edit', $data->id_absenkegiatan)}}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
                 {{-- <a href="{{route('kegiatan.kegiatan.verified', $data->id_absenkegiatan)}}" class="btn btn-success btn-sm"><i class="bi bi-check2"></i></a> --}}
@@ -217,11 +217,11 @@
       </div>
     </div><!-- End Basic Modal-->
       
-
     <script type="text/javascript" charset="utf-8">
       $(document).ready(function() {
           $('.datatable').DataTable();
               document.getElementById("dataTable-dropdown").style.display = "none";
+         
       });
       
   </script>

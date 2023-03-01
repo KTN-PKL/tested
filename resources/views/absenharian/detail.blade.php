@@ -5,9 +5,9 @@
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{url('dashboard')}}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{route('kegiatan.index')}}">Daftar Fasilitator Desa</a></li>
-        {{-- <li class="breadcrumb-item"><a href="{{route('kegiatan.kegiatan', $absen->id_user)}}">Daftar Absen Fasilitator Desa</a></li> --}}
-        <li class="breadcrumb-item active">Detail Data Absen Kegiatan</li>
+        <li class="breadcrumb-item"><a href="{{route('kegiatan.index')}}">Absen Harian</a></li>
+        <li class="breadcrumb-item"><a href="{{route('faskab.harian.absen', $harian->id_user)}}">Daftar Absen Harian</a></li>
+        <li class="breadcrumb-item active">Detail Data Absen harian</li>
       </ol>
     </nav>
 </div><!-- End Page Title -->

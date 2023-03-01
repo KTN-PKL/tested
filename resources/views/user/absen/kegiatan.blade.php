@@ -128,7 +128,7 @@
           
         </div>
         <div class="form-floating mb-3 pt-3">
-          <p>Durasi Pelatihan</p>
+          <p>Durasi Pelatihan <small>(Menit)</small></p>
           <input type="number"
           class="form-control"
           placeholder="Masukkan Durasi Dalam Menit"

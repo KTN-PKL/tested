@@ -1,5 +1,6 @@
 @extends('layouts.template')
 @section('content')
+<link rel="stylesheet" href="{{ config('sweetalert.animatecss') }}">
 <div class="pagetitle">
     <h1>Daftar Absen Kegiatan {{$fasdes->name}} </h1>
     <nav>
@@ -155,7 +156,8 @@
                 <a href="{{route('kegiatan.edit', $data->id_absenkegiatan)}}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
                 {{-- <a href="{{route('kegiatan.kegiatan.verified', $data->id_absenkegiatan)}}" class="btn btn-success btn-sm"><i class="bi bi-check2"></i></a> --}}
                 @if($data->verifikasi == "Verified")
-                <a onclick="return confirm('Tekan OK untuk Decline')" data-toggle="Tooltip" href="{{route('kegiatan.kegiatan.decline', $data->id_absenkegiatan)}}" class="btn btn-danger btn-sm"><i class="bi bi-x"></i></a>
+                <a onclick="hapus()" href="#" class="btn btn-danger btn-sm"><i class="bi bi-x"></i></a>
+                <a  href="{{route('kegiatan.kegiatan.decline', $data->id_absenkegiatan)}}" id="decline"></a>
                 @endif
               </td>
             </tr>
@@ -223,6 +225,25 @@
       });
       
   </script>
+
+<script src="{{ $cdn ?? asset('vendor/sweetalert/sweetalert.all.js')  }}"></script>
+<script>
+   function hapus() {
+            Swal.fire({
+            title: 'Apakah Anda Yakin?',
+            text: "Decline Absen ",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Iya Saya Yakin!',
+            cancelButtonText: 'Tidak'
+            }).then((result) => {
+            if (result.value) {
+              document.getElementById("decline").click();}
+                })
+        }
+</script>
 
   
    

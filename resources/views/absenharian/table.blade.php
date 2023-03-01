@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="{{ config('sweetalert.animatecss') }}">
 @php
 date_default_timezone_set("Asia/Jakarta");
 $data1 = strtotime($dari);
@@ -142,7 +142,8 @@ $cek2 = strlen($i);
         <a href="{{ route('faskab.harian.detail', $harian[$j]->id_absenharian) }}" class="btn btn-primary btn-sm">Detail</a>
         {{-- <a href="{{route('absen.harian.verified', $harian[$j]->id_absenharian)}}" class="btn btn-success btn-sm">Verified</a> --}}
         @if ($harian[$j]->verifikasi == "Verified")
-        <a onclick="return confirm('Tekan OK untuk Decline')" data-toggle="Tooltip" href="{{route('absen.harian.decline', $harian[$j]->id_absenharian)}}" class="btn btn-danger btn-sm">Decline</a>
+        <a onclick="hapus()" href="#" class="btn btn-danger btn-sm">Decline</a>
+        <a href="{{route('absen.harian.decline', $harian[$j]->id_absenharian)}}" id="decline"></a>
         @endif
       </td>
      
@@ -180,3 +181,22 @@ $cek2 = strlen($i);
 @endfor
 </tbody>
 </table>
+
+<script src="{{ $cdn ?? asset('vendor/sweetalert/sweetalert.all.js')  }}"></script>
+<script>
+   function hapus() {
+            Swal.fire({
+            title: 'Apakah Anda Yakin?',
+            text: "Decline Absen ",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Iya Saya Yakin!',
+            cancelButtonText: 'Tidak'
+            }).then((result) => {
+            if (result.value) {
+              document.getElementById("decline").click();}
+                })
+        }
+</script>

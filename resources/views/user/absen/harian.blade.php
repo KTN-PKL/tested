@@ -113,7 +113,7 @@
           
           {{-- This is the code that will display the image that has been taken by the user.   --}}
           <div id="hasilselfie" class="overflow-hidden d-flex justify-content-center"></div>
-          <input type="text" id="gambarselfie" name="selfie" hidden>
+          <input type="text" id="gambarselfie" name="selfie" hidden required>
 
           <!-- select posisi-->
           <div>
@@ -141,7 +141,7 @@
               <i class="fa-solid fa-camera"></i> Foto kegiatan</a>
           </div>
           <div id="hasilkegiatan" class="overflow-hidden d-flex justify-content-center"></div>
-          <input type="text" id="gambarkegiatan" name="kegiatan" hidden>
+          <input type="text" id="gambarkegiatan" name="kegiatan" hidden required>
           <div class="button text-center d-grid pt-3">
             <button type="submit" class="btn btn-block btn-success">
               <i class="fa-solid fa-floppy-disk"></i> Simpan</button>

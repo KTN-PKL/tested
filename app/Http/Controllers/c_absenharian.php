@@ -58,10 +58,13 @@ class c_absenharian extends Controller
                     $hari = cal_days_in_month($kalender, $bulan, $tahun);
                   }
                 for ($i = $jh; $i <= $hari; $i++) { 
-                    $har = $i;
-                    // if ($har < 10) {
-                    // $har = "0".$har;
-                    // }
+                    $har=$i;
+                    $cek2 = strlen($i);
+                     if($cek2 <> 2)
+                     {$har = "0".$i;}
+                     $cek3 = strlen($bulan);
+                     if($cek3 <> 2)
+                    {$bulan = "0".$bulan;}
                     $h[$a] = $har."-".$bulan."-".$tahun;
                     $v[$a] = $this->harian->rh($tahun."-".$bulan."-".$har);
                     $p[$a] = $this->harian->rhp($tahun."-".$bulan."-".$har);
@@ -105,10 +108,13 @@ class c_absenharian extends Controller
                     $hari = cal_days_in_month($kalender, $bulan, $tahun);
                   }
                 for ($i = $jh; $i <= $hari; $i++) { 
-                    $har = $i;
-                    // if ($har < 10) {
-                    // $har = "0".$har;
-                    // }
+                    $har=$i;
+                    $cek2 = strlen($i);
+                     if($cek2 <> 2)
+                     {$har = "0".$i;}
+                     $cek3 = strlen($bulan);
+                     if($cek3 <> 2)
+                    {$bulan = "0".$bulan;}
                     $h[$a] = $har."-".$bulan."-".$tahun;
                     $v[$a] = $this->harian->rhu($tahun."-".$bulan."-".$har);
                     $p[$a] = $this->harian->rhpu($tahun."-".$bulan."-".$har);

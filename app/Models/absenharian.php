@@ -19,6 +19,10 @@ class absenharian extends Model
     {
         return DB::table('absenharians')->where('id_user', $id)->whereBetween('tgl', [$tgl1, $tgl2])->get();
     }
+    public function historyharian($id, $tgl1, $tgl2)
+    {
+        return DB::table('absenharians')->where('id_user', $id)->whereBetween('tgl', [$tgl1, $tgl2])->orderBy('tgl', 'DESC')->get();
+    }
     public function jumlahData($id, $tgl1, $tgl2)
     {
         return DB::table('absenharians')->where('id_user', $id)->whereBetween('tgl', [$tgl1, $tgl2])->count();

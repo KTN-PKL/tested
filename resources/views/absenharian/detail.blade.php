@@ -154,7 +154,7 @@ function initialize() {
                      $H = $dat[0] * 60;
                      $hasil = $H + $dat[1];
                     @endphp
-                    @if ($hasil > 420)
+                    @if ($hasil > 480)
                     Terlambat
                     @else
                     Tepat Waktu

@@ -48,7 +48,18 @@
                             <tr><td>Tanggal Absen Masuk</td><td>: </td><td>{{$absenharian->tgl}} {{$absenharian->jam}}</td></tr>
                             <tr><td>Jenis Absen</td><td>: </td><td>{{$absenharian->jenis}}</td></tr>
                             <tr><td valign="top">Deskripsi Absen Masuk</td><td valign="top">: </td><td valign="top">{{$absenharian->deskripsi}}</td></tr>
-                          
+                            <tr><td valign="top">Status Absen</td><td valign="top">: </td><td valign="top">
+                                @php
+                    $dat = explode(":" , $absenharian->jam);
+                     $H = $dat[0] * 60;
+                     $hasil = $H + $dat[1];
+                    @endphp
+                    @if ($hasil > 480)
+                    Terlambat
+                    @else
+                    Tepat Waktu
+                    @endif
+                            </td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -68,9 +79,9 @@
                 <div class="col-12 mt-2">
                     <table border="0">
                         <tbody>
-                            <tr><td>Tanggal Absen Masuk</td><td>: </td><td>{{$absenharian->tgl}} {{$absenharian->jampulang}}</td></tr>
-                            <tr><td>Jenis Absen</td><td>: </td><td>{{$absenharian->jenis}}</td></tr>
-                            <tr><td valign="top">Deskripsi Absen Masuk</td><td valign="top">: </td><td valign="top">{{$absenharian->deskripsipulang}}</td></tr>
+                            <tr><td>Tanggal Absen Pulang</td><td>: </td><td>{{$absenharian->tgl}} {{$absenharian->jampulang}}</td></tr>
+                            <tr><td>Jenis Absen Pulang</td><td>: </td><td>{{$absenharian->jenispulang}}</td></tr>
+                            <tr><td valign="top">Deskripsi Absen Pulang</td><td valign="top">: </td><td valign="top">{{$absenharian->deskripsipulang}}</td></tr>
                           
                         </tbody>
                     </table>

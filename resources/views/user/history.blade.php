@@ -44,11 +44,11 @@
         </div>
         <div class="col col-md-5 mt-2">
           <div class="input-group">
-            <input type="date" id="dari" class="form-control" onchange="read()">
+            <input type="date" id="dari" class="form-control" onchange="absen()">
             <div style="width:20%">
               <input style="text-align:center" type="text" class="form-control" value="-" readonly>
             </div>
-            <input type="date" id="sampai" class="form-control" onchange="read()">
+            <input type="date" id="sampai" class="form-control" onchange="absen()">
           </div>
         </div>
     
@@ -133,6 +133,9 @@
                 }); 
       }
       $("#export").html(`<a href="/fasdes/export`+absen+`?&dari=`+dari+`&sampai=`+sampai+`" class="btn btn-sm btn-primary col col-12">Export</a>`);
+      var myarr = dari.split("-");
+                var myvar = myarr[0] + "-" + myarr[1];
+                $("#bulan").val(myvar);
     }
     function jh()
             {

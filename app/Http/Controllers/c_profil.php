@@ -126,7 +126,7 @@ class c_profil extends Controller
     {
         $id = Auth::user()->id;
         $data = ['fasdes' => $this->fasdes->detailData($id),
-                'absenharian'=> $this->absenharian->allData($id, $request->dari, $request->sampai),
+                'absenharian'=> $this->absenharian->historyharian($id, $request->dari, $request->sampai),
                   ];
            
         return view('user.historiharian', $data);
@@ -135,7 +135,7 @@ class c_profil extends Controller
     {
         $id = Auth::user()->id;
         $data = ['fasdes' => $this->fasdes->detailData($id),
-                'harian'=> $this->absenharian->allData($id, $request->dari, $request->sampai),
+                'harian'=> $this->absenharian->historyharian($id, $request->dari, $request->sampai),
                   ];
            
         return view('user.printharian', $data);

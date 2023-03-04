@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use Alert;
+use PDF;
 
 class c_profil extends Controller
 {
@@ -30,6 +31,7 @@ class c_profil extends Controller
         $this->absenkegiatan = new absenkegiatan();
         $this->pelatihan = new pelatihan();
         $this->bantuan = new bantuan();
+
     }
 
     // public function index($id)
@@ -98,10 +100,28 @@ class c_profil extends Controller
         $id = Auth::user()->id;
         $data = ['fasdes' => $this->fasdes->detailData($id),
                 'kegiatan'=> $this->absenkegiatan->historyKegiatan($id, $request->dari, $request->sampai),
-                  ];
-           
-        return view('user.printkegiatan', $data);
+    ];
+      $dompdf = PDF::loadView('user.printkegiatan', $data);
+      $dompdf->set_paper('letter', 'landscape');
+      return $dompdf->download('laporan-absenkegiatan.pdf');
+    // return view('user.printkegiatan', $data);
+
+                
     }
+
+    public function pdf(Request $request)
+    {
+    //     $id = Auth::user()->id;
+    //     $data = ['fasdes' => $this->fasdes->detailData($id),
+    //             'kegiatan'=> $this->absenkegiatan->historyKegiatan($id, $request->dari, $request->sampai),
+    //             'dari'=> $request->dari,
+    //             'sampai'=>$request->sampai,
+    // ];
+    // $pdf = PDF::loadView('user.printkegiatan', $data);
+    //     return $pdf->download('laporan-kegiatan-pdf');
+
+    }
+
 
     // Detail Absen Pada Fasdes
     public function detailAbsenKegiatan($id)
@@ -137,8 +157,10 @@ class c_profil extends Controller
         $data = ['fasdes' => $this->fasdes->detailData($id),
                 'harian'=> $this->absenharian->historyharian($id, $request->dari, $request->sampai),
                   ];
-           
-        return view('user.printharian', $data);
+        
+                  $dompdf = PDF::loadView('user.printharian', $data);
+                  $dompdf->set_paper('letter', 'landscape');
+                  return $dompdf->download('laporan-absenharian.pdf');
     }
     public function viewDetailpoktan($id)
     {

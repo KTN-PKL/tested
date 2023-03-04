@@ -168,6 +168,7 @@ Route::controller(c_profil::class)->middleware('auth')->group(function () {
     Route::get('profil/editpw', 'editpw')->name('profil.editpw');
 
 
+
   
 });
 

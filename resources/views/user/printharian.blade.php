@@ -73,13 +73,13 @@
               <td>{{$i}}</td>
               <td>{{$data->tgl}}</td>
               <td>{{$data->jam}} WIB</td>
-              <td><img class="img-thumbnail" src="{{asset('/foto/'. $data->fotofasdes)}}" width="80px" alt=""></td>
-              <td><img class="img-thumbnail" src="{{ asset('foto/'. $data->fotokegiatanharian) }}" width="80px" alt=""></td>
+              <td><img class="img-thumbnail" src="{{public_path('/foto/'. $data->fotofasdes)}}" width="80px" alt=""></td>
+              <td><img class="img-thumbnail" src="{{ public_path('foto/'. $data->fotokegiatanharian) }}" width="80px" alt=""></td>
               <td>{{$data->deskripsi}}</td>
               @if ($data->jampulang <> null)
               <td>{{ $data->jampulang }}</td>
-              <td><img class="img-thumbnail" src="{{asset('/foto/'. $data->fotofasdespulang)}}" width="80px" alt=""></td>
-              <td><img class="img-thumbnail" src="{{ asset('foto/'. $data->fotokegiatanharianpulang) }}" width="80px" alt=""></td>
+              <td><img class="img-thumbnail" src="{{public_path('/foto/'. $data->fotofasdespulang)}}" width="80px" alt=""></td>
+              <td><img class="img-thumbnail" src="{{ public_path('foto/'. $data->fotokegiatanharianpulang) }}" width="80px" alt=""></td>
               <td>{{ $data->deskripsipulang }}</td>
               @else
               <td>Tidak Absen Pulang</td>
@@ -108,11 +108,11 @@ integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R
 </script>
 
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script>
+{{-- <script>
     $(document).ready(function() {
         window.print();
         $(".action-button").click();
 } );
-</script>
+</script> --}}
 </body>
 </html>

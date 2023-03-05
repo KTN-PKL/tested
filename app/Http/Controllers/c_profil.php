@@ -101,26 +101,14 @@ class c_profil extends Controller
         $data = ['fasdes' => $this->fasdes->detailData($id),
                 'kegiatan'=> $this->absenkegiatan->historyKegiatan($id, $request->dari, $request->sampai),
     ];
-      $dompdf = PDF::loadView('user.printkegiatan', $data);
-      $dompdf->set_paper('letter', 'landscape');
-      return $dompdf->download('laporan-absenkegiatan.pdf');
-    // return view('user.printkegiatan', $data);
+    //   $dompdf = PDF::loadView('user.printkegiatan', $data);
+    //   $dompdf->set_paper('letter', 'landscape');
+    //   return $dompdf->download('laporan-absenkegiatan.pdf');
+    return view('user.printkegiatan', $data);
 
                 
     }
 
-    public function pdf(Request $request)
-    {
-    //     $id = Auth::user()->id;
-    //     $data = ['fasdes' => $this->fasdes->detailData($id),
-    //             'kegiatan'=> $this->absenkegiatan->historyKegiatan($id, $request->dari, $request->sampai),
-    //             'dari'=> $request->dari,
-    //             'sampai'=>$request->sampai,
-    // ];
-    // $pdf = PDF::loadView('user.printkegiatan', $data);
-    //     return $pdf->download('laporan-kegiatan-pdf');
-
-    }
 
 
     // Detail Absen Pada Fasdes
@@ -158,9 +146,10 @@ class c_profil extends Controller
                 'harian'=> $this->absenharian->historyharian($id, $request->dari, $request->sampai),
                   ];
         
-                  $dompdf = PDF::loadView('user.printharian', $data);
-                  $dompdf->set_paper('letter', 'landscape');
-                  return $dompdf->download('laporan-absenharian.pdf');
+                //   $dompdf = PDF::loadView('user.printharian', $data);
+                //   $dompdf->set_paper('letter', 'landscape');
+                //   return $dompdf->download('laporan-absenharian.pdf');
+        return view('user.printharian', $data);
     }
     public function viewDetailpoktan($id)
     {

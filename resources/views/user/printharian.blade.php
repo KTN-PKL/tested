@@ -53,11 +53,12 @@
                 <th>Foto Fasdes Masuk</th>
                 <th>Foto Kegiatan Masuk</th>
                 <th>Deskripsi Masuk</th>
+                <th>Jenis Masuk</th>
                 <th>Jam Pulang</th>
                 <th>Foto Fasdes Pulang</th>
                 <th>Foto Kegiatan Pulang</th>
                 <th>Deskripsi Pulang</th>
-                <th>Jenis</th>
+                <th>Jenis Pulang</th>
                 <th>status</th>
             </tr>
           </thead>
@@ -73,13 +74,14 @@
               <td>{{$i}}</td>
               <td>{{$data->tgl}}</td>
               <td>{{$data->jam}} WIB</td>
-              <td><img class="img-thumbnail" src="{{public_path('/foto/'. $data->fotofasdes)}}" width="80px" alt=""></td>
-              <td><img class="img-thumbnail" src="{{ public_path('foto/'. $data->fotokegiatanharian) }}" width="80px" alt=""></td>
+              <td><img class="img-thumbnail" src="{{asset('/foto/'. $data->fotofasdes)}}" width="80px" alt=""></td>
+              <td><img class="img-thumbnail" src="{{ asset('foto/'. $data->fotokegiatanharian) }}" width="80px" alt=""></td>
               <td>{{$data->deskripsi}}</td>
+              <td>{{$data->jenis}}</td>
               @if ($data->jampulang <> null)
               <td>{{ $data->jampulang }}</td>
-              <td><img class="img-thumbnail" src="{{public_path('/foto/'. $data->fotofasdespulang)}}" width="80px" alt=""></td>
-              <td><img class="img-thumbnail" src="{{ public_path('foto/'. $data->fotokegiatanharianpulang) }}" width="80px" alt=""></td>
+              <td><img class="img-thumbnail" src="{{asset('/foto/'. $data->fotofasdespulang)}}" width="80px" alt=""></td>
+              <td><img class="img-thumbnail" src="{{ asset('foto/'. $data->fotokegiatanharianpulang) }}" width="80px" alt=""></td>
               <td>{{ $data->deskripsipulang }}</td>
               @else
               <td>Tidak Absen Pulang</td>
@@ -87,7 +89,7 @@
               <td>Tidak Absen Pulang</td>
               <td>Tidak Absen Pulang</td>
               @endif
-              <td>{{ $data->jenis }}</td>
+              <td>{{ $data->jenispulang }}</td>
               <td>@php
                 $dat = explode(":" , $data->jam);
                  $H = $dat[0] * 60;
@@ -108,11 +110,11 @@ integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R
 </script>
 
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-{{-- <script>
+<script>
     $(document).ready(function() {
         window.print();
         $(".action-button").click();
 } );
-</script> --}}
+</script>
 </body>
 </html>

@@ -77,13 +77,13 @@
               <td>{{$data->jeniskegiatan}}</td>
               <td>{{$data->deskripsikegiatan}}</td>
               <td>{{$data->pelatihan}}</td>
-              <td><img class="img-thumbnail" src="{{public_path('./foto/absenkegiatan/'. $data->selfiekegiatan)}}" width="80px" alt=""></td>
-              <td><img class="img-thumbnail" src="{{public_path('foto/absenkegiatan/'. $data->fotokegiatan) }}" width="80px" alt=""></td>
+              <td><img class="img-thumbnail" src="{{asset('./foto/absenkegiatan/'. $data->selfiekegiatan)}}" width="80px" alt=""></td>
+              <td><img class="img-thumbnail" src="{{asset('foto/absenkegiatan/'. $data->fotokegiatan) }}" width="80px" alt=""></td>
               @if($data->pelatihan == "pelatihan")
               <td>{{ $data->judulpelatihan }}</td>
               <td>{{ $data->durasipelatihan }}</td>
               <td>{{ $data->tempatpelatihan }}</td>
-              <td><img class="img-thumbnail" src="{{public_path('foto/absenkegiatan/'. $data->fotopelatihan) }}" width="80px" alt=""></td>
+              <td><img class="img-thumbnail" src="{{asset('foto/absenkegiatan/'. $data->fotopelatihan) }}" width="80px" alt=""></td>
               @else
               <td>Non Pelatihan</td>
               <td>Non Pelatihan</td>
@@ -103,11 +103,11 @@ integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R
 </script>
 
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-{{-- <script>
+<script>
     $(document).ready(function() {
         window.print();
         $(".action-button").click();
 } );
-</script> --}}
+</script>
 </body>
 </html>

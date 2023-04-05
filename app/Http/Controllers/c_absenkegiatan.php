@@ -43,9 +43,9 @@ class c_absenkegiatan extends Controller
         $t = date("H:i");
         $z = str_replace(':', '-', $t);
         $id = Auth::user()->id;
-        $name = "fasdes_".$request->tanggalabsen."_".$z.".png";
-        $name1 = "kegiatan_".$request->tanggalabsen."_".$z.".png";
-        $name2 = "pelatihan_".$request->tanggalabsen."_".$z.".png";
+        $name = "fasdes_".$id."-".$request->tanggalabsen."_".$z.".png";
+        $name1 = "kegiatan_".$id."-".$request->tanggalabsen."_".$z.".png";
+        $name2 = "pelatihan_".$id."-".$request->tanggalabsen."_".$z.".png";
         $filename = $this->simpangambar($request->selfie, $name);
         $filename2 = $this->simpangambar($request->fotokegiatan, $name1);
         $filename3 = $this->simpangambar($request->fotopelatihan, $name2);

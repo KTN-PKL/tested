@@ -62,8 +62,21 @@
           <input type="text" id="inputabsenkegiatan1" name="lokasiabsen" hidden >
     
           <div class="button text-center d-grid">
-            <a href="#" class="btn btn-block btn-warning" onclick="selfie()">
-              <i class="fa-solid fa-user"></i> Foto Selfie</a>
+            <div class="bg-warning rounded-4 text-light w-100 text-center p-2">
+              <span style="color:black">Foto Selfie</span>
+             </div>
+                <div class="row mt-2">
+                    <div class="col col-6">
+                      <a href="#" class="btn btn-block btn-warning" onclick="selfie()">
+                        <i class="fa-solid fa-camera"></i> Depan</a>
+                    </div>
+                    <div class="col col-6">
+                      <a href="#" class="btn btn-block btn-warning" onclick="falseselfie()">
+                        <i class="fa-solid fa-camera"></i> Belakang</a>
+                    </div>
+                </div>
+            {{-- <a href="#" class="btn btn-block btn-warning" onclick="selfie()">
+              <i class="fa-solid fa-user"></i> Foto Selfie</a> --}}
           </div>
           
          <!--tampilan hasil foto selfie-->
@@ -83,9 +96,22 @@
 
         <!-- field kegiatan -->
         <div class="button text-center d-grid">
-          <a href="#" class="btn btn-block btn-warning" onclick="fotokegiatan()"
+          <div class="bg-warning rounded-4 text-light w-100 text-center p-2">
+            <span style="color:black">Foto Kegiatan</span>
+           </div>
+              <div class="row mt-2">
+                  <div class="col col-6">
+                    <a href="#" class="btn btn-block btn-warning" onclick="fotokegiatan()">
+                      <i class="fa-solid fa-camera"></i> Depan</a>
+                  </div>
+                  <div class="col col-6">
+                    <a href="#" class="btn btn-block btn-warning" onclick="falsefotokegiatan()">
+                      <i class="fa-solid fa-camera"></i> Belakang</a>
+                  </div>
+              </div>
+          {{-- <a href="#" class="btn btn-block btn-warning" onclick="fotokegiatan()"
             ><i class="fa-solid fa-camera"></i> Foto Kegiatan</a
-          >
+          > --}}
         </div>
         
         <!--tampilan hasil foto kegiatan-->
@@ -146,9 +172,22 @@
         
         </div>
         <div class="button text-center d-grid">
-          <a href="#" class="btn btn-block btn-primary" onclick="fotopelatihan()"
+          <div class="bg-warning rounded-4 text-light w-100 text-center p-2">
+            <span style="color:black">Foto Pelatihan</span>
+           </div>
+              <div class="row mt-2">
+                  <div class="col col-6">
+                    <a href="#" class="btn btn-block btn-warning" onclick="fotopelatihan()">
+                      <i class="fa-solid fa-camera"></i> Depan</a>
+                  </div>
+                  <div class="col col-6">
+                    <a href="#" class="btn btn-block btn-warning" onclick="falsefotopelatihan()">
+                      <i class="fa-solid fa-camera"></i> Belakang</a>
+                  </div>
+              </div>
+          {{-- <a href="#" class="btn btn-block btn-primary" onclick="fotopelatihan()"
             ><i class="fa-solid fa-camera"></i> Foto Pelatihan</a
-          >
+          > --}}
         </div>
         
         <!--hasil foto pelatihan-->
@@ -213,11 +252,31 @@
      var video = document.querySelector("#videoElement");
      function selfie()
       {
+        let front = true;
+      
         if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: true })
+          navigator.mediaDevices.getUserMedia({ video: { facingMode: front ? "user" : "environment" } })
           .then(function (stream) {
           video.srcObject = stream;
-           })
+          })
+          .catch(function (err0r) {
+          console.log("Something went wrong!");
+          });
+      }
+      var data = `<a href="#" onclick="snapselfie()" class="btn btn-primary">Ambil Gambar</a>`;
+        $("#exampleModal").modal('show');
+        $("#ambilgambar").html(data);
+        
+      }
+      function falseselfie()
+      {
+        let front = false;
+      
+        if (navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices.getUserMedia({ video: { facingMode: front ? "user" : "environment" } })
+          .then(function (stream) {
+          video.srcObject = stream;
+          })
           .catch(function (err0r) {
           console.log("Something went wrong!");
           });
@@ -243,15 +302,35 @@
 
       function fotopelatihan()
       {
-        if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: true })
-          .then(function (stream) {
-          video.srcObject = stream;
-           })
-          .catch(function (err0r) {
-          console.log("Something went wrong!");
-          });
+        let front = true;
+      
+      if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: front ? "user" : "environment" } })
+        .then(function (stream) {
+        video.srcObject = stream;
+        })
+        .catch(function (err0r) {
+        console.log("Something went wrong!");
+        });
+    }
+         var data = `<a href="#" onclick="snappelatihan()" class="btn btn-primary">Ambil Gambar Kegiatan</a>`;
+        $("#exampleModal").modal('show');
+         $("#ambilgambar").html(data);
       }
+
+      function falsefotopelatihan()
+      {
+        let front = false;
+      
+      if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: front ? "user" : "environment" } })
+        .then(function (stream) {
+        video.srcObject = stream;
+        })
+        .catch(function (err0r) {
+        console.log("Something went wrong!");
+        });
+    }
          var data = `<a href="#" onclick="snappelatihan()" class="btn btn-primary">Ambil Gambar Kegiatan</a>`;
         $("#exampleModal").modal('show');
          $("#ambilgambar").html(data);
@@ -273,15 +352,34 @@
 
       function fotokegiatan()
       {
-        if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: true })
-          .then(function (stream) {
-          video.srcObject = stream;
-           })
-          .catch(function (err0r) {
-          console.log("Something went wrong!");
-          });
+        let front = true;
+      
+      if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: front ? "user" : "environment" } })
+        .then(function (stream) {
+        video.srcObject = stream;
+        })
+        .catch(function (err0r) {
+        console.log("Something went wrong!");
+        });
+    }
+         var data = `<a href="#" onclick="snapkegiatan()" class="btn btn-primary">Ambil Gambar Kegiatan</a>`;
+        $("#exampleModal").modal('show');
+         $("#ambilgambar").html(data);
       }
+      function falsefotokegiatan()
+      {
+        let front = false;
+      
+      if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: front ? "user" : "environment" } })
+        .then(function (stream) {
+        video.srcObject = stream;
+        })
+        .catch(function (err0r) {
+        console.log("Something went wrong!");
+        });
+    }
          var data = `<a href="#" onclick="snapkegiatan()" class="btn btn-primary">Ambil Gambar Kegiatan</a>`;
         $("#exampleModal").modal('show');
          $("#ambilgambar").html(data);

@@ -47,7 +47,7 @@
                       <div class="col-12">
                         <label for="inputNanme4" class="form-label">Foto</label><small class="text-muted" style="font-size:8px">Klik gambar jika ingin mengubah</small>
                         <div class="row">
-                          <div class="col-5 col-md-5 ">
+                          <div class="col-12 col-md-12 ">
                             <center>
                               <span class="badge bg-primary">Foto Selfie</span>
                               <div id="fotofasdes"></div>
@@ -55,13 +55,13 @@
                             </center>
                           </div>
                           <div class="col-2 col-md-2"></div>
-                          <div class="col-5 col-md-5 ">
+                          {{-- <div class="col-5 col-md-5 ">
                             <center>
                               <span class="badge bg-primary">Foto Kegiatan</span>
                               <div id="fotokegiatan"></div>
                                <input onchange="readURL2(this);" type="file" id="filefotokegiatan" name="kegiatan" hidden>
                             </center>
-                          </div>
+                          </div> --}}
                         </div>
                       </div>
 
@@ -91,22 +91,22 @@ $(document).ready(function() {
   function gantiselfiekegiatan(){
     $("#fileselfiekegiatan").click();
   }
-  function gantifotokegiatan(){
-    $("#filefotokegiatan").click();
-  }
+  // function gantifotokegiatan(){
+  //   $("#filefotokegiatan").click();
+  // }
 function jeniss()
 {
   var jenis = $("#jenis").val();
   if (jenis == "masuk") {
     $("#jam").html(`<input type="text" class="form-control" value="{{ $harian->jam }}" readonly>`);
     $("#deskripsi").html(`<textarea type="text" class="form-control" name="deskripsi">{{$harian->deskripsi}}</textarea>`);
-    $("#fotofasdes").html(`<img id="imageResult" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotofasdes)}}" width="100%" alt="" onclick="gantiselfiekegiatan()">`);
-    $("#fotokegiatan").html(` <img id="imageResult2" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotokegiatanharian)}}" width="100%" alt="" onclick="gantifotokegiatan()">`)
+    $("#fotofasdes").html(`<img id="imageResult" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotofasdes)}}" width="50%" alt="" onclick="gantiselfiekegiatan()">`);
+  
   } else {
     $("#jam").html(`<input type="text" class="form-control" value="{{ $harian->jampulang }}" readonly>`);
     $("#deskripsi").html(`<textarea type="text" class="form-control" name="deskripsi">{{$harian->deskripsipulang}}</textarea>`);
-    $("#fotofasdes").html(`<img id="imageResult" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotofasdespulang)}}" width="100%" alt="" onclick="gantiselfiekegiatan()">`);
-    $("#fotokegiatan").html(` <img id="imageResult2" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotokegiatanharianpulang)}}" width="100%" alt="" onclick="gantifotokegiatan()">`)
+    $("#fotofasdes").html(`<img id="imageResult" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotofasdespulang)}}" width="50%" alt="" onclick="gantiselfiekegiatan()">`);
+   
   }
 
 }

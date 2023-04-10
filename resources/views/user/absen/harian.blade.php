@@ -50,6 +50,8 @@
       </div> Anda Telah Absen Hari Ini!
       @endif
       @endif
+      
+      <input type="text" value="false" id="depan" hidden>
     </h1>
       <p>{{ Auth::user()->name }}</p>
     </div>
@@ -107,8 +109,22 @@
           <input type="text" id="lokasiisi" name="lokasi" hidden>
 
           <div class="button text-center d-grid">
-            <a href="#" class="btn btn-block btn-warning" onclick="selfie()">
-              <i class="fa-solid fa-user"></i> Foto Selfie</a>
+           <div class="bg-warning rounded-4 text-light w-100 text-center p-2">
+            <span style="color:black">Foto Selfie</span>
+           </div>
+              <div class="row mt-2">
+                  <div class="col col-6">
+                    <a href="#" class="btn btn-block btn-warning" onclick="selfie()">
+                      <i class="fa-solid fa-camera"></i> Depan</a>
+                  </div>
+                  <div class="col col-6">
+                    <a href="#" class="btn btn-block btn-warning" onclick="tukar()">
+                      <i class="fa-solid fa-camera"></i> Belakang</a>
+                  </div>
+              </div>
+
+          
+             
           </div>
           
           {{-- This is the code that will display the image that has been taken by the user.   --}}
@@ -136,12 +152,12 @@
               name="deskripsi"
             ></textarea>
           </div>
-          <div class="button text-center d-grid">
+          {{-- <div class="button text-center d-grid">
             <a href="#" class="btn btn-block btn-warning" onclick="fotokegiatan()">
               <i class="fa-solid fa-camera"></i> Foto kegiatan</a>
           </div>
           <div id="hasilkegiatan" class="overflow-hidden d-flex justify-content-center"></div>
-          <input type="text" id="gambarkegiatan" name="kegiatan" hidden required>
+          <input type="text" id="gambarkegiatan" name="kegiatan" hidden required> --}}
           <div class="button text-center d-grid pt-3">
             <button type="submit" class="btn btn-block btn-success">
               <i class="fa-solid fa-floppy-disk"></i> Simpan</button>
@@ -189,6 +205,7 @@
           <div class="modal-content bg-dark text-light">
               <div class="modal-header">
                   <div id="ambilgambar" class="pt-3"></div>
+                  <div id="switch" class="pt-3"></div>
                   <button type="button" class="btn-close bg-danger rounded" data-bs-dismiss="modal" aria-label="Close" onclick="vidOff()"></button>
               </div>
               <div class="modal-body">
@@ -196,6 +213,7 @@
                     <div id="container" class="overflow-hidden d-flex justify-content-center">
                     <video autoplay="true" id="videoElement">
                     </video>
+                   
                     </div>
                     
                 </div>
@@ -291,10 +309,13 @@
       //   }
       // }
       //webcam selfie
+      
       function selfie()
       {
+        let front = true;
+      
         if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: true })
+          navigator.mediaDevices.getUserMedia({ video: { facingMode: front ? "user" : "environment" } })
           .then(function (stream) {
           video.srcObject = stream;
           })
@@ -303,14 +324,19 @@
           });
       }
       var data = `<a href="#" onclick="snapselfie()" class="btn btn-primary">Ambil Gambar</a>`;
+     
         $("#exampleModal").modal('show');
         $("#ambilgambar").html(data);
+       
         
       }
-      function fotokegiatan()
+      function tukar()
       {
+        
+        let front = false;
+      
         if (navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: true })
+          navigator.mediaDevices.getUserMedia({ video: { facingMode: front ? "user" : "environment" } })
           .then(function (stream) {
           video.srcObject = stream;
           })
@@ -318,10 +344,29 @@
           console.log("Something went wrong!");
           });
       }
-        var data = `<a href="#" onclick="snapkegiatan()" class="btn btn-primary">Ambil Gambar Kegiatan</a>`;
+      var data = `<a href="#" onclick="snapselfie()" class="btn btn-primary">Ambil Gambar</a>`;
+        
         $("#exampleModal").modal('show');
         $("#ambilgambar").html(data);
+       
+        
       }
+      
+      // function fotokegiatan()
+      // {
+      //   if (navigator.mediaDevices.getUserMedia) {
+      //     navigator.mediaDevices.getUserMedia({ video: true })
+      //     .then(function (stream) {
+      //     video.srcObject = stream;
+      //     })
+      //     .catch(function (err0r) {
+      //     console.log("Something went wrong!");
+      //     });
+      // }
+      //   var data = `<a href="#" onclick="snapkegiatan()" class="btn btn-primary">Ambil Gambar Kegiatan</a>`;
+      //   $("#exampleModal").modal('show');
+      //   $("#ambilgambar").html(data);
+      // }
       function vidOff() {
       var mediaStream = video.srcObject;
       var tracks = mediaStream.getTracks();
@@ -340,19 +385,19 @@
         //'<img src="'+dataURL+'"/>'
         $(".btn-close").click();
       }
-      function snapkegiatan() {
-        var data = `<center>
-          <canvas id="canvas1" width="425" height="300"></canvas>
-          </center>`;
-        $("#hasilkegiatan").html(data);
-        var canvas1 = document.getElementById('canvas1');
-        var context1 = canvas1.getContext('2d');
-        context1.drawImage(video, 0, 0, 425, 300);
-        var dataURL = canvas1.toDataURL(dataURL);
-        $("#gambarkegiatan").val(dataURL);
-        //'<img src="'+dataURL+'"/>'
-        $(".btn-close").click();
-      }
+      // function snapkegiatan() {
+      //   var data = `<center>
+      //     <canvas id="canvas1" width="425" height="300"></canvas>
+      //     </center>`;
+      //   $("#hasilkegiatan").html(data);
+      //   var canvas1 = document.getElementById('canvas1');
+      //   var context1 = canvas1.getContext('2d');
+      //   context1.drawImage(video, 0, 0, 425, 300);
+      //   var dataURL = canvas1.toDataURL(dataURL);
+      //   $("#gambarkegiatan").val(dataURL);
+      //   //'<img src="'+dataURL+'"/>'
+      //   $(".btn-close").click();
+      // }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>

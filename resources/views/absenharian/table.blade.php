@@ -31,11 +31,11 @@ $dnow = date("j");
         <th>Tanggal</th>
         <th>Jam Masuk</th>
         <th>Foto Fasdes Masuk</th>
-        <th>Foto Kegiatan Masuk</th>
+        {{-- <th>Foto Kegiatan Masuk</th> --}}
         <th>Jenis</th>
         <th>Jam Pulang</th>
         <th>Foto Fasdes Pulang</th>
-        <th>Foto Kegiatan Pulang</th>
+        {{-- <th>Foto Kegiatan Pulang</th> --}}
         <th>Jenis Pulang</th>
         <th>Status</th>
         <th>Verifikasi</th>
@@ -85,8 +85,8 @@ $cek2 = strlen($i);
 <td>Belum Absen</td>
 <td>Belum Absen</td> 
 <td>Belum Absen</td> 
-<td>Belum Absen</td> 
-<td>Belum Absen</td>
+{{-- <td>Belum Absen</td> 
+<td>Belum Absen</td> --}}
 @else
 <td>Tidak Absen</td>
 <td>Tidak Absen</td>
@@ -96,31 +96,31 @@ $cek2 = strlen($i);
 <td>Tidak Absen</td>
 <td>Tidak Absen</td> 
 <td>Tidak Absen</td> 
-<td>Tidak Absen</td>
-<td>Tidak Absen</td>
+{{-- <td>Tidak Absen</td>
+<td>Tidak Absen</td> --}}
 @endif  
 @else
 @if ($tahun."-".$bulan."-".$i == $harian[$j]->tgl)
     <td>{{ $harian[$j]->jam }}</td>
     <td><img src="{{asset('/foto/'. $harian[$j]->fotofasdes)}}"  alt="Gambar" width="80px" height="80px"></td>
-    <td><img src="{{asset('/foto/'. $harian[$j]->fotokegiatanharian)}}"  alt="Gambar" width="80px" height="80px"></td>
+    {{-- <td><img src="{{asset('/foto/'. $harian[$j]->fotokegiatanharian)}}"  alt="Gambar" width="80px" height="80px"></td> --}}
     <td>{{ $harian[$j]->jenis }}</td>
     @if ($harian[$j]->jampulang == null)
     @if ($harian[$j]->tgl == $t )
     <td>Belum Absen</td>
     <td>Belum Absen</td>
-    <td>Belum Absen</td> 
+    {{-- <td>Belum Absen</td>  --}}
     <td>Belum Absen</td> 
     @else
     <td>Tidak Absen</td>
     <td>Tidak Absen</td>
-    <td>Tidak Absen</td>
+    {{-- <td>Tidak Absen</td> --}}
     <td>Tidak Absen</td>
     @endif
     @else
     <td>{{ $harian[$j]->jampulang }}</td>
     <td><img src="{{asset('/foto/'. $harian[$j]->fotofasdespulang)}}"  alt="Gambar" width="80px" height="80px"></td>
-    <td><img src="{{asset('/foto/'. $harian[$j]->fotokegiatanharianpulang)}}"  alt="Gambar" width="80px" height="80px"></td>
+    {{-- <td><img src="{{asset('/foto/'. $harian[$j]->fotokegiatanharianpulang)}}"  alt="Gambar" width="80px" height="80px"></td> --}}
     <td>{{ $harian[$j]->jenispulang }}</td>
     @endif
    
@@ -168,8 +168,8 @@ $cek2 = strlen($i);
 <td>Belum Absen</td>
 <td>Belum Absen</td> 
 <td>Belum Absen</td> 
-<td>Belum Absen</td> 
-<td>Belum Absen</td> 
+{{-- <td>Belum Absen</td> 
+<td>Belum Absen</td>  --}}
 @else
 <td>Tidak Absen</td>
 <td>Tidak Absen</td>
@@ -179,8 +179,8 @@ $cek2 = strlen($i);
 <td>Tidak Absen</td>
 <td>Tidak Absen</td> 
 <td>Tidak Absen</td> 
-<td>Tidak Absen</td> 
-<td>Tidak Absen</td> 
+{{-- <td>Tidak Absen</td> 
+<td>Tidak Absen</td>  --}}
 @endif
 @endif
 @endif

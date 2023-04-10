@@ -31,14 +31,14 @@
         <div class="card shadow" style="width: 100%">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-12">
                         <span class="badge bg-prim">Foto Masuk</span>
                         <img class="img" src="{{asset('/foto/'. $absenharian->fotofasdes)}}" width="100%" alt="">
                     </div>
-                    <div class="col-6">
+                    {{-- <div class="col-6">
                         <span class="badge bg-prim">Foto Kegiatan Masuk</span>
                         <img class="img" src="{{asset('/foto/'. $absenharian->fotokegiatanharian)}}" width="100%" alt="">
-                    </div>
+                    </div> --}}
                 
 
                 </div>
@@ -67,14 +67,14 @@
                 <div id="googleMap" style="width:100%;height:380px;"></div>
                 @if($absenharian->jampulang <> null)
                 <div class="row mt-4">
-                    <div class="col-6">
+                    <div class="col-12">
                         <span class="badge bg-prim">Foto Pulang</span>
                         <img class="img" src="{{asset('/foto/'. $absenharian->fotofasdespulang)}}" width="100%" alt="">
                     </div>
-                    <div class="col-6">
+                    {{-- <div class="col-6">
                         <span class="badge bg-prim">Foto Kegiatan Pulang</span>
                         <img class="img" src="{{asset('/foto/'. $absenharian->fotokegiatanharianpulang)}}" width="100%" alt="">
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="col-12 mt-2">
                     <table border="0">

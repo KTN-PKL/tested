@@ -325,8 +325,6 @@ class c_absenkegiatan extends Controller
     
     public function updateAbsen(Request $request, $id)
     {
-        date_default_timezone_set("Asia/Jakarta");
-        $t = date("Y-m");
         $data = [
             'jeniskegiatan' => $request->jeniskegiatan,
             'deskripsikegiatan' => $request->deskripsikegiatan,
@@ -343,7 +341,7 @@ class c_absenkegiatan extends Controller
          // foto selfie
         if($request->selfiekegiatan <> null){
             $file = $request->selfiekegiatan;
-            $filename="fasdes_".$namafoto->tanggalabsen.'.png';   
+            $filename = $namafoto->selfiekegiatan;
             $file->move(public_path('foto/absenkegiatan'),$filename);
             $data['selfiekegiatan'] = $filename;
         }
@@ -351,7 +349,7 @@ class c_absenkegiatan extends Controller
         // foto kegiatan
         if($request->fotokegiatan <> null){
             $file2 = $request->fotokegiatan;
-            $filename2="kegiatan_".$namafoto->tanggalabsen.'.png';   
+            $filename2 = $namafoto->fotokegiatan;
             $file2->move(public_path('foto/absenkegiatan'),$filename2);
             $data['fotokegiatan'] = $filename2;
         }
@@ -359,7 +357,7 @@ class c_absenkegiatan extends Controller
          // foto pelatihan
          if($request->fotopelatihan <> null){
             $file3 = $request->fotopelatihan;
-            $filename3="pelatihan_".$namafoto->tanggalabsen.'.png';   
+            $filename3 = $namafoto->fotopelatihan;
             $file3->move(public_path('foto/absenkegiatan'),$filename3);
             $data['fotopelatihan'] = $filename3;
         }

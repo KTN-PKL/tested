@@ -209,15 +209,15 @@ class c_absenharian extends Controller
         date_default_timezone_set("Asia/Jakarta");
         $t = date("H:i");
         $name = "fasdes_masuk_".$request->harian."_".Auth::user()->id.".png";
-        $name1 = "kegiatan_masuk_".$request->harian."_".Auth::user()->id.".png";
+        // $name1 = "kegiatan_masuk_".$request->harian."_".Auth::user()->id.".png";
         $filename = $this->simpangambar($request->selfie, $name);
-        $filename1 = $this->simpangambar($request->kegiatan, $name1);
+        // $filename1 = $this->simpangambar($request->kegiatan, $name1);
         $data = [
             'id_user' => Auth::user()->id,
             'lokasiharian' => $request->lokasi,
             'fotofasdes' => $filename,
             'deskripsi' => $request->deskripsi,
-            'fotokegiatanharian' => $filename1,
+            // 'fotokegiatanharian' => $filename1,
             'tgl' => $request->harian,
             'jam' => $t,
             'jenis' => $request->jenis,
@@ -253,14 +253,15 @@ class c_absenharian extends Controller
         date_default_timezone_set("Asia/Jakarta");
         $t = date("H:i");
         $name = "fasdes_pulang_".$request->harian."_".Auth::user()->id.".png";
-        $name1 = "kegiatan_pulang_".$request->harian."_".Auth::user()->id.".png";
         $filename = $this->simpangambar($request->selfie, $name);
-        $filename1 = $this->simpangambar($request->kegiatan, $name1);
+        // $name1 = "kegiatan_pulang_".$request->harian."_".Auth::user()->id.".png";
+      
+        // $filename1 = $this->simpangambar($request->kegiatan, $name1);
         $data = [
             'lokasipulang' => $request->lokasi,
             'fotofasdespulang' => $filename,
             'deskripsipulang' => $request->deskripsi,
-            'fotokegiatanharianpulang' => $filename1,
+            // 'fotokegiatanharianpulang' => $filename1,
             'jampulang' => $t,
             'jenispulang' => $request->jenis,
         ];
@@ -302,10 +303,11 @@ class c_absenharian extends Controller
     }
     public function update(Request $request, $id)
     {
+        $namafoto = $this->harian->detailData($id);
         if ($request->fasdes <> null)
         {
         $file  = $request->fasdes;
-        $filename = "fasdes_".$request->jenis."_".$request->harian.".".$file->extension();
+        $filename = $namafoto->fotofasdes;
         $file->move(public_path('foto'),$filename);
         if ($request->jenis == "masuk")
         {
@@ -318,22 +320,22 @@ class c_absenharian extends Controller
             $this->harian->editData2($id, $data);
         }
         }
-        if ($request->kegiatan <> null)
-        {
-        $file1  = $request->kegiatan;
-        $filename1 = "kegiatan_".$request->jenis."_".$request->harian.".".$file->extension();
-        $file->move(public_path('foto'),$filename1);
-        if ($request->jenis == "masuk")
-        {
-            $data = ['fotokegiatanharian' => $filename1,];
-            $this->harian->editData2($id, $data);
-        }
-        else
-        {
-            $data = ['fotokegiatanharianpulang' => $filename1,];
-            $this->harian->editData2($id, $data);
-        }
-        }
+        // if ($request->kegiatan <> null)
+        // {
+        // $file1  = $request->kegiatan;
+        // $filename1 = "kegiatan_".$request->jenis."_".$request->harian.".".$file->extension();
+        // $file->move(public_path('foto'),$filename1);
+        // if ($request->jenis == "masuk")
+        // {
+        //     $data = ['fotokegiatanharian' => $filename1,];
+        //     $this->harian->editData2($id, $data);
+        // }
+        // else
+        // {
+        //     $data = ['fotokegiatanharianpulang' => $filename1,];
+        //     $this->harian->editData2($id, $data);
+        // }
+        // }
         if ($request->jenis == "masuk")
         {
             $data = ['deskripsi' => $request->deskripsi,];

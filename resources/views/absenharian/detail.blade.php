@@ -58,11 +58,11 @@
                   <div id="fasdes"></div>
              
                 </div>
-                <div class="col-4 col-md-4 ">
+                {{-- <div class="col-4 col-md-4 ">
                   <span class="badge bg-primary">Foto Kegiatan</span>
                  <div id="kegiatan"></div>
                  
-                </div>
+                </div> --}}
             </div>
           </div>
         </div>
@@ -143,7 +143,6 @@ function initialize() {
     if (absen == "masuk") {
       $("#jam").html("{{ $harian->jam }}");
       $("#fasdes").html(`<img id="imageResult" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotofasdes)}}" width="100%" height="100" alt="">`);
-      $("#kegiatan").html(` <img id="imageResult2" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotokegiatanharian)}}" width="100%" height="100" alt="">`);
       $("#deskripsi").html("{{ $harian->deskripsi }}");
       $("#status").html(`
        <td valign="top"><h6>Status Absen</h6></td>
@@ -166,7 +165,6 @@ function initialize() {
     } else {
       $("#jam").html("{{ $harian->jampulang }}");
       $("#fasdes").html(`<img id="imageResult" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotofasdespulang)}}" width="100%" height="100" alt="">`);
-      $("#kegiatan").html(` <img id="imageResult2" class="img-thumbnail btn" src="{{asset('/foto/'. $harian->fotokegiatanharianpulang)}}" width="100%" height="100" alt="">`);
       $("#deskripsi").html("{{ $harian->deskripsipulang }}");
         $("#status").html(`
       `);
